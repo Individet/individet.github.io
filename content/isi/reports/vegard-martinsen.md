@@ -50,7 +50,7 @@ Martinsen draws a sharp distinction between government censorship and private ed
 
 ### Government "disinformation" strategy
 
-He opposed the Norwegian government's strategy against "desinformasjon" as dangerous overreach, questioning: "Spørsmålet er altså hvorvidt reguleringer overfor de som har som oppgave å formidle og å fremskaffe kunnskap – presseorganer, tenketanker, skribenter, akademikere, forskere – kan hindre spreding av 'desinformasjon'" (gullstandard.no).
+He opposed the Norwegian government's strategy against "desinformasjon" as dangerous overreach, questioning: "Spørsmålet er altså hvorvidt reguleringer overfor de som har som oppgave å formidle og å fremskaffe kunnskap – presseorganer, tankesmier, skribenter, akademikere, forskere – kan hindre spreding av 'desinformasjon'" (gullstandard.no).
 
 ---
 

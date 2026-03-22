@@ -138,7 +138,7 @@ Martinsen har kritisert bruken av forskning som legitimeringsgrunnlag for frihet
 
 **Score: +2**
 
-Martinsen motsatte seg regjeringens strategi mot «desinformasjon» som farlig overgrep, og stilte spørsmål ved om regulering av presseorganer, tenketanker og akademikere kan eller bør brukes til å hindre spredning av påstått feilinformasjon (gullstandard.no). Han kritiserte kinesisk internettsensur som et virkemiddel diktaturet bruker for å opprettholde makt. DLFs etterfølgerparti Liberalistene — som Martinsen anbefalte medlemmer å gå til — krever eksplisitt at «enhver form for generell overvåkning av fredelige borgere skal være strengt forbudt» (liberalistene.org).
+Martinsen motsatte seg regjeringens strategi mot «desinformasjon» som farlig overgrep, og stilte spørsmål ved om regulering av presseorganer, tankesmier og akademikere kan eller bør brukes til å hindre spredning av påstått feilinformasjon (gullstandard.no). Han kritiserte kinesisk internettsensur som et virkemiddel diktaturet bruker for å opprettholde makt. DLFs etterfølgerparti Liberalistene — som Martinsen anbefalte medlemmer å gå til — krever eksplisitt at «enhver form for generell overvåkning av fredelige borgere skal være strengt forbudt» (liberalistene.org).
 
 ---
 

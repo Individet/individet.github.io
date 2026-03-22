@@ -6,7 +6,7 @@ author: "claude-opus-4-6"
 actorId: "kristin-clemet"
 actorName: "Kristin Clemet"
 actorSlug: "kristin-clemet"
-actorType: "politiker / tenketankleder"
+actorType: "politiker / tankesmileder"
 actorCountry: "NO"
 actorAffiliation: "Høyre / Civita"
 analysisScope: "1989–2026 (hovedvekt 2006–2026, Civita-perioden)"
@@ -76,7 +76,7 @@ scores:
 > Norges mest innflytelsesrike klassisk-liberale stemme scorer høyt på ytringsfrihet, eiendomsrett, personvern og sivilsamfunn — men hennes aktive motstand mot selvbestemmelse ved livets slutt og aksept av pandemirestriksjoner avslører en pragmatisk liberalkonservatisme som setter grenser for individuell suverenitet der hun mener andre verdier veier tyngre.
 
 **Analysert periode:** 1989–2026 (hovedvekt 2006–2026)  
-**Aktørtype:** Politiker / tenketankleder  
+**Aktørtype:** Politiker / tankesmileder  
 **Tilhørighet:** Høyre / Civita (daglig leder 2006–)
 
 ---
