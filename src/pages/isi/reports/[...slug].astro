@@ -1,0 +1,43 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const reports = await getCollection("isiReports");
+
+  return reports.map((entry) => ({
+    params: { slug: entry.id.replace(/\.md$/, "") },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Layout
+  title={`${entry.id.replace(/\.md$/, '')} | ISI-rapport | Individet`}
+  description={`Fullstendig ISI-rapport: ${entry.id.replace(/\.md$/, '').split('_').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}.`}
+  ogType="article"
+>
+  <article class="report-page">
+    <p><a href="/isi/reports/">Til rapportoversikten</a></p>
+    <p>
+      <strong>Opprettet:</strong>
+      {entry.data.created.toISOString().slice(0, 10)} |
+      <strong>Sist oppdatert:</strong>
+      {entry.data.lastUpdated.toISOString().slice(0, 10)} |
+      <strong>Forfatter:</strong>
+      {entry.data.author}
+    </p>
+    <hr />
+    <Content />
+  </article>
+</Layout>
+
+<style>
+  .report-page {
+    display: grid;
+    gap: 1rem;
+  }
+</style>

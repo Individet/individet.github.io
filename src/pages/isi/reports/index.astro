@@ -1,0 +1,120 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../../layouts/Layout.astro";
+
+function formatDate(value: Date) {
+  return value.toISOString().slice(0, 10);
+}
+
+function titleFromId(id: string) {
+  const slug = id.replace(/\.md$/, "");
+
+  return slug
+    .split("_")
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" ");
+}
+
+const reports = (await getCollection("isiReports")).sort(
+  (a, b) => b.data.lastUpdated.getTime() - a.data.lastUpdated.getTime(),
+);
+---
+
+<Layout
+  title="ISI-rapporter | Individet"
+  description="Fullstendige ISI-rapporter med detaljert analyse av samfunnsaktører målt etter individets suverenitetsindeks."
+>
+  <h1>ISI reports</h1>
+  <p>
+    Oversikten bygges automatisk fra Markdown-filer i <code
+      >content/isi/reports/</code
+    >.
+  </p>
+  <p><a href="/isi/">Til ISI-oversikten</a></p>
+
+  {
+    reports.length === 0 ? (
+      <p>Ingen rapporter funnet.</p>
+    ) : (
+      <ul class="report-list">
+        {reports.map((report) => (
+          <li>
+            <a
+              class="report-list__link"
+              href={`/isi/reports/${report.id.replace(/\.md$/, "")}/`}
+            >
+              <span class="report-list__title">{titleFromId(report.id)}</span>
+              <span class="report-list__meta">
+                Oppdatert {formatDate(report.data.lastUpdated)} | Forfatter{" "}
+                {report.data.author}
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</Layout>
+
+<style>
+  .report-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .report-list li {
+    background: #fff;
+    box-shadow: 0 6px 18px rgba(31, 36, 33, 0.05);
+    transition:
+      transform 160ms ease,
+      box-shadow 160ms ease;
+  }
+
+  .report-list li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(31, 36, 33, 0.1);
+  }
+
+  .report-list__link {
+    display: grid;
+    gap: 0.4rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid rgba(15, 15, 15, 0.9);
+    text-decoration: none;
+    color: inherit;
+    background: linear-gradient(180deg, #fff 0%, #fbfaf7 100%);
+  }
+
+  .report-list__link:hover {
+    text-decoration: underline;
+  }
+
+  .report-list__title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .report-list__meta {
+    font-size: 0.95rem;
+    color: #52606b;
+  }
+
+  @media (max-width: 560px) {
+    .report-list__link {
+      padding: 0.95rem;
+    }
+
+    .report-list__title {
+      font-size: 1rem;
+    }
+
+    .report-list__meta {
+      font-size: 0.9rem;
+    }
+  }
+</style>

@@ -1,0 +1,65 @@
+---
+import { getCollection } from "astro:content";
+import IsiReportCard from "../../components/IsiReportCard.astro";
+import Layout from "../../layouts/Layout.astro";
+import { getIsiScore } from "../../lib/isi";
+
+const reports = (await getCollection("isi")).sort((a, b) => {
+  const scoreDelta = getIsiScore(b) - getIsiScore(a);
+
+  if (scoreDelta !== 0) {
+    return scoreDelta;
+  }
+
+  return a.data.actorName.localeCompare(b.data.actorName, "no");
+});
+---
+
+<Layout
+  title="ISI-analyser — Individets Suverenitetsindeks | Individet"
+  description="Alle ISI-analyser: politikere, partier, organisasjoner og medier bedømt etter om de fremmer eller hemmer individets suverenitet."
+>
+  <h1>ISI-rapporter</h1>
+  <p>
+    Oversikten bygges automatisk fra Markdown-filer i <code>content/isi/</code>.
+    Legg til en ny rapport der, sa blir den publisert og listet her ved neste
+    Astro-bygg.
+  </p>
+
+  {
+    reports.length === 0 ? (
+      <p>Ingen ISI-rapporter funnet.</p>
+    ) : (
+      <ul class="report-list">
+        {reports.map((report) => (
+          <li>
+            <IsiReportCard report={report} />
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</Layout>
+
+<style>
+  .report-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .report-list li {
+    background: #fff;
+    box-shadow: 0 6px 18px rgba(31, 36, 33, 0.05);
+    transition:
+      transform 160ms ease,
+      box-shadow 160ms ease;
+  }
+
+  .report-list li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(31, 36, 33, 0.1);
+  }
+</style>

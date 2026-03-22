@@ -1,0 +1,166 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getIsiClass, getIsiScore } from "../lib/isi";
+import IsiScoreRing from "./IsiScoreRing.astro";
+
+interface Props {
+  report: CollectionEntry<"isi">;
+}
+
+const { report } = Astro.props;
+const isiClass = getIsiClass(report);
+
+function formatDate(value: Date): string {
+  const day = String(value.getUTCDate()).padStart(2, "0");
+  const month = String(value.getUTCMonth() + 1).padStart(2, "0");
+  const year = value.getUTCFullYear();
+
+  return `${day}.${month}.${year}`;
+}
+---
+
+<a class="report-list__link" href={`/isi/${report.id.replace(/\.md$/, "")}/`}>
+  <span class="report-list__score">
+    <IsiScoreRing
+      score={getIsiScore(report)}
+      label={`${report.data.actorName}: ${getIsiScore(report)}`}
+    />
+  </span>
+  <span class="report-list__content">
+    <span class="report-list__topline">
+      <span class="report-list__name">
+        {report.data.actorName} ({report.data.actorType})
+      </span>
+      <span class="report-list__class">{isiClass}</span>
+    </span>
+    <span class="report-list__affiliation">
+      {report.data.actorAffiliation}
+    </span>
+
+    {
+      report.data.tags.length > 0 && (
+        <span class="report-list__bottom">
+          <span class="report-list__tags" aria-label="Tagger">
+            {report.data.tags.map((tag) => (
+              <span class="report-list__tag">{tag}</span>
+            ))}
+          </span>
+        </span>
+      )
+    }
+
+    <span class="report-list__updated">
+      Sist oppdatert: {formatDate(report.data.lastUpdated)}
+    </span>
+  </span>
+</a>
+
+<style>
+  .report-list__link {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem 1.1rem;
+    border: 1px solid rgba(15, 15, 15, 0.9);
+    text-decoration: none;
+    color: inherit;
+    background: linear-gradient(180deg, #fff 0%, #fbfaf7 100%);
+  }
+
+  @media screen and (max-width: var(--max-width)) {
+    .report-list_link {
+      border-left: 0;
+      border-right: 0;
+    }
+  }
+
+  .report-list__link:hover {
+    text-decoration: none;
+  }
+
+  .report-list__name {
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-wrap: balance;
+    line-height: 1.3;
+  }
+
+  .report-list__score {
+    display: inline-flex;
+    flex: 0 0 auto;
+  }
+
+  .report-list__content {
+    min-width: 0;
+    display: grid;
+    gap: 0.45rem;
+    width: 100%;
+  }
+
+  .report-list__topline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem 0.7rem;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  .report-list__class {
+    font-size: 0.96rem;
+    font-weight: 600;
+    color: #36414a;
+  }
+
+  .report-list__affiliation {
+    font-size: 0.95rem;
+    line-height: 1.35;
+    color: #3f4a53;
+  }
+
+  .report-list__bottom {
+    margin-top: 0.2rem;
+  }
+
+  .report-list__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+
+  .report-list__tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.28rem 0.65rem;
+    border-radius: 999px;
+    border: 1px solid rgba(39, 76, 119, 0.14);
+    background: linear-gradient(180deg, #fdfcf9 0%, #f5f2ea 100%);
+    font-size: 0.82rem;
+    line-height: 1;
+  }
+
+  .report-list__updated {
+    margin-top: 0.2rem;
+    font-size: 0.83rem;
+    color: #6f7a83;
+    font-style: italic;
+  }
+
+  @media (max-width: 560px) {
+    .report-list__link {
+      padding: 0.95rem;
+      flex-direction: column;
+    }
+
+    .report-list__name {
+      font-size: 1rem;
+    }
+
+    .report-list__class {
+      font-size: 0.92rem;
+    }
+
+    .report-list__affiliation {
+      font-size: 0.92rem;
+    }
+  }
+</style>

@@ -1,0 +1,99 @@
+---
+interface Props {
+  score: number
+  label?: string
+}
+
+const { score, label = `ISI-score ${score}` } = Astro.props
+const clampedScore = Math.max(0, Math.min(100, score))
+const size = 68
+const strokeWidth = 7
+const radius = size / 2 - strokeWidth / 2
+const circumference = 2 * Math.PI * radius
+const dashOffset = circumference * (1 - clampedScore / 100)
+const redChannel = 255
+const greenBlueChannel = Math.round(255 * (clampedScore / 100))
+const trackColor = `rgb(${redChannel} ${greenBlueChannel} ${greenBlueChannel})`
+---
+
+<div
+  class="score-ring"
+  style={`--score-ring-track: ${trackColor}; --score-ring-size: ${size}px;`}
+  aria-label={label}
+  title={label}
+>
+  <svg
+    class="score-ring__svg"
+    viewBox={`0 0 ${size} ${size}`}
+    width={size}
+    height={size}
+    aria-hidden="true"
+  >
+    <circle class="score-ring__track" cx={size / 2} cy={size / 2} r={radius} />
+    <circle
+      class="score-ring__progress"
+      cx={size / 2}
+      cy={size / 2}
+      r={radius}
+      stroke-dasharray={circumference}
+      stroke-dashoffset={dashOffset}
+    />
+  </svg>
+  <span class="score-ring__value">{clampedScore}</span>
+</div>
+
+<style>
+  .score-ring {
+    position: relative;
+    display: grid;
+    place-items: center;
+    inline-size: var(--score-ring-size);
+    block-size: var(--score-ring-size);
+    flex: 0 0 auto;
+  }
+
+  .score-ring__svg {
+    position: absolute;
+    inset: 0;
+    transform: rotate(-90deg);
+    overflow: visible;
+  }
+
+  .score-ring__track,
+  .score-ring__progress {
+    fill: none;
+    stroke-width: 8;
+  }
+
+  .score-ring__track {
+    stroke: var(--score-ring-track);
+  }
+
+  .score-ring__progress {
+    stroke: #00a000;
+    stroke-linecap: butt;
+    transition:
+      stroke-dashoffset 180ms ease,
+      stroke 180ms ease;
+  }
+
+  .score-ring::before {
+    content: '';
+    position: absolute;
+    inset: 10px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid rgba(15, 15, 15, 0.9);
+    z-index: 0;
+  }
+
+  .score-ring__value {
+    position: relative;
+    z-index: 1;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    color: #1f2421;
+  }
+</style>

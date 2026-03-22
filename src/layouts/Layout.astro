@@ -1,0 +1,91 @@
+---
+import { SITE } from "../lib/seo";
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  ogType?: "website" | "article";
+}
+
+const {
+  title = SITE.name,
+  description = SITE.description,
+  ogType = "website",
+} = Astro.props;
+
+const canonical =
+  Astro.props.canonical ?? new URL(Astro.url.pathname, SITE.url).href;
+---
+
+<!doctype html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO core -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:locale" content={SITE.locale} />
+    <meta property="og:type" content={ogType} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Page-specific head content (JSON-LD, etc.) -->
+    <slot name="head" />
+  </head>
+  <body>
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    font-family: Georgia, "Times New Roman", serif;
+    line-height: 1.55;
+    color: #1f2421;
+    background: #f9f8f5;
+    --max-width: 900px;
+    --mobile-breakpoint: 560px;
+  }
+
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    min-height: 100%;
+  }
+
+  main {
+    max-width: var(--max-width);
+    margin: 0 auto;
+  }
+
+  main > * {
+    margin: 0 16px;
+  }
+
+  a {
+    color: #274c77;
+  }
+
+  a:hover {
+    color: #1f3a5a;
+  }
+</style>

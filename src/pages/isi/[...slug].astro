@@ -1,0 +1,330 @@
+---
+import { getCollection, render } from 'astro:content'
+import IsiScorecard from '../../components/IsiScorecard.astro'
+import Layout from '../../layouts/Layout.astro'
+import { getIsiClass, getIsiScore, getIsiRawScore } from '../../lib/isi'
+
+export async function getStaticPaths() {
+  const reports = await getCollection('isi')
+
+  return reports.map((entry) => ({
+    params: { slug: entry.id.replace(/\.md$/, '') },
+    props: { entry },
+  }))
+}
+
+const { entry } = Astro.props
+const { Content } = await render(entry)
+const rawScore = getIsiRawScore(entry)
+const isiScore = getIsiScore(entry)
+const isiClass = getIsiClass(entry)
+const tags = entry.data.tags ?? []
+const primarySources = entry.data.primarySources ?? []
+const secondarySources = entry.data.secondarySources ?? []
+---
+
+<Layout
+  title={`${entry.data.actorName} | ISI | Individet`}
+  description={`ISI-analyse av ${entry.data.actorName}: score ${isiScore}, klassifisering ${isiClass}. Vurdert etter individets suverenitetsindeks.`}
+  ogType="article"
+>
+  <article class="isi-report">
+    <p><a href="/isi/">Til ISI-oversikten</a></p>
+    <p>
+      <strong>ISI-score:</strong> {isiScore} (råskår {rawScore}) |
+      <strong>Klassifisering:</strong> {isiClass}
+    </p>
+    <p>
+      <strong>Analysert periode:</strong> {entry.data.analysisScope} |
+      <strong>Sist oppdatert:</strong> {entry.data.lastUpdated.toISOString().slice(0, 10)}
+    </p>
+    {tags.length > 0 && (
+      <section class="isi-report__tags" aria-label="Tagger">
+        <p class="isi-report__tags-label">Tagger</p>
+        <ul class="isi-report__tag-list">
+          {tags.map((tag) => (
+            <li>{tag}</li>
+          ))}
+        </ul>
+      </section>
+    )}
+    <hr />
+    <Content />
+    <section id="isi-scorecard-runtime" class="isi-scorecard-runtime" hidden>
+      <IsiScorecard data={entry.data} rawScore={rawScore} isiScore={isiScore} />
+    </section>
+    <section class="isi-report__sources" aria-label="Kilder">
+      <h2>Kilder</h2>
+      <div class="isi-report__source-grid">
+        <section class="isi-report__panel">
+          <h3>Primærkilder</h3>
+          {primarySources.length === 0 ? (
+            <p class="isi-report__empty">Ingen primærkilder registrert.</p>
+          ) : (
+            <ul>
+              {primarySources.map((source) => (
+                <li>{source}</li>
+              ))}
+            </ul>
+          )}
+        </section>
+
+        <section class="isi-report__panel">
+          <h3>Sekundærkilder</h3>
+          {secondarySources.length === 0 ? (
+            <p class="isi-report__empty">Ingen sekundærkilder registrert.</p>
+          ) : (
+            <ul>
+              {secondarySources.map((source) => (
+                <li>{source}</li>
+              ))}
+            </ul>
+          )}
+        </section>
+      </div>
+    </section>
+  </article>
+</Layout>
+
+<script is:inline>
+  const article = document.querySelector('.isi-report')
+  const runtimeScorecard = document.getElementById('isi-scorecard-runtime')
+  const scoreHeading = article?.querySelector('h3[id="skårtabell"]')
+
+  if (article && runtimeScorecard && scoreHeading) {
+    let current = scoreHeading.nextElementSibling
+
+    while (current && !/^H[1-3]$/.test(current.tagName)) {
+      const next = current.nextElementSibling
+      current.remove()
+      current = next
+    }
+
+    runtimeScorecard.hidden = false
+    scoreHeading.after(runtimeScorecard)
+  }
+</script>
+
+<style is:global>
+  .isi-report {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .isi-report .isi-scorecard {
+    display: grid;
+    gap: 1rem;
+    margin: 1rem 0 1.5rem;
+  }
+
+  .isi-report .isi-scorecard__summary,
+  .isi-report .isi-scorecard__panel {
+    background: #fff;
+    border: 1px solid rgba(31, 36, 33, 0.14);
+    box-shadow: 0 10px 24px rgba(31, 36, 33, 0.06);
+  }
+
+  .isi-report .isi-scorecard__summary {
+    padding: 1rem;
+  }
+
+  .isi-report .isi-scorecard__metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.75rem;
+    margin: 0;
+  }
+
+  .isi-report .isi-scorecard__metric {
+    padding: 0.9rem 1rem;
+    background: linear-gradient(180deg, #fdfcf9 0%, #f5f2ea 100%);
+    border: 1px solid rgba(39, 76, 119, 0.14);
+  }
+
+  .isi-report .isi-scorecard__metric dt {
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #52606b;
+  }
+
+  .isi-report .isi-scorecard__metric dd {
+    margin: 0.35rem 0 0;
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1.15;
+  }
+
+  .isi-report .isi-scorecard__metric dd span {
+    display: block;
+    margin-top: 0.2rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #52606b;
+  }
+
+  .isi-report .isi-scorecard__panel {
+    overflow: hidden;
+  }
+
+  .isi-report .isi-scorecard__panel h4 {
+    margin: 0;
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid rgba(31, 36, 33, 0.12);
+    background: #f3efe7;
+  }
+
+  .isi-report .isi-scorecard__panel p,
+  .isi-report .isi-scorecard__panel ul {
+    margin: 0;
+  }
+
+  .isi-report .isi-scorecard__panel p,
+  .isi-report .isi-scorecard__panel ul,
+  .isi-report .isi-scorecard__panel table {
+    width: 100%;
+  }
+
+  .isi-report .isi-scorecard__panel p {
+    padding: 1rem;
+  }
+
+  .isi-report .isi-scorecard__panel table {
+    border-collapse: collapse;
+  }
+
+  .isi-report .isi-scorecard__panel th,
+  .isi-report .isi-scorecard__panel td {
+    padding: 0.8rem 1rem;
+    vertical-align: top;
+    border-bottom: 1px solid rgba(31, 36, 33, 0.1);
+  }
+
+  .isi-report .isi-scorecard__panel tbody tr:last-child th,
+  .isi-report .isi-scorecard__panel tbody tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .isi-report .isi-scorecard__panel thead th {
+    background: #faf8f2;
+    text-align: left;
+  }
+
+  .isi-report .isi-scorecard__dimension-row th,
+  .isi-report .isi-scorecard__dimension-row td {
+    font-weight: 700;
+    background: #f7f3eb;
+  }
+
+  .isi-report .isi-scorecard__score {
+    white-space: nowrap;
+    font-weight: 700;
+    text-align: right;
+  }
+
+  .isi-report .isi-scorecard__subdimension {
+    padding-left: 2rem;
+  }
+
+  .isi-report__tag-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    padding: 0;
+    margin: 0;
+  }
+
+  .isi-report__tags {
+    display: grid;
+    gap: 0.5rem;
+    padding: 0.85rem 1rem;
+    background: #fff;
+    border: 1px solid rgba(31, 36, 33, 0.14);
+    box-shadow: 0 10px 24px rgba(31, 36, 33, 0.06);
+  }
+
+  .isi-report__tags-label {
+    margin: 0;
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #52606b;
+    font-weight: 700;
+  }
+
+  .isi-report__tag-list li {
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #fdfcf9 0%, #f5f2ea 100%);
+    border: 1px solid rgba(39, 76, 119, 0.14);
+    font-size: 0.95rem;
+  }
+
+  .isi-report__sources {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .isi-scorecard-runtime[hidden] {
+    display: none !important;
+  }
+
+  .isi-report__source-grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .isi-report__panel {
+    background: #fff;
+    border: 1px solid rgba(31, 36, 33, 0.14);
+    box-shadow: 0 10px 24px rgba(31, 36, 33, 0.06);
+    overflow: hidden;
+  }
+
+  .isi-report__panel h3 {
+    margin: 0;
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid rgba(31, 36, 33, 0.12);
+    background: #f3efe7;
+  }
+
+  .isi-report__panel p,
+  .isi-report__panel ul {
+    margin: 0;
+  }
+
+  .isi-report__panel p {
+    padding: 1rem;
+  }
+
+  .isi-report__panel ul {
+    padding: 1rem 1rem 1rem 2rem;
+  }
+
+  .isi-report__panel li + li {
+    margin-top: 0.55rem;
+  }
+
+  .isi-report__empty {
+    color: #52606b;
+  }
+
+  @media (min-width: 760px) {
+    .isi-report__source-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 680px) {
+    .isi-report .isi-scorecard__panel th,
+    .isi-report .isi-scorecard__panel td {
+      padding: 0.7rem 0.8rem;
+    }
+
+    .isi-report .isi-scorecard__subdimension {
+      padding-left: 1.2rem;
+    }
+  }
+</style>

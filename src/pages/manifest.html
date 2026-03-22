@@ -1,0 +1,1935 @@
+<!doctype html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Individets Suverenitet — Et Manifest</title>
+    <meta name="description" content="Manifestet «Individets Suverenitet» — det ideologiske grunnlaget for tenketanken Individet. Fra Aristoteles og Locke til vår tid: selveierskapet er ufravikelig." />
+    <link rel="canonical" href="https://www.individet.no/manifest/" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Individets Suverenitet — Et Manifest" />
+    <meta property="og:description" content="Manifestet «Individets Suverenitet» — det ideologiske grunnlaget for tenketanken Individet. Fra Aristoteles og Locke til vår tid: selveierskapet er ufravikelig." />
+    <meta property="og:url" content="https://www.individet.no/manifest/" />
+    <meta property="og:site_name" content="Individet" />
+    <meta property="og:locale" content="nb_NO" />
+    <meta property="og:type" content="article" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Individets Suverenitet — Et Manifest" />
+    <meta name="twitter:description" content="Manifestet «Individets Suverenitet» — det ideologiske grunnlaget for tenketanken Individet. Fra Aristoteles og Locke til vår tid: selveierskapet er ufravikelig." />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    <style>
+      :root {
+        --bg: #060606;
+        --text: #e3ddd3;
+        --text-dim: #6a6460;
+        --gold: #c49228;
+        --gold-bright: #f0c535;
+        --gold-glow: rgba(196, 146, 40, 0.2);
+        --collective: #3a3a52;
+        --tyranny: #7a0f0f;
+        --tyranny-bright: #c41a1a;
+        --border: rgba(196, 146, 40, 0.22);
+        --chapter-bg: rgba(6, 6, 6, 0.91);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        font-size: 18px;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "EB Garamond", Georgia, serif;
+        overflow-x: hidden;
+      }
+
+      ::selection {
+        background: rgba(196, 146, 40, 0.3);
+        color: var(--text);
+      }
+
+      ::-webkit-scrollbar {
+        width: 3px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--gold);
+        border-radius: 2px;
+      }
+
+      /* ── FIXED LAYERS ── */
+      #bg-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      #bg-canvas canvas {
+        display: block;
+      }
+
+      #progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          var(--gold),
+          var(--gold-bright),
+          #fff8d6
+        );
+        width: 0%;
+        z-index: 9999;
+        box-shadow: 0 0 10px var(--gold-bright);
+        transition: width 0.15s linear;
+      }
+
+      .chapter-nav {
+        position: fixed;
+        right: 1.8rem;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 200;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .nav-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: rgba(196, 146, 40, 0.2);
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s;
+        outline: none;
+        padding: 0;
+      }
+
+      .nav-dot.active,
+      .nav-dot:hover {
+        background: var(--gold);
+        transform: scale(1.6);
+        box-shadow:
+          0 0 8px var(--gold),
+          0 0 16px rgba(196, 146, 40, 0.3);
+      }
+
+      /* ── HERO ── */
+      .hero {
+        position: relative;
+        z-index: 10;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 4rem 2rem;
+        overflow: hidden;
+      }
+
+      .hero-rings {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+      }
+
+      .ring {
+        position: absolute;
+        border-radius: 50%;
+        border: 1px solid rgba(196, 146, 40, 0.4);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+      }
+
+      .ring:nth-child(1) {
+        width: 200px;
+        height: 200px;
+        animation: ringExpand 5s ease-out forwards 0.3s;
+      }
+      .ring:nth-child(2) {
+        width: 380px;
+        height: 380px;
+        animation: ringExpand 5s ease-out forwards 0.8s;
+      }
+      .ring:nth-child(3) {
+        width: 580px;
+        height: 580px;
+        animation: ringExpand 5s ease-out forwards 1.3s;
+      }
+      .ring:nth-child(4) {
+        width: 800px;
+        height: 800px;
+        animation: ringExpand 5s ease-out forwards 1.8s;
+      }
+      .ring:nth-child(5) {
+        width: 1050px;
+        height: 1050px;
+        animation: ringExpand 5s ease-out forwards 2.3s;
+      }
+      .ring:nth-child(6) {
+        width: 1350px;
+        height: 1350px;
+        animation: ringExpand 5s ease-out forwards 2.8s;
+      }
+
+      @keyframes ringExpand {
+        0% {
+          transform: translate(-50%, -50%) scale(0);
+          opacity: 0.8;
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 0;
+        }
+      }
+
+      .hero-inner {
+        position: relative;
+        z-index: 2;
+        max-width: 900px;
+      }
+
+      .hero-tag {
+        font-family: "EB Garamond", serif;
+        font-size: 0.88rem;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 2.5rem;
+        opacity: 0;
+        animation: fadeUp 1s ease forwards 0.4s;
+      }
+
+      .hero h1 {
+        font-family: "Playfair Display", serif;
+        font-weight: 900;
+        font-size: clamp(3.8rem, 11vw, 9rem);
+        line-height: 0.95;
+        letter-spacing: -0.025em;
+        color: #fff;
+        margin-bottom: 2.5rem;
+        opacity: 0;
+        animation: fadeUp 1.3s ease forwards 0.7s;
+        text-shadow: 0 0 120px rgba(196, 146, 40, 0.15);
+      }
+
+      .hero-epigraph {
+        font-family: "EB Garamond", serif;
+        font-style: italic;
+        font-size: clamp(1.1rem, 2.5vw, 1.55rem);
+        color: var(--text-dim);
+        letter-spacing: 0.03em;
+        opacity: 0;
+        animation: fadeUp 1s ease forwards 1.1s;
+        max-width: 520px;
+        margin: 0 auto 3.5rem;
+      }
+
+      .scroll-hint {
+        opacity: 0;
+        animation:
+          fadeUp 1s ease forwards 1.6s,
+          scrollBob 2s ease-in-out infinite 2.5s;
+        font-size: 1rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: rgba(196, 146, 40, 0.5);
+        font-size: 0.75rem;
+      }
+
+      @keyframes scrollBob {
+        0%,
+        100% {
+          opacity: 0.4;
+          transform: translateY(0);
+        }
+        50% {
+          opacity: 0.9;
+          transform: translateY(6px);
+        }
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(25px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ── CHAPTER STRUCTURE ── */
+      .chapter {
+        position: relative;
+        z-index: 10;
+        background: var(--chapter-bg);
+        width: 100%;
+        padding-bottom: 2em;
+      }
+
+      .content {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 0 2.5rem;
+      }
+
+      /* ── CHAPTER HEADER ── */
+      .chapter-number {
+        font-family: "Playfair Display", serif;
+        font-style: italic;
+        font-weight: 400;
+        font-size: clamp(5rem, 14vw, 10rem);
+        color: rgba(196, 146, 40, 0.06);
+        line-height: 1;
+        margin-bottom: -2.5rem;
+        user-select: none;
+      }
+
+      .chapter-title {
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+        color: var(--gold);
+        margin-bottom: 3rem;
+        letter-spacing: -0.01em;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid var(--border);
+        position: relative;
+      }
+
+      .chapter-title::after {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        height: 1px;
+        width: 0;
+        background: var(--gold-bright);
+        transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.5s;
+      }
+
+      .chapter-title.in-view::after {
+        width: 40%;
+      }
+
+      /* ── BODY TEXT ── */
+      .chapter p {
+        font-size: clamp(1.05rem, 1.8vw, 1.22rem);
+        line-height: 1.9;
+        color: var(--text);
+        margin-bottom: 1.8rem;
+      }
+
+      .chapter p em {
+        color: var(--gold-bright);
+        font-style: italic;
+      }
+
+      .chapter p strong {
+        color: #fff;
+        font-weight: 600;
+      }
+
+      /* ── BIG QUESTION ── */
+      .big-question {
+        font-family: "Playfair Display", serif;
+        font-weight: 900;
+        font-size: clamp(3.8rem, 13vw, 9.5rem);
+        line-height: 0.92;
+        color: var(--tyranny-bright);
+        letter-spacing: -0.03em;
+        margin: 2.5rem 0 3rem;
+        position: relative;
+      }
+
+      .big-question.in-view {
+        animation: questionPulse 4s ease-in-out infinite 0.3s;
+      }
+
+      @keyframes questionPulse {
+        0%,
+        100% {
+          text-shadow: 0 0 60px rgba(196, 26, 26, 0.3);
+        }
+        50% {
+          text-shadow:
+            0 0 100px rgba(196, 26, 26, 0.6),
+            0 0 40px rgba(196, 26, 26, 0.4);
+        }
+      }
+
+      .big-question.answered {
+        color: var(--gold);
+      }
+
+      .big-question.answered.in-view {
+        animation: answerPulse 4s ease-in-out infinite 0.3s;
+      }
+
+      @keyframes answerPulse {
+        0%,
+        100% {
+          text-shadow: 0 0 60px rgba(196, 146, 40, 0.3);
+        }
+        50% {
+          text-shadow:
+            0 0 100px rgba(196, 146, 40, 0.6),
+            0 0 40px rgba(196, 146, 40, 0.4);
+        }
+      }
+
+      /* ── HIGHLIGHT ── */
+      .highlight {
+        display: block;
+        font-family: "Playfair Display", serif;
+        font-weight: 900;
+        font-size: clamp(2rem, 5.5vw, 4rem);
+        line-height: 1.05;
+        margin: 3rem 0;
+        color: var(--text);
+        letter-spacing: -0.02em;
+      }
+
+      .highlight em {
+        color: var(--gold) !important;
+        font-style: italic;
+      }
+
+      /* ── PULL QUOTE ── */
+      .pull-quote {
+        margin: 3.5rem -1.5rem;
+        padding: 2.5rem 3rem 2.5rem 3.5rem;
+        border-left: 3px solid var(--gold);
+        background: rgba(196, 146, 40, 0.04);
+        position: relative;
+      }
+
+      .pull-quote::before {
+        content: "\201C";
+        font-family: "Playfair Display", serif;
+        font-size: 9rem;
+        color: rgba(196, 146, 40, 0.1);
+        position: absolute;
+        top: -1.5rem;
+        left: 0.8rem;
+        line-height: 1;
+        pointer-events: none;
+      }
+
+      .pull-quote p {
+        font-family: "Playfair Display", serif;
+        font-style: italic;
+        font-size: clamp(1.1rem, 2.2vw, 1.45rem) !important;
+        line-height: 1.65 !important;
+        color: var(--text) !important;
+        margin: 0 0 0.75rem !important;
+        position: relative;
+      }
+
+      .pull-quote cite {
+        font-family: "EB Garamond", serif;
+        font-size: 0.8rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--gold);
+        display: block;
+        font-style: normal;
+      }
+
+      /* ── LATIN ── */
+      .latin {
+        font-family: "Playfair Display", serif;
+        font-style: italic;
+        font-size: 1.5rem;
+        color: var(--gold);
+        text-align: center;
+        margin: 2.5rem 0 0.5rem;
+        letter-spacing: 0.04em;
+      }
+
+      .sub-latin {
+        text-align: center;
+        font-style: italic;
+        color: #9a938d;
+        font-size: 0.9rem;
+        margin-bottom: 2rem;
+      }
+
+      /* ── VERSUS CARDS ── */
+      .versus {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin: 3rem 0;
+      }
+
+      .versus-card {
+        padding: 2rem;
+        border: 1px solid;
+        position: relative;
+      }
+
+      .versus-card.individual {
+        border-color: var(--gold);
+        background: rgba(196, 146, 40, 0.05);
+      }
+
+      .versus-card.collective {
+        border-color: rgba(180, 32, 32, 0.7);
+        background: rgba(90, 8, 8, 0.18);
+      }
+
+      .versus-label {
+        font-size: 0.68rem;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+      }
+
+      .individual .versus-label {
+        color: var(--gold);
+      }
+      .collective .versus-label {
+        color: rgba(220, 100, 100, 0.95);
+      }
+
+      .versus-title {
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+      }
+
+      .individual .versus-title {
+        color: #fff;
+      }
+      .collective .versus-title {
+        color: #e87070;
+      }
+
+      .versus-body {
+        font-size: 0.95rem !important;
+        line-height: 1.65 !important;
+        margin: 0 !important;
+      }
+
+      .individual .versus-body {
+        color: var(--text) !important;
+      }
+      .collective .versus-body {
+        color: rgba(227, 190, 190, 0.88) !important;
+      }
+
+      /* ── PARTICLE DEMO ── */
+      .particle-demo {
+        width: 100%;
+        height: 160px;
+        margin: 3rem 0;
+        border: 1px solid rgba(196, 146, 40, 0.12);
+        position: relative;
+        overflow: hidden;
+        background: rgba(0, 0, 0, 0.4);
+      }
+
+      .particle-demo canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+
+      .demo-label {
+        position: absolute;
+        bottom: 0.75rem;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.65rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: rgba(196, 146, 40, 0.4);
+        pointer-events: none;
+        white-space: nowrap;
+      }
+
+      /* ── STAT BLOCK ── */
+      .stat-block {
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+        margin: 4rem 0;
+      }
+
+      .stat-number {
+        font-family: "Playfair Display", serif;
+        font-weight: 900;
+        font-size: clamp(4.5rem, 14vw, 9rem);
+        line-height: 1;
+        color: var(--gold);
+        letter-spacing: -0.04em;
+        flex-shrink: 0;
+        text-shadow: 0 0 60px rgba(196, 146, 40, 0.4);
+      }
+
+      .stat-side {
+        flex: 1;
+      }
+
+      .stat-bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 1.5rem;
+        height: 110px;
+        margin-top: 1.2rem;
+      }
+
+      .stat-bar-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        flex: 1;
+      }
+
+      .bar-fill {
+        width: 100%;
+        transition: height 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+        height: 0;
+      }
+
+      .bar-fill.north {
+        background: var(--collective);
+      }
+      .bar-fill.south {
+        background: linear-gradient(to top, var(--gold), var(--gold-bright));
+        box-shadow: 0 0 20px rgba(196, 146, 40, 0.35);
+      }
+
+      .stat-bar-label {
+        font-size: 0.62rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--text-dim);
+        text-align: center;
+      }
+
+      .stat-desc {
+        font-size: 1.05rem !important;
+        margin: 0 0 0.5rem !important;
+      }
+
+      /* ── TYRANNY BOX ── */
+      .tyranny-box {
+        padding: 1.75rem 2rem;
+        border: 1px solid rgba(122, 15, 15, 0.5);
+        background: rgba(122, 15, 15, 0.06);
+        font-style: italic;
+        font-size: clamp(1rem, 2vw, 1.15rem) !important;
+        line-height: 1.75 !important;
+        margin: 2.5rem 0 !important;
+      }
+
+      /* ── CODA ── */
+      .coda {
+        position: relative;
+        z-index: 10;
+        padding: 12rem 2rem 8rem;
+        text-align: center;
+        background: rgba(6, 6, 6, 0.96);
+        overflow: hidden;
+      }
+
+      .coda-flame {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 4rem;
+        position: relative;
+      }
+
+      .flame-ring {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        border: 1px solid var(--gold);
+      }
+
+      .flame-ring:nth-child(1) {
+        animation: flameRingPulse 3.5s ease-out infinite 0s;
+      }
+      .flame-ring:nth-child(2) {
+        animation: flameRingPulse 3.5s ease-out infinite 1.15s;
+      }
+      .flame-ring:nth-child(3) {
+        animation: flameRingPulse 3.5s ease-out infinite 2.3s;
+      }
+
+      @keyframes flameRingPulse {
+        0% {
+          width: 30px;
+          height: 30px;
+          opacity: 0.9;
+          border-color: var(--gold-bright);
+        }
+        100% {
+          width: 220px;
+          height: 220px;
+          opacity: 0;
+          border-color: var(--gold);
+        }
+      }
+
+      .flame-core {
+        position: absolute;
+        width: 28px;
+        height: 28px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background: radial-gradient(
+          circle at 40% 40%,
+          #fff 0%,
+          var(--gold-bright) 35%,
+          var(--gold) 65%,
+          transparent 100%
+        );
+        animation: flamePulse 2.5s ease-in-out infinite;
+        box-shadow:
+          0 0 20px var(--gold),
+          0 0 50px rgba(196, 146, 40, 0.5),
+          0 0 90px rgba(196, 146, 40, 0.2);
+      }
+
+      @keyframes flamePulse {
+        0%,
+        100% {
+          transform: translate(-50%, -50%) scale(1);
+          box-shadow:
+            0 0 20px var(--gold),
+            0 0 50px rgba(196, 146, 40, 0.5);
+        }
+        50% {
+          transform: translate(-50%, -56%) scale(1.15);
+          box-shadow:
+            0 0 30px var(--gold-bright),
+            0 0 70px rgba(196, 146, 40, 0.7);
+        }
+      }
+
+      .coda-subtitle {
+        font-family: "EB Garamond", serif;
+        font-style: italic;
+        font-size: 0.82rem;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 2.5rem;
+      }
+
+      .coda-epigraph {
+        font-family: "EB Garamond", serif;
+        font-style: italic;
+        font-size: clamp(1.15rem, 2.5vw, 1.55rem);
+        line-height: 1.75;
+        color: #b8b0a4;
+        max-width: 560px;
+        margin: 0 auto 3.5rem;
+      }
+
+      .final-statement {
+        font-family: "Playfair Display", serif;
+        font-weight: 900;
+        font-size: clamp(2.2rem, 6vw, 4.2rem);
+        line-height: 1.1;
+        color: var(--gold);
+        margin-bottom: 4rem;
+        text-shadow: 0 0 50px rgba(196, 146, 40, 0.35);
+        letter-spacing: -0.02em;
+      }
+
+      .final-note {
+        font-size: 0.75rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: #8a837a;
+      }
+
+      /* ── MANIFESTO FOOTER ── */
+      .manifesto-footer {
+        position: relative;
+        z-index: 10;
+        padding: 3rem 2rem;
+        text-align: center;
+        background: var(--bg);
+        border-top: 1px solid var(--border);
+        font-size: 0.72rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        color: #8a837a;
+      }
+
+      /* ── ART WINDOWS ── */
+      .art-window {
+        position: relative;
+        z-index: 5;
+        background: transparent;
+        min-height: 380px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        pointer-events: none;
+        box-shadow: inset 0 0 60px var(--chapter-bg);
+        margin-left: -100px;
+        margin-right: -100px;
+      }
+
+      .art-window-inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.1rem;
+        pointer-events: none;
+      }
+
+      .window-line {
+        width: 1px;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          rgba(196, 146, 40, 0.45),
+          transparent
+        );
+        height: 60px;
+      }
+
+      .window-label {
+        font-family: "EB Garamond", serif;
+        font-style: italic;
+        font-size: 0.78rem;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: rgba(236, 173, 40, 0.6);
+        padding: 0.45rem 1.5rem;
+        border: 1px solid rgba(236, 173, 40, 0.22);
+        background: rgba(6, 6, 6, 0.95);
+        backdrop-filter: blur(2px);
+        white-space: nowrap;
+      }
+
+      /* ── REVEAL ANIMATIONS ── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(38px);
+        transition:
+          opacity 0.95s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .reveal.from-left {
+        transform: translateX(-55px);
+      }
+      .reveal.from-right {
+        transform: translateX(55px);
+      }
+      .reveal.scale-in {
+        transform: scale(0.92) translateY(20px);
+      }
+
+      .reveal.in-view {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 640px) {
+        .versus {
+          grid-template-columns: 1fr;
+        }
+        .stat-block {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .chapter-nav {
+          display: none;
+        }
+        .pull-quote {
+          margin: 2.5rem -1rem;
+          padding: 2rem 1.5rem 2rem 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="progress-bar"></div>
+    <div id="bg-canvas"></div>
+
+    <!-- ── SIDE NAVIGATION ── -->
+    <nav class="chapter-nav" aria-label="Kapittel-navigasjon">
+      <button class="nav-dot active" data-target="hero" title="Intro"></button>
+      <button class="nav-dot" data-target="ch-1" title="I"></button>
+      <button class="nav-dot" data-target="ch-2" title="II"></button>
+      <button class="nav-dot" data-target="ch-3" title="III"></button>
+      <button class="nav-dot" data-target="ch-4" title="IV"></button>
+      <button class="nav-dot" data-target="ch-5" title="V"></button>
+      <button class="nav-dot" data-target="ch-6" title="VI"></button>
+      <button class="nav-dot" data-target="ch-7" title="VII"></button>
+      <button class="nav-dot" data-target="ch-8" title="VIII"></button>
+      <button class="nav-dot" data-target="coda" title="Coda"></button>
+    </nav>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!--  HERO                                      -->
+    <!-- ══════════════════════════════════════════ -->
+    <section class="hero" id="hero">
+      <div class="hero-rings">
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <div class="ring"></div>
+        <div class="ring"></div>
+      </div>
+      <div class="hero-inner">
+        <div class="hero-tag">Et Manifest</div>
+        <h1>Individets<br />Suverenitet</h1>
+        <p class="hero-epigraph">Ethvert menneske er, av sin natur, fritt.</p>
+        <div class="scroll-hint">Scroll ↓</div>
+      </div>
+    </section>
+
+    <div class="art-window">
+      <div class="art-window-inner">
+        <div class="window-line"></div>
+        <div class="window-label">Friheten begynner her</div>
+        <div class="window-line"></div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!--  I. DET ENE SPØRSMÅLET                     -->
+    <!-- ══════════════════════════════════════════ -->
+    <section class="chapter" id="ch-1">
+      <div class="content">
+        <div class="chapter-number reveal">I</div>
+        <h2 class="chapter-title reveal">Det ene spørsmålet</h2>
+
+        <p class="reveal">
+          Bak alle politiske stridigheter, alle revolusjoner, alle imperienes
+          fremvekst og fall — bak alle lover som noensinne er skrevet og alle
+          tyrannier som noensinne er bygget — ligger ett enkelt spørsmål som
+          ingen regent, ingen filosof og ingen folkevalgt forsamling noensinne
+          har klart å tie i hjel:
+        </p>
+
+        <div class="big-question reveal" id="hved1">
+          Hvem<br />eier<br />deg?
+        </div>
+
+        <p class="reveal">
+          Ikke nasjonalstaten. Ikke folket. Ikke flertallet. Ikke partiet,
+          kollektivet, algoritmen eller velferdsbyrokratiet.
+        </p>
+
+        <span class="highlight reveal scale-in"
+          >Du eier<br /><em>deg selv.</em></span
+        >
+
+        <p class="reveal">
+          Dette er ikke en politisk påstand. Det er ikke en ideologi eller en
+          partilinje. Det er en observasjon av virkeligheten — like sann og like
+          uunngåelig som tyngdekraften. Du tenker med din hjerne. Du handler med
+          dine hender. Du bærer konsekvensene av dine valg i din kropp, ditt
+          liv, din skjebne. Ingen kan tenke for deg. Ingen kan leve for deg. Og
+          ingen — uansett hvilken tittel de bærer eller hvilken uniform de ikler
+          seg — har moralsk rett til å herske over deg uten ditt samtykke.
+        </p>
+
+        <p class="reveal">
+          Dette er individets suverenitet. Den høyeste myndighet over eget liv.
+          Og dette manifestet er dens forsvar.
+        </p>
+      </div>
+    </section>
+
+    <div class="art-window">
+      <div class="art-window-inner">
+        <div class="window-line"></div>
+        <div class="window-label">To tusen år — én tråd</div>
+        <div class="window-line"></div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!--  II. TRÅDEN SOM ALDRI BRAST               -->
+    <!-- ══════════════════════════════════════════ -->
+    <section class="chapter" id="ch-2">
+      <div class="content">
+        <div class="chapter-number reveal">II</div>
+        <h2 class="chapter-title reveal">Tråden som aldri brast</h2>
+
+        <p class="reveal">
+          For over to tusen år siden satt en mann i Aten og observerte verden
+          med den presisjonen som siden er blitt sivilisasjonens arv. Han
+          konkluderte med noe som virket selvinnlysende, men som skulle vise seg
+          å være en av historiens mest omstridte sannheter: mennesket er vesenet
+          som tenker.
+        </p>
+
+        <p class="reveal">Ikke stammen. Ikke klassen. Ikke staten.</p>
+
+        <span class="highlight reveal"><em>Mennesket.</em></span>
+
+        <p class="reveal">
+          Det individuelle, levende, tenkende, vurderende mennesket — som han
+          kalte et <em>logikon zôon</em>: et vesen med fornuft og tale. Og siden
+          fornuft er udelelig — siden ingen kan dele din tanke, eie din
+          forståelse eller overføre din innsikt til noen annen — er all
+          intellektuell aktivitet fundamentalt individuell. Det er ikke et
+          uhell. Det er menneskets natur.
+        </p>
+
+        <div class="pull-quote reveal from-left">
+          <p>
+            Sann lov er fornuft i overensstemmelse med naturen. Den er
+            universell, uforanderlig og evig.
+          </p>
+          <cite>— Cicero</cite>
+        </div>
+
+        <div class="latin reveal">Homo res sacra homini.</div>
+        <p class="sub-latin reveal">
+          «Mennesket er noe hellig for mennesket.» — Seneca
+        </p>
+
+        <p class="reveal">
+          Tråden ble rukket videre — av romerske jurister som kodifiserte
+          eiendomsretten, av middelalderske kanonister som innså at en
+          urettferdig lov ikke er en lov, av Hugo Grotius som grunnla den
+          moderne naturretten på et prinsipp som sprengte alle teologiske
+          grenser: rettigheter tilhører individet, ikke kongen — ikke engang Gud
+          kan endre dem.
+        </p>
+
+        <div class="pull-quote reveal from-right">
+          <p>
+            Ethvert menneske har en eiendomsrett i sin egen person: denne har
+            ingen annen rett til enn ham selv.
+          </p>
+          <cite>— John Locke, 1689</cite>
+        </div>
+
+        <p class="reveal">
+          Tretten kolonier hørte etter. I 1776 ble Lockes prinsipp til handling.
+        </p>
+
+        <span class="highlight reveal" style="color: var(--gold)"
+          >Tråden holdt.</span
+        >
+      </div>
+    </section>
+
+    <div class="art-window">
+      <div class="art-window-inner">
+        <div class="window-line"></div>
+        <div class="window-label">Det tenkende dyret</div>
+        <div class="window-line"></div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!--  III. DET HEROISKE MENNESKET              -->
+    <!-- ══════════════════════════════════════════ -->
+    <section class="chapter" id="ch-3">
+      <div class="content">
+        <div class="chapter-number reveal">III</div>
+        <h2 class="chapter-title reveal">Det heroiske mennesket</h2>
+
+        <p class="reveal">La oss snakke ærlig om hva et menneske er.</p>
+
+        <p class="reveal">
+          Et menneske vokner om morgenen og møter verden uten et manus. Det har
+          ingen instinkter som forteller det nøyaktig hva det skal gjøre, ingen
+          flokkintelligens som styrer hånden, ingen biologisk autopilot som
+          sikrer overlevelsen. Et menneske <em>må tenke</em> for å overleve. Det
+          er ikke en svakhet — det er vår storhet.
+        </p>
+
+        <!-- Inline particle visualization -->
+        <div class="particle-demo reveal" id="particle-demo">
+          <canvas id="demo-canvas"></canvas>
+          <div class="demo-label">
+            Individet — fritt — blant det styrte kollektivet
+          </div>
+        </div>
+
+        <div class="pull-quote reveal from-left">
+          <p>
+            Liv, frihet, eiendom — dette er mennesket. Disse gavene fra naturen
+            går forut for all menneskelig lovgivning og er overlegne den.
+          </p>
+          <cite>— Frédéric Bastiat, 1850</cite>
+        </div>
+
+        <div class="pull-quote reveal from-right">
+          <p>
+            Det finnes bare ett sted der ingen kan røre deg. Dine egne tanker.
+          </p>
+          <cite>— Epiktet, slave og filosof</cite>
+        </div>
+
+        <div class="pull-quote reveal from-left">
+          <p>
+            Linjen som skiller godt fra ondt går ikke gjennom stater eller
+            klasser. Den går tvers gjennom ethvert menneskelig hjerte.
+          </p>
+          <cite>— Aleksandr Solzjenitsyn</cite>
+        </div>
+
+        <span class="highlight reveal"
+          >De eide seg selv.<br /><span
+            style="font-size: 0.55em; color: var(--text-dim); font-weight: 400"
+            >Ingen klarte å ta det fra dem.</span
+          ></span
+        >
+      </div>
+    </section>
+
+    <div class="art-window">
+      <div class="art-window-inner">
+        <div class="window-line"></div>
+        <div class="window-label">Samarbeid versus tvang</div>
+        <div class="window-line"></div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!--  IV. BRØDRE — IKKE BRIKKER               -->
+    <!-- ══════════════════════════════════════════ -->
+    <section class="chapter" id="ch-4">
+      <div class="content">
+        <div class="chapter-number reveal">IV</div>
+        <h2 class="chapter-title reveal">Brødre — ikke brikker</h2>
+
+        <p class="reveal">Et menneske er ikke en øy.</p>
+
+        <p class="reveal">
+          Vi er vevet inn i hverandre av et nett så komplekst og så vakkert at
+          ingen sentralplanlegger noensinne har vært i stand til å begripe det,
+          la alene styre det. Den frieste individualisten spiser mat han ikke
+          dyrket, bærer klær han ikke sydde, bruker ord han ikke fant opp. Vi er
+          avhengige av hverandre — ikke som plikt, men som virkelighet.
+        </p>
+
+        <div class="versus reveal scale-in">
+          <div class="versus-card individual">
+            <div class="versus-label">Frivillig samarbeid</div>
+            <div class="versus-title">Brødre</div>
+            <p class="versus-body">
+              Handel. Vennskap. Kjærlighet. Frivillig bytting av verdi mot
+              verdi. Emergent orden skapt av frie individers valg — koordinert
+              av ingen, planlagt av ingen.
+            </p>
+          </div>
+          <div class="versus-card collective">
+            <div class="versus-label">Tvang</div>
+            <div class="versus-title">Brikker</div>
+            <p class="versus-body">
+              Statens plan. Sentralisert kontroll. Omfordeling ved makt.
+              Saksnumre i stedet for mennesker. Pistolen fremfor samtykket.
+            </p>
+          </div>
+        </div>
+
+        <span
+          class="highlight reveal"
+          style="font-style: italic; color: var(--gold)"
+          >Det er en uendelig forskjell<br />mellom samarbeid og tvang.</span
+        >
+
+        <div class="pull-quote reveal from-right">
+          <p>
+            Det meste av skaden i verden gjøres av gode mennesker, og ikke ved
+            uhell. Det er resultatet av deres bevisste handlinger, utført over
+            lang tid, som de tror er motivert av høye idealer.
+          </p>
+          <cite>— Isabel Paterson</cite>
+        </div>
+
+        <p class="reveal">
+          Makten til å gjøre ting <em>for</em> mennesker er alltid makten til å
+          gjøre ting <em>med</em> dem. Det finnes ingen unntaksklausul for gode
+          intensjoner.
+        </p>
+      </div>
+    </section>
+
+    <div class="art-window">
+      <div class="art-window-inner">
+        <div class="window-line"></div>
+        <div class="window-label">Historien dømmer</div>
+        <div class="window-line"></div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!--  V. FRIHETENS FRUKTER                     -->
+    <!-- ══════════════════════════════════════════ -->
+    <section class="chapter" id="ch-5">
+      <div class="content">
+        <div class="chapter-number reveal">V</div>
+        <h2 class="chapter-title reveal">Frihetens frukter</h2>
+
+        <p class="reveal">
+          Historien er ikke en abstraksjon. Den er et eksperiment som har pågått
+          i årtusener, og resultatene er ikke tvetydige.
+        </p>
+
+        <p class="reveal">
+          På 1600-tallet tok en liten, sumpete republikk ved Nordsjøen imot
+          mennesker som ble forfulgt overalt ellers i Europa. Den nederlandske
+          gullalderen blomstret: verdens første børs, det første globale
+          handelsselskapet, Rembrandt og Vermeer og Spinoza. Grunnlaget:
+          eiendomsrett, handelsfrihet, religiøs toleranse.
+          <em>Frihet for individet.</em>
+        </p>
+
+        <p class="reveal">
+          I 1948 stod Vest-Tyskland i ruiner. Ludwig Erhard avskaffet
+          prisreguleringen over natten — mot de alliertes råd. Dagen etter
+          forsvant mangelen. Innen ti år: Europas sterkeste økonomi.
+          <em>Wirtschaftswunder.</em>
+        </p>
+
+        <!-- 60× stat counter -->
+        <div class="stat-block reveal scale-in" id="stat-block">
+          <div class="stat-number" id="stat-counter">0×</div>
+          <div class="stat-side">
+            <p class="stat-desc">
+              Forskjellen i levestandard mellom Sør-Korea og Nord-Korea — to
+              nasjoner med samme folk, samme språk, nesten identisk geografi.
+            </p>
+            <div class="stat-bars">
+              <div class="stat-bar-wrap">
+                <div class="bar-fill north" id="bar-north"></div>
+                <div class="stat-bar-label">Nord-Korea</div>
+              </div>
+              <div class="stat-bar-wrap">
+                <div class="bar-fill south" id="bar-south"></div>
+                <div class="stat-bar-label">Sør-Korea</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <span class="highlight reveal" style="color: var(--tyranny-bright)"
+          >Seksti ganger.<br /><span
+            style="
+              font-size: 0.42em;
+              color: var(--text-dim);
+              font-weight: 400;
+              font-style: italic;
+            "
+            >Ikke ti prosent. Ikke dobbelt. Seksti ganger.</span
+          ></span
+        >
+
+        <p class="reveal">
+          Ingen annen variabel kan forklare dette. Bare én: respekten for
+          individets rett til å leve sitt eget liv.
+        </p>
+      </div>
+    </section>
+
+    <div class="art-window">
+      <div class="art-window-inner">
+        <div class="window-line"></div>
+        <div class="window-label">Staten tjener — ikke hersker</div>
+        <div class="window-line"></div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!--  VI. SUVERENITETENS HIERARKI              -->
+    <!-- ══════════════════════════════════════════ -->
+    <section class="chapter" id="ch-6">
+      <div class="content">
+        <div class="chapter-number reveal">VI</div>
+        <h2 class="chapter-title reveal">Suverenitetens hierarki</h2>
+
+        <p class="reveal">
+          I 1648 satte den vestfalske freden et nytt prinsipp i internasjonal
+          rett: statens suverenitet. Det var et fremskritt over de religiøse
+          krigenes kaos. Men det var ikke et sluttpunkt — det var et første
+          skritt.
+        </p>
+
+        <span class="highlight reveal">For hva <em>er</em> en stat?</span>
+
+        <p class="reveal">
+          En stat er ikke et mystisk vesen med en sjel og egne rettigheter. En
+          stat er et redskap — skapt av mennesker, drevet av mennesker, og ment
+          å tjene mennesker. En stats suverenitet er ikke verdt papiret det er
+          skrevet på, dersom staten ikke respekterer sine borgeres individuelle
+          suverenitet. Den er ikke kilde til rettigheter. Den er
+          <em>utledet</em> fra rettigheter.
+        </p>
+
+        <p class="tyranny-box reveal">
+          Digital suverenitet uten individuell suverenitet er bare et
+          teknologisk tyranni med en ny logo.
+        </p>
+
+        <div class="pull-quote reveal from-right">
+          <p>
+            Frihet er ikke et mål som kan nås. Det er en måte å bevege seg på.
+          </p>
+          <cite>— Rose Wilder Lane</cite>
+        </div>
+
+        <p class="reveal">
+          Den øyeblikk staten begynner å bruke sine fullmakter <em>mot</em> dem
+          den er satt til å beskytte, har den mistet sin grunn til å eksistere.
+        </p>
+
+        <p class="reveal">
+          Det er ingen unntaksklausul for nasjonale interesser. Det er ingen
+          unntaksklausul for suverenitet. Det er ingen unntaksklausul for
+          nødtilstand.
+        </p>
+      </div>
+    </section>
+
+    <div class="art-window">
+      <div class="art-window-inner">
+        <div class="window-line"></div>
+        <div class="window-label">Det eneste livet du har</div>
+        <div class="window-line"></div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!--  VII. LIVET SOM ET MENNESKE              -->
+    <!-- ══════════════════════════════════════════ -->
+    <section class="chapter" id="ch-7">
+      <div class="content">
+        <div class="chapter-number reveal">VII</div>
+        <h2 class="chapter-title reveal">Livet som et menneske</h2>
+
+        <p class="reveal">
+          Det er ett argument for individets suverenitet som er sterkere enn
+          alle de andre til sammen.
+        </p>
+
+        <p class="reveal">
+          Det er ikke et filosofisk argument. Det er ikke et historisk argument.
+          Det er ikke et argument i det hele tatt — det er en erkjennelse.
+        </p>
+
+        <div
+          class="big-question reveal scale-in"
+          style="font-size: clamp(3.2rem, 11vw, 7.5rem); color: var(--text)"
+        >
+          Du har bare<br /><em style="color: var(--gold); font-style: italic"
+            >ett liv.</em
+          >
+        </div>
+
+        <p class="reveal">
+          Det er kort. Det er konkret. Det er ditt. Og det er ment å leves —
+          ikke å administreres, ikke å planlegges av andre, ikke å avgi til et
+          system som hevder å vite bedre enn deg hva du trenger, hvem du skal
+          elske, hva du skal produsere, hva du skal tro.
+        </p>
+
+        <p class="reveal">
+          I det frie samfunnet blomstrer noe som ikke kan planlegges frem av
+          noen byråkrat: <em>ekte empati</em>. Vi er brødre fordi vi
+          <em>velger</em> å være det. Ikke fordi Staten har bestemt at vi er
+          det.
+        </p>
+
+        <p class="reveal">
+          I det frie samfunnet lever mennesker som mennesker — med alt det
+          medfører av storhet og feilbarhet, kjærlighet og sorg, ambisjon og
+          hvile, seier og tap. Ikke som brikker i en plan. Ikke som ressurser i
+          et system. <em>Som seg selv.</em>
+        </p>
+      </div>
+    </section>
+
+    <div class="art-window">
+      <div class="art-window-inner">
+        <div class="window-line"></div>
+        <div class="window-label">Vår tid — samme spørsmål</div>
+        <div class="window-line"></div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!--  VIII. VÅR TID                           -->
+    <!-- ══════════════════════════════════════════ -->
+    <section class="chapter" id="ch-8">
+      <div class="content">
+        <div class="chapter-number reveal">VIII</div>
+        <h2 class="chapter-title reveal">Vår tid</h2>
+
+        <p class="reveal">
+          Vi lever i en tid der suverenitetsspørsmålet stilles på nytt og på
+          nytt, i nye former og med nye ansikter. Digital overvåkning, kunstig
+          intelligens, sentralbankdigitale valutaer, sosiale kredittsystemer,
+          identitetspolitikk som splitter mennesker i kollektiver — alle disse
+          fenomenene stiller det samme urgamle spørsmålet i ny drakt:
+        </p>
+
+        <div class="big-question reveal" id="hved2">
+          Hvem<br />eier<br />deg?
+        </div>
+
+        <p class="reveal">
+          Svaret er det samme som det alltid har vært, og det samme som det
+          alltid vil være, fordi det springer ikke fra en politisk teori, men
+          fra menneskets natur:
+        </p>
+
+        <div class="big-question answered reveal" id="svaret">
+          Du eier<br />deg selv.
+        </div>
+
+        <p class="reveal">
+          Du eier din tanke. Du eier ditt arbeid. Du eier din kropp, din stemme,
+          din tro og din fremtid. Du har ingen plikt til å leve for en annens
+          skyld, og ingen rett til å kreve at en annen lever for din skyld. Du
+          er ikke et middel. Du er ikke et redskap. Du er ikke en variabel i
+          andres ligning.
+        </p>
+
+        <span class="highlight reveal scale-in"
+          >Du er et mål<br />i deg selv.</span
+        >
+
+        <p class="reveal">
+          Den minste minoritet på jorden er individet. Den som fornekter
+          individets rettigheter, kan ikke påstå å forsvare minoriteter.
+        </p>
+      </div>
+    </section>
+
+    <div class="art-window" style="min-height: 340px">
+      <div class="art-window-inner">
+        <div class="window-line" style="height: 80px"></div>
+        <div class="window-label">Den evige loven</div>
+        <div class="window-line" style="height: 80px"></div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!--  CODA                                     -->
+    <!-- ══════════════════════════════════════════ -->
+    <section class="coda" id="coda">
+      <div class="coda-flame reveal scale-in">
+        <div class="flame-ring"></div>
+        <div class="flame-ring"></div>
+        <div class="flame-ring"></div>
+        <div class="flame-core"></div>
+      </div>
+
+      <div class="coda-subtitle reveal">Coda: den evige loven</div>
+
+      <p class="coda-epigraph reveal">
+        Cicero sa det for to tusen år siden, og det er ikke blitt en tøddel
+        mindre sant:<br /><br />
+        <em
+          >Én evig og uforanderlig lov — som gjelder for alle nasjoner, og alle
+          tider.</em
+        >
+      </p>
+
+      <p class="final-statement reveal">
+        Lev ditt liv.<br />
+        Det er det eneste du har.<br />
+        Og det er nok.
+      </p>
+
+      <p class="final-note reveal">
+        Dette manifestet gjelder absolutt alle individer — til absolutt alle
+        tider.
+      </p>
+    </section>
+
+    <footer class="manifesto-footer">
+      <span>Individets Suverenitet — Et Manifest</span>
+    </footer>
+
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <!--  SCRIPT                                                    -->
+    <!-- ══════════════════════════════════════════════════════════ -->
+    <script>
+      // ============================================================
+      // GLOBAL STATE
+      // ============================================================
+      let scrollRatio = 0;
+
+      // ============================================================
+      // P5.JS BACKGROUND — "SOVEREIGN EMERGENCE"
+      //
+      // Philosophy: All particles begin as controlled gray nodes
+      // oscillating in a rigid grid — the collective, the administered.
+      // One golden particle drifts freely from the start.
+      // As the reader scrolls deeper into the manifesto, each particle
+      // reaches its liberation threshold and breaks free, following
+      // Perlin noise flow fields, leaving amber trails — the individual
+      // claiming sovereignty. By the Coda, the background is a luminous
+      // field of autonomous golden light.
+      // ============================================================
+      new p5(function (p) {
+        const N = 80;
+        let particles = [];
+        let t = 0;
+
+        class Particle {
+          constructor(idx) {
+            this.idx = idx;
+            this.freedom = 0;
+            // Liberation threshold: spread across 0.05 to 0.95 of scroll
+            this.libThreshold = 0.05 + (idx / N) * 0.9;
+            // Grid home position
+            let cols = Math.ceil(Math.sqrt(N * (p.width / p.height)));
+            let rows = Math.ceil(N / cols);
+            let cx = idx % cols;
+            let cy = Math.floor(idx / cols);
+            this.homeX = ((cx + 0.5) / cols) * p.width + p.random(-18, 18);
+            this.homeY = ((cy + 0.5) / rows) * p.height + p.random(-18, 18);
+            this.x = this.homeX;
+            this.y = this.homeY;
+            this.vx = 0;
+            this.vy = 0;
+            this.noiseOff = p.random(10000);
+            this.phase = p.random(p.TWO_PI);
+            this.phaseSpeed = p.random(0.25, 0.55);
+            this.size = p.random(1.8, 3.8);
+            this.trail = [];
+          }
+
+          update(t) {
+            // Update freedom based on scroll
+            let target = scrollRatio >= this.libThreshold ? 1 : 0;
+            this.freedom = p.lerp(
+              this.freedom,
+              target,
+              0.01 + this.freedom * 0.006,
+            );
+
+            if (this.freedom < 0.08) {
+              // Grid mode: gentle oscillation around home
+              this.x =
+                this.homeX + Math.sin(t * this.phaseSpeed + this.phase) * 4;
+              this.y =
+                this.homeY +
+                Math.cos(t * this.phaseSpeed * 0.8 + this.phase) * 4;
+              this.trail = [];
+            } else if (this.freedom < 0.55) {
+              // Breaking free: blend between grid and flow
+              let gridX =
+                this.homeX + Math.sin(t * this.phaseSpeed + this.phase) * 4;
+              let gridY =
+                this.homeY +
+                Math.cos(t * this.phaseSpeed * 0.8 + this.phase) * 4;
+              let angle =
+                p.noise(
+                  this.x * 0.003,
+                  this.y * 0.003,
+                  t * 0.25 + this.noiseOff,
+                ) *
+                p.TWO_PI *
+                4;
+              let nx = this.x + Math.cos(angle) * 1.2;
+              let ny = this.y + Math.sin(angle) * 1.2;
+              let blend = (this.freedom - 0.08) / 0.47;
+              this.x = p.lerp(gridX, nx, blend);
+              this.y = p.lerp(gridY, ny, blend);
+              if (this.freedom > 0.35) {
+                this.trail.push({ x: this.x, y: this.y });
+                if (this.trail.length > 12) this.trail.shift();
+              }
+            } else {
+              // Free: pure Perlin flow
+              let angle =
+                p.noise(
+                  this.x * 0.0025,
+                  this.y * 0.0025,
+                  t * 0.28 + this.noiseOff,
+                ) *
+                p.TWO_PI *
+                4;
+              this.vx += Math.cos(angle) * 0.22;
+              this.vy += Math.sin(angle) * 0.22;
+              this.vx *= 0.96;
+              this.vy *= 0.96;
+              this.x += this.vx;
+              this.y += this.vy;
+              if (this.x < -30) this.x = p.width + 30;
+              if (this.x > p.width + 30) this.x = -30;
+              if (this.y < -30) this.y = p.height + 30;
+              if (this.y > p.height + 30) this.y = -30;
+              this.trail.push({ x: this.x, y: this.y });
+              if (this.trail.length > 28) this.trail.shift();
+            }
+          }
+
+          draw() {
+            let f = this.freedom;
+            let r = Math.round(65 + f * 140);
+            let g = Math.round(65 + f * 90);
+            let b = Math.round(100 - f * 65);
+
+            // Trail
+            if (this.trail.length > 1) {
+              p.noFill();
+              for (let i = 1; i < this.trail.length; i++) {
+                let alpha = (i / this.trail.length) * 160 * f;
+                p.stroke(r, g, b, alpha);
+                p.strokeWeight(0.9);
+                p.line(
+                  this.trail[i - 1].x,
+                  this.trail[i - 1].y,
+                  this.trail[i].x,
+                  this.trail[i].y,
+                );
+              }
+            }
+
+            p.noStroke();
+
+            // Glow
+            if (f > 0.25) {
+              p.fill(r, g, b, 12 * f);
+              p.circle(this.x, this.y, this.size * 12 * f);
+              p.fill(r, g, b, 28 * f);
+              p.circle(this.x, this.y, this.size * 5.5 * f);
+            }
+
+            // Core — slightly dimmer in grid mode
+            p.fill(r, g, b, f < 0.08 ? 130 : 210);
+            p.circle(this.x, this.y, this.size * (1 + f * 1.8));
+          }
+        }
+
+        p.setup = function () {
+          let cnv = p.createCanvas(p.windowWidth, p.windowHeight);
+          cnv.parent("bg-canvas");
+          cnv.style("position", "fixed");
+          cnv.style("top", "0");
+          cnv.style("left", "0");
+          cnv.style("pointer-events", "none");
+          for (let i = 0; i < N; i++) {
+            particles.push(new Particle(i));
+          }
+        };
+
+        p.draw = function () {
+          p.background(6, 6, 6, 22);
+          for (let pt of particles) {
+            pt.update(t);
+            pt.draw();
+          }
+          t += 0.0035;
+        };
+
+        p.windowResized = function () {
+          p.resizeCanvas(p.windowWidth, p.windowHeight);
+        };
+      });
+
+      // ============================================================
+      // INLINE PARTICLE DEMO (Chapter III)
+      // Individual (gold) vs Collective (gray grid)
+      // ============================================================
+      (function () {
+        const container = document.getElementById("particle-demo");
+        const canvas = document.getElementById("demo-canvas");
+        if (!container || !canvas) return;
+
+        function resize() {
+          canvas.width = container.offsetWidth;
+          canvas.height = container.offsetHeight;
+        }
+        resize();
+        window.addEventListener("resize", resize);
+
+        const ctx = canvas.getContext("2d");
+        const COLS = 11,
+          ROWS = 4;
+        const grid = [];
+
+        for (let cy = 0; cy < ROWS; cy++) {
+          for (let cx = 0; cx < COLS; cx++) {
+            grid.push({
+              hx: ((cx + 0.5) / COLS) * canvas.width,
+              hy: ((cy + 0.5) / ROWS) * canvas.height,
+              phase: Math.random() * Math.PI * 2,
+            });
+          }
+        }
+
+        const free = {
+          x: canvas.width * 0.5,
+          y: canvas.height * 0.45,
+          vx: 1.4,
+          vy: -0.9,
+          trail: [],
+        };
+        let dT = 0;
+
+        function frame() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          dT += 0.008;
+
+          // Resize guard
+          if (canvas.width !== container.offsetWidth) {
+            canvas.width = container.offsetWidth;
+          }
+
+          // Draw grid connections
+          for (let a = 0; a < grid.length; a++) {
+            let ax = grid[a].hx + Math.sin(dT + grid[a].phase) * 3;
+            let ay = grid[a].hy + Math.cos(dT * 0.9 + grid[a].phase) * 3;
+            for (let b = a + 1; b < grid.length; b++) {
+              let dx = grid[b].hx - grid[a].hx;
+              let dy = grid[b].hy - grid[a].hy;
+              let dist = Math.sqrt(dx * dx + dy * dy);
+              if (dist < 80) {
+                let bx = grid[b].hx + Math.sin(dT + grid[b].phase) * 3;
+                let by = grid[b].hy + Math.cos(dT * 0.9 + grid[b].phase) * 3;
+                ctx.beginPath();
+                ctx.moveTo(ax, ay);
+                ctx.lineTo(bx, by);
+                ctx.strokeStyle = `rgba(22, 22, 38, ${0.55 * (1 - dist / 80)})`;
+                ctx.lineWidth = 0.7;
+                ctx.stroke();
+              }
+            }
+          }
+
+          // Draw grid dots
+          for (let g of grid) {
+            let gx = g.hx + Math.sin(dT + g.phase) * 3;
+            let gy = g.hy + Math.cos(dT * 0.9 + g.phase) * 3;
+            ctx.beginPath();
+            ctx.arc(gx, gy, 2.2, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(75, 75, 115, 0.75)";
+            ctx.fill();
+          }
+
+          // Update free particle
+          free.vx += (Math.random() - 0.5) * 0.22;
+          free.vy += (Math.random() - 0.5) * 0.22;
+          let sp = Math.sqrt(free.vx * free.vx + free.vy * free.vy);
+          if (sp < 0.8) {
+            free.vx *= 1.15;
+            free.vy *= 1.15;
+          }
+          if (sp > 2.8) {
+            free.vx *= 0.88;
+            free.vy *= 0.88;
+          }
+          free.x += free.vx;
+          free.y += free.vy;
+          if (free.x < 8 || free.x > canvas.width - 8) free.vx *= -1;
+          if (free.y < 8 || free.y > canvas.height - 8) free.vy *= -1;
+          free.trail.push({ x: free.x, y: free.y });
+          if (free.trail.length > 32) free.trail.shift();
+
+          // Draw free trail
+          for (let i = 1; i < free.trail.length; i++) {
+            let alpha = (i / free.trail.length) * 0.75;
+            ctx.beginPath();
+            ctx.moveTo(free.trail[i - 1].x, free.trail[i - 1].y);
+            ctx.lineTo(free.trail[i].x, free.trail[i].y);
+            ctx.strokeStyle = `rgba(200, 148, 42, ${alpha})`;
+            ctx.lineWidth = 1.8;
+            ctx.stroke();
+          }
+
+          // Draw free particle glow
+          const grd = ctx.createRadialGradient(
+            free.x,
+            free.y,
+            0,
+            free.x,
+            free.y,
+            22,
+          );
+          grd.addColorStop(0, "rgba(240, 200, 53, 0.55)");
+          grd.addColorStop(1, "rgba(200, 148, 42, 0)");
+          ctx.beginPath();
+          ctx.arc(free.x, free.y, 22, 0, Math.PI * 2);
+          ctx.fillStyle = grd;
+          ctx.fill();
+
+          ctx.beginPath();
+          ctx.arc(free.x, free.y, 5, 0, Math.PI * 2);
+          ctx.fillStyle = "#f0c535";
+          ctx.fill();
+
+          requestAnimationFrame(frame);
+        }
+        frame();
+      })();
+
+      // ============================================================
+      // SCROLL + PROGRESS
+      // ============================================================
+      window.addEventListener(
+        "scroll",
+        () => {
+          const max =
+            document.documentElement.scrollHeight - window.innerHeight;
+          scrollRatio = max > 0 ? window.scrollY / max : 0;
+          document.getElementById("progress-bar").style.width =
+            scrollRatio * 100 + "%";
+          updateNavDots();
+        },
+        { passive: true },
+      );
+
+      // ============================================================
+      // INTERSECTION OBSERVER — REVEAL
+      // ============================================================
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in-view");
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: "-40px 0px" },
+      );
+
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+      // ============================================================
+      // STAT COUNTER & BARS
+      // ============================================================
+      let statDone = false;
+      const statIO = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && !statDone) {
+              statDone = true;
+              // Counter
+              const el = document.getElementById("stat-counter");
+              const start = performance.now();
+              const dur = 2200;
+              function tick(now) {
+                let t = Math.min((now - start) / dur, 1);
+                let ease = 1 - Math.pow(1 - t, 3);
+                el.textContent = Math.round(ease * 60) + "×";
+                if (t < 1) requestAnimationFrame(tick);
+              }
+              requestAnimationFrame(tick);
+              // Bars
+              setTimeout(() => {
+                document.getElementById("bar-north").style.height = "12px";
+                document.getElementById("bar-south").style.height = "110px";
+              }, 350);
+            }
+          });
+        },
+        { threshold: 0.4 },
+      );
+      const sb = document.getElementById("stat-block");
+      if (sb) statIO.observe(sb);
+
+      // ============================================================
+      // STAGGER DELAYS WITHIN CHAPTERS
+      // ============================================================
+      document.querySelectorAll(".chapter").forEach((ch) => {
+        ch.querySelectorAll(".reveal").forEach((el, i) => {
+          el.style.transitionDelay = Math.min(i * 0.09, 0.6) + "s";
+        });
+      });
+      // Reset coda delays
+      document.querySelectorAll(".coda .reveal").forEach((el, i) => {
+        el.style.transitionDelay = i * 0.18 + "s";
+      });
+
+      // ============================================================
+      // NAV DOTS
+      // ============================================================
+      const sections = [
+        "hero",
+        "ch-1",
+        "ch-2",
+        "ch-3",
+        "ch-4",
+        "ch-5",
+        "ch-6",
+        "ch-7",
+        "ch-8",
+        "coda",
+      ];
+      const dots = document.querySelectorAll(".nav-dot");
+
+      function updateNavDots() {
+        let active = sections[0];
+        for (const id of sections) {
+          const el = document.getElementById(id);
+          if (
+            el &&
+            el.getBoundingClientRect().top < window.innerHeight * 0.55
+          ) {
+            active = id;
+          }
+        }
+        dots.forEach((dot, i) =>
+          dot.classList.toggle("active", sections[i] === active),
+        );
+      }
+
+      dots.forEach((dot, i) => {
+        dot.addEventListener("click", () => {
+          document
+            .getElementById(sections[i])
+            ?.scrollIntoView({ behavior: "smooth" });
+        });
+      });
+    </script>
+  </body>
+</html>
