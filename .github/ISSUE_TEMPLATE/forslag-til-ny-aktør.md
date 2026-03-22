@@ -1,9 +1,9 @@
 ---
 name: Forslag til ny aktør
 about: Foreslå en ny aktør til å bli analysert av Individets Suverenitetsindex
-title: "[AKTØR]: navn-på-aktør-her"
-labels: ""
-assignees: ""
+title: '[AKTØR]: navn-på-aktør-her'
+labels: ''
+assignees: ''
 ---
 
 **Navn på aktør:**

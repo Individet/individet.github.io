@@ -10,7 +10,7 @@ export const isiClassLabels = [
   'Sterkt suverenitetshemmende',
 ] as const
 
-export type IsiClassLabel = (typeof isiClassLabels)[number]
+export type IsiClassLabel = typeof isiClassLabels[number]
 
 export function getIsiRawScore(entry: IsiEntry) {
   const { d1, d2, d3, d4, d5, d6 } = entry.data.scores

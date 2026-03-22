@@ -1,8 +1,8 @@
-import { glob } from "astro/loaders";
-import { defineCollection, z } from "astro:content";
+import { glob } from 'astro/loaders'
+import { defineCollection, z } from 'astro:content'
 
 const isi = defineCollection({
-  loader: glob({ pattern: "*.md", base: "./content/isi" }),
+  loader: glob({ pattern: '*.md', base: './content/isi' }),
   schema: z.object({
     created: z.coerce.date(),
     lastUpdated: z.coerce.date(),
@@ -68,23 +68,23 @@ const isi = defineCollection({
       }),
     }),
   }),
-});
+})
 
 const isiReports = defineCollection({
-  loader: glob({ pattern: "*.md", base: "./content/isi/reports" }),
+  loader: glob({ pattern: '*.md', base: './content/isi/reports' }),
   schema: z.object({
     created: z.coerce.date(),
     lastUpdated: z.coerce.date(),
     author: z.string(),
   }),
-});
+})
 
 const pages = defineCollection({
-  loader: glob({ pattern: "*.md", base: "./content" }),
+  loader: glob({ pattern: '*.md', base: './content' }),
   schema: z.object({
     created: z.coerce.date().optional(),
     author: z.string().optional(),
   }),
-});
+})
 
-export const collections = { isi, isiReports, pages };
+export const collections = { isi, isiReports, pages }

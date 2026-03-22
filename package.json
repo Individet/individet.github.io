@@ -18,11 +18,17 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "sync-reports": "node scripts/sync-report-frontmatter.mjs"
+    "sync-reports": "node scripts/sync-report-frontmatter.mjs",
+    "lint": "prettier --check .",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.17",
     "@astrojs/sitemap": "^3.7.1",
     "astro": "^6.0.8"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true
   }
 }

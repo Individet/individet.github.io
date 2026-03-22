@@ -69,9 +69,15 @@ for (const filename of reportFiles) {
     continue
   }
 
-  const fields = extractFields(sourceContent, ['created', 'lastUpdated', 'author'])
+  const fields = extractFields(sourceContent, [
+    'created',
+    'lastUpdated',
+    'author',
+  ])
   if (!fields || Object.keys(fields).length === 0) {
-    console.warn(`⚠  Could not extract frontmatter fields from ${filename} — skipping`)
+    console.warn(
+      `⚠  Could not extract frontmatter fields from ${filename} — skipping`
+    )
     missing++
     continue
   }
@@ -82,4 +88,6 @@ for (const filename of reportFiles) {
   fixed++
 }
 
-console.log(`\nDone. Fixed: ${fixed}, already had frontmatter: ${skipped}, could not fix: ${missing}`)
+console.log(
+  `\nDone. Fixed: ${fixed}, already had frontmatter: ${skipped}, could not fix: ${missing}`
+)
