@@ -17,6 +17,7 @@ const jsonLd = {
       "@id": `${SITE.url}/#org`,
       name: SITE.name,
       url: SITE.url,
+      sameAs: [SITE.facebookUrl],
       description: SITE.description,
       founder: { "@type": "Person", name: SITE.founder },
     },
@@ -135,6 +136,11 @@ const jsonLd = {
       Innhold publiseres fortløpende på <strong>www.individet.no</strong>. <a
         href="/rss.xml"
         class="cta-link">RSS-feed</a
+      >. Følg tenketanken på <a
+        href={SITE.facebookUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="cta-link">Facebook</a
       >.
     </p>
   </footer>
