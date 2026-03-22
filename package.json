@@ -2,6 +2,14 @@
   "name": "individet.github.io",
   "type": "module",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Individet/individet.github.io.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Individet/individet.github.io/issues"
+  },
+  "homepage": "https://github.com/Individet/individet.github.io#readme",
   "engines": {
     "node": ">=22.12.0"
   },

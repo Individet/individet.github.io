@@ -25,6 +25,16 @@ const reports = (await getCollection("isi")).sort((a, b) => {
     Legg til en ny rapport der, sa blir den publisert og listet her ved neste
     Astro-bygg.
   </p>
+  <p>
+    Har du forslag til en ny aktør? Send inn forslag via
+    <a
+      href="https://github.com/Individet/individet.github.io/issues/new?template=forslag-aktor.yml"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      GitHub issue-mal for aktørforslag
+    </a>.
+  </p>
 
   {
     reports.length === 0 ? (
