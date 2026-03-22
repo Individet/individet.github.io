@@ -1,0 +1,32 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const pages = await getCollection("pages");
+
+  return pages.map((entry) => ({
+    params: { slug: entry.id.replace(/\.md$/, "") },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const pageLabel = entry.id.replace(/\.md$/, "");
+const pageTitle = `${pageLabel.charAt(0).toUpperCase()}${pageLabel.slice(1)} | Individet`;
+---
+
+<Layout title={pageTitle} ogType="article">
+  <article class="page-content">
+    <p><a href="/">Til forsiden</a></p>
+    <Content />
+  </article>
+</Layout>
+
+<style>
+  .page-content {
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+  }
+</style>
