@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import IsiReportCard from "../components/IsiReportCard.astro";
+import SiteFooter from "../components/SiteFooter.astro";
 import Layout from "../layouts/Layout.astro";
 import { SITE } from "../lib/seo";
 
@@ -130,20 +131,7 @@ const jsonLd = {
 
   <hr />
 
-  <footer class="site-footer">
-    <p>
-      Individet er startet og drives av <strong>Lars-Erik Bruce</strong>.
-      Innhold publiseres fortløpende på <strong>www.individet.no</strong>. <a
-        href="/rss.xml"
-        class="cta-link">RSS-feed</a
-      >. Følg tankesmien på <a
-        href={SITE.facebookUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="cta-link">Facebook</a
-      >.
-    </p>
-  </footer>
+  <SiteFooter />
 </Layout>
 
 <style>
@@ -234,12 +222,6 @@ const jsonLd = {
 
   .cta-link:hover {
     text-decoration: underline;
-  }
-
-  .site-footer {
-    color: #555;
-    font-size: 0.9rem;
-    margin-bottom: 3rem;
   }
 
   .featured-reports__heading {
