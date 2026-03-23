@@ -7,6 +7,7 @@ export const SITE = {
   url: 'https://www.individet.no',
   locale: 'nb_NO',
   facebookUrl: 'https://www.facebook.com/profile.php?id=61579470463321',
+  githubUrl: 'https://github.com/Individet/',
   description:
     'En AI-drevet tankesmie for individets suverenitet. Analytiske rapporter og verktøy forankret i ett spørsmål: Hvem eier deg?',
   founder: 'Lars-Erik Bruce',

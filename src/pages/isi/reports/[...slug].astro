@@ -1,18 +1,18 @@
 ---
-import { getCollection, render } from "astro:content";
-import Layout from "../../../layouts/Layout.astro";
+import { getCollection, render } from 'astro:content'
+import Layout from '../../../layouts/Layout.astro'
 
 export async function getStaticPaths() {
-  const reports = await getCollection("isiReports");
+  const reports = await getCollection('isiReports')
 
   return reports.map((entry) => ({
-    params: { slug: entry.id.replace(/\.md$/, "") },
+    params: { slug: entry.id.replace(/\.md$/, '') },
     props: { entry },
-  }));
+  }))
 }
 
-const { entry } = Astro.props;
-const { Content } = await render(entry);
+const { entry } = Astro.props
+const { Content } = await render(entry)
 ---
 
 <Layout
@@ -21,23 +21,39 @@ const { Content } = await render(entry);
   ogType="article"
 >
   <article class="report-page">
-    <p><a href="/isi/reports/">Til rapportoversikten</a></p>
-    <p>
-      <strong>Opprettet:</strong>
-      {entry.data.created.toISOString().slice(0, 10)} |
-      <strong>Sist oppdatert:</strong>
-      {entry.data.lastUpdated.toISOString().slice(0, 10)} |
-      <strong>Forfatter:</strong>
-      {entry.data.author}
-    </p>
-    <hr />
-    <Content />
+    <div class="meta-strip">
+      <a href="/isi/reports/" class="button-link button-link--secondary">
+        Til rapportoversikten
+      </a>
+    </div>
+
+    <section class="surface report-page__meta">
+      <span class="eyebrow">ISI-rapport</span>
+      <div class="meta-strip">
+        <span class="meta-pill">
+          Opprettet: {entry.data.created.toISOString().slice(0, 10)}
+        </span>
+        <span class="meta-pill">
+          Sist oppdatert: {entry.data.lastUpdated.toISOString().slice(0, 10)}
+        </span>
+        <span class="meta-pill">Forfatter: {entry.data.author}</span>
+      </div>
+    </section>
+
+    <section class="surface prose prose--wide">
+      <Content />
+    </section>
   </article>
 </Layout>
 
 <style>
   .report-page {
     display: grid;
-    gap: 1rem;
+    gap: 1.4rem;
+  }
+
+  .report-page__meta {
+    display: grid;
+    gap: 0.8rem;
   }
 </style>

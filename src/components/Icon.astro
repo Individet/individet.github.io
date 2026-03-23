@@ -1,0 +1,49 @@
+---
+interface Props {
+  name: 'rss' | 'facebook' | 'github' | 'arrow-up-right'
+  label?: string
+  size?: number
+}
+
+const { name, label, size = 18 } = Astro.props
+
+const icons = {
+  rss: {
+    viewBox: '0 0 24 24',
+    path: 'M6.18 17.82a1.64 1.64 0 1 0 0-3.28 1.64 1.64 0 0 0 0 3.28Zm-1.64-8.07v2.96A8.93 8.93 0 0 1 11.29 19h2.96A11.89 11.89 0 0 0 4.54 9.75Zm0-5.75v2.96C13.25 6.96 17.04 10.75 17.04 19H20A15.46 15.46 0 0 0 4.54 4Z',
+  },
+  facebook: {
+    viewBox: '0 0 24 24',
+    path: 'M13.5 21v-7.2h2.42l.36-2.8H13.5V9.22c0-.81.23-1.36 1.39-1.36H16.5V5.35c-.28-.04-1.23-.12-2.33-.12-2.31 0-3.89 1.41-3.89 4v1.77H7.9v2.8h2.38V21h3.22Z',
+  },
+  github: {
+    viewBox: '0 0 24 24',
+    path: 'M12 2C6.48 2 2 6.59 2 12.24c0 4.52 2.87 8.35 6.84 9.7.5.1.68-.22.68-.49 0-.24-.01-1.03-.01-1.88-2.78.62-3.37-1.21-3.37-1.21-.45-1.19-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .08 1.52 1.04 1.52 1.04.88 1.55 2.32 1.1 2.88.84.09-.66.35-1.1.63-1.35-2.22-.26-4.56-1.14-4.56-5.05 0-1.11.39-2.02 1.03-2.73-.1-.26-.45-1.31.1-2.74 0 0 .84-.28 2.75 1.04A9.27 9.27 0 0 1 12 6.8c.85 0 1.71.12 2.51.36 1.91-1.32 2.75-1.04 2.75-1.04.55 1.43.2 2.48.1 2.74.64.71 1.03 1.62 1.03 2.73 0 3.92-2.34 4.79-4.57 5.04.36.32.68.95.68 1.91 0 1.38-.01 2.49-.01 2.83 0 .27.18.59.69.49A10.24 10.24 0 0 0 22 12.24C22 6.59 17.52 2 12 2Z',
+  },
+  'arrow-up-right': {
+    viewBox: '0 0 24 24',
+    path: 'M7 17 17 7M9 7h8v8',
+  },
+} as const
+
+const icon = icons[name]
+---
+
+<svg
+  class="icon"
+  width={size}
+  height={size}
+  viewBox={icon.viewBox}
+  aria-hidden={label ? undefined : 'true'}
+  aria-label={label}
+  role="img"
+>
+  <path d={icon.path} fill={name === 'arrow-up-right' ? 'none' : 'currentColor'} stroke={name === 'arrow-up-right' ? 'currentColor' : 'none'} stroke-linecap="round" stroke-linejoin="round" stroke-width={name === 'arrow-up-right' ? '2' : undefined}></path>
+</svg>
+
+<style>
+  .icon {
+    display: inline-block;
+    flex: 0 0 auto;
+  }
+</style>

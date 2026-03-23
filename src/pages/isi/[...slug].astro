@@ -1,7 +1,9 @@
 ---
 import ActorPortrait from '../../components/ActorPortrait.astro'
 import { getCollection, render } from 'astro:content'
+import Icon from '../../components/Icon.astro'
 import IsiScorecard from '../../components/IsiScorecard.astro'
+import IsiScoreRing from '../../components/IsiScoreRing.astro'
 import { getActorPortrait } from '../../lib/actorPortraits'
 import Layout from '../../layouts/Layout.astro'
 import { getIsiClass, getIsiScore, getIsiRawScore } from '../../lib/isi'
@@ -36,96 +38,157 @@ const socialImage =
   ogImageAlt={`Forhåndsvisningsbilde for ISI-analysen av ${entry.data.actorName}`}
 >
   <article class="isi-report">
-    <p><a href="/isi/">Til ISI-oversikten</a></p>
-    <figure class="isi-report__portrait">
-      <ActorPortrait portrait={portrait} size="detail" />
-      <figcaption>
-        {
-          portrait.kind === 'image' ? (
-            <>
-              <span>Foto: {portrait.author || portrait.source}</span>
-              {portrait.license && (
-                <>
-                  {' '}
-                  ·{' '}
-                  {portrait.licenseUrl ? (
-                    <a href={portrait.licenseUrl} target="_blank" rel="noopener noreferrer">
-                      {portrait.license}
+    <div class="meta-strip">
+      <a href="/isi/" class="button-link button-link--secondary">
+        Til ISI-oversikten
+      </a>
+    </div>
+
+    <section class="page-hero isi-report__hero">
+      <figure class="isi-report__portrait">
+        <ActorPortrait portrait={portrait} size="detail" />
+        <figcaption>
+          {
+            portrait.kind === 'image' ? (
+              <>
+                <span>Foto: {portrait.author || portrait.source}</span>
+                {portrait.license && (
+                  <>
+                    {' '}
+                    ·{' '}
+                    {portrait.licenseUrl ? (
+                      <a
+                        href={portrait.licenseUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {portrait.license}
+                      </a>
+                    ) : (
+                      portrait.license
+                    )}
+                  </>
+                )}
+                {portrait.sourcePageUrl && (
+                  <>
+                    {' '}
+                    ·{' '}
+                    <a
+                      href={portrait.sourcePageUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Kildeside <Icon name="arrow-up-right" size={14} />
                     </a>
-                  ) : (
-                    portrait.license
-                  )}
-                </>
-              )}
-              {portrait.sourcePageUrl && (
-                <>
-                  {' '}
-                  ·{' '}
-                  <a href={portrait.sourcePageUrl} target="_blank" rel="noopener noreferrer">
-                    Kildeside
-                  </a>
-                </>
-              )}
-            </>
-          ) : (
-            <span>
-              Stand-in profilbilde. Byttes automatisk ut når et godkjent portrett
-              legges inn i <code>src/assets/profilbilder.json</code>.
-            </span>
-          )
-        }
-      </figcaption>
-    </figure>
-    <p>
-      <strong>ISI-score:</strong> {isiScore} (råskår {rawScore}) |
-      <strong>Klassifisering:</strong> {isiClass}
-    </p>
-    <p>
-      <strong>Analysert periode:</strong> {entry.data.analysisScope} |
-      <strong>Sist oppdatert:</strong> {entry.data.lastUpdated.toISOString().slice(0, 10)}
-    </p>
-    {tags.length > 0 && (
-      <section class="isi-report__tags" aria-label="Tagger">
-        <p class="isi-report__tags-label">Tagger</p>
-        <ul class="isi-report__tag-list">
-          {tags.map((tag) => (
-            <li>{tag}</li>
-          ))}
-        </ul>
-      </section>
-    )}
-    <hr />
-    <Content />
-    <section id="isi-scorecard-runtime" class="isi-scorecard-runtime" hidden>
+                  </>
+                )}
+              </>
+            ) : (
+              <span />
+            )
+          }
+        </figcaption>
+      </figure>
+
+      <div class="isi-report__hero-copy">
+        <span class="eyebrow">ISI-analyse</span>
+        <h1 class="page-hero__title">{entry.data.actorName}</h1>
+        <p class="page-hero__lede">
+          {entry.data.actorType} · {entry.data.actorAffiliation}
+        </p>
+
+        <div class="isi-report__summary-grid">
+          <article class="surface isi-report__summary-card">
+            <span class="eyebrow">ISI-score</span>
+            <div class="isi-report__score-line">
+              <h2>{isiScore}</h2>
+              <IsiScoreRing
+                score={isiScore}
+                showValue={false}
+                size={54}
+                label={`ISI-score ${isiScore}`}
+              />
+            </div>
+            <p>Råskår {rawScore}</p>
+          </article>
+
+          <article class="surface isi-report__summary-card">
+            <span class="eyebrow">Klassifisering</span>
+            <h2>{isiClass}</h2>
+            <p>Basert på seks dimensjoner av individets suverenitet.</p>
+          </article>
+        </div>
+
+        <div class="meta-strip">
+          <span class="meta-pill"
+            >Analysert data: {entry.data.analysisScope}</span
+          >
+          <span class="meta-pill">
+            Sist oppdatert: {entry.data.lastUpdated.toISOString().slice(0, 10)}
+          </span>
+          <span class="meta-pill">Land: {entry.data.actorCountry}</span>
+        </div>
+      </div>
+    </section>
+
+    {
+      tags.length > 0 && (
+        <section class="surface isi-report__tags" aria-label="Tagger">
+          <p class="isi-report__tags-label">Tagger</p>
+          <ul class="isi-report__tag-list">
+            {tags.map((tag) => (
+              <li>{tag}</li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+    <section class="surface prose prose--wide">
+      <Content />
+    </section>
+    <section
+      id="isi-scorecard-runtime"
+      class="isi-scorecard-runtime surface"
+      hidden
+    >
       <IsiScorecard data={entry.data} rawScore={rawScore} isiScore={isiScore} />
     </section>
     <section class="isi-report__sources" aria-label="Kilder">
-      <h2>Kilder</h2>
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Dokumentasjon</span>
+          <h2>Kilder</h2>
+        </div>
+      </div>
       <div class="isi-report__source-grid">
-        <section class="isi-report__panel">
+        <section class="surface isi-report__panel">
           <h3>Primærkilder</h3>
-          {primarySources.length === 0 ? (
-            <p class="isi-report__empty">Ingen primærkilder registrert.</p>
-          ) : (
-            <ul>
-              {primarySources.map((source) => (
-                <li>{source}</li>
-              ))}
-            </ul>
-          )}
+          {
+            primarySources.length === 0 ? (
+              <p class="isi-report__empty">Ingen primærkilder registrert.</p>
+            ) : (
+              <ul>
+                {primarySources.map((source) => (
+                  <li>{source}</li>
+                ))}
+              </ul>
+            )
+          }
         </section>
 
-        <section class="isi-report__panel">
+        <section class="surface isi-report__panel">
           <h3>Sekundærkilder</h3>
-          {secondarySources.length === 0 ? (
-            <p class="isi-report__empty">Ingen sekundærkilder registrert.</p>
-          ) : (
-            <ul>
-              {secondarySources.map((source) => (
-                <li>{source}</li>
-              ))}
-            </ul>
-          )}
+          {
+            secondarySources.length === 0 ? (
+              <p class="isi-report__empty">Ingen sekundærkilder registrert.</p>
+            ) : (
+              <ul>
+                {secondarySources.map((source) => (
+                  <li>{source}</li>
+                ))}
+              </ul>
+            )
+          }
         </section>
       </div>
     </section>
@@ -154,7 +217,13 @@ const socialImage =
 <style is:global>
   .isi-report {
     display: grid;
-    gap: 1rem;
+    gap: 1.4rem;
+  }
+
+  .isi-report__hero {
+    grid-template-columns: minmax(15rem, 19rem) minmax(0, 1fr);
+    gap: 1.4rem;
+    align-items: start;
   }
 
   .isi-report__portrait {
@@ -166,24 +235,54 @@ const socialImage =
 
   .isi-report__portrait figcaption {
     font-size: 0.88rem;
-    color: #52606b;
+    color: var(--muted);
+  }
+
+  .isi-report__hero-copy {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .isi-report__summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .isi-report__summary-card {
+    display: grid;
+    gap: 0.35rem;
+    min-width: 0;
+  }
+
+  .isi-report__summary-card h2 {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    overflow-wrap: anywhere;
+  }
+
+  .isi-report__score-line {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
 
   .isi-report .isi-scorecard {
     display: grid;
     gap: 1rem;
-    margin: 1rem 0 1.5rem;
+    margin: 0;
   }
 
   .isi-report .isi-scorecard__summary,
   .isi-report .isi-scorecard__panel {
-    background: #fff;
-    border: 1px solid rgba(31, 36, 33, 0.14);
-    box-shadow: 0 10px 24px rgba(31, 36, 33, 0.06);
+    background: transparent;
+    border: 0;
+    box-shadow: none;
   }
 
   .isi-report .isi-scorecard__summary {
-    padding: 1rem;
+    padding: 0;
   }
 
   .isi-report .isi-scorecard__metrics {
@@ -195,15 +294,16 @@ const socialImage =
 
   .isi-report .isi-scorecard__metric {
     padding: 0.9rem 1rem;
-    background: linear-gradient(180deg, #fdfcf9 0%, #f5f2ea 100%);
-    border: 1px solid rgba(39, 76, 119, 0.14);
+    background: rgba(255, 255, 255, 0.68);
+    border: 1px solid var(--line);
+    border-radius: 1.2rem;
   }
 
   .isi-report .isi-scorecard__metric dt {
     font-size: 0.82rem;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: #52606b;
+    color: var(--muted);
   }
 
   .isi-report .isi-scorecard__metric dd {
@@ -218,18 +318,21 @@ const socialImage =
     margin-top: 0.2rem;
     font-size: 0.95rem;
     font-weight: 500;
-    color: #52606b;
+    color: var(--muted);
   }
 
   .isi-report .isi-scorecard__panel {
     overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 1.2rem;
+    background: rgba(255, 255, 255, 0.56);
   }
 
   .isi-report .isi-scorecard__panel h4 {
     margin: 0;
     padding: 0.85rem 1rem;
-    border-bottom: 1px solid rgba(31, 36, 33, 0.12);
-    background: #f3efe7;
+    border-bottom: 1px solid var(--line);
+    background: rgba(52, 86, 101, 0.08);
   }
 
   .isi-report .isi-scorecard__panel p,
@@ -264,14 +367,14 @@ const socialImage =
   }
 
   .isi-report .isi-scorecard__panel thead th {
-    background: #faf8f2;
+    background: rgba(52, 86, 101, 0.08);
     text-align: left;
   }
 
   .isi-report .isi-scorecard__dimension-row th,
   .isi-report .isi-scorecard__dimension-row td {
     font-weight: 700;
-    background: #f7f3eb;
+    background: rgba(185, 148, 83, 0.1);
   }
 
   .isi-report .isi-scorecard__score {
@@ -296,10 +399,6 @@ const socialImage =
   .isi-report__tags {
     display: grid;
     gap: 0.5rem;
-    padding: 0.85rem 1rem;
-    background: #fff;
-    border: 1px solid rgba(31, 36, 33, 0.14);
-    box-shadow: 0 10px 24px rgba(31, 36, 33, 0.06);
   }
 
   .isi-report__tags-label {
@@ -307,22 +406,22 @@ const socialImage =
     font-size: 0.82rem;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: #52606b;
+    color: var(--muted);
     font-weight: 700;
   }
 
   .isi-report__tag-list li {
     padding: 0.35rem 0.75rem;
     border-radius: 999px;
-    background: linear-gradient(180deg, #fdfcf9 0%, #f5f2ea 100%);
-    border: 1px solid rgba(39, 76, 119, 0.14);
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid var(--line);
     font-size: 0.95rem;
   }
 
   .isi-report__sources {
     display: grid;
     gap: 1rem;
-    margin-top: 1rem;
+    margin-top: 0;
   }
 
   .isi-scorecard-runtime[hidden] {
@@ -335,17 +434,13 @@ const socialImage =
   }
 
   .isi-report__panel {
-    background: #fff;
-    border: 1px solid rgba(31, 36, 33, 0.14);
-    box-shadow: 0 10px 24px rgba(31, 36, 33, 0.06);
     overflow: hidden;
   }
 
   .isi-report__panel h3 {
     margin: 0;
-    padding: 0.85rem 1rem;
-    border-bottom: 1px solid rgba(31, 36, 33, 0.12);
-    background: #f3efe7;
+    padding: 0 0 0.8rem;
+    border-bottom: 1px solid var(--line);
   }
 
   .isi-report__panel p,
@@ -354,11 +449,11 @@ const socialImage =
   }
 
   .isi-report__panel p {
-    padding: 1rem;
+    padding: 1rem 0 0;
   }
 
   .isi-report__panel ul {
-    padding: 1rem 1rem 1rem 2rem;
+    padding: 1rem 0 0 1.3rem;
   }
 
   .isi-report__panel li + li {
@@ -366,7 +461,7 @@ const socialImage =
   }
 
   .isi-report__empty {
-    color: #52606b;
+    color: var(--muted);
   }
 
   @media (min-width: 760px) {
@@ -375,7 +470,17 @@ const socialImage =
     }
   }
 
+  @media (max-width: 920px) {
+    .isi-report__hero {
+      grid-template-columns: 1fr;
+    }
+  }
+
   @media (max-width: 680px) {
+    .isi-report__summary-grid {
+      grid-template-columns: 1fr;
+    }
+
     .isi-report .isi-scorecard__panel th,
     .isi-report .isi-scorecard__panel td {
       padding: 0.7rem 0.8rem;
