@@ -1,0 +1,125 @@
+---
+import type { ActorPortrait } from '../lib/actorPortraits'
+
+interface Props {
+  portrait: ActorPortrait
+  size?: 'card' | 'detail'
+}
+
+const { portrait, size = 'card' } = Astro.props
+---
+
+{
+  portrait.kind === 'image' ? (
+    <span class:list={['actor-portrait', `actor-portrait--${size}`]}>
+      <img
+        src={size === 'detail' ? portrait.src : portrait.cardSrc}
+        alt={portrait.alt}
+        width={
+          size === 'detail'
+            ? (portrait.width ?? 512)
+            : portrait.cardWidth
+        }
+        height={
+          size === 'detail'
+            ? (portrait.height ?? 512)
+            : portrait.cardHeight
+        }
+        loading={size === 'detail' ? 'eager' : 'lazy'}
+        decoding="async"
+      />
+    </span>
+  ) : (
+    <span
+      class:list={[
+        'actor-portrait',
+        `actor-portrait--${size}`,
+        'actor-portrait--fallback',
+      ]}
+      style={`--actor-portrait-accent:${portrait.accent};--actor-portrait-accent-soft:${portrait.accentSoft};`}
+      role="img"
+      aria-label={portrait.alt}
+    >
+      <span class="actor-portrait__silhouette" aria-hidden="true"></span>
+      <span class="actor-portrait__initials">{portrait.initials}</span>
+    </span>
+  )
+}
+
+<style>
+  .actor-portrait {
+    position: relative;
+    display: inline-flex;
+    overflow: hidden;
+    background: #f3efe7;
+    border: 1px solid rgba(31, 36, 33, 0.14);
+    box-shadow: 0 8px 18px rgba(31, 36, 33, 0.1);
+  }
+
+  .actor-portrait--card {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    flex: 0 0 auto;
+  }
+
+  .actor-portrait--detail {
+    width: min(100%, 18rem);
+    aspect-ratio: 1 / 1;
+    border-radius: 1rem;
+    box-shadow: 0 14px 28px rgba(31, 36, 33, 0.1);
+  }
+
+  .actor-portrait img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .actor-portrait--fallback {
+    align-items: center;
+    justify-content: center;
+    background:
+      radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.75), transparent 30%),
+      linear-gradient(180deg, var(--actor-portrait-accent-soft) 0%, #f8f4ec 100%);
+    color: var(--actor-portrait-accent);
+  }
+
+  .actor-portrait__silhouette {
+    position: absolute;
+    inset: auto 14% -30% 14%;
+    border-radius: 999px 999px 1.25rem 1.25rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(0, 0, 0, 0.08));
+    opacity: 0.55;
+  }
+
+  .actor-portrait__silhouette::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -34%;
+    width: 48%;
+    height: 44%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: inherit;
+  }
+
+  .actor-portrait__initials {
+    position: relative;
+    z-index: 1;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+  }
+
+  .actor-portrait--card .actor-portrait__initials {
+    font-size: 1.15rem;
+  }
+
+  .actor-portrait--detail .actor-portrait__initials {
+    font-size: clamp(2.2rem, 7vw, 4rem);
+  }
+</style>

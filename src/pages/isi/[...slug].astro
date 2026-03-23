@@ -1,6 +1,8 @@
 ---
+import ActorPortrait from '../../components/ActorPortrait.astro'
 import { getCollection, render } from 'astro:content'
 import IsiScorecard from '../../components/IsiScorecard.astro'
+import { getActorPortrait } from '../../lib/actorPortraits'
 import Layout from '../../layouts/Layout.astro'
 import { getIsiClass, getIsiScore, getIsiRawScore } from '../../lib/isi'
 
@@ -21,15 +23,59 @@ const isiClass = getIsiClass(entry)
 const tags = entry.data.tags ?? []
 const primarySources = entry.data.primarySources ?? []
 const secondarySources = entry.data.secondarySources ?? []
+const portrait = getActorPortrait(entry.data.actorSlug, entry.data.actorName)
+const socialImage =
+  portrait.kind === 'image' ? portrait.src : '/social/isi-fallback.png'
 ---
 
 <Layout
   title={`${entry.data.actorName} | ISI | Individet`}
   description={`ISI-analyse av ${entry.data.actorName}: score ${isiScore}, klassifisering ${isiClass}. Vurdert etter individets suverenitetsindeks.`}
   ogType="article"
+  ogImage={socialImage}
+  ogImageAlt={`Forhåndsvisningsbilde for ISI-analysen av ${entry.data.actorName}`}
 >
   <article class="isi-report">
     <p><a href="/isi/">Til ISI-oversikten</a></p>
+    <figure class="isi-report__portrait">
+      <ActorPortrait portrait={portrait} size="detail" />
+      <figcaption>
+        {
+          portrait.kind === 'image' ? (
+            <>
+              <span>Foto: {portrait.author || portrait.source}</span>
+              {portrait.license && (
+                <>
+                  {' '}
+                  ·{' '}
+                  {portrait.licenseUrl ? (
+                    <a href={portrait.licenseUrl} target="_blank" rel="noopener noreferrer">
+                      {portrait.license}
+                    </a>
+                  ) : (
+                    portrait.license
+                  )}
+                </>
+              )}
+              {portrait.sourcePageUrl && (
+                <>
+                  {' '}
+                  ·{' '}
+                  <a href={portrait.sourcePageUrl} target="_blank" rel="noopener noreferrer">
+                    Kildeside
+                  </a>
+                </>
+              )}
+            </>
+          ) : (
+            <span>
+              Stand-in profilbilde. Byttes automatisk ut når et godkjent portrett
+              legges inn i <code>src/assets/profilbilder.json</code>.
+            </span>
+          )
+        }
+      </figcaption>
+    </figure>
     <p>
       <strong>ISI-score:</strong> {isiScore} (råskår {rawScore}) |
       <strong>Klassifisering:</strong> {isiClass}
@@ -109,6 +155,18 @@ const secondarySources = entry.data.secondarySources ?? []
   .isi-report {
     display: grid;
     gap: 1rem;
+  }
+
+  .isi-report__portrait {
+    margin: 0;
+    display: grid;
+    gap: 0.55rem;
+    justify-items: start;
+  }
+
+  .isi-report__portrait figcaption {
+    font-size: 0.88rem;
+    color: #52606b;
   }
 
   .isi-report .isi-scorecard {
