@@ -1,289 +1,279 @@
 ---
-import { getCollection } from "astro:content";
-import IsiReportCard from "../components/IsiReportCard.astro";
-import SiteFooter from "../components/SiteFooter.astro";
-import Layout from "../layouts/Layout.astro";
-import { SITE } from "../lib/seo";
+import { getCollection } from 'astro:content'
+import Icon from '../components/Icon.astro'
+import IsiReportCard from '../components/IsiReportCard.astro'
+import Layout from '../layouts/Layout.astro'
+import { SITE } from '../lib/seo'
 
-const allReports = await getCollection("isi");
+const allReports = await getCollection('isi')
 const featured = [...allReports]
   .sort((a, b) => b.data.lastUpdated.getTime() - a.data.lastUpdated.getTime())
-  .slice(0, 3);
+  .slice(0, 3)
 
 const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
+  '@context': 'https://schema.org',
+  '@graph': [
     {
-      "@type": "Organization",
-      "@id": `${SITE.url}/#org`,
+      '@type': 'Organization',
+      '@id': `${SITE.url}/#org`,
       name: SITE.name,
       url: SITE.url,
       sameAs: [SITE.facebookUrl],
       description: SITE.description,
-      founder: { "@type": "Person", name: SITE.founder },
+      founder: { '@type': 'Person', name: SITE.founder },
     },
     {
-      "@type": "WebSite",
-      "@id": `${SITE.url}/#website`,
+      '@type': 'WebSite',
+      '@id': `${SITE.url}/#website`,
       name: SITE.name,
       url: SITE.url,
-      publisher: { "@id": `${SITE.url}/#org` },
-      inLanguage: "nb",
+      publisher: { '@id': `${SITE.url}/#org` },
+      inLanguage: 'nb',
     },
     {
-      "@type": "SiteNavigationElement",
-      name: "Manifestet",
+      '@type': 'SiteNavigationElement',
+      name: 'Manifestet',
       url: `${SITE.url}/manifest/`,
     },
     {
-      "@type": "SiteNavigationElement",
-      name: "ISI-analyser",
+      '@type': 'SiteNavigationElement',
+      name: 'ISI-analyser',
       url: `${SITE.url}/isi/`,
     },
     {
-      "@type": "SiteNavigationElement",
-      name: "Om Individet",
+      '@type': 'SiteNavigationElement',
+      name: 'Om Individet',
       url: `${SITE.url}/om/`,
     },
   ],
-};
+}
 ---
 
 <Layout title="Individet — en AI-drevet tankesmie">
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </Fragment>
-  <header class="masthead">
-    <div class="masthead-inner">
-      <div class="wordmark">Individet</div>
-      <p class="tagline">En AI-drevet tankesmie for individets suverenitet</p>
-    </div>
-  </header>
+  <div class="home-shell">
+    <section class="page-hero home-hero">
+      <div class="home-hero__content">
+        <span class="eyebrow">Tankesmien Individet</span>
+        <h1 class="page-hero__title">
+          En frihetsorientert tankesmie med profesjonell presisjon.
+        </h1>
 
-  <section class="intro">
-    <p class="lead">
-      Individet er en uavhengig tankesmie grunnlagt og drevet av
-      <strong>Lars-Erik Bruce</strong>. Vi produserer analytiske rapporter og
-      verktøy forankret i ett spørsmål som aldri stilner:
-    </p>
-    <blockquote>
-      <em>Hvem eier deg?</em>
-    </blockquote>
-    <p>
-      Svaret er selvinnlysende — og likevel bestandig omstridt. Vår misjon er å
-      hegne om individets suverenitet: retten ethvert menneske har til å eie og
-      styre sitt eget liv, uten at noen stat, institusjon eller bevegelse kan
-      krenke det uten konsekvens.
-    </p>
-    <p>
-      Tankesmien er AI-drevet. Rapportene produseres med kunstig intelligens som
-      analytisk verktøy — men alltid under menneskelig kontroll og med krav om
-      faglig kvalitet. Automatiseringen vil økes gradvis, men aldri på
-      bekostning av presisjon og etterrettelighet.
-    </p>
-    <p>
-      <a href="/om/" class="cta-link">Les mer om tankesmia →</a>
-    </p>
-  </section>
+        <div class="meta-strip">
+          <span class="meta-pill">Uavhengig</span>
+          <span class="meta-pill">AI-drevet</span>
+          <span class="meta-pill">Åpent metodegrunnlag</span>
+        </div>
 
-  <hr />
+        <div class="button-row">
+          <a href="/manifest/" class="button-link">Les manifestet</a>
+          <a href="/isi/" class="button-link">Utforsk ISI-analysene</a>
+        </div>
+      </div>
 
-  <section class="products">
-    <article class="product-card">
-      <h2>Manifestet</h2>
+      <aside class="home-hero__panel surface">
+        <p class="home-hero__panel-label">Vårt utgangspunkt</p>
+        <blockquote class="home-hero__quote">
+          <em>Ingen stat eller institusjon eier mennesket.</em>
+        </blockquote>
+        <p>
+          Derfor kombinerer Individet idéarbeid, måling og dokumentasjon i ett
+          felles prosjekt: å tydeliggjøre hvor individets frihet blir styrket og
+          hvor den blir innsnevret.
+        </p>
+        <hr class="hr-white" />
+        <p>
+          Individet er en AI-drevet tankesmie for individets suverenitet. Vi
+          utvikler analyser, manifest og åpne verktøy som undersøker ett
+          grunnspørsmål uten å vike: <strong>Hvem eier deg?</strong>
+        </p>
+      </aside>
+    </section>
+
+    <section class="home-principles">
+      <article class="surface principle-card">
+        <span class="eyebrow">Suverenitet</span>
+        <h2>Frihet som første prinsipp</h2>
+        <p>
+          Vi tar utgangspunkt i selveierskap, frivillighet og rettsstatlige
+          grenser for maktutøvelse.
+        </p>
+      </article>
+
+      <article class="surface principle-card">
+        <span class="eyebrow">Etterrettelighet</span>
+        <h2>Analyse fremfor støy</h2>
+        <p>
+          Påstander skal kunne spores. Poeng, vurderinger og klassifiseringer må
+          være lesbare, begrunnede og kritiserbare.
+        </p>
+      </article>
+
+      <article class="surface principle-card">
+        <span class="eyebrow">Åpen prosess</span>
+        <h2>Maskineriet er synlig</h2>
+        <p>
+          Arbeidet skjer i en åpen prosess der verktøy, kode og metode kan
+          granskes uten innsideadgang.
+        </p>
+      </article>
+    </section>
+
+    <section class="home-focus">
+      <article class="surface focus-card">
+        <span class="eyebrow">Manifestet</span>
+        <h2>Et idégrunnlag uten kollektiv tåke</h2>
+        <p>
+          <em>Individets Suverenitet</em> samler tankesmiens normative grunnlag: mennesket
+          eier seg selv, og tvang mister ikke sin natur selv om den kles i gode hensikter.
+        </p>
+        <a href="/manifest/" class="button-link">Gå til manifestet</a>
+      </article>
+
+      <article class="surface focus-card focus-card--accent">
+        <span class="eyebrow">ISI</span>
+        <h2>Et rammeverk for å måle hvem som styrker friheten</h2>
+        <p>
+          Individets Suverenitetsindeks vurderer politikere, medier,
+          organisasjoner og partier på tvers av seks dimensjoner av frihetsvern.
+        </p>
+        <a href="/isi/" class="button-link">Se alle analyser</a>
+      </article>
+    </section>
+
+    <section class="home-featured surface">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Nye analyser</span>
+          <h2>Siste publiserte ISI-vurderinger</h2>
+        </div>
+        <a href="/isi/" class="button-link button-link--secondary">
+          Hele oversikten
+        </a>
+      </div>
+
+      <ul class="report-list">
+        {
+          featured.map((report) => (
+            <li>
+              <IsiReportCard report={report} />
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="surface open-process">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">Åpenhet</span>
+          <h2>Maskineriet som driver nettstedet kan granskes</h2>
+        </div>
+      </div>
+
       <p>
-        Individets ideologiske grunnlag er formulert i manifestet
-        <em>Individets Suverenitet</em>. Det er ikke en partilinje — det er en
-        observasjon av virkeligheten. Tråden løper fra Aristoteles og stoikerne,
-        gjennom Locke og Bastiat, frem til vår tid: selveierskapet er
-        ufravikelig, og tvangens logikk brytes ned uansett hvilke gode
-        intensjoner den pakkes inn i.
+        Innholdet på nettstedet er drevet av koden som befinner seg i
+        <a href={SITE.githubUrl} target="_blank" rel="noopener noreferrer">
+          Individet/tankesmia <Icon name="arrow-up-right" size={14} />
+        </a>. Her finner du kode, agent-oppsett og arbeidsflyt som brukes til å
+        drifte tankesmien.
       </p>
-      <a href="/manifest/" class="cta-link">Les manifestet →</a>
-    </article>
-
-    <article class="product-card">
-      <h2>Individets Suverenitetsindeks (ISI)</h2>
-      <p>
-        ISI er et analytisk rammeverk som bedømmer samfunnsaktører — politikere,
-        partier, organisasjoner og medier — etter én målestokk: fremmer eller
-        hemmer de individets suverenitet? Hver aktør scores på tvers av seks
-        dimensjoner, fra kroppslig autonomi og ytringsfrihet til eiendomsrett og
-        rettsstaten.
-      </p>
-      <p>
-        Karakteren er ikke meningsytring. Den er dokumentert og etterprøvbar —
-        forankret i offentlige uttalelser, stemmegivning og vedtatte posisjoner.
-      </p>
-      <a href="/isi/" class="cta-link">Se alle ISI-analyser →</a>
-    </article>
-  </section>
-
-  <hr />
-
-  <section class="featured-reports">
-    <h2 class="featured-reports__heading">Siste ISI-analyser</h2>
-    <ul class="report-list">
-      {
-        featured.map((report) => (
-          <li>
-            <IsiReportCard report={report} />
-          </li>
-        ))
-      }
-    </ul>
-    <p class="featured-reports__cta">
-      <a href="/isi/" class="cta-link">Se alle ISI-analyser →</a>
-    </p>
-  </section>
-
-  <section class="open-process">
-    <h2>Alt er åpent</h2>
-    <p>
-      Innholdet på denne siden er drevet av maskineriet definert i
-      <a
-        href="https://github.com/Individet/tankesmia"
-        target="_blank"
-        rel="noopener noreferrer">Individet/tankesmia</a
-      >.
-    </p>
-    <p>
-      Her finner du all kode, alle agent-skills og hele oppsettet som brukes for
-      å drifte tankesmia Individet. Alt er open source, og hele arbeidet skjer i
-      en åpen prosess med fullt innsyn.
-    </p>
-  </section>
-  <hr />
-
-  <SiteFooter />
+    </section>
+  </div>
 </Layout>
 
 <style>
-  .masthead {
-    padding: 3rem 0 2rem;
-    border-bottom: 2px solid #1f2421;
-    margin-bottom: 2.5rem;
-  }
-
-  .masthead-inner {
-    margin: 0 16px;
-  }
-
-  .wordmark {
-    font-size: 2.8rem;
-    font-weight: bold;
-    letter-spacing: -0.02em;
-    line-height: 1;
-    color: #1f2421;
-  }
-
-  .tagline {
-    margin: 0.4rem 0 0;
-    font-size: 0.95rem;
-    color: #555;
-    font-style: italic;
-  }
-
-  .intro {
-    margin-bottom: 2rem;
-  }
-
-  .lead {
-    font-size: 1.1rem;
-    line-height: 1.65;
-  }
-
-  .open-process {
-    margin-top: 1.4rem;
-    padding: 1rem 1.1rem;
-    border: 1px solid #c8d5b9;
-    border-left: 4px solid #274c77;
-    background: #f8fbf4;
-  }
-
-  .open-process h2 {
-    margin: 0 0 0.5rem;
-    font-size: 1.05rem;
-  }
-
-  .open-process p {
-    margin: 0 0 0.6rem;
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-
-  .open-process p:last-child {
-    margin-bottom: 0;
-  }
-
-  .open-process a {
-    color: #274c77;
-    font-weight: bold;
-  }
-
-  blockquote {
-    border-left: 3px solid #1f2421;
-    margin: 1.5rem 0 1.5rem 0;
-    padding: 0.5rem 1.2rem;
-    font-size: 1.3rem;
-    color: #1f2421;
-  }
-
-  hr {
-    border: none;
-    border-top: 1px solid #d6d3cc;
-    margin: 2.5rem 16px;
-  }
-
-  .products {
+  .home-shell {
     display: grid;
-    gap: 2rem;
-    margin-bottom: 2rem;
+    gap: 1.2rem;
   }
 
-  @media (min-width: 660px) {
-    .products {
-      grid-template-columns: 1fr 1fr;
-    }
+  .home-hero {
+    grid-template-columns: minmax(0, 1.5fr) minmax(18rem, 0.9fr);
+    align-items: stretch;
   }
 
-  .product-card {
-    border: 1px solid #d6d3cc;
-    border-radius: 2px;
-    padding: 1.4rem 1.6rem;
-    background: #fff;
+  .home-hero__content {
+    display: grid;
+    align-content: center;
+    gap: 1rem;
   }
 
-  .product-card h2 {
-    margin: 0 0 0.75rem;
-    font-size: 1.15rem;
+  .home-hero__panel {
+    display: grid;
+    align-content: start;
+    gap: 0.85rem;
+    background:
+      linear-gradient(180deg, rgba(15, 32, 48, 0.96), rgba(24, 54, 75, 0.92)),
+      var(--bg-deep);
+    color: rgba(247, 241, 227, 0.9);
+    border-color: rgba(247, 241, 227, 0.12);
   }
 
-  .product-card p {
-    margin: 0 0 0.75rem;
-    font-size: 0.95rem;
-    line-height: 1.6;
+  .home-hero__panel strong {
+    color: rgba(247, 241, 227, 0.9);
   }
 
-  .cta-link {
-    font-size: 0.9rem;
-    font-weight: bold;
-    text-decoration: none;
-    color: #274c77;
+  .home-hero__panel-label {
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(241, 230, 199, 0.74);
   }
 
-  .cta-link:hover {
-    text-decoration: underline;
+  .home-hero__quote {
+    margin: 0;
+    padding-left: 1rem;
+    border-left: 2px solid rgba(241, 230, 199, 0.32);
+    font-size: 1.3rem;
+    line-height: 1.4;
+    color: #fff;
   }
 
-  .featured-reports__heading {
-    font-size: 1.1rem;
-    margin: 0 0 1rem;
+  .home-principles,
+  .home-focus {
+    display: grid;
+    gap: 0.9rem;
   }
 
-  .featured-reports__cta {
-    margin-top: 1rem;
-    text-align: right;
+  .principle-card,
+  .focus-card {
+    display: grid;
+    gap: 0.65rem;
+  }
+
+  .focus-card {
+    grid-template-rows: auto auto minmax(0, 1fr) auto;
+  }
+
+  .principle-card h2,
+  .focus-card h2,
+  .home-featured h2,
+  .open-process h2 {
+    font-size: clamp(1.35rem, 2vw, 1.9rem);
+  }
+
+  .focus-card--accent {
+    background:
+      radial-gradient(
+        circle at top right,
+        rgba(185, 148, 83, 0.16),
+        transparent 28%
+      ),
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.96),
+        rgba(246, 239, 226, 0.88)
+      );
+  }
+
+  .home-featured,
+  .open-process {
+    display: grid;
+    gap: 0.9rem;
   }
 
   .report-list {
@@ -291,18 +281,26 @@ const jsonLd = {
     padding: 0;
     margin: 0;
     display: grid;
-    gap: 0.75rem;
+    gap: 0.95rem;
   }
 
   .report-list li {
-    box-shadow: 0 6px 18px rgba(31, 36, 33, 0.05);
-    transition:
-      transform 160ms ease,
-      box-shadow 160ms ease;
+    min-width: 0;
   }
 
-  .report-list li:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 14px 28px rgba(31, 36, 33, 0.1);
+  @media (min-width: 760px) {
+    .home-principles {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .home-focus {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 940px) {
+    .home-hero {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

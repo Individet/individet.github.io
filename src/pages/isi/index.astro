@@ -1,51 +1,57 @@
 ---
-import { getCollection } from "astro:content";
-import IsiReportCard from "../../components/IsiReportCard.astro";
-import SiteFooter from "../../components/SiteFooter.astro";
-import Layout from "../../layouts/Layout.astro";
-import { getIsiScore } from "../../lib/isi";
+import { getCollection } from 'astro:content'
+import IsiReportCard from '../../components/IsiReportCard.astro'
+import Layout from '../../layouts/Layout.astro'
+import { getIsiScore } from '../../lib/isi'
 
-const reports = await getCollection("isi");
+const reports = await getCollection('isi')
+const latestUpdated = [...reports].sort(
+  (a, b) => b.data.lastUpdated.getTime() - a.data.lastUpdated.getTime(),
+)[0]?.data.lastUpdated
 
 const reportsByScore = [...reports].sort((a, b) => {
-  const scoreDelta = getIsiScore(b) - getIsiScore(a);
+  const scoreDelta = getIsiScore(b) - getIsiScore(a)
 
   if (scoreDelta !== 0) {
-    return scoreDelta;
+    return scoreDelta
   }
 
-  return a.data.actorName.localeCompare(b.data.actorName, "no");
-});
+  return a.data.actorName.localeCompare(b.data.actorName, 'no')
+})
 
 const reportsByDate = [...reports].sort((a, b) => {
-  const dateDelta = b.data.created.getTime() - a.data.created.getTime();
+  const dateDelta = b.data.created.getTime() - a.data.created.getTime()
 
   if (dateDelta !== 0) {
-    return dateDelta;
+    return dateDelta
   }
 
-  return a.data.actorName.localeCompare(b.data.actorName, "no");
-});
+  return a.data.actorName.localeCompare(b.data.actorName, 'no')
+})
 
 const reportsByDateAsc = [...reports].sort((a, b) => {
-  const dateDelta = a.data.created.getTime() - b.data.created.getTime();
+  const dateDelta = a.data.created.getTime() - b.data.created.getTime()
 
   if (dateDelta !== 0) {
-    return dateDelta;
+    return dateDelta
   }
 
-  return a.data.actorName.localeCompare(b.data.actorName, "no");
-});
+  return a.data.actorName.localeCompare(b.data.actorName, 'no')
+})
 
 const reportsByScoreAsc = [...reports].sort((a, b) => {
-  const scoreDelta = getIsiScore(a) - getIsiScore(b);
+  const scoreDelta = getIsiScore(a) - getIsiScore(b)
 
   if (scoreDelta !== 0) {
-    return scoreDelta;
+    return scoreDelta
   }
 
-  return a.data.actorName.localeCompare(b.data.actorName, "no");
-});
+  return a.data.actorName.localeCompare(b.data.actorName, 'no')
+})
+
+function formatDate(value: Date) {
+  return value.toISOString().slice(0, 10)
+}
 ---
 
 <Layout
@@ -54,205 +60,237 @@ const reportsByScoreAsc = [...reports].sort((a, b) => {
   ogImage="/social/isi-fallback.png"
   ogImageAlt="Forhåndsvisningsbilde for Individets suverenitetsindeks"
 >
-  <h1>Individets Suverenitetsindeks (ISI)</h1>
-  <div class="intro-copy">
-    <p>
-      ISI er en strukturert vurdering av hvor mye en aktør fremmer eller hemmer
-      individets suverenitet. Hver analyse gir en samlet score fra 0 til 100,
-      basert på seks dimensjoner i rammeverket.
-    </p>
-    <p>
-      Høye scorer betyr at aktøren i større grad styrker individets frihet,
-      eiendomsrett, ytringsrom og ansvar for eget liv. Lave scorer betyr at
-      aktøren i større grad flytter makt og kontroll bort fra individet.
-    </p>
-    <p>
-      Har du forslag til en ny aktør? Send inn forslag via
-      <a
-        href="https://github.com/Individet/individet.github.io/issues/new?template=forslag-til-ny-akt%C3%B8r.md"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        GitHub issue-mal for aktørforslag
-      </a>.
-    </p>
-    <p>
-      Rapportene under er som standard sortert etter ISI-score. Du kan bytte
-      mellom dato (basert på <code>created</code>-feltet i YAML) og ISI-score,
-      og mellom stigende/synkende rekkefølge.
-    </p>
+  <div class="isi-index page-shell">
+    <section class="page-hero isi-index__hero">
+      <div class="isi-index__intro">
+        <span class="eyebrow">Individets Suverenitetsindeks</span>
+        <h1 class="page-hero__title">
+          <span class="isi-index__title-lock">Et analyserverktøy</span> for individuell
+          frihet.
+        </h1>
+        <p class="page-hero__lede">
+          ISI rangerer samfunnsaktører etter hvor mye de styrker eller hemmer
+          individets suverenitet. Hver analyse er bygd på seks dimensjoner, åpne
+          vurderingskriterier og eksplisitte kilder.
+        </p>
+      </div>
+    </section>
+
+    <section class="surface intro-copy">
+      <p>
+        Høye scorer betyr at aktøren i større grad styrker individets frihet,
+        eiendomsrett, ytringsrom og ansvar for eget liv. Lave scorer betyr at
+        aktøren i større grad flytter makt og kontroll bort fra individet.
+      </p>
+      <p>
+        Har du forslag til en ny aktør? Send inn forslag via
+        <a
+          href="https://github.com/Individet/individet.github.io/issues/new?template=forslag-til-ny-akt%C3%B8r.md"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub issue-mal for aktørforslag
+        </a>.
+      </p>
+      <p>
+        Rapportene under er som standard sortert etter ISI-score. Du kan bytte
+        mellom dato (basert på <code>created</code>-feltet i YAML) og ISI-score,
+        og mellom stigende og synkende rekkefølge.
+      </p>
+    </section>
+
+    {
+      reports.length === 0 ? (
+        <section class="surface">
+          <p>Ingen ISI-rapporter funnet.</p>
+        </section>
+      ) : (
+        <section class="surface isi-index__list-panel">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">Oversikt</span>
+              <h2>Sorter og les analyser</h2>
+            </div>
+          </div>
+
+          <div class="sort-controls" role="group" aria-label="Sorter rapporter">
+            <div class="sort-controls__group">
+              <button
+                class="sort-controls__button is-active"
+                data-sort-target="score"
+                type="button"
+              >
+                ISI-score
+              </button>
+              <button
+                class="sort-controls__direction is-active"
+                data-sort-direction-toggle="score"
+                type="button"
+                aria-label="Bytt scorerekkefølge"
+                title="Bytt scorerekkefølge"
+              >
+                <span
+                  class="sort-controls__direction-icon"
+                  data-direction-icon-for="score"
+                >
+                  ↓
+                </span>
+              </button>
+            </div>
+            <div class="sort-controls__group">
+              <button
+                class="sort-controls__button"
+                data-sort-target="date"
+                type="button"
+              >
+                Dato
+              </button>
+              <button
+                class="sort-controls__direction"
+                data-sort-direction-toggle="date"
+                type="button"
+                aria-label="Bytt datorekkefølge"
+                title="Bytt datorekkefølge"
+              >
+                <span
+                  class="sort-controls__direction-icon"
+                  data-direction-icon-for="date"
+                >
+                  ↓
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <ul class="report-list is-hidden" data-sort-list="date-desc">
+            {reportsByDate.map((report) => (
+              <li>
+                <IsiReportCard report={report} />
+              </li>
+            ))}
+          </ul>
+
+          <ul class="report-list is-hidden" data-sort-list="date-asc">
+            {reportsByDateAsc.map((report) => (
+              <li>
+                <IsiReportCard report={report} />
+              </li>
+            ))}
+          </ul>
+
+          <ul class="report-list" data-sort-list="score-desc">
+            {reportsByScore.map((report) => (
+              <li>
+                <IsiReportCard report={report} />
+              </li>
+            ))}
+          </ul>
+
+          <ul class="report-list is-hidden" data-sort-list="score-asc">
+            {reportsByScoreAsc.map((report) => (
+              <li>
+                <IsiReportCard report={report} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
   </div>
 
-  {
-    reports.length === 0 ? (
-      <p>Ingen ISI-rapporter funnet.</p>
-    ) : (
-      <>
-        <div class="sort-controls" role="group" aria-label="Sorter rapporter">
-          <div class="sort-controls__group">
-            <button
-              class="sort-controls__button is-active"
-              data-sort-target="score"
-              type="button"
-            >
-              ISI-score
-            </button>
-            <button
-              class="sort-controls__direction is-active"
-              data-sort-direction-toggle="score"
-              type="button"
-              aria-label="Bytt scorerekkefølge"
-              title="Bytt scorerekkefølge"
-            >
-              <span
-                class="sort-controls__direction-icon"
-                data-direction-icon-for="score"
-              >
-                ↓
-              </span>
-            </button>
-          </div>
-          <div class="sort-controls__group">
-            <button
-              class="sort-controls__button"
-              data-sort-target="date"
-              type="button"
-            >
-              Dato
-            </button>
-            <button
-              class="sort-controls__direction"
-              data-sort-direction-toggle="date"
-              type="button"
-              aria-label="Bytt datorekkefølge"
-              title="Bytt datorekkefølge"
-            >
-              <span
-                class="sort-controls__direction-icon"
-                data-direction-icon-for="date"
-              >
-                ↓
-              </span>
-            </button>
-          </div>
-        </div>
-
-        <ul class="report-list is-hidden" data-sort-list="date-desc">
-          {reportsByDate.map((report) => (
-            <li>
-              <IsiReportCard report={report} />
-            </li>
-          ))}
-        </ul>
-
-        <ul class="report-list is-hidden" data-sort-list="date-asc">
-          {reportsByDateAsc.map((report) => (
-            <li>
-              <IsiReportCard report={report} />
-            </li>
-          ))}
-        </ul>
-
-        <ul class="report-list" data-sort-list="score-desc">
-          {reportsByScore.map((report) => (
-            <li>
-              <IsiReportCard report={report} />
-            </li>
-          ))}
-        </ul>
-
-        <ul class="report-list is-hidden" data-sort-list="score-asc">
-          {reportsByScoreAsc.map((report) => (
-            <li>
-              <IsiReportCard report={report} />
-            </li>
-          ))}
-        </ul>
-      </>
-    )
-  }
-
-  <SiteFooter />
-
   <script is:inline>
-    const sortButtons = document.querySelectorAll("[data-sort-target]");
+    const sortButtons = document.querySelectorAll('[data-sort-target]')
     const directionButtons = document.querySelectorAll(
-      "[data-sort-direction-toggle]",
-    );
+      '[data-sort-direction-toggle]',
+    )
     const directionIcons = document.querySelectorAll(
-      "[data-direction-icon-for]",
-    );
-    const sortLists = document.querySelectorAll("[data-sort-list]");
+      '[data-direction-icon-for]',
+    )
+    const sortLists = document.querySelectorAll('[data-sort-list]')
     const directions = {
-      date: "desc",
-      score: "desc",
-    };
-    let activeTarget = "score";
+      date: 'desc',
+      score: 'desc',
+    }
+    let activeTarget = 'score'
 
     function renderSortState() {
-      const activeList = `${activeTarget}-${directions[activeTarget]}`;
+      const activeList = `${activeTarget}-${directions[activeTarget]}`
 
       sortButtons.forEach((button) => {
-        const isActive = button.dataset.sortTarget === activeTarget;
-        button.classList.toggle("is-active", isActive);
-        button.setAttribute("aria-pressed", String(isActive));
-      });
+        const isActive = button.dataset.sortTarget === activeTarget
+        button.classList.toggle('is-active', isActive)
+        button.setAttribute('aria-pressed', String(isActive))
+      })
 
       directionButtons.forEach((button) => {
-        const isActive = button.dataset.sortDirectionToggle === activeTarget;
-        button.classList.toggle("is-active", isActive);
-        button.setAttribute("aria-pressed", String(isActive));
-      });
+        const isActive = button.dataset.sortDirectionToggle === activeTarget
+        button.classList.toggle('is-active', isActive)
+        button.setAttribute('aria-pressed', String(isActive))
+      })
 
       directionIcons.forEach((icon) => {
-        const target = icon.dataset.directionIconFor;
+        const target = icon.dataset.directionIconFor
 
         if (!target || !(target in directions)) {
-          return;
+          return
         }
 
-        icon.textContent = directions[target] === "desc" ? "↓" : "↑";
-      });
+        icon.textContent = directions[target] === 'desc' ? '↓' : '↑'
+      })
 
       sortLists.forEach((list) => {
-        const shouldShow = list.dataset.sortList === activeList;
-        list.classList.toggle("is-hidden", !shouldShow);
-      });
+        const shouldShow = list.dataset.sortList === activeList
+        list.classList.toggle('is-hidden', !shouldShow)
+      })
     }
 
     sortButtons.forEach((button) => {
-      button.addEventListener("click", () => {
+      button.addEventListener('click', () => {
         if (button.dataset.sortTarget) {
-          activeTarget = button.dataset.sortTarget;
-          renderSortState();
+          activeTarget = button.dataset.sortTarget
+          renderSortState()
         }
-      });
-    });
+      })
+    })
 
     directionButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const target = button.dataset.sortDirectionToggle;
+      button.addEventListener('click', () => {
+        const target = button.dataset.sortDirectionToggle
 
         if (!target || !(target in directions)) {
-          return;
+          return
         }
 
-        directions[target] = directions[target] === "desc" ? "asc" : "desc";
-        activeTarget = target;
-        renderSortState();
-      });
-    });
+        directions[target] = directions[target] === 'desc' ? 'asc' : 'desc'
+        activeTarget = target
+        renderSortState()
+      })
+    })
 
-    renderSortState();
+    renderSortState()
   </script>
 </Layout>
 
 <style>
+  .isi-index {
+    display: grid;
+    gap: 1.4rem;
+  }
+
+  .isi-index__list-panel {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .isi-index__title-lock {
+    white-space: nowrap;
+  }
+
   .sort-controls {
-    margin-top: 1.5rem;
     display: flex;
     flex-wrap: wrap;
     gap: 0.55rem;
+    margin-top: 0.15rem;
   }
 
   .sort-controls__group {
@@ -262,12 +300,13 @@ const reportsByScoreAsc = [...reports].sort((a, b) => {
 
   .sort-controls__button {
     appearance: none;
-    border: 1px solid #213042;
-    background: #fff;
-    color: #213042;
+    border: 1px solid var(--line-strong);
+    background: rgba(255, 255, 255, 0.68);
+    color: var(--ink);
     font: inherit;
     padding: 0.45rem 0.75rem;
     cursor: pointer;
+    border-radius: 999px 0 0 999px;
     transition:
       background-color 160ms ease,
       color 160ms ease;
@@ -275,16 +314,17 @@ const reportsByScoreAsc = [...reports].sort((a, b) => {
 
   .sort-controls__direction {
     appearance: none;
-    border: 1px solid #213042;
-    border-left-color: rgba(33, 48, 66, 0.35);
+    border: 1px solid var(--line-strong);
+    border-left-color: rgba(17, 32, 45, 0.18);
     border-left-width: 1px;
     margin-left: 0;
     min-width: 2.1rem;
-    background: #fff;
-    color: #213042;
+    background: rgba(255, 255, 255, 0.68);
+    color: var(--ink);
     font: inherit;
     padding: 0.45rem 0.45rem;
     cursor: pointer;
+    border-radius: 0 999px 999px 0;
     transition:
       background-color 160ms ease,
       color 160ms ease,
@@ -292,14 +332,14 @@ const reportsByScoreAsc = [...reports].sort((a, b) => {
   }
 
   .sort-controls__button.is-active {
-    background: #213042;
-    color: #fff;
+    background: linear-gradient(135deg, #0f2030 0%, #18364b 100%);
+    color: #fffdfa;
   }
 
   .sort-controls__direction.is-active {
-    background: #213042;
-    color: #fff;
-    border-left-color: rgba(255, 255, 255, 0.35);
+    background: linear-gradient(135deg, #0f2030 0%, #18364b 100%);
+    color: #fffdfa;
+    border-left-color: rgba(255, 255, 255, 0.25);
   }
 
   .sort-controls__direction-icon {
@@ -313,7 +353,7 @@ const reportsByScoreAsc = [...reports].sort((a, b) => {
 
   .sort-controls__button:focus-visible,
   .sort-controls__direction:focus-visible {
-    outline: 2px solid #213042;
+    outline: 2px solid var(--teal);
     outline-offset: 2px;
   }
 
@@ -328,22 +368,9 @@ const reportsByScoreAsc = [...reports].sort((a, b) => {
   .report-list {
     list-style: none;
     padding: 0;
-    margin: 2rem 0 0;
+    margin: 1.5rem 0 0;
     display: grid;
-    gap: 0.75rem;
-  }
-
-  .report-list li {
-    background: #fff;
-    box-shadow: 0 6px 18px rgba(31, 36, 33, 0.05);
-    transition:
-      transform 160ms ease,
-      box-shadow 160ms ease;
-  }
-
-  .report-list li:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 14px 28px rgba(31, 36, 33, 0.1);
+    gap: 0.95rem;
   }
 
   .is-hidden {
