@@ -14,11 +14,15 @@
     "node": ">=22.12.0"
   },
   "scripts": {
+    "predev": "node scripts/prepare-profile-images.mjs",
     "dev": "astro dev",
+    "prebuild": "node scripts/prepare-profile-images.mjs",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
     "sync-reports": "node scripts/sync-report-frontmatter.mjs",
+    "sync-profile-images": "node scripts/sync-profile-images.mjs",
+    "prepare-profile-images": "node scripts/prepare-profile-images.mjs",
     "lint": "prettier --check .",
     "format": "prettier --write ."
   },

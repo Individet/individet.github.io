@@ -6,16 +6,23 @@ interface Props {
   description?: string;
   canonical?: string;
   ogType?: "website" | "article";
+  ogImage?: string;
+  ogImageAlt?: string;
 }
 
 const {
   title = SITE.name,
   description = SITE.description,
   ogType = "website",
+  ogImageAlt = title,
 } = Astro.props;
 
 const canonical =
   Astro.props.canonical ?? new URL(Astro.url.pathname, SITE.url).href;
+const ogImage = Astro.props.ogImage
+  ? new URL(Astro.props.ogImage, SITE.url).href
+  : null;
+const twitterCard = ogImage ? "summary_large_image" : "summary";
 ---
 
 <!doctype html>
@@ -39,11 +46,15 @@ const canonical =
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:locale" content={SITE.locale} />
     <meta property="og:type" content={ogType} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    {ogImage && <meta property="og:image:alt" content={ogImageAlt} />}
 
     <!-- Twitter -->
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content={twitterCard} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+    {ogImage && <meta name="twitter:image:alt" content={ogImageAlt} />}
 
     <!-- Page-specific head content (JSON-LD, etc.) -->
     <slot name="head" />

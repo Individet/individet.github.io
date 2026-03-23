@@ -1,5 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import ActorPortrait from "./ActorPortrait.astro";
+import { getActorPortrait } from "../lib/actorPortraits";
 import { getIsiClass, getIsiScore } from "../lib/isi";
 import IsiScoreRing from "./IsiScoreRing.astro";
 
@@ -9,6 +11,7 @@ interface Props {
 
 const { report } = Astro.props;
 const isiClass = getIsiClass(report);
+const portrait = getActorPortrait(report.data.actorSlug, report.data.actorName);
 
 function formatDate(value: Date): string {
   const day = String(value.getUTCDate()).padStart(2, "0");
@@ -20,12 +23,7 @@ function formatDate(value: Date): string {
 ---
 
 <a class="report-list__link" href={`/isi/${report.id.replace(/\.md$/, "")}/`}>
-  <span class="report-list__score">
-    <IsiScoreRing
-      score={getIsiScore(report)}
-      label={`${report.data.actorName}: ${getIsiScore(report)}`}
-    />
-  </span>
+  <ActorPortrait portrait={portrait} />
   <span class="report-list__content">
     <span class="report-list__topline">
       <span class="report-list__name">
@@ -53,12 +51,18 @@ function formatDate(value: Date): string {
       Sist oppdatert: {formatDate(report.data.lastUpdated)}
     </span>
   </span>
+  <span class="report-list__score">
+    <IsiScoreRing
+      score={getIsiScore(report)}
+      label={`${report.data.actorName}: ${getIsiScore(report)}`}
+    />
+  </span>
 </a>
 
 <style>
   .report-list__link {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 1rem;
     padding: 1rem 1.1rem;
     border: 1px solid rgba(15, 15, 15, 0.9);
@@ -88,6 +92,7 @@ function formatDate(value: Date): string {
   .report-list__score {
     display: inline-flex;
     flex: 0 0 auto;
+    align-self: center;
   }
 
   .report-list__content {
@@ -148,7 +153,8 @@ function formatDate(value: Date): string {
   @media (max-width: 560px) {
     .report-list__link {
       padding: 0.95rem;
-      flex-direction: column;
+      align-items: flex-start;
+      flex-wrap: wrap;
     }
 
     .report-list__name {
@@ -161,6 +167,10 @@ function formatDate(value: Date): string {
 
     .report-list__affiliation {
       font-size: 0.92rem;
+    }
+
+    .report-list__score {
+      align-self: flex-start;
     }
   }
 </style>
