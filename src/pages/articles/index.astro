@@ -1,0 +1,163 @@
+---
+import { getCollection } from 'astro:content'
+import {
+  type ArticleImages,
+  formatArticleDate,
+} from '../../lib/articles'
+import Layout from '../../layouts/Layout.astro'
+
+const allImageFiles = import.meta.glob<ArticleImages>(
+  '/src/assets/articles/*.json',
+  { eager: true },
+)
+
+const articles = await getCollection('articles')
+
+const sorted = [...articles].sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+)
+
+function getImages(slug: string): ArticleImages | null {
+  return allImageFiles[`/src/assets/articles/${slug}.json`] ?? null
+}
+---
+
+<Layout
+  title="Reportasjer | Individet"
+  description="Alle reportasjer fra Individet — dyptgående artikler om individets frihet, historie og idéer."
+>
+  <div class="articles-index page-shell">
+    <section class="page-hero">
+      <span class="eyebrow">Reportasjer</span>
+      <h1 class="page-hero__title">Reportasjer</h1>
+      <p class="page-hero__lede">
+        Dyptgående artikler om individets frihet, idéhistorie og viktige
+        skjebner.
+      </p>
+    </section>
+
+    {
+      sorted.length === 0 ? (
+        <section class="surface">
+          <p>Ingen reportasjer funnet.</p>
+        </section>
+      ) : (
+        <section class="surface articles-list">
+          {sorted.map((article) => {
+            const images = getImages(article.data.slug)
+            return (
+              <article class="article-card">
+                {images?.hero && (
+                  <div class="article-card__image">
+                    <img
+                      src={images.hero.url}
+                      alt={images.hero.alt}
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+                <div class="article-card__body">
+                  <time
+                    class="article-card__date"
+                    datetime={article.data.date.toISOString()}
+                  >
+                    {formatArticleDate(article.data.date)}
+                  </time>
+                  <h2 class="article-card__title">
+                    <a href={`/articles/${article.data.slug}/`}>
+                      {article.data.title}
+                    </a>
+                  </h2>
+                  <p class="article-card__description">
+                    {article.data.description}
+                  </p>
+                  <a
+                    href={`/articles/${article.data.slug}/`}
+                    class="button-link"
+                  >
+                    Les artikkel
+                  </a>
+                </div>
+              </article>
+            )
+          })}
+        </section>
+      )
+    }
+  </div>
+</Layout>
+
+<style>
+  .articles-index {
+    display: grid;
+    gap: 1.4rem;
+  }
+
+  .articles-list {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .article-card {
+    display: grid;
+    gap: 1.2rem;
+  }
+
+  .article-card__image {
+    border-radius: 0.85rem;
+    overflow: hidden;
+    aspect-ratio: 16 / 7;
+  }
+
+  .article-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .article-card__body {
+    display: grid;
+    gap: 0.6rem;
+    justify-items: start;
+  }
+
+  .article-card__date {
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+
+  .article-card__title {
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    margin: 0;
+  }
+
+  .article-card__title a {
+    text-decoration: none;
+    color: var(--ink);
+  }
+
+  .article-card__title a:hover {
+    color: var(--teal);
+    text-decoration: underline;
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.16em;
+  }
+
+  .article-card__description {
+    color: var(--muted);
+    max-width: 60ch;
+  }
+
+  @media (min-width: 760px) {
+    .article-card {
+      grid-template-columns: minmax(12rem, 22rem) minmax(0, 1fr);
+      align-items: start;
+    }
+
+    .article-card__image {
+      aspect-ratio: 4 / 3;
+    }
+  }
+</style>

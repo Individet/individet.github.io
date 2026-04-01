@@ -87,4 +87,15 @@ const pages = defineCollection({
   }),
 })
 
-export const collections = { isi, isiReports, pages }
+const articles = defineCollection({
+  loader: glob({ pattern: '*.md', base: './content/articles' }),
+  schema: z.object({
+    title: z.string(),
+    date: z.coerce.date(),
+    slug: z.string(),
+    description: z.string(),
+    tags: z.array(z.string()).default([]),
+  }),
+})
+
+export const collections = { isi, isiReports, pages, articles }
