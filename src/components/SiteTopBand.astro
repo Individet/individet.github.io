@@ -1,0 +1,55 @@
+---
+import { SITE } from '../lib/seo'
+---
+
+<div class="topband">
+  <span>Tankesmien Individet · Individets Suverenitetsindeks (ISI)</span>
+  <div class="topband__links">
+    <a href="/rss.xml">RSS</a>
+    <a href={SITE.githubUrl} target="_blank" rel="noopener noreferrer">GitHub</a>
+    <a
+      href={SITE.facebookUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+    >Facebook</a>
+  </div>
+</div>
+
+<style>
+  .topband {
+    background: var(--navy);
+    color: var(--rule-light);
+    font-family: var(--f-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.4rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+  }
+
+  .topband a {
+    color: var(--rule);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .topband a:hover {
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  .topband__links {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 600px) {
+    .topband {
+      display: none;
+    }
+  }
+</style>

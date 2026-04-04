@@ -1,52 +1,45 @@
 ---
-import Icon from './Icon.astro'
 import { SITE } from '../lib/seo'
 ---
 
 <footer class="site-footer">
   <div class="site-footer__inner">
-    <div class="site-footer__top">
-      <a href="/" class="site-footer__banner" aria-label="Gå til forsiden">
-        <span class="site-footer__eyebrow">Tankesmien Individet</span>
-        <span class="site-footer__wordmark">Tilbake til forsiden</span>
-        <span class="site-footer__tagline">
-          Et hjem for analyser av frihet, suverenitet og ansvar.
-        </span>
-      </a>
-    </div>
-
-    <div class="site-footer__bottom">
-      <div class="site-footer__meta">
-        <p>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand__name">Individet</div>
+        <div class="footer-brand__sub">Frihet · Presisjon · Etterrettelighet</div>
+        <p class="footer-brand__desc">
           Individet er startet og drives av <strong>Lars-Erik Bruce</strong>.
-          Nettstedet publiserer analyser, manifest og åpne arbeidsprosesser for
-          <strong>www.individet.no</strong>.
+          Nettstedet publiserer analyser, manifest og åpne arbeidsprosesser.
         </p>
       </div>
 
-      <div class="site-footer__links" aria-label="Eksterne lenker">
-        <a href="/rss.xml" class="site-footer__link">
-          <Icon name="rss" />
-          <span>RSS</span>
-        </a>
-        <a
-          href={SITE.facebookUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="site-footer__link"
-        >
-          <Icon name="facebook" />
-          <span>Facebook</span>
-        </a>
-        <a
-          href={SITE.githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="site-footer__link"
-        >
-          <Icon name="github" />
-          <span>GitHub</span>
-        </a>
+      <div>
+        <div class="footer-col__label">Navigasjon</div>
+        <div class="footer-col__links">
+          <a href="/">Forside</a>
+          <a href="/manifest/">Manifest</a>
+          <a href="/isi/">ISI-analyser</a>
+          <a href="/om/">Om Individet</a>
+        </div>
+      </div>
+
+      <div>
+        <div class="footer-col__label">Ressurser</div>
+        <div class="footer-col__links">
+          <a href={SITE.githubUrl} target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="/rss.xml">RSS-feed</a>
+          <a href={SITE.facebookUrl} target="_blank" rel="noopener noreferrer">Facebook</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2025–2026 Individet · {SITE.url.replace('https://', '')}</span>
+      <div class="footer-social">
+        <a href="/rss.xml">RSS</a>
+        <a href={SITE.githubUrl} target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href={SITE.facebookUrl} target="_blank" rel="noopener noreferrer">Facebook</a>
       </div>
     </div>
   </div>
@@ -54,143 +47,136 @@ import { SITE } from '../lib/seo'
 
 <style>
   .site-footer {
-    padding: 0 1rem 2.5rem;
+    background: var(--ink);
+    color: rgba(255, 255, 255, 0.55);
+    padding: 3.5rem 0 2rem;
+    position: relative;
+    z-index: 1;
   }
 
   .site-footer__inner {
-    width: min(100%, var(--shell-width));
+    max-width: 1120px;
     margin: 0 auto;
-    padding: 1.15rem;
+    padding: 0 2rem;
+  }
+
+  .footer-grid {
     display: grid;
-    gap: 1.25rem;
-    border-radius: 1.75rem;
-    border: 1px solid var(--line-strong);
-    background:
-      linear-gradient(180deg, rgba(255, 251, 243, 0.94), rgba(244, 238, 226, 0.9)),
-      var(--surface-2);
-    box-shadow:
-      0 28px 70px rgba(8, 19, 29, 0.14),
-      inset 0 1px 0 rgba(255, 255, 255, 0.78);
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 2rem;
   }
 
-  .site-footer__top {
-    display: flex;
-    justify-content: center;
+  .footer-brand__name {
+    font-family: var(--f-display);
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--ivory);
+    margin-bottom: 0.3rem;
   }
 
-  .site-footer__banner {
-    display: grid;
-    gap: 0.18rem;
-    width: min(100%, 36rem);
-    padding: 1rem 1.15rem;
-    border-radius: 1.2rem;
-    border: 1px solid rgba(16, 40, 56, 0.12);
-    background:
-      radial-gradient(circle at top right, rgba(185, 148, 83, 0.16), transparent 34%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(245, 238, 225, 0.78));
-    color: var(--ink);
-    text-decoration: none;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
-  }
-
-  .site-footer__banner:hover {
-    color: var(--ink);
-    text-decoration: none;
-  }
-
-  .site-footer__eyebrow {
-    font-family: var(--font-sans);
-    font-size: 0.72rem;
-    letter-spacing: 0.24em;
+  .footer-brand__sub {
+    font-family: var(--f-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--accent-strong);
+    color: var(--terracotta);
+    margin-bottom: 1rem;
   }
 
-  .site-footer__wordmark {
-    font-family: var(--font-display);
-    font-size: clamp(1.5rem, 3vw, 2.1rem);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-
-  .site-footer__tagline {
-    font-family: var(--font-sans);
-    font-size: 0.92rem;
-    color: var(--muted);
-  }
-
-  .site-footer__bottom {
-    display: grid;
-    gap: 1rem;
-    align-items: center;
-  }
-
-  .site-footer__meta {
-    display: grid;
-    gap: 0.8rem;
-    padding: 0;
-    color: var(--muted);
-    font-size: 0.96rem;
+  .footer-brand__desc {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.45);
     line-height: 1.7;
-  }
-
-  .site-footer__meta p {
+    max-width: 300px;
     margin: 0;
   }
 
-  .site-footer__links {
+  .footer-brand__desc strong {
+    color: rgba(255, 255, 255, 0.65);
+  }
+
+  .footer-col__label {
+    font-family: var(--f-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.3);
+    margin-bottom: 1rem;
+  }
+
+  .footer-col__links {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.7rem;
-    justify-content: flex-start;
+    flex-direction: column;
+    gap: 0.55rem;
   }
 
-  .site-footer__link {
-    display: inline-flex;
+  .footer-col__links a {
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.55);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-col__links a:hover {
+    color: var(--terracotta-l);
+    text-decoration: none;
+  }
+
+  .footer-bottom {
+    display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    min-width: 5rem;
-    padding: 0.65rem 0.95rem;
-    border-radius: 999px;
-    border: 1px solid var(--line);
-    background: rgba(255, 255, 255, 0.6);
-    color: var(--ink);
-    font-family: var(--font-sans);
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition:
-      transform 180ms ease,
-      border-color 180ms ease,
-      background-color 180ms ease;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.3);
+    flex-wrap: wrap;
+    gap: 0.75rem;
   }
 
-  .site-footer__link:hover {
-    transform: translateY(-1px);
-    border-color: rgba(16, 40, 56, 0.2);
-    background: rgba(255, 255, 255, 0.88);
+  .footer-social {
+    display: flex;
+    gap: 1.2rem;
+  }
+
+  .footer-social a {
+    font-family: var(--f-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.35);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-social a:hover {
+    color: var(--gold);
     text-decoration: none;
   }
 
-  @media (min-width: 760px) {
-    .site-footer__bottom {
-      grid-template-columns: minmax(0, 1.4fr) auto;
+  @media (max-width: 860px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .footer-grid > :first-child {
+      grid-column: 1 / -1;
     }
   }
 
-  @media (max-width: 560px) {
+  @media (max-width: 600px) {
     .site-footer {
-      padding: 0 0.75rem 2rem;
+      padding: 2.5rem 0 1.5rem;
     }
 
     .site-footer__inner {
-      padding: 0.9rem;
-      border-radius: 1.4rem;
+      padding: 0 1.25rem;
     }
 
-    .site-footer__banner {
-      width: 100%;
+    .footer-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>
