@@ -1,0 +1,149 @@
+---
+import { getCollection, render } from 'astro:content'
+import {
+  type ArticleImages,
+  formatArticleDate,
+} from '../../lib/articles'
+import Layout from '../../layouts/Layout.astro'
+
+const allImageFiles = import.meta.glob<ArticleImages>(
+  '/src/assets/articles/*.json',
+  { eager: true },
+)
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles')
+  return articles.map((entry) => ({
+    params: { slug: entry.data.slug },
+    props: { entry },
+  }))
+}
+
+const { entry } = Astro.props
+const { Content } = await render(entry)
+
+const images =
+  allImageFiles[`/src/assets/articles/${entry.data.slug}.json`] ?? null
+---
+
+<Layout
+  title={`${entry.data.title} | Individet`}
+  description={entry.data.description}
+  ogType="article"
+  ogImage={images?.hero?.url}
+  ogImageAlt={images?.hero?.alt}
+>
+  <article class="article-detail page-shell">
+    <div class="meta-strip">
+      <a href="/articles/" class="button-link button-link--secondary">
+        Til reportasjer
+      </a>
+    </div>
+
+    <section class="page-hero article-detail__hero">
+      {
+        images?.hero && (
+          <figure class="article-detail__hero-figure">
+            <img
+              src={images.hero.url}
+              alt={images.hero.alt}
+              loading="eager"
+              class="article-detail__hero-img"
+            />
+            <figcaption>
+              {images.hero.attribution} — {images.hero.license}
+            </figcaption>
+          </figure>
+        )
+      }
+
+      <div class="article-detail__hero-copy">
+        <span class="eyebrow">Reportasje</span>
+        <h1 class="page-hero__title">{entry.data.title}</h1>
+        <p class="page-hero__lede">{entry.data.description}</p>
+
+        <div class="meta-strip">
+          <time
+            class="meta-pill"
+            datetime={entry.data.date.toISOString()}
+          >
+            {formatArticleDate(entry.data.date)}
+          </time>
+          {
+            entry.data.tags.map((tag) => (
+              <span class="meta-pill">{tag}</span>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="surface prose article-detail__body">
+      <Content />
+    </section>
+  </article>
+</Layout>
+
+<style is:global>
+  .article-detail {
+    display: grid;
+    gap: 1.4rem;
+  }
+
+  .article-detail__hero {
+    display: grid;
+    gap: 1.4rem;
+  }
+
+  .article-detail__hero-figure {
+    margin: 0;
+    border-radius: 0.85rem;
+    overflow: hidden;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .article-detail__hero-figure figcaption {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-family: var(--font-sans);
+  }
+
+  .article-detail__hero-img {
+    width: 100%;
+    max-height: 28rem;
+    object-fit: cover;
+    border-radius: 0.85rem;
+    display: block;
+  }
+
+  .article-detail__hero-copy {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .article-detail__body figure {
+    margin: 1.6rem 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .article-detail__body figure img {
+    width: 100%;
+    border-radius: 0.65rem;
+    display: block;
+  }
+
+  .article-detail__body figure figcaption {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-family: var(--font-sans);
+  }
+
+  @media (min-width: 860px) {
+    .article-detail__hero {
+      grid-template-columns: minmax(14rem, 20rem) minmax(0, 1fr);
+      align-items: start;
+    }
+  }
+</style>
