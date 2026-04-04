@@ -16,8 +16,12 @@ function escapeHtml(str) {
 function buildFigureHtml(img) {
   return [
     '<figure>',
-    `<img src="${escapeHtml(img.url)}" alt="${escapeHtml(img.alt)}" loading="lazy">`,
-    `<figcaption>${escapeHtml(img.attribution)} — ${escapeHtml(img.license)}</figcaption>`,
+    `<img src="${escapeHtml(img.url)}" alt="${escapeHtml(
+      img.alt
+    )}" loading="lazy">`,
+    `<figcaption>${escapeHtml(img.attribution)} — ${escapeHtml(
+      img.license
+    )}</figcaption>`,
     '</figure>',
   ].join('\n')
 }
@@ -48,7 +52,7 @@ function remarkArticleImages() {
       'src',
       'assets',
       'articles',
-      `${slug}.json`,
+      `${slug}.json`
     )
 
     let images

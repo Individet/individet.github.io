@@ -3,3 +3,4 @@ node_modules/
 .astro/
 .vscode/
 dist/
+src/assets/
