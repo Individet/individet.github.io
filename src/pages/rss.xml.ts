@@ -96,8 +96,6 @@ export async function GET(context: { site?: URL }) {
     ]
   })
 
-  feedItems.sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime())
-
   const allFeedItems = [...feedItems, ...articleFeedItems]
   allFeedItems.sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime())
 
