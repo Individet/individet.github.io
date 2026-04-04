@@ -39,7 +39,10 @@ const twitterCard = ogImage ? 'summary_large_image' : 'summary'
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Karla:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Karla:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
 
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -77,50 +80,52 @@ const twitterCard = ogImage ? 'summary_large_image' : 'summary'
 <style is:global>
   /* ─── DESIGN TOKENS ─────────────────────────────────────────────── */
   :root {
-    --parchment:    #F5F1E8;
-    --parchment-dk: #EDE8DA;
-    --ink:          #18160F;
-    --ink-soft:     #4A4740;
-    --ink-faint:    #8A857C;
-    --ivory:        #FDFBF6;
-    --rule:         #C8C2B5;
-    --rule-light:   #E0DAD0;
-    --terracotta:   #B85C2C;
-    --terracotta-l: #D4713D;
-    --navy:         #1B2B45;
-    --navy-l:       #233660;
-    --gold:         #C9943A;
+    --parchment: #f5f1e8;
+    --parchment-dk: #ede8da;
+    --ink: #18160f;
+    --ink-soft: #4a4740;
+    --ink-faint: #6b6762;
+    --ivory: #fdfbf6;
+    --rule: #c8c2b5;
+    --rule-light: #e0dad0;
+    --terracotta: #a85028;
+    --terracotta-l: #e8844f;
+    --navy: #1b2b45;
+    --navy-l: #233660;
+    --gold: #c9943a;
 
     --f-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-    --f-body:    'Karla', 'Helvetica Neue', Arial, sans-serif;
-    --f-mono:    'IBM Plex Mono', 'Courier New', monospace;
+    --f-body: 'Karla', 'Helvetica Neue', Arial, sans-serif;
+    --f-mono: 'IBM Plex Mono', 'Courier New', monospace;
 
     --radius-sm: 2px;
-    --radius:    4px;
+    --radius: 4px;
     --radius-lg: 8px;
 
-    --shadow-card: 0 1px 3px rgba(24, 22, 15, 0.08), 0 4px 16px rgba(24, 22, 15, 0.06);
-    --shadow-lift: 0 4px 20px rgba(24, 22, 15, 0.12), 0 1px 4px rgba(24, 22, 15, 0.08);
+    --shadow-card:
+      0 1px 3px rgba(24, 22, 15, 0.08), 0 4px 16px rgba(24, 22, 15, 0.06);
+    --shadow-lift:
+      0 4px 20px rgba(24, 22, 15, 0.12), 0 1px 4px rgba(24, 22, 15, 0.08);
 
     /* ─── Backward-compat aliases ─────────────────────────────────── */
-    --bg:            var(--parchment);
-    --bg-deep:       var(--navy);
-    --surface:       rgba(255, 251, 243, 0.92);
-    --surface-2:     var(--parchment-dk);
-    --surface-3:     var(--ivory);
-    --muted:         var(--ink-soft);
-    --accent:        var(--gold);
+    --bg: var(--parchment);
+    --bg-deep: var(--navy);
+    --surface: rgba(255, 251, 243, 0.92);
+    --surface-2: var(--parchment-dk);
+    --surface-3: var(--ivory);
+    --muted: var(--ink-soft);
+    --accent: var(--gold);
     --accent-strong: #9e7520;
-    --accent-soft:   rgba(201, 148, 58, 0.16);
-    --teal:          var(--terracotta);
-    --line:          var(--rule-light);
-    --line-strong:   var(--rule);
-    --shadow-soft:   var(--shadow-lift);
-    --shell-width:   1180px;
+    --accent-soft: rgba(201, 148, 58, 0.16);
+    --teal: var(--terracotta);
+    --line: var(--rule-light);
+    --line-strong: var(--rule);
+    --shadow-soft: var(--shadow-lift);
+    --shell-width: 1180px;
     --content-width: 1120px;
-    --font-body:     var(--f-body);
-    --font-display:  var(--f-display);
-    --font-sans:     var(--f-body);
+    --font-body: var(--f-body);
+    --font-display: var(--f-display);
+    --font-sans: var(--f-body);
 
     color-scheme: light;
     font-family: var(--f-body);
@@ -130,9 +135,14 @@ const twitterCard = ogImage ? 'summary_large_image' : 'summary'
   }
 
   /* ─── RESET ──────────────────────────────────────────────────────── */
-  *, *::before, *::after { box-sizing: border-box; }
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
 
-  html, body {
+  html,
+  body {
     margin: 0;
     width: 100%;
     min-height: 100%;
@@ -159,11 +169,20 @@ const twitterCard = ogImage ? 'summary_large_image' : 'summary'
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
   }
 
-  img { max-width: 100%; display: block; }
-  p   { margin: 0; }
-  strong { color: var(--ink); }
+  img {
+    max-width: 100%;
+    display: block;
+  }
+  p {
+    margin: 0;
+  }
+  strong {
+    color: var(--ink);
+  }
 
-  :target { scroll-margin-top: 8rem; }
+  :target {
+    scroll-margin-top: 8rem;
+  }
 
   a {
     color: var(--terracotta);
@@ -171,9 +190,17 @@ const twitterCard = ogImage ? 'summary_large_image' : 'summary'
     text-underline-offset: 0.16em;
   }
 
-  a:hover { color: var(--terracotta-l); text-decoration: none; }
+  a:hover {
+    color: var(--terracotta-l);
+    text-decoration: none;
+  }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     margin: 0;
     font-family: var(--f-display);
     line-height: 1.1;
@@ -196,13 +223,6 @@ const twitterCard = ogImage ? 'summary_large_image' : 'summary'
   }
 
   /* ─── LAYOUT ─────────────────────────────────────────────────────── */
-  .site-main {
-    width: min(100%, var(--content-width));
-    margin: 0 auto;
-    padding: 1.6rem 1rem 4rem;
-    position: relative;
-    z-index: 1;
-  }
 
   .skip-link {
     position: absolute;
@@ -396,7 +416,9 @@ const twitterCard = ogImage ? 'summary_large_image' : 'summary'
     gap: 1rem;
   }
 
-  .section-heading > div { min-width: 0; }
+  .section-heading > div {
+    min-width: 0;
+  }
 
   /* ─── PROSE ──────────────────────────────────────────────────────── */
   .prose {
@@ -404,19 +426,37 @@ const twitterCard = ogImage ? 'summary_large_image' : 'summary'
     color: var(--ink);
   }
 
-  .prose > * + * { margin-top: 1rem; }
+  .prose > * + * {
+    margin-top: 1rem;
+  }
 
-  .prose :where(h1, h2, h3, h4) { margin-top: 2rem; }
+  .prose :where(h1, h2, h3, h4) {
+    margin-top: 2rem;
+  }
 
-  .prose :where(h1) { font-size: clamp(2.2rem, 5vw, 3.7rem); }
-  .prose :where(h2) { font-size: clamp(1.5rem, 3vw, 2.15rem); }
-  .prose :where(h3) { font-size: 1.25rem; }
+  .prose :where(h1) {
+    font-size: clamp(2.2rem, 5vw, 3.7rem);
+  }
+  .prose :where(h2) {
+    font-size: clamp(1.5rem, 3vw, 2.15rem);
+  }
+  .prose :where(h3) {
+    font-size: 1.25rem;
+  }
 
-  .prose :where(p, li) { max-width: 72ch; }
-  .prose--wide :where(p, li) { max-width: none; }
+  .prose :where(p, li) {
+    max-width: 72ch;
+  }
+  .prose--wide :where(p, li) {
+    max-width: none;
+  }
 
-  .prose :where(ul, ol) { padding-left: 1.3rem; }
-  .prose :where(li + li) { margin-top: 0.45rem; }
+  .prose :where(ul, ol) {
+    padding-left: 1.3rem;
+  }
+  .prose :where(li + li) {
+    margin-top: 0.45rem;
+  }
 
   .prose :where(blockquote) {
     margin: 1.6rem 0;
@@ -451,12 +491,20 @@ const twitterCard = ogImage ? 'summary_large_image' : 'summary'
     background: rgba(24, 22, 15, 0.04);
   }
 
-  .prose :where(figure) { margin: 1.4rem 0; }
+  .prose :where(figure) {
+    margin: 1.4rem 0;
+  }
 
   @media (max-width: 680px) {
-    .site-main { padding: 1.4rem 0.75rem 3rem; }
-    .page-hero  { border-radius: var(--radius-lg); }
-    .surface    { border-radius: var(--radius-lg); }
-    .section-heading { align-items: start; flex-direction: column; }
+    .page-hero {
+      border-radius: var(--radius-lg);
+    }
+    .surface {
+      border-radius: var(--radius-lg);
+    }
+    .section-heading {
+      align-items: start;
+      flex-direction: column;
+    }
   }
 </style>

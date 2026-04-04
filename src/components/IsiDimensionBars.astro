@@ -28,18 +28,20 @@ const dimensions = [
 ---
 
 <div class="isi-dimensions">
-  {dimensions.map((dim) => (
-    <div class="isi-dim">
-      <span class="isi-dim__name">{dim.label}</span>
-      <div class="isi-dim__bar" role="presentation">
-        <div
-          class="isi-dim__fill"
-          style={`width: ${Math.max(0, Math.min(100, averages[dim.key]))}%`}
-        />
+  {
+    dimensions.map((dim) => (
+      <div class="isi-dim">
+        <span class="isi-dim__name">{dim.label}</span>
+        <div class="isi-dim__bar" role="presentation">
+          <div
+            class="isi-dim__fill"
+            style={`width: ${Math.max(0, Math.min(100, averages[dim.key]))}%`}
+          />
+        </div>
+        <span class="isi-dim__code">{dim.key.toUpperCase()}</span>
       </div>
-      <span class="isi-dim__code">{dim.key.toUpperCase()}</span>
-    </div>
-  ))}
+    ))
+  }
 </div>
 
 <style>
@@ -86,6 +88,17 @@ const dimensions = [
     border-radius: 1px;
     overflow: hidden;
     position: relative;
+  }
+
+  @media (max-width: 480px) {
+    .isi-dim__name {
+      width: 8rem;
+      font-size: 0.75rem;
+    }
+
+    .isi-dim__bar {
+      margin: 0 0.5rem;
+    }
   }
 
   .isi-dim__fill {

@@ -36,9 +36,12 @@ const dimAverages = {
   d6: dimAvg('d6'),
 }
 
-const avgIsiScore = allReports.length === 0
-  ? 50
-  : Math.round(allReports.reduce((a, r) => a + getIsiScore(r), 0) / allReports.length)
+const avgIsiScore =
+  allReports.length === 0
+    ? 50
+    : Math.round(
+        allReports.reduce((a, r) => a + getIsiScore(r), 0) / allReports.length,
+      )
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -60,9 +63,21 @@ const jsonLd = {
       publisher: { '@id': `${SITE.url}/#org` },
       inLanguage: 'nb',
     },
-    { '@type': 'SiteNavigationElement', name: 'Manifestet', url: `${SITE.url}/manifest/` },
-    { '@type': 'SiteNavigationElement', name: 'ISI-analyser', url: `${SITE.url}/isi/` },
-    { '@type': 'SiteNavigationElement', name: 'Om Individet', url: `${SITE.url}/om/` },
+    {
+      '@type': 'SiteNavigationElement',
+      name: 'Manifestet',
+      url: `${SITE.url}/manifest/`,
+    },
+    {
+      '@type': 'SiteNavigationElement',
+      name: 'ISI-analyser',
+      url: `${SITE.url}/isi/`,
+    },
+    {
+      '@type': 'SiteNavigationElement',
+      name: 'Om Individet',
+      url: `${SITE.url}/om/`,
+    },
   ],
 }
 ---
@@ -103,24 +118,34 @@ const jsonLd = {
     <div class="container">
       <div class="section-label">Vårt utgangspunkt</div>
       <p class="section-lead">
-        Individet kombinerer idéarbeid, måling og dokumentasjon i ett felles prosjekt:
-        å tydeliggjøre hvor individets frihet blir styrket og hvor den blir innsnevret.
+        Individet kombinerer idéarbeid, måling og dokumentasjon i ett felles
+        prosjekt: å tydeliggjøre hvor individets frihet blir styrket og hvor den
+        blir innsnevret.
       </p>
       <div class="pillars">
         <div class="pillar">
           <div class="pillar__icon">Suverenitet</div>
-          <h3 class="pillar__title">Frihet som første prinsipp</h3>
-          <p class="pillar__text">Vi tar utgangspunkt i selveierskap, frivillighet og rettsstatlige grenser for maktutøvelse.</p>
+          <h2 class="pillar__title">Frihet som første prinsipp</h2>
+          <p class="pillar__text">
+            Vi tar utgangspunkt i selveierskap, frivillighet og rettsstatlige
+            grenser for maktutøvelse.
+          </p>
         </div>
         <div class="pillar">
           <div class="pillar__icon">Etterrettelighet</div>
-          <h3 class="pillar__title">Analyse fremfor støy</h3>
-          <p class="pillar__text">Påstander skal kunne spores. Poeng, vurderinger og klassifiseringer må være lesbare, begrunnede og kritiserbare.</p>
+          <h2 class="pillar__title">Analyse fremfor støy</h2>
+          <p class="pillar__text">
+            Påstander skal kunne spores. Poeng, vurderinger og klassifiseringer
+            må være lesbare, begrunnede og kritiserbare.
+          </p>
         </div>
         <div class="pillar">
           <div class="pillar__icon">Åpen prosess</div>
-          <h3 class="pillar__title">Maskineriet er synlig</h3>
-          <p class="pillar__text">Arbeidet skjer i en åpen prosess der verktøy, kode og metode kan granskes uten innsideadgang.</p>
+          <h2 class="pillar__title">Maskineriet er synlig</h2>
+          <p class="pillar__text">
+            Arbeidet skjer i en åpen prosess der verktøy, kode og metode kan
+            granskes uten innsideadgang.
+          </p>
         </div>
       </div>
     </div>
@@ -136,8 +161,9 @@ const jsonLd = {
           <div class="section-label">Manifestet</div>
           <h2 class="section-title">Et idégrunnlag uten kollektiv tåke</h2>
           <p class="section-body">
-            <em>Individets Suverenitet</em> samler tankesmiens normative grunnlag: mennesket eier seg selv,
-            og tvang mister ikke sin natur selv om den kles i gode hensikter.
+            <em>Individets Suverenitet</em> samler tankesmiens normative grunnlag:
+            mennesket eier seg selv, og tvang mister ikke sin natur selv om den kles
+            i gode hensikter.
           </p>
           <a href="/manifest/" class="btn btn--ghost-dark">Gå til manifestet</a>
         </div>
@@ -162,29 +188,38 @@ const jsonLd = {
             Et rammeverk for å måle hvem som styrker friheten
           </h2>
           <p class="section-lead section-lead--light">
-            Individets Suverenitetsindeks vurderer politikere, medier, organisasjoner
-            og partier på tvers av seks dimensjoner av frihetsvern.
-            {allReports.length > 0 && (
-              <> Gjennomsnittlig ISI-score på tvers av {allReports.length} analyser: <strong class="isi-avg">{avgIsiScore}</strong>.</>
-            )}
+            Individets Suverenitetsindeks vurderer politikere, medier,
+            organisasjoner og partier på tvers av seks dimensjoner av
+            frihetsvern.
+            {
+              allReports.length > 0 && (
+                <>
+                  {' '}
+                  Gjennomsnittlig ISI-score på tvers av {allReports.length}{' '}
+                  analyser: <strong class="isi-avg">{avgIsiScore}</strong>.
+                </>
+              )
+            }
           </p>
           <a href="/isi/" class="btn btn--primary isi-cta">Se alle analyser</a>
         </div>
         <IsiDimensionBars averages={dimAverages} />
       </div>
 
-      {featured.length > 0 && (
-        <>
-          <div class="section-label section-label--light isi-cards-label">
-            Nye analyser — Siste publiserte ISI-vurderinger
-          </div>
-          <div class="isi-cards">
-            {featured.map((report) => (
-              <IsiReportCard report={report} />
-            ))}
-          </div>
-        </>
-      )}
+      {
+        featured.length > 0 && (
+          <>
+            <div class="section-label section-label--light isi-cards-label">
+              Nye analyser — Siste publiserte ISI-vurderinger
+            </div>
+            <div class="isi-cards">
+              {featured.map((report) => (
+                <IsiReportCard report={report} />
+              ))}
+            </div>
+          </>
+        )
+      }
     </div>
   </section>
 
@@ -196,28 +231,41 @@ const jsonLd = {
       <div class="open-block">
         <div>
           <div class="section-label">Åpenhet</div>
-          <h2 class="section-title">Maskineriet som driver nettstedet kan granskes</h2>
+          <h2 class="section-title">
+            Maskineriet som driver nettstedet kan granskes
+          </h2>
           <p class="section-body">
             Innholdet på nettstedet er drevet av koden som befinner seg i
-            <strong>Individet/tankesmia</strong> på GitHub.
-            Her finner du kode, agent-oppsett og arbeidsflyt som brukes til å drifte tankesmien.
+            <strong>Individet/tankesmia</strong> på GitHub. Her finner du kode, agent-oppsett
+            og arbeidsflyt som brukes til å drifte tankesmien.
           </p>
-          <a href={SITE.githubUrl} target="_blank" rel="noopener noreferrer" class="btn btn--ghost-dark">
+          <a
+            href={SITE.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn--ghost-dark"
+          >
             Gå til GitHub →
           </a>
         </div>
         <div class="code-block" aria-label="Kodeeksempel fra GitHub-repoet">
           <span class="cmt"># agent-oppsett / tankesmia</span><br /><br />
-          <span class="kw">def</span> <span class="fn">vurder_aktør</span>(aktør, dimensjoner):<br />
-          &nbsp;&nbsp;analyse = <span class="fn">hent_kontekst</span>(aktør)<br />
-          &nbsp;&nbsp;<span class="kw">for</span> dim <span class="kw">in</span> dimensjoner:<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;score = <span class="fn">score_dimensjon</span>(<br />
+          <span class="kw">def</span>
+          <span class="fn">vurder_aktør</span>(aktør, dimensjoner):<br />
+          &nbsp;&nbsp;analyse = <span class="fn">hent_kontekst</span>(aktør)<br
+          />
+          &nbsp;&nbsp;<span class="kw">for</span> dim <span class="kw">in</span> dimensjoner:<br
+          />
+          &nbsp;&nbsp;&nbsp;&nbsp;score = <span class="fn">score_dimensjon</span
+          >(<br />
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dim, analyse<br />
           &nbsp;&nbsp;&nbsp;&nbsp;)<br />
           &nbsp;&nbsp;<span class="kw">return</span> ISIResultat(<br />
           &nbsp;&nbsp;&nbsp;&nbsp;aktør=aktør,<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;score=<span class="fn">summer</span>(dim.score),<br />
-          &nbsp;&nbsp;&nbsp;&nbsp;begrunnelse=<span class="fn">generer</span>()<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;score=<span class="fn">summer</span
+          >(dim.score),<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;begrunnelse=<span class="fn">generer</span
+          >()<br />
           &nbsp;&nbsp;)
         </div>
       </div>
@@ -242,7 +290,12 @@ const jsonLd = {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--terracotta) 0%, var(--gold) 60%, transparent 100%);
+    background: linear-gradient(
+      90deg,
+      var(--terracotta) 0%,
+      var(--gold) 60%,
+      transparent 100%
+    );
   }
 
   .hero__decor {
@@ -275,6 +328,7 @@ const jsonLd = {
     display: flex;
     gap: 0.6rem;
     margin-bottom: 1.8rem;
+    flex-wrap: wrap;
     animation: fadeUp 0.5s ease both;
     animation-delay: 0.05s;
   }
@@ -465,7 +519,9 @@ const jsonLd = {
     margin-bottom: 1rem;
   }
 
-  .section-title--light { color: var(--ivory); }
+  .section-title--light {
+    color: var(--ivory);
+  }
 
   .section-lead {
     font-size: 1.05rem;
@@ -474,7 +530,9 @@ const jsonLd = {
     margin-bottom: 3rem;
   }
 
-  .section-lead--light { color: rgba(255, 255, 255, 0.6); }
+  .section-lead--light {
+    color: rgba(255, 255, 255, 0.6);
+  }
 
   .section-lead--light strong.isi-avg {
     color: var(--gold);
@@ -507,8 +565,12 @@ const jsonLd = {
     transition: background 0.2s;
   }
 
-  .pillar:last-child { border-right: none; }
-  .pillar:hover { background: var(--parchment); }
+  .pillar:last-child {
+    border-right: none;
+  }
+  .pillar:hover {
+    background: var(--parchment);
+  }
 
   .pillar__icon {
     font-family: var(--f-mono);
@@ -596,7 +658,7 @@ const jsonLd = {
 
   .isi-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
     gap: 1.2rem;
   }
 
@@ -619,14 +681,27 @@ const jsonLd = {
     line-height: 1.7;
   }
 
-  .code-block .kw  { color: var(--gold); }
-  .code-block .fn  { color: var(--terracotta-l); }
-  .code-block .cmt { color: rgba(255, 255, 255, 0.3); font-style: italic; }
+  .code-block .kw {
+    color: var(--gold);
+  }
+  .code-block .fn {
+    color: var(--terracotta-l);
+  }
+  .code-block .cmt {
+    color: rgba(255, 255, 255, 0.55);
+    font-style: italic;
+  }
 
   /* ─── ANIMATIONS ─────────────────────────────────────────────────── */
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(18px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   /* ─── RESPONSIVE ─────────────────────────────────────────────────── */
@@ -640,17 +715,25 @@ const jsonLd = {
   }
 
   @media (max-width: 600px) {
-    .hero { padding: 3.5rem 1.5rem 3rem; }
+    .hero {
+      padding: 3.5rem 1.5rem 3rem;
+    }
 
-    .pillars { grid-template-columns: 1fr; }
+    .pillars {
+      grid-template-columns: 1fr;
+    }
 
     .pillar {
       border-right: none;
       border-bottom: 1px solid var(--rule-light);
     }
 
-    .pillar:last-child { border-bottom: none; }
+    .pillar:last-child {
+      border-bottom: none;
+    }
 
-    .section { padding: 3rem 0; }
+    .section {
+      padding: 3rem 0;
+    }
   }
 </style>

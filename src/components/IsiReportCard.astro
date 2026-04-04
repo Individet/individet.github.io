@@ -34,25 +34,27 @@ function verdictClass(cls: string): string {
 
 <a class="isi-card" href={`/isi/${report.id.replace(/\.md$/, '')}/`}>
   <div class="isi-card__header">
-    {portrait.kind === 'image' ? (
-      <img
-        class="isi-card__avatar"
-        src={portrait.cardSrc}
-        alt={portrait.alt}
-        width={portrait.cardWidth}
-        height={portrait.cardHeight}
-        loading="lazy"
-        decoding="async"
-      />
-    ) : (
-      <span
-        class="isi-card__avatar isi-card__avatar--fallback"
-        style={`--avatar-accent: ${portrait.accent}; --avatar-soft: ${portrait.accentSoft};`}
-        aria-hidden="true"
-      >
-        {portrait.initials}
-      </span>
-    )}
+    {
+      portrait.kind === 'image' ? (
+        <img
+          class="isi-card__avatar"
+          src={portrait.cardSrc}
+          alt={portrait.alt}
+          width={portrait.cardWidth}
+          height={portrait.cardHeight}
+          loading="lazy"
+          decoding="async"
+        />
+      ) : (
+        <span
+          class="isi-card__avatar isi-card__avatar--fallback"
+          style={`--avatar-accent: ${portrait.accent}; --avatar-soft: ${portrait.accentSoft};`}
+          aria-hidden="true"
+        >
+          {portrait.initials}
+        </span>
+      )
+    }
 
     <div class="isi-card__meta">
       <div class="isi-card__name">{report.data.actorName}</div>
@@ -60,19 +62,27 @@ function verdictClass(cls: string): string {
     </div>
 
     <div class="isi-card__score-wrap">
-      <div class:list={['isi-card__score', scoreClass(isiScore)]}>{isiScore}</div>
+      <div class:list={['isi-card__score', scoreClass(isiScore)]}>
+        {isiScore}
+      </div>
       <div class="isi-card__score-label">ISI</div>
     </div>
   </div>
 
   <div class="isi-card__body">
-    <span class:list={['isi-card__verdict', verdictClass(isiClass)]}>{isiClass}</span>
+    <span class:list={['isi-card__verdict', verdictClass(isiClass)]}
+      >{isiClass}</span
+    >
     <hr class="isi-card__divider" />
-    {report.data.tags.length > 0 && (
-      <div class="isi-card__tags">
-        {report.data.tags.map((tag) => <span class="tag">{tag}</span>)}
-      </div>
-    )}
+    {
+      report.data.tags.length > 0 && (
+        <div class="isi-card__tags">
+          {report.data.tags.map((tag) => (
+            <span class="tag">{tag}</span>
+          ))}
+        </div>
+      )
+    }
   </div>
 
   <div class="isi-card__footer">
@@ -90,7 +100,9 @@ function verdictClass(cls: string): string {
     border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-card);
-    transition: box-shadow 0.2s, transform 0.2s;
+    transition:
+      box-shadow 0.2s,
+      transform 0.2s;
     text-decoration: none;
     color: inherit;
     cursor: pointer;
@@ -166,9 +178,15 @@ function verdictClass(cls: string): string {
     line-height: 1;
   }
 
-  .score--high { color: #2A7A4A; }
-  .score--mid  { color: #9A7230; }
-  .score--low  { color: #C03830; }
+  .score--high {
+    color: #2a7a4a;
+  }
+  .score--mid {
+    color: #9a7230;
+  }
+  .score--low {
+    color: #c03830;
+  }
 
   .isi-card__score-label {
     font-family: var(--f-mono);
@@ -198,19 +216,19 @@ function verdictClass(cls: string): string {
 
   .verdict--hemmende {
     background: rgba(192, 56, 48, 0.08);
-    color: #C03830;
+    color: #c03830;
     border: 1px solid rgba(192, 56, 48, 0.2);
   }
 
   .verdict--blandet {
-    background: rgba(154, 114, 48, 0.08);
-    color: #9A7230;
-    border: 1px solid rgba(154, 114, 48, 0.2);
+    background: rgba(124, 92, 28, 0.08);
+    color: #7c5c1c;
+    border: 1px solid rgba(124, 92, 28, 0.2);
   }
 
   .verdict--fremmende {
     background: rgba(42, 122, 74, 0.08);
-    color: #2A7A4A;
+    color: #2a7a4a;
     border: 1px solid rgba(42, 122, 74, 0.2);
   }
 

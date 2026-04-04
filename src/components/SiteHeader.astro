@@ -18,21 +18,28 @@ function isActive(href: string) {
   <a class="skip-link" href="#main-content">Hopp til innhold</a>
 
   <div class="site-header__inner">
-    <a href="/" class="site-logo" aria-label="Gå til forsiden">
+    <a href="/" class="site-logo">
       <span class="site-logo__wordmark">Individet</span>
-      <span class="site-logo__tagline">Frihet · Presisjon · Etterrettelighet</span>
+      <span class="site-logo__tagline"
+        >Frihet · Presisjon · Etterrettelighet</span
+      >
     </a>
 
     <nav class="site-nav" aria-label="Hovednavigasjon">
-      {navigation.map((item) => (
-        <a
-          href={item.href}
-          class:list={['site-nav__link', { 'is-active': isActive(item.href) }]}
-          aria-current={isActive(item.href) ? 'page' : undefined}
-        >
-          {item.label}
-        </a>
-      ))}
+      {
+        navigation.map((item) => (
+          <a
+            href={item.href}
+            class:list={[
+              'site-nav__link',
+              { 'is-active': isActive(item.href) },
+            ]}
+            aria-current={isActive(item.href) ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        ))
+      }
     </nav>
   </div>
 </header>
@@ -102,7 +109,9 @@ function isActive(href: string) {
     padding: 0.5rem 1.1rem;
     border-right: 1px solid var(--rule-light);
     text-decoration: none;
-    transition: color 0.2s, background 0.2s;
+    transition:
+      color 0.2s,
+      background 0.2s;
   }
 
   .site-nav__link:first-child {

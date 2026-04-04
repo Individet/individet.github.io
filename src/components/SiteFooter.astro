@@ -7,7 +7,9 @@ import { SITE } from '../lib/seo'
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="footer-brand__name">Individet</div>
-        <div class="footer-brand__sub">Frihet · Presisjon · Etterrettelighet</div>
+        <div class="footer-brand__sub">
+          Frihet · Presisjon · Etterrettelighet
+        </div>
         <p class="footer-brand__desc">
           Individet er startet og drives av <strong>Lars-Erik Bruce</strong>.
           Nettstedet publiserer analyser, manifest og åpne arbeidsprosesser.
@@ -27,9 +29,13 @@ import { SITE } from '../lib/seo'
       <div>
         <div class="footer-col__label">Ressurser</div>
         <div class="footer-col__links">
-          <a href={SITE.githubUrl} target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href={SITE.githubUrl} target="_blank" rel="noopener noreferrer"
+            >GitHub</a
+          >
           <a href="/rss.xml">RSS-feed</a>
-          <a href={SITE.facebookUrl} target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href={SITE.facebookUrl} target="_blank" rel="noopener noreferrer"
+            >Facebook</a
+          >
         </div>
       </div>
     </div>
@@ -38,8 +44,12 @@ import { SITE } from '../lib/seo'
       <span>© 2025–2026 Individet · {SITE.url.replace('https://', '')}</span>
       <div class="footer-social">
         <a href="/rss.xml">RSS</a>
-        <a href={SITE.githubUrl} target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href={SITE.facebookUrl} target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a href={SITE.githubUrl} target="_blank" rel="noopener noreferrer"
+          >GitHub</a
+        >
+        <a href={SITE.facebookUrl} target="_blank" rel="noopener noreferrer"
+          >Facebook</a
+        >
       </div>
     </div>
   </div>
@@ -82,7 +92,7 @@ import { SITE } from '../lib/seo'
     font-size: 0.6rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--terracotta);
+    color: var(--terracotta-l);
     margin-bottom: 1rem;
   }
 
@@ -103,7 +113,7 @@ import { SITE } from '../lib/seo'
     font-size: 0.6rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.55);
     margin-bottom: 1rem;
   }
 
@@ -130,7 +140,7 @@ import { SITE } from '../lib/seo'
     align-items: center;
     justify-content: space-between;
     font-size: 0.78rem;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.55);
     flex-wrap: wrap;
     gap: 0.75rem;
   }
@@ -145,7 +155,7 @@ import { SITE } from '../lib/seo'
     font-size: 0.68rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.55);
     text-decoration: none;
     transition: color 0.2s;
   }
