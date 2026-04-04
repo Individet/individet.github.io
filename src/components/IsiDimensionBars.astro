@@ -1,0 +1,118 @@
+---
+/**
+ * IsiDimensionBars — visualiserer D1–D6 som horisontale søyler.
+ * Props: averages — normaliserte 0–100-verdier per dimensjon,
+ *        beregnet i forelderkomponenten fra ekte innholdsdata.
+ */
+interface Props {
+  averages: {
+    d1: number
+    d2: number
+    d3: number
+    d4: number
+    d5: number
+    d6: number
+  }
+}
+
+const { averages } = Astro.props
+
+const dimensions = [
+  { key: 'd1' as const, label: 'Personlig autonomi' },
+  { key: 'd2' as const, label: 'Eiendomsrett' },
+  { key: 'd3' as const, label: 'Ytringsfrihet' },
+  { key: 'd4' as const, label: 'Rettsstat og prosess' },
+  { key: 'd5' as const, label: 'Markedsfrihet' },
+  { key: 'd6' as const, label: 'Maktbegrensning' },
+]
+---
+
+<div class="isi-dimensions">
+  {
+    dimensions.map((dim) => (
+      <div class="isi-dim">
+        <span class="isi-dim__name">{dim.label}</span>
+        <div class="isi-dim__bar" role="presentation">
+          <div
+            class="isi-dim__fill"
+            style={`width: ${Math.max(0, Math.min(100, averages[dim.key]))}%`}
+          />
+        </div>
+        <span class="isi-dim__code">{dim.key.toUpperCase()}</span>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .isi-dimensions {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .isi-dim {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 1.2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    transition: background 0.15s;
+  }
+
+  .isi-dim:last-child {
+    border-bottom: none;
+  }
+
+  .isi-dim:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .isi-dim__name {
+    font-family: var(--f-body);
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.75);
+    min-width: 0;
+    flex-shrink: 0;
+    width: 11rem;
+  }
+
+  .isi-dim__bar {
+    flex: 1;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 0 1.2rem;
+    border-radius: 1px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  @media (max-width: 480px) {
+    .isi-dim__name {
+      width: 8rem;
+      font-size: 0.75rem;
+    }
+
+    .isi-dim__bar {
+      margin: 0 0.5rem;
+    }
+  }
+
+  .isi-dim__fill {
+    position: absolute;
+    inset-block: 0;
+    left: 0;
+    background: linear-gradient(90deg, var(--terracotta), var(--gold));
+    border-radius: 1px;
+  }
+
+  .isi-dim__code {
+    font-family: var(--f-mono);
+    font-size: 0.75rem;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+</style>

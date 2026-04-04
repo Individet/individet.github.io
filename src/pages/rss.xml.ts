@@ -40,6 +40,7 @@ function getHeadlineAndSummary(markdown: string, fallbackTitle: string) {
 export async function GET(context: { site?: URL }) {
   const isiEntries = await getCollection('isi')
   const reportEntries = await getCollection('isiReports')
+  const articleEntries = await getCollection('articles')
 
   const items = [
     ...isiEntries.map((entry) => ({
@@ -57,6 +58,13 @@ export async function GET(context: { site?: URL }) {
       urlPath: `/isi/reports/${entry.id.replace(/\.md$/, '')}/`,
     })),
   ]
+
+  const articleFeedItems = articleEntries.map((entry) => ({
+    title: entry.data.title,
+    link: `/articles/${entry.data.slug}/`,
+    description: entry.data.description,
+    pubDate: entry.data.date,
+  }))
 
   const feedItems = items.flatMap((entry) => {
     const { title, summary } = getHeadlineAndSummary(
@@ -88,13 +96,14 @@ export async function GET(context: { site?: URL }) {
     ]
   })
 
-  feedItems.sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime())
+  const allFeedItems = [...feedItems, ...articleFeedItems]
+  allFeedItems.sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime())
 
   return rss({
     title: 'Individet RSS',
-    description: 'Nye og oppdaterte ISI-analyser fra Individet.',
+    description: 'Nye og oppdaterte ISI-analyser og reportasjer fra Individet.',
     site: context.site ?? SITE.url,
-    items: feedItems,
+    items: allFeedItems,
     customData: '<language>nb-no</language>',
   })
 }

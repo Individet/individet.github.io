@@ -80,16 +80,17 @@ function formatDate(value: Date) {
       <p>
         Høye scorer betyr at aktøren i større grad styrker individets frihet,
         eiendomsrett, ytringsrom og ansvar for eget liv. Lave scorer betyr at
-        aktøren i større grad flytter makt og kontroll bort fra individet.
+        aktøren i større grad flytter makt og kontroll bort fra individet, og
+        over til autoriteter.
       </p>
       <p>
-        Har du forslag til en ny aktør? Send inn forslag via
+        Har du forslag til en ny aktør? Send inn forslag ved å
         <a
           href="https://github.com/Individet/individet.github.io/issues/new?template=forslag-til-ny-akt%C3%B8r.md"
           target="_blank"
           rel="noopener noreferrer"
         >
-          GitHub issue-mal for aktørforslag
+          opprette issue på GitHub
         </a>.
       </p>
       <p>
@@ -275,6 +276,8 @@ function formatDate(value: Date) {
   .isi-index {
     display: grid;
     gap: 1.4rem;
+    max-width: 1120px;
+    margin: auto;
   }
 
   .isi-index__list-panel {
@@ -300,13 +303,16 @@ function formatDate(value: Date) {
 
   .sort-controls__button {
     appearance: none;
-    border: 1px solid var(--line-strong);
-    background: rgba(255, 255, 255, 0.68);
+    border: 1px solid var(--rule);
+    background: #fff;
     color: var(--ink);
-    font: inherit;
+    font-family: var(--f-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
     padding: 0.45rem 0.75rem;
     cursor: pointer;
-    border-radius: 999px 0 0 999px;
+    border-radius: var(--radius-sm) 0 0 var(--radius-sm);
     transition:
       background-color 160ms ease,
       color 160ms ease;
@@ -314,17 +320,16 @@ function formatDate(value: Date) {
 
   .sort-controls__direction {
     appearance: none;
-    border: 1px solid var(--line-strong);
-    border-left-color: rgba(17, 32, 45, 0.18);
-    border-left-width: 1px;
+    border: 1px solid var(--rule);
+    border-left-color: var(--rule-light);
     margin-left: 0;
     min-width: 2.1rem;
-    background: rgba(255, 255, 255, 0.68);
+    background: #fff;
     color: var(--ink);
     font: inherit;
     padding: 0.45rem 0.45rem;
     cursor: pointer;
-    border-radius: 0 999px 999px 0;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
     transition:
       background-color 160ms ease,
       color 160ms ease,
@@ -332,13 +337,13 @@ function formatDate(value: Date) {
   }
 
   .sort-controls__button.is-active {
-    background: linear-gradient(135deg, #0f2030 0%, #18364b 100%);
-    color: #fffdfa;
+    background: var(--navy);
+    color: var(--ivory);
   }
 
   .sort-controls__direction.is-active {
-    background: linear-gradient(135deg, #0f2030 0%, #18364b 100%);
-    color: #fffdfa;
+    background: var(--navy);
+    color: var(--ivory);
     border-left-color: rgba(255, 255, 255, 0.25);
   }
 
@@ -353,7 +358,7 @@ function formatDate(value: Date) {
 
   .sort-controls__button:focus-visible,
   .sort-controls__direction:focus-visible {
-    outline: 2px solid var(--teal);
+    outline: 2px solid var(--terracotta);
     outline-offset: 2px;
   }
 
@@ -370,7 +375,13 @@ function formatDate(value: Date) {
     padding: 0;
     margin: 1.5rem 0 0;
     display: grid;
-    gap: 0.95rem;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.2rem;
+    align-items: start;
+  }
+
+  .report-list li {
+    min-width: 0;
   }
 
   .is-hidden {

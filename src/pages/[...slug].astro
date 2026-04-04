@@ -15,12 +15,27 @@ const { entry } = Astro.props
 const { Content } = await render(entry)
 const pageLabel = entry.id.replace(/\.md$/, '')
 const pageTitle = `${pageLabel.charAt(0).toUpperCase()}${pageLabel.slice(1)} | Individet`
+const isHuman = entry.data.human === true
+const author = entry.data.author
 ---
 
 <Layout title={pageTitle} ogType="article">
-  <article class="page-shell">
+  <article class="page-shell page-detail">
     <div class="meta-strip">
       <a href="/" class="button-link button-link--secondary">Til forsiden</a>
+      {
+        isHuman ? (
+          author && (
+            <span class="meta-pill meta-pill--human">
+              Menneskeskrevet · {author}
+            </span>
+          )
+        ) : (
+          <span class="meta-pill meta-pill--ai">
+            KI-generert{author && <> · {author}</>}
+          </span>
+        )
+      }
     </div>
 
     <section class="surface prose page-content">

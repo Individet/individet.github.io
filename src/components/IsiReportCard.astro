@@ -1,15 +1,14 @@
 ---
 import type { CollectionEntry } from 'astro:content'
-import ActorPortrait from './ActorPortrait.astro'
 import { getActorPortrait } from '../lib/actorPortraits'
 import { getIsiClass, getIsiScore } from '../lib/isi'
-import IsiScoreRing from './IsiScoreRing.astro'
 
 interface Props {
   report: CollectionEntry<'isi'>
 }
 
 const { report } = Astro.props
+const isiScore = getIsiScore(report)
 const isiClass = getIsiClass(report)
 const portrait = getActorPortrait(report.data.actorSlug, report.data.actorName)
 
@@ -17,187 +16,269 @@ function formatDate(value: Date): string {
   const day = String(value.getUTCDate()).padStart(2, '0')
   const month = String(value.getUTCMonth() + 1).padStart(2, '0')
   const year = value.getUTCFullYear()
-
   return `${day}.${month}.${year}`
+}
+
+function scoreClass(score: number): string {
+  if (score >= 60) return 'score--high'
+  if (score >= 40) return 'score--mid'
+  return 'score--low'
+}
+
+function verdictClass(cls: string): string {
+  if (cls.includes('fremmende')) return 'verdict--fremmende'
+  if (cls === 'Blandet profil') return 'verdict--blandet'
+  return 'verdict--hemmende'
 }
 ---
 
-<a class="report-list__link" href={`/isi/${report.id.replace(/\.md$/, '')}/`}>
-  <span class="report-list__portrait">
-    <ActorPortrait portrait={portrait} />
-  </span>
-  <span class="report-list__content">
-    <span class="report-list__topline">
-      <span class="report-list__name">
-        {report.data.actorName} ({report.data.actorType})
-      </span>
-      <span class="report-list__class">{isiClass}</span>
-    </span>
-    <span class="report-list__affiliation">
-      {report.data.actorAffiliation}
-    </span>
-
+<a class="isi-card" href={`/isi/${report.id.replace(/\.md$/, '')}/`}>
+  <div class="isi-card__header">
     {
-      report.data.tags.length > 0 && (
-        <span class="report-list__bottom">
-          <span class="report-list__tags" aria-label="Tagger">
-            {report.data.tags.map((tag) => (
-              <span class="report-list__tag">{tag}</span>
-            ))}
-          </span>
+      portrait.kind === 'image' ? (
+        <img
+          class="isi-card__avatar"
+          src={portrait.cardSrc}
+          alt={portrait.alt}
+          width={portrait.cardWidth}
+          height={portrait.cardHeight}
+          loading="lazy"
+          decoding="async"
+        />
+      ) : (
+        <span
+          class="isi-card__avatar isi-card__avatar--fallback"
+          style={`--avatar-accent: ${portrait.accent}; --avatar-soft: ${portrait.accentSoft};`}
+          aria-hidden="true"
+        >
+          {portrait.initials}
         </span>
       )
     }
 
-    <span class="report-list__updated">
-      Sist oppdatert: {formatDate(report.data.lastUpdated)}
-    </span>
-  </span>
-  <span class="report-list__score">
-    <IsiScoreRing
-      score={getIsiScore(report)}
-      label={`${report.data.actorName}: ${getIsiScore(report)}`}
-    />
-  </span>
+    <div class="isi-card__meta">
+      <div class="isi-card__name">{report.data.actorName}</div>
+      <div class="isi-card__role">{report.data.actorType}</div>
+    </div>
+
+    <div class="isi-card__score-wrap">
+      <div class:list={['isi-card__score', scoreClass(isiScore)]}>
+        {isiScore}
+      </div>
+      <div class="isi-card__score-label">ISI</div>
+    </div>
+  </div>
+
+  <div class="isi-card__body">
+    <span class:list={['isi-card__verdict', verdictClass(isiClass)]}
+      >{isiClass}</span
+    >
+    <hr class="isi-card__divider" />
+    {
+      report.data.tags.length > 0 && (
+        <div class="isi-card__tags">
+          {report.data.tags.map((tag) => (
+            <span class="tag">{tag}</span>
+          ))}
+        </div>
+      )
+    }
+  </div>
+
+  <div class="isi-card__footer">
+    <span class="isi-card__date">{formatDate(report.data.lastUpdated)}</span>
+    <span class="isi-card__party">{report.data.actorAffiliation}</span>
+  </div>
 </a>
 
 <style>
-  .report-list__link {
+  .isi-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid var(--rule-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    transition:
+      box-shadow 0.2s,
+      transform 0.2s;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+
+  .isi-card:hover {
+    box-shadow: var(--shadow-lift);
+    transform: translateY(-2px);
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .isi-card__header {
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 1.05rem 1.1rem;
-    border: 1px solid var(--line);
-    border-radius: 1.45rem;
-    text-decoration: none;
-    color: inherit;
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(247, 241, 227, 0.8) 100%);
-    box-shadow: 0 16px 36px rgba(8, 19, 29, 0.08);
-    transition:
-      transform 180ms ease,
-      box-shadow 180ms ease,
-      border-color 180ms ease;
+    padding: 1.2rem 1.4rem 1rem;
   }
 
-  .report-list__link:hover {
-    text-decoration: none;
-    transform: translateY(-2px);
-    box-shadow: 0 24px 48px rgba(8, 19, 29, 0.12);
-    border-color: var(--line-strong);
+  .isi-card__avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--parchment-dk);
+    flex-shrink: 0;
+    object-fit: cover;
+    border: 2px solid var(--rule-light);
+    display: block;
   }
 
-  .report-list__name {
-    font-size: 1.05rem;
-    font-weight: 700;
-    text-wrap: balance;
-    line-height: 1.3;
-  }
-
-  .report-list__portrait {
-    display: inline-flex;
-    flex: 0 0 auto;
-  }
-
-  .report-list__score {
-    display: inline-flex;
-    flex: 0 0 auto;
-    align-self: center;
-  }
-
-  .report-list__content {
-    min-width: 0;
-    display: grid;
-    gap: 0.45rem;
-    width: 100%;
-  }
-
-  .report-list__topline {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.2rem 0.7rem;
-    align-items: baseline;
-    justify-content: space-between;
-  }
-
-  .report-list__class {
-    font-size: 0.96rem;
-    font-weight: 600;
-    color: var(--teal);
-  }
-
-  .report-list__affiliation {
-    font-size: 0.95rem;
-    line-height: 1.35;
-    color: var(--muted);
-  }
-
-  .report-list__bottom {
-    margin-top: 0.2rem;
-  }
-
-  .report-list__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.45rem;
-  }
-
-  .report-list__tag {
+  .isi-card__avatar--fallback {
     display: inline-flex;
     align-items: center;
-    padding: 0.28rem 0.65rem;
-    border-radius: 999px;
-    border: 1px solid var(--line);
-    background: rgba(255, 255, 255, 0.72);
-    font-size: 0.82rem;
+    justify-content: center;
+    font-family: var(--f-display);
+    font-size: 1.4rem;
+    font-weight: 600;
+    background: var(--avatar-soft, var(--parchment-dk));
+    color: var(--avatar-accent, var(--ink));
+  }
+
+  .isi-card__meta {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .isi-card__name {
+    font-family: var(--f-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .isi-card__role {
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    margin-top: 1px;
+  }
+
+  .isi-card__score-wrap {
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .isi-card__score {
+    font-family: var(--f-mono);
+    font-size: 1.8rem;
+    font-weight: 600;
     line-height: 1;
   }
 
-  .report-list__updated {
-    margin-top: 0.2rem;
-    font-size: 0.83rem;
-    color: var(--muted);
-    font-style: italic;
+  .score--high {
+    color: #2a7a4a;
+  }
+  .score--mid {
+    color: #9a7230;
+  }
+  .score--low {
+    color: #c03830;
   }
 
-  @media (max-width: 560px) {
-    .report-list__link {
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      grid-template-areas:
-        'portrait . score'
-        'content content content';
-      align-items: start;
-      column-gap: 0.85rem;
-      row-gap: 0.8rem;
-      padding: 0.95rem;
-      border-radius: 1.2rem;
-    }
+  .isi-card__score-label {
+    font-family: var(--f-mono);
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-top: 2px;
+  }
 
-    .report-list__portrait {
-      grid-area: portrait;
-    }
+  .isi-card__body {
+    padding: 0 1.4rem 0.8rem;
+  }
 
-    .report-list__content {
-      grid-area: content;
-    }
+  .isi-card__verdict {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--f-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+  }
 
-    .report-list__name {
-      font-size: 1rem;
-    }
+  .verdict--hemmende {
+    background: rgba(192, 56, 48, 0.08);
+    color: #c03830;
+    border: 1px solid rgba(192, 56, 48, 0.2);
+  }
 
-    .report-list__class {
-      font-size: 0.92rem;
-    }
+  .verdict--blandet {
+    background: rgba(124, 92, 28, 0.08);
+    color: #7c5c1c;
+    border: 1px solid rgba(124, 92, 28, 0.2);
+  }
 
-    .report-list__affiliation {
-      font-size: 0.92rem;
-    }
+  .verdict--fremmende {
+    background: rgba(42, 122, 74, 0.08);
+    color: #2a7a4a;
+    border: 1px solid rgba(42, 122, 74, 0.2);
+  }
 
-    .report-list__score {
-      grid-area: score;
-      justify-self: end;
-      align-self: flex-start;
-    }
+  .isi-card__divider {
+    border: none;
+    border-top: 1px solid var(--rule-light);
+    margin: 0.8rem 0;
+  }
+
+  .isi-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    padding-bottom: 0.4rem;
+  }
+
+  .tag {
+    font-size: 0.68rem;
+    font-family: var(--f-body);
+    color: var(--ink-faint);
+    background: var(--parchment);
+    border: 1px solid var(--rule-light);
+    border-radius: var(--radius-sm);
+    padding: 0.15rem 0.45rem;
+  }
+
+  .isi-card__footer {
+    padding: 0.6rem 1.4rem 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+  }
+
+  .isi-card__date {
+    font-family: var(--f-mono);
+    font-size: 0.62rem;
+    color: var(--ink-faint);
+  }
+
+  .isi-card__party {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--navy);
+    background: var(--parchment-dk);
+    padding: 0.2rem 0.5rem;
+    border-radius: var(--radius-sm);
+    max-width: 10rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 </style>

@@ -8,6 +8,7 @@ const isi = defineCollection({
     lastUpdated: z.coerce.date(),
     templateVersion: z.string(),
     author: z.string(),
+    human: z.boolean().optional(),
     actorId: z.string(),
     actorName: z.string(),
     actorSlug: z.string(),
@@ -76,6 +77,7 @@ const isiReports = defineCollection({
     created: z.coerce.date(),
     lastUpdated: z.coerce.date(),
     author: z.string(),
+    human: z.boolean().optional(),
   }),
 })
 
@@ -84,6 +86,7 @@ const pages = defineCollection({
   schema: z.object({
     created: z.coerce.date().optional(),
     author: z.string().optional(),
+    human: z.boolean().optional(),
   }),
 })
 
@@ -95,6 +98,16 @@ const articles = defineCollection({
     slug: z.string(),
     description: z.string(),
     tags: z.array(z.string()).default([]),
+    author: z.string().optional(),
+    human: z.boolean().optional(),
+    sources: z
+      .array(
+        z.object({
+          title: z.string(),
+          url: z.string().url().optional(),
+        })
+      )
+      .optional(),
   }),
 })
 

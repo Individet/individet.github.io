@@ -9,10 +9,7 @@ const navigation = [
 ]
 
 function isActive(href: string) {
-  if (href === '/') {
-    return currentPath === '/'
-  }
-
+  if (href === '/') return currentPath === '/'
   return currentPath === href || currentPath.startsWith(href)
 }
 ---
@@ -21,17 +18,11 @@ function isActive(href: string) {
   <a class="skip-link" href="#main-content">Hopp til innhold</a>
 
   <div class="site-header__inner">
-    <a href="/" class="site-banner" aria-label="Gå til forsiden">
-      <span class="site-banner__crest" aria-hidden="true">
-        <span class="site-banner__crest-core"></span>
-      </span>
-      <span class="site-banner__copy">
-        <span class="site-banner__eyebrow">Tankesmien Individet</span>
-        <span class="site-banner__wordmark">Individet</span>
-        <span class="site-banner__tagline">
-          Frihet, presisjon og etterrettelighet
-        </span>
-      </span>
+    <a href="/" class="site-logo">
+      <span class="site-logo__wordmark">Individet</span>
+      <span class="site-logo__tagline"
+        >Frihet · Presisjon · Etterrettelighet</span
+      >
     </a>
 
     <nav class="site-nav" aria-label="Hovednavigasjon">
@@ -39,7 +30,10 @@ function isActive(href: string) {
         navigation.map((item) => (
           <a
             href={item.href}
-            class:list={['site-nav__link', { 'is-active': isActive(item.href) }]}
+            class:list={[
+              'site-nav__link',
+              { 'is-active': isActive(item.href) },
+            ]}
             aria-current={isActive(item.href) ? 'page' : undefined}
           >
             {item.label}
@@ -52,191 +46,104 @@ function isActive(href: string) {
 
 <style>
   .site-header {
-    padding: 1rem 1rem 0;
+    background: var(--ivory);
+    border-bottom: 1px solid var(--rule-light);
+    position: sticky;
+    top: 0;
+    z-index: 100;
   }
 
   .site-header__inner {
-    width: min(100%, var(--shell-width));
-    margin: 0 auto;
-    padding: 0.9rem 1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem 1.5rem;
-    border: 1px solid rgba(244, 232, 211, 0.18);
-    border-radius: 1.5rem;
-    background:
-      linear-gradient(135deg, rgba(8, 19, 29, 0.92), rgba(15, 32, 46, 0.82)),
-      rgba(8, 19, 29, 0.9);
-    box-shadow:
-      0 22px 56px rgba(3, 12, 18, 0.28),
-      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
   }
 
-  .site-banner {
-    min-width: 0;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.9rem;
-    color: #f7f1e3;
+  .site-logo {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
     text-decoration: none;
+    color: inherit;
   }
 
-  .site-banner:hover {
-    color: #ffffff;
+  .site-logo:hover {
     text-decoration: none;
+    color: inherit;
   }
 
-  .site-banner__crest {
-    position: relative;
-    width: 3rem;
-    height: 3rem;
-    flex: 0 0 auto;
-    display: inline-grid;
-    place-items: center;
-    border-radius: 1rem;
-    background:
-      radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.55), transparent 42%),
-      linear-gradient(135deg, #d6b36c 0%, #7da0ae 55%, #f1e6c7 100%);
-    box-shadow:
-      0 10px 28px rgba(10, 24, 34, 0.42),
-      inset 0 1px 0 rgba(255, 255, 255, 0.55);
-  }
-
-  .site-banner__crest::before,
-  .site-banner__crest::after {
-    content: '';
-    position: absolute;
-    background: rgba(8, 19, 29, 0.88);
-    border-radius: 999px;
-  }
-
-  .site-banner__crest::before {
-    width: 0.28rem;
-    height: 1.4rem;
-  }
-
-  .site-banner__crest::after {
-    width: 1.35rem;
-    height: 0.28rem;
-  }
-
-  .site-banner__crest-core {
-    width: 1.8rem;
-    height: 1.8rem;
-    border-radius: 0.75rem;
-    border: 1px solid rgba(8, 19, 29, 0.3);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.24);
-  }
-
-  .site-banner__copy {
-    min-width: 0;
-    display: grid;
-    gap: 0.1rem;
-  }
-
-  .site-banner__eyebrow,
-  .site-banner__tagline {
-    font-family: var(--font-sans);
-  }
-
-  .site-banner__eyebrow {
-    font-size: 0.72rem;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: rgba(241, 230, 199, 0.72);
-  }
-
-  .site-banner__wordmark {
-    font-family: var(--font-display);
-    font-size: clamp(1.4rem, 3vw, 2rem);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
+  .site-logo__wordmark {
+    font-family: var(--f-display);
+    font-weight: 600;
+    font-size: 1.7rem;
+    letter-spacing: -0.01em;
+    color: var(--ink);
     line-height: 1;
   }
 
-  .site-banner__tagline {
-    font-size: 0.85rem;
-    color: rgba(247, 241, 227, 0.82);
+  .site-logo__tagline {
+    font-family: var(--f-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-top: 2px;
   }
 
   .site-nav {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    gap: 0.5rem;
+    gap: 0;
   }
 
   .site-nav__link {
-    padding: 0.55rem 0.85rem;
-    border-radius: 999px;
-    border: 1px solid transparent;
-    color: rgba(247, 241, 227, 0.86);
-    font-family: var(--font-sans);
-    font-size: 0.92rem;
+    font-family: var(--f-body);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding: 0.5rem 1.1rem;
+    border-right: 1px solid var(--rule-light);
     text-decoration: none;
     transition:
-      color 180ms ease,
-      border-color 180ms ease,
-      background-color 180ms ease,
-      transform 180ms ease;
+      color 0.2s,
+      background 0.2s;
+  }
+
+  .site-nav__link:first-child {
+    border-left: 1px solid var(--rule-light);
   }
 
   .site-nav__link:hover {
-    color: #fff;
-    border-color: rgba(247, 241, 227, 0.22);
-    background: rgba(247, 241, 227, 0.08);
+    color: var(--terracotta);
+    background: var(--parchment);
     text-decoration: none;
-    transform: translateY(-1px);
   }
 
   .site-nav__link.is-active {
-    color: #08131d;
-    background: linear-gradient(135deg, #f7f1e3 0%, #d4e4e7 100%);
-    box-shadow: 0 10px 26px rgba(3, 12, 18, 0.26);
+    color: var(--terracotta);
+    font-weight: 700;
   }
 
   @media (max-width: 860px) {
     .site-header__inner {
       flex-direction: column;
-      align-items: stretch;
-    }
-
-    .site-nav {
-      justify-content: flex-start;
-    }
-  }
-
-  @media (max-width: 560px) {
-    .site-header {
-      padding: 0.8rem 0.75rem 0;
-    }
-
-    .site-header__inner {
-      padding: 0.85rem;
-      border-radius: 1.25rem;
-    }
-
-    .site-banner {
       align-items: flex-start;
-    }
-
-    .site-banner__crest {
-      width: 2.75rem;
-      height: 2.75rem;
-    }
-
-    .site-banner__tagline {
-      font-size: 0.8rem;
+      gap: 0.75rem;
+      padding: 0.85rem 1.25rem;
     }
 
     .site-nav {
-      gap: 0.45rem;
+      flex-wrap: wrap;
     }
 
     .site-nav__link {
-      text-align: center;
+      padding: 0.5rem 0.8rem;
+      font-size: 0.72rem;
     }
   }
 </style>

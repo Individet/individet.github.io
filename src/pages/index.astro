@@ -1,14 +1,52 @@
 ---
 import { getCollection } from 'astro:content'
-import Icon from '../components/Icon.astro'
+import IsiDimensionBars from '../components/IsiDimensionBars.astro'
 import IsiReportCard from '../components/IsiReportCard.astro'
 import Layout from '../layouts/Layout.astro'
 import { SITE } from '../lib/seo'
+import { getIsiScore } from '../lib/isi'
+import { formatArticleDate } from '../lib/articles'
 
 const allReports = await getCollection('isi')
+
+const recentArticles = (await getCollection('articles'))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 5)
+
+// Siste 3 rapporter sortert på oppdateringsdato
 const featured = [...allReports]
   .sort((a, b) => b.data.lastUpdated.getTime() - a.data.lastUpdated.getTime())
   .slice(0, 3)
+
+// Beregn gjennomsnittlige dimensjonsskårer (normalisert til 0–100).
+// D1/D2/D4/D5/D6: maks råskår ±8 → (total + 8) / 16 * 100
+// D3: maks råskår ±12 → (total + 12) / 24 * 100
+function normD(total: number, max: number): number {
+  return Math.round(((total + max) / (2 * max)) * 100)
+}
+
+function dimAvg(key: 'd1' | 'd2' | 'd3' | 'd4' | 'd5' | 'd6'): number {
+  if (allReports.length === 0) return 50
+  const max = key === 'd3' ? 12 : 8
+  const sum = allReports.reduce((acc, r) => acc + r.data.scores[key].total, 0)
+  return normD(sum / allReports.length, max)
+}
+
+const dimAverages = {
+  d1: dimAvg('d1'),
+  d2: dimAvg('d2'),
+  d3: dimAvg('d3'),
+  d4: dimAvg('d4'),
+  d5: dimAvg('d5'),
+  d6: dimAvg('d6'),
+}
+
+const avgIsiScore =
+  allReports.length === 0
+    ? 50
+    : Math.round(
+        allReports.reduce((a, r) => a + getIsiScore(r), 0) / allReports.length,
+      )
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -53,254 +91,796 @@ const jsonLd = {
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </Fragment>
-  <div class="home-shell">
-    <section class="page-hero home-hero">
-      <div class="home-hero__content">
-        <span class="eyebrow">Tankesmien Individet</span>
-        <h1 class="page-hero__title">
-          En frihetsorientert tankesmie med profesjonell presisjon.
-        </h1>
 
-        <div class="meta-strip">
-          <span class="meta-pill">Uavhengig</span>
-          <span class="meta-pill">AI-drevet</span>
-          <span class="meta-pill">Åpent metodegrunnlag</span>
-        </div>
-
-        <div class="button-row">
-          <a href="/manifest/" class="button-link">Les manifestet</a>
-          <a href="/isi/" class="button-link">Utforsk ISI-analysene</a>
-        </div>
+  <!-- ─── HERO ─────────────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero__decor" aria-hidden="true"></div>
+    <div class="hero__inner">
+      <div class="hero__badges">
+        <span class="badge badge--terracotta">AI-drevet</span>
+        <span class="badge badge--outline">Uavhengig</span>
+        <span class="badge badge--outline">Åpent metodegrunnlag</span>
       </div>
-
-      <aside class="home-hero__panel surface">
-        <p class="home-hero__panel-label">Vårt utgangspunkt</p>
-        <blockquote class="home-hero__quote">
-          <em>Ingen stat eller institusjon eier mennesket.</em>
-        </blockquote>
-        <p>
-          Derfor kombinerer Individet idéarbeid, måling og dokumentasjon i ett
-          felles prosjekt: å tydeliggjøre hvor individets frihet blir styrket og
-          hvor den blir innsnevret.
-        </p>
-        <hr class="hr-white" />
-        <p>
-          Individet er en AI-drevet tankesmie for individets suverenitet. Vi
-          utvikler analyser, manifest og åpne verktøy som undersøker ett
-          grunnspørsmål uten å vike: <strong>Hvem eier deg?</strong>
-        </p>
-      </aside>
-    </section>
-
-    <section class="home-principles">
-      <article class="surface principle-card">
-        <span class="eyebrow">Suverenitet</span>
-        <h2>Frihet som første prinsipp</h2>
-        <p>
-          Vi tar utgangspunkt i selveierskap, frivillighet og rettsstatlige
-          grenser for maktutøvelse.
-        </p>
-      </article>
-
-      <article class="surface principle-card">
-        <span class="eyebrow">Etterrettelighet</span>
-        <h2>Analyse fremfor støy</h2>
-        <p>
-          Påstander skal kunne spores. Poeng, vurderinger og klassifiseringer må
-          være lesbare, begrunnede og kritiserbare.
-        </p>
-      </article>
-
-      <article class="surface principle-card">
-        <span class="eyebrow">Åpen prosess</span>
-        <h2>Maskineriet er synlig</h2>
-        <p>
-          Arbeidet skjer i en åpen prosess der verktøy, kode og metode kan
-          granskes uten innsideadgang.
-        </p>
-      </article>
-    </section>
-
-    <section class="home-focus">
-      <article class="surface focus-card">
-        <span class="eyebrow">Manifestet</span>
-        <h2>Et idégrunnlag uten kollektiv tåke</h2>
-        <p>
-          <em>Individets Suverenitet</em> samler tankesmiens normative grunnlag: mennesket
-          eier seg selv, og tvang mister ikke sin natur selv om den kles i gode hensikter.
-        </p>
-        <a href="/manifest/" class="button-link">Gå til manifestet</a>
-      </article>
-
-      <article class="surface focus-card focus-card--accent">
-        <span class="eyebrow">ISI</span>
-        <h2>Et rammeverk for å måle hvem som styrker friheten</h2>
-        <p>
-          Individets Suverenitetsindeks vurderer politikere, medier,
-          organisasjoner og partier på tvers av seks dimensjoner av frihetsvern.
-        </p>
-        <a href="/isi/" class="button-link">Se alle analyser</a>
-      </article>
-    </section>
-
-    <section class="home-featured surface">
-      <div class="section-heading">
-        <div>
-          <span class="eyebrow">Nye analyser</span>
-          <h2>Siste publiserte ISI-vurderinger</h2>
-        </div>
-        <a href="/isi/" class="button-link button-link--secondary">
-          Hele oversikten
-        </a>
+      <h1 class="hero__title">
+        En frihetsorientert<br />
+        tankesmie med<br />
+        <em>profesjonell presisjon.</em>
+      </h1>
+      <blockquote class="hero__quote">
+        Ingen stat eller institusjon eier mennesket.
+      </blockquote>
+      <div class="hero__ctas">
+        <a href="/manifest/" class="btn btn--primary">Les manifestet</a>
+        <a href="/isi/" class="btn btn--ghost">Utforsk ISI-analysene</a>
+        <a href="/articles/" class="btn btn--ghost">Les reportasjene</a>
       </div>
+    </div>
+  </section>
 
-      <ul class="report-list">
-        {
-          featured.map((report) => (
-            <li>
-              <IsiReportCard report={report} />
-            </li>
-          ))
-        }
-      </ul>
-    </section>
+  <hr class="rule" />
 
-    <section class="surface open-process">
-      <div class="section-heading">
-        <div>
-          <span class="eyebrow">Åpenhet</span>
-          <h2>Maskineriet som driver nettstedet kan granskes</h2>
-        </div>
-      </div>
-
-      <p>
-        Innholdet på nettstedet er drevet av koden som befinner seg i
-        <a href={SITE.githubUrl} target="_blank" rel="noopener noreferrer">
-          Individet/tankesmia <Icon name="arrow-up-right" size={14} />
-        </a>. Her finner du kode, agent-oppsett og arbeidsflyt som brukes til å
-        drifte tankesmien.
+  <!-- ─── PILLARS ──────────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">Vårt utgangspunkt</div>
+      <p class="section-lead">
+        Individet kombinerer idéarbeid, måling og dokumentasjon i ett felles
+        prosjekt: å tydeliggjøre hvor individets frihet blir styrket og hvor den
+        blir innsnevret.
       </p>
-    </section>
-  </div>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar__icon">Suverenitet</div>
+          <h2 class="pillar__title">Frihet som første prinsipp</h2>
+          <p class="pillar__text">
+            Vi tar utgangspunkt i selveierskap, frivillighet og rettsstatlige
+            grenser for maktutøvelse.
+          </p>
+        </div>
+        <div class="pillar">
+          <div class="pillar__icon">Etterrettelighet</div>
+          <h2 class="pillar__title">Analyse fremfor støy</h2>
+          <p class="pillar__text">
+            Påstander skal kunne spores. Poeng, vurderinger og klassifiseringer
+            må være lesbare, begrunnede og kritiserbare.
+          </p>
+        </div>
+        <div class="pillar">
+          <div class="pillar__icon">Åpen prosess</div>
+          <h2 class="pillar__title">Maskineriet er synlig</h2>
+          <p class="pillar__text">
+            Arbeidet skjer i en åpen prosess der verktøy, kode og metode kan
+            granskes uten innsideadgang.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ─── MANIFEST ─────────────────────────────────────────────────── -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="manifest-block">
+        <div class="manifest-block__text">
+          <div class="section-label">Manifestet</div>
+          <h2 class="section-title">Et idégrunnlag uten kollektiv tåke</h2>
+          <p class="section-body">
+            <em>Individets Suverenitet</em> samler tankesmiens normative grunnlag:
+            mennesket eier seg selv, og tvang mister ikke sin natur selv om den kles
+            i gode hensikter.
+          </p>
+          <a href="/manifest/" class="btn btn--ghost-dark">Gå til manifestet</a>
+        </div>
+        <div>
+          <blockquote class="manifest-block__pull">
+            Tvang mister ikke sin natur selv om den kles i gode hensikter.
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ─── ISI ──────────────────────────────────────────────────────── -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="isi-intro">
+        <div>
+          <div class="section-label section-label--light">ISI</div>
+          <h2 class="section-title section-title--light">
+            Et rammeverk for å måle hvem som styrker friheten
+          </h2>
+          <p class="section-lead section-lead--light">
+            Individets Suverenitetsindeks vurderer politikere, medier,
+            organisasjoner og partier på tvers av seks dimensjoner av
+            frihetsvern.
+            {
+              allReports.length > 0 && (
+                <>
+                  {' '}
+                  Gjennomsnittlig ISI-score på tvers av {allReports.length}{' '}
+                  analyser: <strong class="isi-avg">{avgIsiScore}</strong>.
+                </>
+              )
+            }
+          </p>
+          <a href="/isi/" class="btn btn--primary isi-cta">Se alle analyser</a>
+        </div>
+        <IsiDimensionBars averages={dimAverages} />
+      </div>
+
+      {
+        featured.length > 0 && (
+          <>
+            <div class="section-label section-label--light isi-cards-label">
+              Nye analyser — Siste publiserte ISI-vurderinger
+            </div>
+            <div class="isi-cards">
+              {featured.map((report) => (
+                <IsiReportCard report={report} />
+              ))}
+            </div>
+          </>
+        )
+      }
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ─── REPORTASJER ─────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="articles-intro">
+        <div>
+          <div class="section-label">Reportasjer</div>
+          <h2 class="section-title">
+            Dyptgående artikler om frihet og idéhistorie
+          </h2>
+        </div>
+        <a href="/articles/" class="btn btn--ghost-dark articles-all-link"
+          >Se alle reportasjer →</a
+        >
+      </div>
+      {
+        recentArticles.length > 0 && (
+          <ul class="article-list">
+            {recentArticles.map((article) => (
+              <li class="article-list__item">
+                <time
+                  class="article-list__date"
+                  datetime={article.data.date.toISOString()}
+                >
+                  {formatArticleDate(article.data.date)}
+                </time>
+                <a
+                  href={`/articles/${article.data.slug}/`}
+                  class="article-list__title"
+                >
+                  {article.data.title}
+                </a>
+                <p class="article-list__desc">{article.data.description}</p>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ─── ÅPENHET ──────────────────────────────────────────────────── -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="open-block">
+        <div>
+          <div class="section-label">Åpenhet</div>
+          <h2 class="section-title">
+            Maskineriet som driver nettstedet kan granskes
+          </h2>
+          <p class="section-body">
+            Innholdet på nettstedet er drevet av koden som befinner seg i
+            <strong>Individet/tankesmia</strong> på GitHub. Her finner du kode, agent-oppsett
+            og arbeidsflyt som brukes til å drifte tankesmien.
+          </p>
+          <a
+            href={SITE.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn--ghost-dark"
+          >
+            Gå til GitHub →
+          </a>
+        </div>
+        <div class="code-block" aria-label="Kodeeksempel fra GitHub-repoet">
+          <span class="cmt"># agent-oppsett / tankesmia</span><br /><br />
+          <span class="kw">def</span>
+          <span class="fn">vurder_aktør</span>(aktør, dimensjoner):<br />
+          &nbsp;&nbsp;analyse = <span class="fn">hent_kontekst</span>(aktør)<br
+          />
+          &nbsp;&nbsp;<span class="kw">for</span> dim <span class="kw">in</span> dimensjoner:<br
+          />
+          &nbsp;&nbsp;&nbsp;&nbsp;score = <span class="fn">score_dimensjon</span
+          >(<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dim, analyse<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;)<br />
+          &nbsp;&nbsp;<span class="kw">return</span> ISIResultat(<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;aktør=aktør,<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;score=<span class="fn">summer</span
+          >(dim.score),<br />
+          &nbsp;&nbsp;&nbsp;&nbsp;begrunnelse=<span class="fn">generer</span
+          >()<br />
+          &nbsp;&nbsp;)
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>
 
 <style>
-  .home-shell {
-    display: grid;
-    gap: 1.2rem;
+  /* ─── HERO ────────────────────────────────────────────────────────── */
+  .hero {
+    background: var(--navy);
+    color: var(--ivory);
+    padding: 5rem 2rem 4.5rem;
+    position: relative;
+    overflow: hidden;
   }
 
-  .home-hero {
-    grid-template-columns: minmax(0, 1.5fr) minmax(18rem, 0.9fr);
-    align-items: stretch;
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(
+      90deg,
+      var(--terracotta) 0%,
+      var(--gold) 60%,
+      transparent 100%
+    );
   }
 
-  .home-hero__content {
-    display: grid;
-    align-content: center;
-    gap: 1rem;
+  .hero__decor {
+    position: absolute;
+    right: 80px;
+    bottom: -120px;
+    width: 380px;
+    height: 380px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    pointer-events: none;
   }
 
-  .home-hero__panel {
-    display: grid;
-    align-content: start;
-    gap: 0.85rem;
-    background:
-      linear-gradient(180deg, rgba(15, 32, 48, 0.96), rgba(24, 54, 75, 0.92)),
-      var(--bg-deep);
-    color: rgba(247, 241, 227, 0.9);
-    border-color: rgba(247, 241, 227, 0.12);
+  .hero__decor::before {
+    content: '';
+    position: absolute;
+    inset: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 50%;
   }
 
-  .home-hero__panel strong {
-    color: rgba(247, 241, 227, 0.9);
+  .hero__inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
   }
 
-  .home-hero__panel-label {
-    font-family: var(--font-sans);
-    font-size: 0.78rem;
-    letter-spacing: 0.2em;
+  .hero__badges {
+    display: flex;
+    gap: 0.6rem;
+    margin-bottom: 1.8rem;
+    flex-wrap: wrap;
+    animation: fadeUp 0.5s ease both;
+    animation-delay: 0.05s;
+  }
+
+  .badge {
+    font-family: var(--f-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(241, 230, 199, 0.74);
+    padding: 0.3rem 0.7rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid;
   }
 
-  .home-hero__quote {
-    margin: 0;
-    padding-left: 1rem;
-    border-left: 2px solid rgba(241, 230, 199, 0.32);
-    font-size: 1.3rem;
-    line-height: 1.4;
+  .badge--outline {
+    border-color: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .badge--terracotta {
+    border-color: var(--terracotta);
+    color: var(--terracotta-l);
+    background: rgba(184, 92, 44, 0.12);
+  }
+
+  .hero__title {
+    font-family: var(--f-display);
+    font-weight: 300;
+    font-size: clamp(2.8rem, 6vw, 4.8rem);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    color: var(--ivory);
+    max-width: 800px;
+    margin-bottom: 1.6rem;
+    animation: fadeUp 0.6s ease both;
+    animation-delay: 0.15s;
+  }
+
+  .hero__title em {
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  .hero__quote {
+    font-family: var(--f-display);
+    font-size: 1.15rem;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.6);
+    border-left: 2px solid var(--terracotta);
+    padding-left: 1.2rem;
+    margin: 2rem 0;
+    max-width: 540px;
+    animation: fadeUp 0.6s ease both;
+    animation-delay: 0.25s;
+  }
+
+  .hero__ctas {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+    animation: fadeUp 0.6s ease both;
+    animation-delay: 0.35s;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--f-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.75rem 1.6rem;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+    text-decoration: none;
+  }
+
+  .btn--primary {
+    background: var(--terracotta);
+    color: #fff;
+    border-color: var(--terracotta);
+  }
+
+  .btn--primary:hover {
+    background: var(--terracotta-l);
+    border-color: var(--terracotta-l);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(184, 92, 44, 0.35);
+    text-decoration: none;
     color: #fff;
   }
 
-  .home-principles,
-  .home-focus {
+  .btn--ghost {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.8);
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+
+  .btn--ghost:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    color: #fff;
+    transform: translateY(-1px);
+    text-decoration: none;
+  }
+
+  .btn--ghost-dark {
+    background: transparent;
+    color: var(--ink-soft);
+    border-color: var(--rule);
+  }
+
+  .btn--ghost-dark:hover {
+    border-color: var(--terracotta);
+    color: var(--terracotta);
+    transform: translateY(-1px);
+    text-decoration: none;
+  }
+
+  /* ─── SECTIONS ───────────────────────────────────────────────────── */
+  .rule {
+    border: none;
+    border-top: 1px solid var(--rule-light);
+    margin: 0;
+  }
+
+  .section {
+    padding: 5rem 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section--alt {
+    background: var(--ivory);
+  }
+
+  .section--dark {
+    background: var(--navy);
+    color: var(--ivory);
+  }
+
+  .container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-label {
+    font-family: var(--f-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--terracotta);
+  }
+
+  .section-label--light {
+    color: var(--terracotta-l);
+  }
+
+  .section-label--light::before {
+    background: var(--terracotta-l);
+  }
+
+  .section-title {
+    font-family: var(--f-display);
+    font-weight: 500;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  .section-title--light {
+    color: var(--ivory);
+  }
+
+  .section-lead {
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    max-width: 640px;
+    margin-bottom: 3rem;
+  }
+
+  .section-lead--light {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .section-lead--light strong.isi-avg {
+    color: var(--gold);
+  }
+
+  .section-body {
+    color: var(--ink-soft);
+    margin-bottom: 1.5rem;
+    line-height: 1.75;
+  }
+
+  /* ─── PILLARS ─────────────────────────────────────────────────────── */
+  .section-lead {
+    margin-bottom: 2.5rem;
+  }
+
+  .pillars {
     display: grid;
-    gap: 0.9rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0;
+    border: 1px solid var(--rule-light);
+    background: #fff;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
   }
 
-  .principle-card,
-  .focus-card {
+  .pillar {
+    padding: 2.4rem 2rem;
+    border-right: 1px solid var(--rule-light);
+    transition: background 0.2s;
+  }
+
+  .pillar:last-child {
+    border-right: none;
+  }
+  .pillar:hover {
+    background: var(--parchment);
+  }
+
+  .pillar__icon {
+    font-family: var(--f-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .pillar__icon::before {
+    content: '';
+    display: block;
+    width: 16px;
+    height: 16px;
+    border: 1.5px solid var(--terracotta);
+    border-radius: 50%;
+  }
+
+  .pillar__title {
+    font-family: var(--f-display);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+  }
+
+  .pillar__text {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+
+  /* ─── MANIFEST ───────────────────────────────────────────────────── */
+  .manifest-block {
     display: grid;
-    gap: 0.65rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
   }
 
-  .focus-card {
-    grid-template-rows: auto auto minmax(0, 1fr) auto;
+  .manifest-block__pull {
+    font-family: var(--f-display);
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.25;
+    color: var(--ink);
+    border-left: 3px solid var(--terracotta);
+    padding-left: 1.8rem;
+    position: relative;
+    margin: 0;
   }
 
-  .principle-card h2,
-  .focus-card h2,
-  .home-featured h2,
-  .open-process h2 {
-    font-size: clamp(1.35rem, 2vw, 1.9rem);
+  .manifest-block__pull::before {
+    content: '«';
+    font-size: 5rem;
+    color: var(--rule-light);
+    position: absolute;
+    top: -1.5rem;
+    left: 1rem;
+    font-family: var(--f-display);
+    line-height: 1;
   }
 
-  .focus-card--accent {
-    background:
-      radial-gradient(
-        circle at top right,
-        rgba(185, 148, 83, 0.16),
-        transparent 28%
-      ),
-      linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.96),
-        rgba(246, 239, 226, 0.88)
-      );
-  }
-
-  .home-featured,
-  .open-process {
+  /* ─── ISI ─────────────────────────────────────────────────────────── */
+  .isi-intro {
     display: grid;
-    gap: 0.9rem;
+    grid-template-columns: 1fr 380px;
+    gap: 4rem;
+    align-items: start;
+    margin-bottom: 3.5rem;
   }
 
-  .report-list {
+  .isi-cta {
+    margin-top: 0.5rem;
+  }
+
+  .isi-cards-label {
+    margin-bottom: 1.5rem;
+  }
+
+  .isi-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+    gap: 1.2rem;
+  }
+
+  /* ─── REPORTASJER ──────────────────────────────────────────────────── */
+  .articles-intro {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .articles-all-link {
+    flex-shrink: 0;
+  }
+
+  .article-list {
     list-style: none;
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--rule-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .article-list__item {
     display: grid;
-    gap: 0.95rem;
+    grid-template-columns: 10rem 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 1.5rem;
+    row-gap: 0.25rem;
+    padding: 1.2rem 1.6rem;
+    border-bottom: 1px solid var(--rule-light);
+    transition: background 0.15s;
   }
 
-  .report-list li {
-    min-width: 0;
+  .article-list__item:last-child {
+    border-bottom: none;
   }
 
-  @media (min-width: 760px) {
-    .home-principles {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .home-focus {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
+  .article-list__item:hover {
+    background: var(--parchment);
   }
 
-  @media (max-width: 940px) {
-    .home-hero {
+  .article-list__date {
+    font-family: var(--f-mono);
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+    padding-top: 0.15rem;
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .article-list__title {
+    font-family: var(--f-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+    grid-row: 1;
+    grid-column: 2;
+    line-height: 1.3;
+  }
+
+  .article-list__title:hover {
+    color: var(--terracotta);
+    text-decoration: none;
+  }
+
+  .article-list__desc {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin: 0;
+    grid-row: 2;
+    grid-column: 2;
+  }
+
+  @media (max-width: 600px) {
+    .article-list__item {
       grid-template-columns: 1fr;
+    }
+    .article-list__date {
+      grid-row: 1;
+      grid-column: 1;
+    }
+    .article-list__title {
+      grid-row: 2;
+      grid-column: 1;
+    }
+    .article-list__desc {
+      grid-row: 3;
+      grid-column: 1;
+    }
+  }
+
+  /* ─── ÅPENHET ────────────────────────────────────────────────────── */
+  .open-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .code-block {
+    background: var(--navy);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    font-family: var(--f-mono);
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.7;
+  }
+
+  .code-block .kw {
+    color: var(--gold);
+  }
+  .code-block .fn {
+    color: var(--terracotta-l);
+  }
+  .code-block .cmt {
+    color: rgba(255, 255, 255, 0.55);
+    font-style: italic;
+  }
+
+  /* ─── ANIMATIONS ─────────────────────────────────────────────────── */
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* ─── RESPONSIVE ─────────────────────────────────────────────────── */
+  @media (max-width: 860px) {
+    .manifest-block,
+    .isi-intro,
+    .open-block {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hero {
+      padding: 3.5rem 1.5rem 3rem;
+    }
+
+    .pillars {
+      grid-template-columns: 1fr;
+    }
+
+    .pillar {
+      border-right: none;
+      border-bottom: 1px solid var(--rule-light);
+    }
+
+    .pillar:last-child {
+      border-bottom: none;
+    }
+
+    .section {
+      padding: 3rem 0;
     }
   }
 </style>
