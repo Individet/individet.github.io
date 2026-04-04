@@ -69,7 +69,7 @@ export async function GET(context: { site?: URL }) {
   const feedItems = items.flatMap((entry) => {
     const { title, summary } = getHeadlineAndSummary(
       entry.body ?? '',
-      entry.id.replace(/\.md$/, ''),
+      entry.id.replace(/\.md$/, '')
     )
     const baseItem = {
       title,
