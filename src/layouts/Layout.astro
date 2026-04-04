@@ -337,6 +337,27 @@ const twitterCard = ogImage ? 'summary_large_image' : 'summary'
     text-transform: uppercase;
   }
 
+  .meta-pill--ai {
+    background: rgba(201, 148, 58, 0.12);
+    border-color: var(--gold);
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .meta-pill--human {
+    background: rgba(27, 43, 69, 0.08);
+    border-color: var(--navy-l);
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .page-detail {
+    max-width: 900px;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 5vw, 2rem);
+    width: 100%;
+  }
+
   .button-row {
     display: flex;
     flex-wrap: wrap;

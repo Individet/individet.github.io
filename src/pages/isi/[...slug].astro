@@ -22,6 +22,7 @@ const { Content } = await render(entry)
 const rawScore = getIsiRawScore(entry)
 const isiScore = getIsiScore(entry)
 const isiClass = getIsiClass(entry)
+const isHuman = entry.data.human === true
 const tags = entry.data.tags ?? []
 const primarySources = entry.data.primarySources ?? []
 const secondarySources = entry.data.secondarySources ?? []
@@ -37,7 +38,7 @@ const socialImage =
   ogImage={socialImage}
   ogImageAlt={`Forhåndsvisningsbilde for ISI-analysen av ${entry.data.actorName}`}
 >
-  <article class="isi-report">
+  <article class="isi-report page-detail">
     <div class="meta-strip">
       <a href="/isi/" class="button-link button-link--secondary">
         Til ISI-oversikten
@@ -45,89 +46,100 @@ const socialImage =
     </div>
 
     <section class="page-hero isi-report__hero">
-      <figure class="isi-report__portrait">
-        <ActorPortrait portrait={portrait} size="detail" />
-        <figcaption>
-          {
-            portrait.kind === 'image' ? (
-              <>
-                <span>Foto: {portrait.author || portrait.source}</span>
-                {portrait.license && (
-                  <>
-                    {' '}
-                    ·{' '}
-                    {portrait.licenseUrl ? (
-                      <a
-                        href={portrait.licenseUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {portrait.license}
-                      </a>
-                    ) : (
-                      portrait.license
-                    )}
-                  </>
-                )}
-                {portrait.sourcePageUrl && (
-                  <>
-                    {' '}
-                    ·{' '}
-                    <a
-                      href={portrait.sourcePageUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Kildeside <Icon name="arrow-up-right" size={14} />
-                    </a>
-                  </>
-                )}
-              </>
-            ) : (
-              <span />
-            )
-          }
-        </figcaption>
-      </figure>
-
-      <div class="isi-report__hero-copy">
+      <div class="isi-report__hero-title">
         <span class="eyebrow">ISI-analyse</span>
         <h1 class="page-hero__title">{entry.data.actorName}</h1>
         <p class="page-hero__lede">
           {entry.data.actorType} · {entry.data.actorAffiliation}
         </p>
+      </div>
 
-        <div class="isi-report__summary-grid">
-          <article class="surface isi-report__summary-card">
-            <span class="eyebrow">ISI-score</span>
-            <div class="isi-report__score-line">
-              <h2>{isiScore}</h2>
-              <IsiScoreRing
-                score={isiScore}
-                showValue={false}
-                size={54}
-                label={`ISI-score ${isiScore}`}
-              />
-            </div>
-            <p>Råskår {rawScore}</p>
-          </article>
+      <div class="isi-report__hero-media">
+        <figure class="isi-report__portrait">
+          <ActorPortrait portrait={portrait} size="detail" />
+          <figcaption>
+            {
+              portrait.kind === 'image' ? (
+                <>
+                  <span>Foto: {portrait.author || portrait.source}</span>
+                  {portrait.license && (
+                    <>
+                      {' '}
+                      ·{' '}
+                      {portrait.licenseUrl ? (
+                        <a
+                          href={portrait.licenseUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {portrait.license}
+                        </a>
+                      ) : (
+                        portrait.license
+                      )}
+                    </>
+                  )}
+                  {portrait.sourcePageUrl && (
+                    <>
+                      {' '}
+                      ·{' '}
+                      <a
+                        href={portrait.sourcePageUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Kildeside <Icon name="arrow-up-right" size={14} />
+                      </a>
+                    </>
+                  )}
+                </>
+              ) : (
+                <span />
+              )
+            }
+          </figcaption>
+        </figure>
 
-          <article class="surface isi-report__summary-card">
-            <span class="eyebrow">Klassifisering</span>
-            <h2>{isiClass}</h2>
-            <p>Basert på seks dimensjoner av individets suverenitet.</p>
-          </article>
-        </div>
+        <article class="surface isi-report__summary-card">
+          <span class="eyebrow">ISI-score</span>
+          <div class="isi-report__score-line">
+            <h2>{isiScore}</h2>
+            <IsiScoreRing
+              score={isiScore}
+              showValue={false}
+              size={54}
+              label={`ISI-score ${isiScore}`}
+            />
+          </div>
+          <p>Råskår {rawScore}</p>
+        </article>
 
-        <div class="meta-strip">
-          <span class="meta-pill"
-            >Analysert data: {entry.data.analysisScope}</span
-          >
-          <span class="meta-pill">
-            Sist oppdatert: {entry.data.lastUpdated.toISOString().slice(0, 10)}
-          </span>
-          <span class="meta-pill">Land: {entry.data.actorCountry}</span>
-        </div>
+        <article class="surface isi-report__summary-card">
+          <span class="eyebrow">Klassifisering</span>
+          <h2>{isiClass}</h2>
+          <p>Basert på seks dimensjoner av individets suverenitet.</p>
+        </article>
+      </div>
+
+      <div class="meta-strip">
+        <span class="meta-pill"
+          >Analysert data: {entry.data.analysisScope}</span
+        >
+        <span class="meta-pill">
+          Sist oppdatert: {entry.data.lastUpdated.toISOString().slice(0, 10)}
+        </span>
+        <span class="meta-pill">Land: {entry.data.actorCountry}</span>
+        {
+          isHuman ? (
+            <span class="meta-pill meta-pill--human">
+              Menneskeskrevet · {entry.data.author}
+            </span>
+          ) : (
+            <span class="meta-pill meta-pill--ai">
+              KI-generert · {entry.data.author}
+            </span>
+          )
+        }
       </div>
     </section>
 
@@ -221,8 +233,25 @@ const socialImage =
   }
 
   .isi-report__hero {
-    grid-template-columns: minmax(15rem, 19rem) minmax(0, 1fr);
-    gap: 1.4rem;
+    display: grid;
+    gap: 1.2rem;
+    padding: clamp(1.4rem, 2vw, 2rem);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--rule-light);
+    background: var(--ivory);
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
+
+  .isi-report__hero-title {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .isi-report__hero-media {
+    display: grid;
+    grid-template-columns: minmax(10rem, 14rem) 1fr 1fr;
+    gap: 1rem;
     align-items: start;
   }
 
@@ -238,21 +267,11 @@ const socialImage =
     color: var(--ink-soft);
   }
 
-  .isi-report__hero-copy {
-    display: grid;
-    gap: 1rem;
-  }
-
-  .isi-report__summary-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
-  }
-
   .isi-report__summary-card {
     display: grid;
     gap: 0.35rem;
     min-width: 0;
+    align-content: start;
   }
 
   .isi-report__summary-card h2 {
@@ -470,16 +489,22 @@ const socialImage =
     }
   }
 
-  @media (max-width: 920px) {
-    .isi-report__hero {
-      grid-template-columns: 1fr;
+  @media (max-width: 760px) {
+    .isi-report__hero-media {
+      grid-template-columns: minmax(8rem, 10rem) 1fr 1fr;
     }
   }
 
-  @media (max-width: 680px) {
-    .isi-report__summary-grid {
-      grid-template-columns: 1fr;
+  @media (max-width: 580px) {
+    .isi-report__hero-media {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
     }
+
+    .isi-report__portrait {
+      grid-column: 1 / -1;
+    }
+  }
 
     .isi-report .isi-scorecard__panel th,
     .isi-report .isi-scorecard__panel td {

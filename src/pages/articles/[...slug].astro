@@ -1,9 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content'
-import {
-  type ArticleImages,
-  formatArticleDate,
-} from '../../lib/articles'
+import { type ArticleImages, formatArticleDate } from '../../lib/articles'
 import Layout from '../../layouts/Layout.astro'
 
 const allImageFiles = import.meta.glob<ArticleImages>(
@@ -21,6 +18,9 @@ export async function getStaticPaths() {
 
 const { entry } = Astro.props
 const { Content } = await render(entry)
+const isHuman = entry.data.human === true
+const author = entry.data.author
+const sources = entry.data.sources ?? []
 
 const images =
   allImageFiles[`/src/assets/articles/${entry.data.slug}.json`] ?? null
@@ -33,7 +33,7 @@ const images =
   ogImage={images?.hero?.url}
   ogImageAlt={images?.hero?.alt}
 >
-  <article class="article-detail page-shell">
+  <article class="article-detail page-shell page-detail">
     <div class="meta-strip">
       <a href="/articles/" class="button-link button-link--secondary">
         Til reportasjer
@@ -41,6 +41,12 @@ const images =
     </div>
 
     <section class="page-hero article-detail__hero">
+      <div class="article-detail__hero-copy">
+        <span class="eyebrow">Reportasje</span>
+        <h1 class="page-hero__title">{entry.data.title}</h1>
+        <p class="page-hero__lede">{entry.data.description}</p>
+      </div>
+
       {
         images?.hero && (
           <figure class="article-detail__hero-figure">
@@ -57,30 +63,58 @@ const images =
         )
       }
 
-      <div class="article-detail__hero-copy">
-        <span class="eyebrow">Reportasje</span>
-        <h1 class="page-hero__title">{entry.data.title}</h1>
-        <p class="page-hero__lede">{entry.data.description}</p>
-
-        <div class="meta-strip">
-          <time
-            class="meta-pill"
-            datetime={entry.data.date.toISOString()}
-          >
-            {formatArticleDate(entry.data.date)}
-          </time>
-          {
-            entry.data.tags.map((tag) => (
-              <span class="meta-pill">{tag}</span>
-            ))
-          }
-        </div>
+      <div class="meta-strip">
+        <time class="meta-pill" datetime={entry.data.date.toISOString()}>
+          {formatArticleDate(entry.data.date)}
+        </time>
+        {
+          isHuman ? (
+            <span class="meta-pill meta-pill--human">
+              Menneskeskrevet{author && <> · {author}</>}
+            </span>
+          ) : (
+            <span class="meta-pill meta-pill--ai">
+              KI-generert{author && <> · {author}</>}
+            </span>
+          )
+        }
+        {entry.data.tags.map((tag) => <span class="meta-pill">{tag}</span>)}
       </div>
     </section>
 
     <section class="surface prose article-detail__body">
       <Content />
     </section>
+
+    {
+      sources.length > 0 && (
+        <section class="article-detail__sources" aria-label="Kilder">
+          <span class="eyebrow">Dokumentasjon</span>
+          <div class="surface isi-report__panel">
+            <div>
+              <h2>Kilder</h2>
+            </div>
+            <ul>
+              {sources.map((source) => (
+                <li>
+                  {source.url ? (
+                    <a
+                      href={source.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {source.title}
+                    </a>
+                  ) : (
+                    source.title
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )
+    }
   </article>
 </Layout>
 
@@ -92,7 +126,12 @@ const images =
 
   .article-detail__hero {
     display: grid;
-    gap: 1.4rem;
+    gap: 1.2rem;
+  }
+
+  .article-detail__hero-copy {
+    display: grid;
+    gap: 0.5rem;
   }
 
   .article-detail__hero-figure {
@@ -117,11 +156,6 @@ const images =
     display: block;
   }
 
-  .article-detail__hero-copy {
-    display: grid;
-    gap: 1rem;
-  }
-
   .article-detail__body figure {
     margin: 1.6rem 0;
     display: grid;
@@ -140,10 +174,8 @@ const images =
     font-family: var(--font-sans);
   }
 
-  @media (min-width: 860px) {
-    .article-detail__hero {
-      grid-template-columns: minmax(14rem, 20rem) minmax(0, 1fr);
-      align-items: start;
-    }
+  .article-detail__sources {
+    display: grid;
+    gap: 1rem;
   }
 </style>

@@ -80,7 +80,8 @@ function formatDate(value: Date) {
       <p>
         Høye scorer betyr at aktøren i større grad styrker individets frihet,
         eiendomsrett, ytringsrom og ansvar for eget liv. Lave scorer betyr at
-        aktøren i større grad flytter makt og kontroll bort fra individet.
+        aktøren i større grad flytter makt og kontroll bort fra individet, og
+        over til autoriteter.
       </p>
       <p>
         Har du forslag til en ny aktør? Send inn forslag via
@@ -89,7 +90,7 @@ function formatDate(value: Date) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          GitHub issue-mal for aktørforslag
+          GitHub
         </a>.
       </p>
       <p>
@@ -275,6 +276,8 @@ function formatDate(value: Date) {
   .isi-index {
     display: grid;
     gap: 1.4rem;
+    max-width: 1120px;
+    margin: auto;
   }
 
   .isi-index__list-panel {
@@ -310,7 +313,9 @@ function formatDate(value: Date) {
     padding: 0.45rem 0.75rem;
     cursor: pointer;
     border-radius: var(--radius-sm) 0 0 var(--radius-sm);
-    transition: background-color 160ms ease, color 160ms ease;
+    transition:
+      background-color 160ms ease,
+      color 160ms ease;
   }
 
   .sort-controls__direction {
@@ -325,7 +330,10 @@ function formatDate(value: Date) {
     padding: 0.45rem 0.45rem;
     cursor: pointer;
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-    transition: background-color 160ms ease, color 160ms ease, border-left-color 160ms ease;
+    transition:
+      background-color 160ms ease,
+      color 160ms ease,
+      border-left-color 160ms ease;
   }
 
   .sort-controls__button.is-active {

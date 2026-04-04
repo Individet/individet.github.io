@@ -1,6 +1,7 @@
 ---
 created: "2026-03-21T00:00:00Z"
 author: "Lars-Erik Bruce"
+human: true
 ---
 
 # Om Individet

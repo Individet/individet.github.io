@@ -5,8 +5,13 @@ import IsiReportCard from '../components/IsiReportCard.astro'
 import Layout from '../layouts/Layout.astro'
 import { SITE } from '../lib/seo'
 import { getIsiScore } from '../lib/isi'
+import { formatArticleDate } from '../lib/articles'
 
 const allReports = await getCollection('isi')
+
+const recentArticles = (await getCollection('articles'))
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 5)
 
 // Siste 3 rapporter sortert på oppdateringsdato
 const featured = [...allReports]
@@ -107,6 +112,7 @@ const jsonLd = {
       <div class="hero__ctas">
         <a href="/manifest/" class="btn btn--primary">Les manifestet</a>
         <a href="/isi/" class="btn btn--ghost">Utforsk ISI-analysene</a>
+        <a href="/articles/" class="btn btn--ghost">Les reportasjene</a>
       </div>
     </div>
   </section>
@@ -218,6 +224,48 @@ const jsonLd = {
               ))}
             </div>
           </>
+        )
+      }
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ─── REPORTASJER ─────────────────────────────────────────────── -->
+  <section class="section">
+    <div class="container">
+      <div class="articles-intro">
+        <div>
+          <div class="section-label">Reportasjer</div>
+          <h2 class="section-title">
+            Dyptgående artikler om frihet og idéhistorie
+          </h2>
+        </div>
+        <a href="/articles/" class="btn btn--ghost-dark articles-all-link"
+          >Se alle reportasjer →</a
+        >
+      </div>
+      {
+        recentArticles.length > 0 && (
+          <ul class="article-list">
+            {recentArticles.map((article) => (
+              <li class="article-list__item">
+                <time
+                  class="article-list__date"
+                  datetime={article.data.date.toISOString()}
+                >
+                  {formatArticleDate(article.data.date)}
+                </time>
+                <a
+                  href={`/articles/${article.data.slug}/`}
+                  class="article-list__title"
+                >
+                  {article.data.title}
+                </a>
+                <p class="article-list__desc">{article.data.description}</p>
+              </li>
+            ))}
+          </ul>
         )
       }
     </div>
@@ -660,6 +708,105 @@ const jsonLd = {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
     gap: 1.2rem;
+  }
+
+  /* ─── REPORTASJER ──────────────────────────────────────────────────── */
+  .articles-intro {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .articles-all-link {
+    flex-shrink: 0;
+  }
+
+  .article-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--rule-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .article-list__item {
+    display: grid;
+    grid-template-columns: 10rem 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 1.5rem;
+    row-gap: 0.25rem;
+    padding: 1.2rem 1.6rem;
+    border-bottom: 1px solid var(--rule-light);
+    transition: background 0.15s;
+  }
+
+  .article-list__item:last-child {
+    border-bottom: none;
+  }
+
+  .article-list__item:hover {
+    background: var(--parchment);
+  }
+
+  .article-list__date {
+    font-family: var(--f-mono);
+    font-size: 0.72rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+    padding-top: 0.15rem;
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .article-list__title {
+    font-family: var(--f-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+    grid-row: 1;
+    grid-column: 2;
+    line-height: 1.3;
+  }
+
+  .article-list__title:hover {
+    color: var(--terracotta);
+    text-decoration: none;
+  }
+
+  .article-list__desc {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    margin: 0;
+    grid-row: 2;
+    grid-column: 2;
+  }
+
+  @media (max-width: 600px) {
+    .article-list__item {
+      grid-template-columns: 1fr;
+    }
+    .article-list__date {
+      grid-row: 1;
+      grid-column: 1;
+    }
+    .article-list__title {
+      grid-row: 2;
+      grid-column: 1;
+    }
+    .article-list__desc {
+      grid-row: 3;
+      grid-column: 1;
+    }
   }
 
   /* ─── ÅPENHET ────────────────────────────────────────────────────── */
