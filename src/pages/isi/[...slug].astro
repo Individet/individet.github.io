@@ -100,30 +100,25 @@ const socialImage =
           </figcaption>
         </figure>
 
-        <article class="surface isi-report__summary-card">
-          <span class="eyebrow">ISI-score</span>
-          <div class="isi-report__score-line">
-            <h2>{isiScore}</h2>
-            <IsiScoreRing
-              score={isiScore}
-              showValue={false}
-              size={54}
-              label={`ISI-score ${isiScore}`}
-            />
-          </div>
-          <p>Råskår {rawScore}</p>
-        </article>
-
-        <article class="surface isi-report__summary-card">
-          <span class="eyebrow">Klassifisering</span>
-          <h2>{isiClass}</h2>
-          <p>Basert på seks dimensjoner av individets suverenitet.</p>
-        </article>
+        <div class="isi-report__summary-cards">
+          <article class="surface isi-report__summary-card">
+            <span class="eyebrow">ISI-score</span>
+            <div class="isi-report__score-line">
+              <h2>{isiScore}</h2>
+              <IsiScoreRing
+                score={isiScore}
+                showValue={false}
+                size={54}
+                label={`ISI-score ${isiScore}`}
+              />
+            </div>
+            <h2>{isiClass}</h2>
+          </article>
+        </div>
       </div>
 
       <div class="meta-strip">
-        <span class="meta-pill"
-          >Analysert data: {entry.data.analysisScope}</span
+        <span class="meta-pill">Analysert data: {entry.data.analysisScope}</span
         >
         <span class="meta-pill">
           Sist oppdatert: {entry.data.lastUpdated.toISOString().slice(0, 10)}
@@ -250,9 +245,15 @@ const socialImage =
 
   .isi-report__hero-media {
     display: grid;
-    grid-template-columns: minmax(10rem, 14rem) 1fr 1fr;
+    grid-template-columns: minmax(10rem, 14rem) 1fr;
     gap: 1rem;
     align-items: start;
+  }
+
+  .isi-report__summary-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
   }
 
   .isi-report__portrait {
@@ -489,22 +490,19 @@ const socialImage =
     }
   }
 
-  @media (max-width: 760px) {
-    .isi-report__hero-media {
-      grid-template-columns: minmax(8rem, 10rem) 1fr 1fr;
-    }
-  }
-
   @media (max-width: 580px) {
     .isi-report__hero-media {
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       grid-template-rows: auto auto;
     }
 
     .isi-report__portrait {
       grid-column: 1 / -1;
     }
-  }
+
+    .isi-scorecard-runtime {
+      padding: 0;
+    }
 
     .isi-report .isi-scorecard__panel th,
     .isi-report .isi-scorecard__panel td {

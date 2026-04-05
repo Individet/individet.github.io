@@ -284,7 +284,6 @@ const twitterCard = ogImage ? 'summary_large_image' : 'summary'
     border: 1px solid var(--rule-light);
     background: var(--ivory);
     box-shadow: var(--shadow-card);
-    overflow: hidden;
   }
 
   .page-hero__title {
@@ -517,15 +516,19 @@ const twitterCard = ogImage ? 'summary_large_image' : 'summary'
   }
 
   @media (max-width: 680px) {
-    .page-hero {
-      border-radius: var(--radius-lg);
-    }
+    .page-hero,
     .surface {
-      border-radius: var(--radius-lg);
+      border-radius: 0;
+      border: none;
+      max-width: 100vw;
     }
     .section-heading {
       align-items: start;
       flex-direction: column;
+    }
+
+    .page-detail {
+      padding: 0;
     }
   }
 </style>
