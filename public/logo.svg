@@ -1,11 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="10 41 540 478">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 560">
     <defs>
         <linearGradient id="starGrad" x1="0" y1="0" x2="0" y2="560" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#000" />
-            <stop offset="100%" stop-color="#000" />
+            <stop offset="0%" stop-color="#5baee0" />
+            <stop offset="100%" stop-color="#2060a8" />
         </linearGradient>
     </defs>
-    <rect x="10" y="41" width="540" height="478" fill="white" />
     <path fill-rule="evenodd" fill="url(#starGrad)" d="
       M 280,41
       L 339,178 L 478,123

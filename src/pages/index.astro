@@ -96,24 +96,33 @@ const jsonLd = {
   <section class="hero">
     <div class="hero__decor" aria-hidden="true"></div>
     <div class="hero__inner">
-      <div class="hero__badges">
-        <span class="badge badge--terracotta">AI-drevet</span>
-        <span class="badge badge--outline">Uavhengig</span>
-        <span class="badge badge--outline">Åpent metodegrunnlag</span>
+      <div class="hero__content">
+        <div class="hero__badges">
+          <span class="badge badge--terracotta">AI-drevet</span>
+          <span class="badge badge--outline">Uavhengig</span>
+          <span class="badge badge--outline">Åpent metodegrunnlag</span>
+        </div>
+        <h1 class="hero__title">
+          En frihetsorientert<br />
+          tankesmie med<br />
+          <em>profesjonell presisjon.</em>
+        </h1>
+        <blockquote class="hero__quote">
+          Ingen stat eller institusjon eier mennesket.
+        </blockquote>
+        <div class="hero__ctas">
+          <a href="/manifest/" class="btn btn--primary">Les manifestet</a>
+          <a href="/isi/" class="btn btn--ghost">Utforsk ISI-analysene</a>
+          <a href="/articles/" class="btn btn--ghost">Les reportasjene</a>
+        </div>
       </div>
-      <h1 class="hero__title">
-        En frihetsorientert<br />
-        tankesmie med<br />
-        <em>profesjonell presisjon.</em>
-      </h1>
-      <blockquote class="hero__quote">
-        Ingen stat eller institusjon eier mennesket.
-      </blockquote>
-      <div class="hero__ctas">
-        <a href="/manifest/" class="btn btn--primary">Les manifestet</a>
-        <a href="/isi/" class="btn btn--ghost">Utforsk ISI-analysene</a>
-        <a href="/articles/" class="btn btn--ghost">Les reportasjene</a>
-      </div>
+      <img
+        src="/logo.svg"
+        alt="Individet"
+        class="hero__logo"
+        width="220"
+        height="220"
+      />
     </div>
   </section>
 
@@ -367,9 +376,26 @@ const jsonLd = {
 
   .hero__inner {
     max-width: 1120px;
+    width: 100%;
     margin: 0 auto;
     position: relative;
     z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  .hero__content {
+    min-width: 0;
+  }
+
+  .hero__logo {
+    display: block;
+    flex-shrink: 0;
+    position: relative;
+    left: -20px;
+    animation: fadeUp 0.4s ease both;
   }
 
   .hero__badges {
@@ -853,6 +879,14 @@ const jsonLd = {
 
   /* ─── RESPONSIVE ─────────────────────────────────────────────────── */
   @media (max-width: 860px) {
+    .hero__logo {
+      display: none;
+    }
+
+    .hero__inner {
+      grid-template-columns: 1fr;
+    }
+
     .manifest-block,
     .isi-intro,
     .open-block {
