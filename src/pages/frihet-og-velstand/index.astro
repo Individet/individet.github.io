@@ -45,8 +45,26 @@ import t from '../../i18n/frihet-og-velstand.json'
       </p>
     </header>
 
+    
+    <!-- ─── Lenke til oversikt ──────────────────────────────────────────────── -->
+    <section class="oversikt-link">
+      <h2 class="oversikt-link__heading">
+        <span data-lang="no">Se de 20 sterkeste korrelasjonene mellom frihet og velstand</span>
+        <span data-lang="en">See the 20 strongest correlations between freedom and prosperity</span>
+      </h2>
+      <p class="oversikt-link__desc">
+        <span data-lang="no">For hvert av fire velferdsmål er de fem statistisk sterkeste frihetsprediktorene beregnet og visualisert — utvalgt ved Pearson-korrelasjon mot 19 frihetsdimensjoner, uten redaksjonelt skjønn.</span>
+        <span data-lang="en">For each of four welfare measures, the five statistically strongest freedom predictors are calculated and visualised — selected by Pearson correlation against 19 freedom dimensions, without editorial discretion.</span>
+      </p>
+      <a class="oversikt-link__btn" href="/frihet-og-velstand/oversikt/">
+        <span data-lang="no">Gå til oversikten →</span>
+        <span data-lang="en">Go to the overview →</span>
+      </a>
+    </section>
+
     <!-- ─── Animert scatter ─────────────────────────────────────────────────── -->
     <AnimertScatter defaultXKey="hf_score" defaultYKey="gdp_real" />
+
 
     <footer class="data-footer">
       <p>
@@ -64,11 +82,6 @@ import t from '../../i18n/frihet-og-velstand.json'
     padding: 2.5rem 1.25rem 4rem;
   }
 
-  .page-header {
-    border-bottom: 1px solid var(--rule);
-    padding-bottom: 1.5rem;
-    margin-bottom: 2.5rem;
-  }
 
   .page-header h1 {
     font-family: var(--f-display);
@@ -86,9 +99,46 @@ import t from '../../i18n/frihet-og-velstand.json'
     line-height: 1.7;
   }
 
-  /* ─── Data-footer ────────────────────────────────────────────────────────── */
+  .oversikt-link {
+    border-bottom: 1px solid var(--rule);
+    margin-top: 2.5rem;
+    padding-bottom: 2rem;
+    margin-bottom: 1.5rem;
+  }
 
-  .data-footer {
+  .oversikt-link__heading {
+    font-family: var(--f-display);
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-weight: 500;
+    color: var(--ink);
+    margin: 0 0 0.75rem;
+  }
+
+  .oversikt-link__desc {
+    font-size: 1rem;
+    color: var(--ink-soft);
+    max-width: 68ch;
+    line-height: 1.7;
+    margin: 0 0 1.25rem;
+  }
+
+  .oversikt-link__btn {
+    display: inline-block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--ivory, #faf8f4);
+    background: var(--navy, #1a2744);
+    padding: 0.6rem 1.25rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+
+  .oversikt-link__btn:hover {
+    opacity: 0.85;
+  }
+
+  /* ─── Data-footer ────────────────────────────────────────────────────────── */
     border-top: 1px solid var(--rule-light);
     padding-top: 1.5rem;
     margin-top: 1rem;

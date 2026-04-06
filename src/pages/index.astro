@@ -80,6 +80,11 @@ const jsonLd = {
     },
     {
       '@type': 'SiteNavigationElement',
+      name: 'Frihet og velstand',
+      url: `${SITE.url}/frihet-og-velstand/`,
+    },
+    {
+      '@type': 'SiteNavigationElement',
       name: 'Om Individet',
       url: `${SITE.url}/om/`,
     },
@@ -277,6 +282,41 @@ const jsonLd = {
           </ul>
         )
       }
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <!-- ─── FRIHET OG VELSTAND ──────────────────────────────────────── -->
+  <section class="section section--alt">
+    <div class="container">
+      <div class="manifest-block">
+        <div class="manifest-block__text">
+          <div class="section-label">Data og visualisering</div>
+          <h2 class="section-title">
+            Frihet og velstand — 180 land over 25 år
+          </h2>
+          <p class="section-body">
+            Animert scatter-visualisering av sammenhengen mellom graden av
+            individuell frihet og materielle levevilkår. Velg fritt mellom
+            frihetsmål og velferdsindikatorer, og se utviklingen fra 1999 til
+            2024.
+          </p>
+          <div class="hero__ctas">
+            <a href="/frihet-og-velstand/" class="btn btn--ghost-dark"
+              >Utforsk grafen</a
+            >
+            <a href="/frihet-og-velstand/oversikt/" class="btn btn--ghost-dark"
+              >Se alle sammenhenger</a
+            >
+          </div>
+        </div>
+        <div>
+          <blockquote class="manifest-block__pull">
+            Frihet er ikke bare riktig — den virker.
+          </blockquote>
+        </div>
+      </div>
     </div>
   </section>
 
