@@ -1,30 +1,47 @@
 ---
 import Layout from '../../layouts/Layout.astro'
 import AnimertScatter from '../../components/AnimertScatter.astro'
-
-const title = 'Frihet og velstand'
-const description =
-  'Animert visualisering av sammenhengen mellom økonomisk frihet og velstand på tvers av land, 1995–2026.'
+import LanguageSwitcher from '../../components/LanguageSwitcher.astro'
+import t from '../../i18n/frihet-og-velstand.json'
 ---
 
-<Layout title={title} description={description}>
+<Layout title={t.no.title} description={t.no.description}>
+  <Fragment slot="head">
+    <!--
+      Early language detection: runs synchronously in <head> so the correct
+      data-lang is set on <html> before any content renders, avoiding flash.
+    -->
+    <script is:inline>
+      ;(function () {
+        var saved = localStorage.getItem('i18n-lang')
+        var nav = (navigator.language || '').split('-')[0]
+        var lang =
+          saved === 'no' || saved === 'en'
+            ? saved
+            : nav === 'no' || nav === 'nb' || nav === 'nn'
+              ? 'no'
+              : 'en'
+        document.documentElement.setAttribute('data-i18n', lang)
+        document.documentElement.lang = lang === 'no' ? 'nb' : 'en'
+      })()
+    </script>
+  </Fragment>
+
   <div class="page-wrap">
+    <LanguageSwitcher />
+
     <header class="page-header">
-      <h1>Frihet og velstand</h1>
+      <h1>
+        <span data-lang="no">{t.no.heading}</span>
+        <span data-lang="en">{t.en.heading}</span>
+      </h1>
       <p class="lead">
-        Forholdet mellom menneskelig frihet og materiell velstand i 180 land
-        over 25 år. Denne grafen viser forholdet mellom i hvilken grad en stat
-        ivaretar individets suverenitet, og hvor gode levevilkår borgerne i
-        landet har. Individuell frihet er ikke bare en teoretisk størrelse, det
-        bidrar ettertrykkelig positivt på menneskers levevilkår og
-        livstilfredshet.
+        <span data-lang="no">{t.no.lead1}</span>
+        <span data-lang="en">{t.en.lead1}</span>
       </p>
       <p class="lead">
-        Du kan velge forskjellige mål på levevilkår og tilfredshet for Y-aksen,
-        og forskjellige måter å måle frihet på i X-aksen. Trykk på
-        avspillings&shy;knappen for å se utviklingen fra 1999 til 2024. Data:
-        Cato/Fraser, Heritage Foundation, Verdensbanken og World Happiness
-        Report (Gallup).
+        <span data-lang="no" set:html={t.no.lead2} />
+        <span data-lang="en">{t.en.lead2}</span>
       </p>
     </header>
 
@@ -33,13 +50,8 @@ const description =
 
     <footer class="data-footer">
       <p>
-        <strong>Kilder:</strong> Heritage Foundation,
-        <em>Index of Economic Freedom</em> (1995–2026) &mdash; Verdensbanken,
-        <em>NY.GDP.PCAP.PP.CD</em> (BNP per capita, PPP, løpende),
-        <em>NY.GDP.PCAP.PP.KD</em> (BNP per capita, PPP, faste 2021-USD),
-        <em>SP.DYN.LE00.IN</em> (forventet levealder),
-        <em>SH.DYN.MORT</em> (barnedødelighet). Frihetsskår er Heritage Overall Score
-        (0–100).
+        <span data-lang="no" set:html={t.no.sources} />
+        <span data-lang="en" set:html={t.en.sources} />
       </p>
     </footer>
   </div>

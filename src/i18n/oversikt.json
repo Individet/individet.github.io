@@ -1,0 +1,358 @@
+{
+  "page": {
+    "no": {
+      "heading": "Alle sammenhenger",
+      "lead1": "Denne siden viser de fem sterkeste frihetsprediktorene (X-akse) for hvert av fire mål på levevilkår (Y-akse) — 20 grafer totalt. Utvalget er ikke redaksjonelt, men statistisk: for hver Y-akse er det kjørt Pearson-korrelasjon mot samtlige 19 frihetsdimensjoner, og de fem med høyest |r| vises. Korrelasjonene er beregnet på alle landspar med gyldige data, slått sammen over hele perioden.",
+      "lead2": "Korrelasjoner beviser ikke årsakssammenheng, men styrken og konsistensen på tvers av uavhengige datasett, metodikker og tiår er vanskelig å avfeie. Tallene er hentet fra Heritage Foundation, Cato/Fraser Human Freedom Index, Verdensbankens nasjonalregnskapsdata og World Happiness Report (Gallup)."
+    },
+    "en": {
+      "heading": "All Correlations",
+      "lead1": "This page shows the five strongest freedom predictors (X-axis) for each of four measures of living conditions (Y-axis) — 20 charts in total. The selection is not editorial but statistical: for each Y-axis, Pearson correlation has been run against all 19 freedom dimensions, and the five with the highest |r| are shown. Correlations are calculated on all country pairs with valid data, pooled across the entire period.",
+      "lead2": "Correlations do not prove causation, but the strength and consistency across independent datasets, methodologies, and decades is difficult to dismiss. The figures are drawn from Heritage Foundation, Cato/Fraser Human Freedom Index, World Bank national accounts data, and the World Happiness Report (Gallup)."
+    }
+  },
+  "sections": [
+    {
+      "id": "whr",
+      "no": {
+        "heading": "Livstilfredshet",
+        "intro": "World Happiness Report (Gallup) ber folk i 150+ land om å rangere livet sitt på en 0–10-skala. Det er subjektivt og kulturelt betinget, men det er også det nærmeste vi kommer et direkte mål på om folk opplever livet som godt. Data starter i 2010; gjennomsnittet er økt fra 5,4 til 5,7 i perioden."
+      },
+      "en": {
+        "heading": "Life Satisfaction",
+        "intro": "The World Happiness Report (Gallup) asks people in 150+ countries to rate their lives on a 0–10 scale. It is subjective and culturally conditioned, but it is also the closest we get to a direct measure of whether people experience life as good. Data starts in 2010; the average has increased from 5.4 to 5.7 in the period."
+      },
+      "charts": [
+        {
+          "xKey": "hs_gov_integrity",
+          "yKey": "whr_happiness",
+          "no": {
+            "title": "Regjeringens integritet × Livstilfredshet",
+            "r": "r = 0,68",
+            "desc": "Regjeringens integritet er den <em>sterkeste enkeltprediktoren for livstilfredshet</em> i hele dette datasettet (r = 0,681) — det samme målet som er sterkest for BNP. Folk i land med lav korrupsjon og transparent forvaltning rapporterer langt høyere livstilfredshet enn de i land der slike garantier mangler. Det er slående at et så «institusjonelt» mål slår mer nærliggende variabler som inntekt eller sivile friheter i å predikere subjektiv lykke. Forklaringen kan ligge i psykologisk trygghet: når folk stoler på at staten ikke underslår eller favoriserer insiders, reduseres angst og usikkerhet — noe forskning på psykologisk velvære konsekvent peker ut som avgjørende."
+          },
+          "en": {
+            "title": "Government Integrity × Life Satisfaction",
+            "r": "r = 0.68",
+            "desc": "Government integrity is the <em>single strongest predictor of life satisfaction</em> in this entire dataset (r = 0.681) — and the same measure that is strongest for GDP. People in countries with low corruption and transparent governance report far higher life satisfaction than those in countries where such guarantees are absent. It is striking that such an \"institutional\" measure beats more proximate variables like income or civil liberties in predicting subjective happiness. The explanation may lie in psychological security: when people trust that the state does not embezzle or favor insiders, anxiety and uncertainty are reduced — something research on psychological wellbeing consistently identifies as decisive."
+          }
+        },
+        {
+          "xKey": "ef_hfi",
+          "yKey": "whr_happiness",
+          "no": {
+            "title": "Économisk frihet (Fraser/HFI) × Livstilfredshet",
+            "r": "r = 0,65",
+            "desc": "Frasers økonomiske frihetsindeks viser en sterk og tiltagende korrelasjon med livstilfredshet (trenden er +0,10 over perioden). Land i Øst-Europa og Sørøst-Asia som har liberalisert etter 2010, har hatt en simultant sterk økning i rapportert livstilfredshet. Korrelasjonen er robust og endres ikke vesentlig om man kontrollerer for regioner."
+          },
+          "en": {
+            "title": "Economic Freedom (Fraser/HFI) × Life Satisfaction",
+            "r": "r = 0.65",
+            "desc": "Fraser's economic freedom index shows a strong and increasing correlation with life satisfaction (the trend is +0.10 over the period). Countries in Eastern Europe and Southeast Asia that have liberalized after 2010 have had a simultaneously strong increase in reported life satisfaction. The correlation is robust and does not change substantially when controlling for regions."
+          }
+        },
+        {
+          "xKey": "pf_rol",
+          "yKey": "whr_happiness",
+          "no": {
+            "title": "Rettsstaten (HFI) × Livstilfredshet",
+            "r": "r = 0,68",
+            "desc": "HFIs rettsstatsmål er den nest sterkeste enkeltprediktoren for livstilfredshet (r = 0,676), marginalt bak regjeringens integritet. Det er det samme rettsstatsmålet som scoret tredjeplass for BNP — men for livstilfredshet er det enda sterkere relativt. Psykologisk trygghet er sannsynligvis mekanismen: i land der lover er forutsigbare og like for alle, reduseres den diffuse angsten som oppstår når «systemet» oppleves som vilkårlig. Rettsstatens effekt på lykke er direkte, ikke bare indirekte via inntekt."
+          },
+          "en": {
+            "title": "Rule of Law (HFI) × Life Satisfaction",
+            "r": "r = 0.68",
+            "desc": "HFI's rule-of-law measure is the second strongest single predictor of life satisfaction (r = 0.676), marginally behind government integrity. It is the same rule-of-law measure that ranked third for GDP — but for life satisfaction it is even stronger relatively. Psychological security is probably the mechanism: in countries where laws are predictable and equal for all, the diffuse anxiety that arises when \"the system\" feels arbitrary is reduced. The rule of law's effect on happiness is direct, not just indirect via income."
+          }
+        },
+        {
+          "xKey": "hs_prop_rights",
+          "yKey": "whr_happiness",
+          "no": {
+            "title": "Eiendomsrettigheter × Livstilfredshet",
+            "r": "r = 0,67",
+            "desc": "Eiendomsrettigheter er den tredje sterkeste prediktoren for livstilfredshet (r = 0,668). Det finnes en dyp forbindelse mellom trygg eiendomsrett og subjektiv lykke som går utover ren materiell velstand: folk som vet at hjemmet, bedriften og sparingene er juridisk beskyttet, rapporterer konsekvent høyere livskvalitet. Eiendomsrett er ikke bare en économisk institusjon — det er en eksistensiell trygghet. Animasjonen viser svært tydelig at de skandinaviske landene og New Zealand, som kombinerer sterk eiendomsrett med sosial tillit, topper lykkerangeringene."
+          },
+          "en": {
+            "title": "Property Rights × Life Satisfaction",
+            "r": "r = 0.67",
+            "desc": "Property rights are the third strongest predictor of life satisfaction (r = 0.668). There is a deep connection between secure property rights and subjective happiness that goes beyond purely material wellbeing: people who know that their home, business, and savings are legally protected consistently report higher quality of life. Property rights are not just an economic institution — they are an existential security. The animation shows very clearly that the Scandinavian countries and New Zealand, which combine strong property rights with social trust, top the happiness rankings."
+          }
+        },
+        {
+          "xKey": "hs_business",
+          "yKey": "whr_happiness",
+          "no": {
+            "title": "Næringslivsfrihet × Livstilfredshet",
+            "r": "r = 0,65",
+            "desc": "Heritage-indeksens mål på næringslivsfrihet runder av topp-5 for livstilfredshet (r = 0,651). Det er en sterk sammenheng, og den understøtter ideen om at économisk deltakelse — muligheten til å starte bedrift, bytte jobb, konkurrere på like vilkår — er fundamentalt for opplevd livskvalitet. Folk i land med høy næringslivsfrihet rapporterer høyere lykke selv etter å ha kontrollert for BNP. Frihet til å skape og handle er ikke bare et middel til velstand — det er i seg selv en kilde til mening og tilfredshet."
+          },
+          "en": {
+            "title": "Business Freedom × Life Satisfaction",
+            "r": "r = 0.65",
+            "desc": "The Heritage Index's measure of business freedom rounds out the top 5 for life satisfaction (r = 0.651). It is a strong correlation, and it supports the idea that economic participation — the ability to start a business, change jobs, compete on equal terms — is fundamental to perceived quality of life. People in countries with high business freedom report higher happiness even after controlling for GDP. Freedom to create and trade is not just a means to prosperity — it is in itself a source of meaning and satisfaction."
+          }
+        }
+      ]
+    },
+    {
+      "id": "gdp",
+      "no": {
+        "heading": "BNP per capita (inflasjonsjustert)",
+        "intro": "Materiell velstand, målt i inflasjonsjustert BNP per innbygger (Verdensbankens PPP, faste 2021-USD), er den klassiske «utfallsvariabelen» når frihet diskuteres. Under ser du fem ulike frihetsmål plottet mot BNP."
+      },
+      "en": {
+        "heading": "GDP per Capita (inflation-adjusted)",
+        "intro": "Material prosperity, measured as inflation-adjusted GDP per capita (World Bank PPP, constant 2021 USD), is the classic \"outcome variable\" when freedom is discussed. Below you see five different freedom measures plotted against GDP."
+      },
+      "charts": [
+        {
+          "xKey": "hs_gov_integrity",
+          "yKey": "gdp_real",
+          "no": {
+            "title": "Regjeringens integritet × BNP per capita",
+            "r": "r = 0,75",
+            "desc": "Av alle 19 frihetsdimensjoner i dette datasettet er Heritage-indeksens mål på <em>regjeringens integritet</em> — fravær av korrupsjon, transparens i forvaltning og uavhengige kontrollorgan — den aller sterkeste enkeltprediktoren for BNP per innbygger (r = 0,752). Det er sterkere enn Heritage-samindeksen, sterkere enn rettsstatsmål og sterkere enn Fraser-indeksens økonomiske frihetsindeks. Funnet understøtter en klar teori: korrupsjon er et skjult skattesystem som omfordeler rikdom fra produktiv aktivitet til politiske eliter, og ødelegger de investeringsvilkårene som driver langsiktig vekst. Land som Singapore, New Zealand og Danmark kombinerer svært høy integritetsrangering med toppøkonomier; bunnen av skalaen domineres av stater der byråkratisk korrupsjon er endemisk."
+          },
+          "en": {
+            "title": "Government Integrity × GDP per Capita",
+            "r": "r = 0.75",
+            "desc": "Of all 19 freedom dimensions in this dataset, the Heritage Index's measure of <em>government integrity</em> — absence of corruption, transparency in administration, and independent oversight bodies — is the single strongest predictor of GDP per capita (r = 0.752). This is stronger than the Heritage composite index, stronger than rule-of-law measures, and stronger than the Fraser Index's economic freedom index. The finding supports a clear theory: corruption is a hidden tax system that redistributes wealth from productive activity to political elites, and destroys the investment conditions that drive long-term growth. Countries like Singapore, New Zealand, and Denmark combine very high integrity rankings with top-tier economies; the bottom of the scale is dominated by states where bureaucratic corruption is endemic."
+          }
+        },
+        {
+          "xKey": "hs",
+          "yKey": "gdp_real",
+          "no": {
+            "title": "Heritage économisk frihet × BNP per capita",
+            "r": "r = 0,65",
+            "desc": "Heritage-indeksens samlede mål på économisk frihet viser en sterk og statistisk sett <em>tiltagende</em> korrelasjon med BNP &mdash; fra rundt 0,67 i 1995 til godt over 0,73 i de seneste tilgjengelige dataårene. Det er verdt å merke seg at sammenhengen altså ikke flates ut over tid, slik kritikere av globaliseringens fordelingsvirkninger gjerne antyder. Tvert imot ser det ut til at land som gradvis åpner og liberaliserer, henter inn velstandsgapet til de allerede frie."
+          },
+          "en": {
+            "title": "Heritage Economic Freedom × GDP per Capita",
+            "r": "r = 0.65",
+            "desc": "The Heritage Index's composite measure of economic freedom shows a strong and statistically <em>increasing</em> correlation with GDP — from around 0.67 in 1995 to well over 0.73 in the most recent available data years. It is worth noting that the relationship does not flatten over time, as critics of globalization's distributional effects often suggest. On the contrary, it appears that countries that gradually open and liberalize are catching up on the prosperity gap with already free countries."
+          }
+        },
+        {
+          "xKey": "hs_prop_rights",
+          "yKey": "gdp_real",
+          "no": {
+            "title": "Eiendomsrettigheter × BNP per capita",
+            "r": "r = 0,69",
+            "desc": "Heritage-indeksens mål på eiendomsrettigheter er den nest sterkeste enkeltprediktoren for BNP per innbygger (r = 0,688). Trygg eiendomsrett er den institusjonelle forutsetningen for all langsiktig investering: uten den faller tidshorisonten for produksjon og kapitalakkumulasjon dramatisk. Mønsteret er stabilt over 30 år og på tvers av alle regioner — fra Øst-Asias tigerøkonomier der sterk eiendomsrett var en bevisst politikk, til de nordiske landene der privat eiendomsrett er kombinert med høy statlig kapasitet."
+          },
+          "en": {
+            "title": "Property Rights × GDP per Capita",
+            "r": "r = 0.69",
+            "desc": "The Heritage Index's measure of property rights is the second strongest single predictor of GDP per capita (r = 0.688). Secure property rights are the institutional prerequisite for all long-term investment: without them, the time horizon for production and capital accumulation falls dramatically. The pattern is stable over 30 years and across all regions — from East Asia's tiger economies, where strong property rights were a deliberate policy, to the Nordic countries, where private property rights are combined with high state capacity."
+          }
+        },
+        {
+          "xKey": "pf_rol",
+          "yKey": "gdp_real",
+          "no": {
+            "title": "Rettsstaten (HFI) × BNP per capita",
+            "r": "r = 0,68",
+            "desc": "Cato/Frasers HFI-indeks måler rettsstaten uavhengig av Heritage, og landet på tredjeplass for BNP (r = 0,683). At to helt uavhengige metodiske rammeverk fra ulike institusjoner begge peker ut rettsstatlig kvalitet som en av de sterkeste prediktorene for velstand, er et metodisk robust funn. Forutsigbare domstolsavgjørelser og kontraktshåndhevelse er grunnlaget som gjør det mulig å planlegge investeringer med lang horisont — en forutsetning for akkumulasjon av realkapital."
+          },
+          "en": {
+            "title": "Rule of Law (HFI) × GDP per Capita",
+            "r": "r = 0.68",
+            "desc": "Cato/Fraser's HFI index measures the rule of law independently of Heritage, and ranked third for GDP (r = 0.683). That two entirely independent methodological frameworks from different institutions both identify rule-of-law quality as one of the strongest predictors of prosperity is a methodologically robust finding. Predictable court rulings and contract enforcement are the foundation that makes it possible to plan investments with a long horizon — a prerequisite for the accumulation of real capital."
+          }
+        },
+        {
+          "xKey": "hs_judicial",
+          "yKey": "gdp_real",
+          "no": {
+            "title": "Rettsstatens effektivitet (Heritage) × BNP per capita",
+            "r": "r = 0,64",
+            "desc": "Det er bemerkelsesverdig at tre av de fem sterkeste prediktorene for BNP per innbygger er juridisk-institusjonelle dimensjoner: regjeringens integritet (#1), eiendomsrettigheter (#2) og rettsstaten (#3 og #5). Heritage-indeksens separate mål på rettseffektivitet runder av topp-5 med r = 0,642. Samlet tegner disse fem grafene et entydig bilde: det institusjonelle rammeverket — ikke skattenivå, ikke valutapolitikk — er den dypeste forklaringsvariabelen for langsiktig velstand."
+          },
+          "en": {
+            "title": "Judicial Effectiveness (Heritage) × GDP per Capita",
+            "r": "r = 0.64",
+            "desc": "It is remarkable that three of the five strongest predictors of GDP per capita are legal-institutional dimensions: government integrity (#1), property rights (#2), and the rule of law (#3 and #5). The Heritage Index's separate measure of judicial effectiveness rounds out the top 5 with r = 0.642. Together these five charts paint an unambiguous picture: the institutional framework — not tax levels, not monetary policy — is the deepest explanatory variable for long-term prosperity."
+          }
+        }
+      ]
+    },
+    {
+      "id": "le",
+      "no": {
+        "heading": "Forventet levealder",
+        "intro": "Forventet levealder ved fødsel (Verdensbanken) er muligens det mest direkte målet på om et samfunn faktisk fungerer for menneskene som lever i det. Gjennomsnittet har steget fra 65,9 år (1995) til 73,3 år (siste tilgjengelige data), men fremgangen er svært ujevnt fordelt."
+      },
+      "en": {
+        "heading": "Life Expectancy",
+        "intro": "Life expectancy at birth (World Bank) is perhaps the most direct measure of whether a society actually functions for the people living in it. The average has risen from 65.9 years (1995) to 73.3 years (latest available data), but progress is very unevenly distributed."
+      },
+      "charts": [
+        {
+          "xKey": "ef_hfi",
+          "yKey": "le",
+          "no": {
+            "title": "Économisk frihet (Fraser/HFI) × Levealder",
+            "r": "r = 0,67",
+            "desc": "Av alle 20 kombinasjoner er dette den <em>sterkeste enkeltsammenhengen for levealder</em>. Frasers økonomiske frihetsindeks er noe smalere enn Heritage-indeksen og fokuserer mer på stabilt penge- og finanssystem, markedsadgang og rettsstatlig grunnlag for kontrakter. Land som skårer høyt her har typisk åpne helsemarkeder, stabile valutaer som gjør import av legemidler forutsigbart, og juridisk beskyttede investeringer i sykehusinfrastruktur."
+          },
+          "en": {
+            "title": "Economic Freedom (Fraser/HFI) × Life Expectancy",
+            "r": "r = 0.67",
+            "desc": "Of all 20 combinations, this is the <em>strongest single relationship for life expectancy</em>. Fraser's economic freedom index is somewhat narrower than the Heritage index and focuses more on a stable monetary and financial system, market access, and a legal basis for contracts. Countries that score highly here typically have open health markets, stable currencies that make importing medicines predictable, and legally protected investments in hospital infrastructure."
+          }
+        },
+        {
+          "xKey": "pf_rol",
+          "yKey": "le",
+          "no": {
+            "title": "Rettsstaten × Levealder",
+            "r": "r = 0,63",
+            "desc": "Sterke rettssystemer predikerer høy levealder nesten like godt som økonomiske frihetsindekser. Årsaksmekanismen er trolig indirekte: stabile institusjoner kanaliserer kapital mer effektivt inn i helse, utdanning og sanitæranlegg. Korrupte stater med svak rettsstat har systematisk dårligere helseinfrastruktur &mdash; selv der oljeinntektene teknisk sett burde muliggjøre mer."
+          },
+          "en": {
+            "title": "Rule of Law × Life Expectancy",
+            "r": "r = 0.63",
+            "desc": "Strong legal systems predict high life expectancy almost as well as economic freedom indices. The causal mechanism is likely indirect: stable institutions channel capital more effectively into health, education, and sanitation. Corrupt states with weak rule of law systematically have worse health infrastructure &mdash; even where oil revenues should technically enable more."
+          }
+        },
+        {
+          "xKey": "hs",
+          "yKey": "le",
+          "no": {
+            "title": "Heritage économisk frihet × Levealder",
+            "r": "r = 0,61",
+            "desc": "Heritage-samindeksen viser en tydelig og <em>tiltagende</em> korrelasjon med levealder (trenden er +0,10 fra første til siste halvdel av perioden). Det er verdt å observere i animasjonen: land i Sub-Sahara-Afrika og Sørøst-Asia som har åpnet økonomierne sine siden 1995, har også opplevd den raskeste levetidsøkningen globalt."
+          },
+          "en": {
+            "title": "Heritage Economic Freedom × Life Expectancy",
+            "r": "r = 0.61",
+            "desc": "The Heritage composite index shows a clear and <em>increasing</em> correlation with life expectancy (the trend is +0.10 from the first to the last half of the period). It is worth observing in the animation: countries in Sub-Saharan Africa and Southeast Asia that have opened their economies since 1995 have also experienced the fastest life expectancy increases globally."
+          }
+        },
+        {
+          "xKey": "hs_gov_integrity",
+          "yKey": "le",
+          "no": {
+            "title": "Regjeringens integritet × Levealder",
+            "r": "r = 0,64",
+            "desc": "Regjeringens integritet er den nest sterkeste enkeltprediktoren for levealder (r = 0,638), og igjen er det det anti-korrupsjonsmålet som skiller seg ut. Mekanismen er sannsynligvis at korrupte stater systematisk underinvesterer i offentlig helse, sanitæranlegg og ernæringsprogrammer — ikke fordi ressursene mangler, men fordi de lekker ut gjennom skjulte rentseeking-strukturer. Animasjonen viser særleg tydelig fordelen i Afrika syd for Sahara, der integritetsgevinster på 1990- og 2000-tallet sammenfalt med rask bedring i barnedødelighet og levetid."
+          },
+          "en": {
+            "title": "Government Integrity × Life Expectancy",
+            "r": "r = 0.64",
+            "desc": "Government integrity is the second strongest single predictor of life expectancy (r = 0.638), and again it is the anti-corruption measure that stands out. The mechanism is probably that corrupt states systematically underinvest in public health, sanitation, and nutrition programs — not because resources are lacking, but because they leak through hidden rent-seeking structures. The animation is particularly clear about the advantage in Sub-Saharan Africa, where integrity gains in the 1990s and 2000s coincided with rapid improvements in child mortality and life expectancy."
+          }
+        },
+        {
+          "xKey": "hs_business",
+          "yKey": "le",
+          "no": {
+            "title": "Næringslivsfrihet × Levealder",
+            "r": "r = 0,61",
+            "desc": "Heritage-indeksens mål på næringslivsfrihet — hvor enkelt det er å starte, drive og avvikle bedrifter — er den fjerde sterkeste prediktoren for levealder (r = 0,610). Korrelasjonen er intuitiv: et fungerende næringsliv genererer skattebase og arbeidsplasser som finansierer helsesystemer, og konkurranse i helsemarkedet driver frem bedre tjenester. Det er verdt å merke seg at denne dimensjonen av frihet er mer direkte operasjonaliserbar enn rettsstatsmål — stater kan reformere selskapslovgivning raskere enn de kan bygge uavhengige domstoler."
+          },
+          "en": {
+            "title": "Business Freedom × Life Expectancy",
+            "r": "r = 0.61",
+            "desc": "The Heritage Index's measure of business freedom — how easy it is to start, run, and close businesses — is the fourth strongest predictor of life expectancy (r = 0.610). The correlation is intuitive: a functioning business environment generates tax bases and jobs that fund health systems, and competition in the health market drives better services. It is worth noting that this dimension of freedom is more directly actionable than rule-of-law measures — states can reform corporate law faster than they can build independent courts."
+          }
+        }
+      ]
+    },
+    {
+      "id": "cm",
+      "no": {
+        "heading": "Barnedødelighet",
+        "intro": "Barnedødelighet (under 5 år per 1 000 levendefødte) er det kanskje råeste målet på om et samfunns grunnleggende institusjoner leverer. Det globale gjennomsnittet er halvert siden 1995, fra 62 til 25 per 1 000, men spredningen mellom land er fortsatt dramatisk. Merk at en <em>negativ</em> korrelasjon er positiv: høyere frihet henger sammen med lavere barnedødelighet."
+      },
+      "en": {
+        "heading": "Child Mortality",
+        "intro": "Child mortality (under-5 deaths per 1,000 live births) is perhaps the rawest measure of whether a society's basic institutions deliver. The global average has halved since 1995, from 62 to 25 per 1,000, but the spread between countries remains dramatic. Note that a <em>negative</em> correlation is positive: higher freedom is associated with lower child mortality."
+      },
+      "charts": [
+        {
+          "xKey": "ef_hfi",
+          "yKey": "cm",
+          "no": {
+            "title": "Économisk frihet (Fraser/HFI) × Barnedødelighet",
+            "r": "r = −0,59",
+            "desc": "Frasers mål på économisk frihet har den sterkeste negative korrelasjonen med barnedødelighet av alle X-målene i denne analysen. Åpne markeder letter import av vaksiner og næringsmidler, stabile valutaer holder importprisene forutsigbare, og velfungerende kontraktsrett gjør det mulig å bygge og drive sykehus med privat kapital. r = −0,59 tilsvarer at économisk frihet alene «forklarer» omtrent 35 % av variansen i barnedødelighet på tvers av land."
+          },
+          "en": {
+            "title": "Economic Freedom (Fraser/HFI) × Child Mortality",
+            "r": "r = −0.59",
+            "desc": "Fraser's measure of economic freedom has the strongest negative correlation with child mortality of all X-measures in this analysis. Open markets facilitate the import of vaccines and food staples, stable currencies keep import prices predictable, and functioning contract law makes it possible to build and operate hospitals with private capital. r = −0.59 means that economic freedom alone \"explains\" about 35% of the variance in child mortality across countries."
+          }
+        },
+        {
+          "xKey": "pf_rol",
+          "yKey": "cm",
+          "no": {
+            "title": "Rettsstaten × Barnedødelighet",
+            "r": "r = −0,53",
+            "desc": "Svak rettsstat er forbundet med høy barnedødelighet. Mekanismen er trolig at uten pålitelige institusjoner kan verken stater eller private aktører effektivt planlegge og gjennomføre helseinvesteringer med langsiktig horisont. Animasjonen viser tydelig at land i Sub-Sahara som har styrket rettsstatlige institusjoner, simultant har sett fallende barnedødelighetstall."
+          },
+          "en": {
+            "title": "Rule of Law × Child Mortality",
+            "r": "r = −0.53",
+            "desc": "Weak rule of law is associated with high child mortality. The mechanism is probably that without reliable institutions, neither states nor private actors can effectively plan and implement long-horizon health investments. The animation clearly shows that Sub-Saharan countries that have strengthened rule-of-law institutions have simultaneously seen falling child mortality rates."
+          }
+        },
+        {
+          "xKey": "hs_business",
+          "yKey": "cm",
+          "no": {
+            "title": "Næringslivsfrihet × Barnedødelighet",
+            "r": "r = −0,53",
+            "desc": "Næringslivsfrihet er den nest sterkeste enkeltprediktoren for lav barnedødelighet (r = −0,534). At en dimensjon som primært handler om bedriftsetablering og regulatorisk byrde ender høyt på denne listen, peker på en indirekte mekanisme: land med lavt regulatorisk press tiltrekker seg utenlandske investeringer i helsesektoren, utvikler en konkurranseutsatt legemiddelindustri og genererer den private velstandsveksten som gjør befolkningen i stand til å etterspørre helsetjenester. Animasjonen viser den kraftige forbedringen i Sørøst-Asia fra 1995 til i dag i takt med liberalisering."
+          },
+          "en": {
+            "title": "Business Freedom × Child Mortality",
+            "r": "r = −0.53",
+            "desc": "Business freedom is the second strongest single predictor of low child mortality (r = −0.534). That a dimension primarily about business formation and regulatory burden ranks highly on this list points to an indirect mechanism: countries with low regulatory pressure attract foreign investment in the health sector, develop a competitive pharmaceutical industry, and generate the private wealth growth that enables the population to demand health services. The animation shows the dramatic improvement in Southeast Asia from 1995 to today in step with liberalization."
+          }
+        },
+        {
+          "xKey": "hs_gov_integrity",
+          "yKey": "cm",
+          "no": {
+            "title": "Regjeringens integritet × Barnedødelighet",
+            "r": "r = −0,53",
+            "desc": "Integritetsmålet dukker opp som fjerde sterkeste prediktor også for barnedødelighet (r = −0,530). Det er nå tredje gang det samme målet rangerer høyt på tvers av helt ulike levevilkårsmål: BNP, levealder og barnedødelighet. Diagnosen er konsistent: korrupsjon dreper barn — ikke alltid direkte, men systematisk, ved å omdirigere ressurser bort fra vaksinasjonsprogrammer, rent vann og mødrehelse. Hvert prosentpoeng nedgang i korrupsjon sammenfaller statistisk med merkbar nedgang i spedbarnsdødelighet."
+          },
+          "en": {
+            "title": "Government Integrity × Child Mortality",
+            "r": "r = −0.53",
+            "desc": "The integrity measure appears as the fourth strongest predictor for child mortality as well (r = −0.530). This is now the third time the same measure has ranked highly across entirely different living condition measures: GDP, life expectancy, and child mortality. The diagnosis is consistent: corruption kills children — not always directly, but systematically, by redirecting resources away from vaccination programs, clean water, and maternal health. Every percentage point decrease in corruption statistically coincides with a noticeable decrease in infant mortality."
+          }
+        },
+        {
+          "xKey": "hs_trade",
+          "yKey": "cm",
+          "no": {
+            "title": "Handelsfrihet × Barnedødelighet",
+            "r": "r = −0,52",
+            "desc": "Handelsfrihet runder av topp-5 for barnedødelighet (r = −0,515). Det er en direkte og meningsfull sammenheng: åpne handelsregimer gir tilgang til livsviktige importvarer — legemidler, medisinsk utstyr, berikede matvarer — til lavere priser. Land med høye toll- og importbarrierer betaler en menneskelig pris som sjelden synliggjøres i handelspolitiske debatter. At alle fem prediktorene for lav barnedødelighet er institusjonelle og økonomiske fremfor politisk-sivile, er et mønster som gjentar seg gjennom hele denne analysen."
+          },
+          "en": {
+            "title": "Trade Freedom × Child Mortality",
+            "r": "r = −0.52",
+            "desc": "Trade freedom rounds out the top 5 for child mortality (r = −0.515). It is a direct and meaningful relationship: open trade regimes provide access to vital imports — medicines, medical equipment, fortified foods — at lower prices. Countries with high tariff and import barriers pay a human price that is rarely made visible in trade policy debates. That all five predictors of low child mortality are institutional and economic rather than political-civil is a pattern that repeats throughout this analysis."
+          }
+        }
+      ]
+    }
+  ],
+  "footer": {
+    "no": {
+      "method": "<strong>Metode:</strong> Pearson-korrelasjon beregnet på alle landspar med gyldige data for begge variabler, slått sammen over alle tilgjengelige år. Trendtall er beregnet som differanse i gjennomsnittlig r mellom første og siste halvdel av tidsserien. Korrelasjoner er ikke kontrollert for BNP eller region.",
+      "sources": "<strong>Kilder:</strong> Heritage Foundation, <em>Index of Economic Freedom</em> (1995–2026) &mdash; Cato/Fraser, <em>Human Freedom Index</em> (1999–2024) &mdash; Verdensbanken, <em>NY.GDP.PCAP.PP.KD</em> (BNP per capita, PPP, faste 2021-USD), <em>SP.DYN.LE00.IN</em> (levealder), <em>SH.DYN.MORT</em> (barnedødelighet) &mdash; Gallup/<em>World Happiness Report</em> (2010–2026)."
+    },
+    "en": {
+      "method": "<strong>Method:</strong> Pearson correlation calculated on all country pairs with valid data for both variables, pooled across all available years. Trend figures are calculated as the difference in average r between the first and last half of the time series. Correlations are not controlled for GDP or region.",
+      "sources": "<strong>Sources:</strong> Heritage Foundation, <em>Index of Economic Freedom</em> (1995–2026) &mdash; Cato/Fraser, <em>Human Freedom Index</em> (1999–2024) &mdash; World Bank, <em>NY.GDP.PCAP.PP.KD</em> (GDP per capita, PPP, constant 2021 USD), <em>SP.DYN.LE00.IN</em> (life expectancy), <em>SH.DYN.MORT</em> (child mortality) &mdash; Gallup/<em>World Happiness Report</em> (2010–2026)."
+    }
+  }
+}
