@@ -1,0 +1,199 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import AnimertScatter from '../../components/AnimertScatter.astro'
+import LanguageSwitcher from '../../components/LanguageSwitcher.astro'
+import t from '../../i18n/oversikt.json'
+---
+
+<Layout title={t.page.no.heading} description={t.page.no.heading}>
+  <Fragment slot="head">
+    <script is:inline>
+      ;(function () {
+        var saved = localStorage.getItem('i18n-lang')
+        var nav = (navigator.language || '').split('-')[0]
+        var lang =
+          saved === 'no' || saved === 'en'
+            ? saved
+            : nav === 'no' || nav === 'nb' || nav === 'nn'
+              ? 'no'
+              : 'en'
+        document.documentElement.setAttribute('data-i18n', lang)
+        document.documentElement.lang = lang === 'no' ? 'nb' : 'en'
+      })()
+    </script>
+  </Fragment>
+
+  <div class="page-wrap">
+    <LanguageSwitcher />
+
+    <header class="page-header">
+      <h1>
+        <span data-lang="no">{t.page.no.heading}</span>
+        <span data-lang="en">{t.page.en.heading}</span>
+      </h1>
+      <p class="lead">
+        <span data-lang="no">{t.page.no.lead1}</span>
+        <span data-lang="en">{t.page.en.lead1}</span>
+      </p>
+      <p class="lead">
+        <span data-lang="no">{t.page.no.lead2}</span>
+        <span data-lang="en">{t.page.en.lead2}</span>
+      </p>
+    </header>
+
+    {
+      t.sections.map((section) => (
+        <section class="theme-section">
+          <h2 class="theme-heading">
+            <span data-lang="no">{section.no.heading}</span>
+            <span data-lang="en">{section.en.heading}</span>
+          </h2>
+          <p class="theme-intro">
+            <span data-lang="no" set:html={section.no.intro} />
+            <span data-lang="en" set:html={section.en.intro} />
+          </p>
+
+          {section.charts.map((chart) => (
+            <div class="chart-block">
+              <h3>
+                <span data-lang="no">
+                  {chart.no.title} &mdash;{' '}
+                  <span class="r-badge">{chart.no.r}</span>
+                </span>
+                <span data-lang="en">
+                  {chart.en.title} &mdash;{' '}
+                  <span class="r-badge">{chart.en.r}</span>
+                </span>
+              </h3>
+              <p class="chart-desc">
+                <span data-lang="no" set:html={chart.no.desc} />
+                <span data-lang="en" set:html={chart.en.desc} />
+              </p>
+              <AnimertScatter
+                defaultXKey={chart.xKey}
+                defaultYKey={chart.yKey}
+                allowAxisChange={false}
+              />
+            </div>
+          ))}
+        </section>
+      ))
+    }
+
+    <footer class="data-footer">
+      <p>
+        <span data-lang="no" set:html={t.footer.no.method} />
+        <span data-lang="en" set:html={t.footer.en.method} />
+      </p>
+      <p>
+        <span data-lang="no" set:html={t.footer.no.sources} />
+        <span data-lang="en" set:html={t.footer.en.sources} />
+      </p>
+    </footer>
+  </div>
+</Layout>
+
+<style>
+  .page-wrap {
+    max-width: var(--content-width, 1120px);
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 5rem;
+  }
+
+  .page-header {
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .page-header h1 {
+    font-family: var(--f-display);
+    font-size: clamp(1.75rem, 4vw, 2.8rem);
+    font-weight: 500;
+    margin: 0 0 0.6rem;
+    color: var(--ink);
+  }
+
+  .lead {
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    max-width: 72ch;
+    margin: 16px 0;
+    line-height: 1.7;
+  }
+
+  /* ─── Temagrupper ─────────────────────────────────────────────────────── */
+
+  .theme-section {
+    margin-bottom: 4rem;
+    border-top: 2px solid var(--ink);
+    padding-top: 2rem;
+  }
+
+  .theme-heading {
+    font-family: var(--f-display);
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    font-weight: 500;
+    margin: 0 0 0.5rem;
+    color: var(--ink);
+  }
+
+  .theme-intro {
+    font-size: 1rem;
+    color: var(--ink-soft);
+    max-width: 72ch;
+    margin: 0 0 2.5rem;
+    line-height: 1.7;
+  }
+
+  /* ─── Enkeltgraf ──────────────────────────────────────────────────────── */
+
+  .chart-block {
+    margin-bottom: 3.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--rule-light);
+  }
+
+  .chart-block:last-child {
+    border-bottom: none;
+  }
+
+  .chart-block h3 {
+    font-family: var(--f-display);
+    font-size: clamp(1.05rem, 2.5vw, 1.4rem);
+    font-weight: 500;
+    margin: 0 0 0.4rem;
+    color: var(--ink);
+  }
+
+  .r-badge {
+    font-family: var(--f-mono);
+    font-size: 0.85em;
+    color: var(--ink-faint);
+    font-weight: 400;
+  }
+
+  .chart-desc {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    max-width: 72ch;
+    margin: 0 0 1.25rem;
+    line-height: 1.7;
+  }
+
+  /* ─── Data-footer ─────────────────────────────────────────────────────── */
+
+  .data-footer {
+    border-top: 1px solid var(--rule-light);
+    padding-top: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .data-footer p {
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    margin: 0 0 0.5rem;
+    line-height: 1.6;
+    max-width: 80ch;
+  }
+</style>

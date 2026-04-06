@@ -1,0 +1,18 @@
+{
+  "no": {
+    "title": "Frihet og velstand",
+    "description": "Animert visualisering av sammenhengen mellom økonomisk frihet og velstand på tvers av land, 1995–2026.",
+    "heading": "Frihet og velstand",
+    "lead1": "Forholdet mellom menneskelig frihet og materiell velstand i 180 land over 25 år. Denne grafen viser forholdet mellom i hvilken grad en stat ivaretar individets suverenitet, og hvor gode levevilkår borgerne i landet har. Individuell frihet er ikke bare en teoretisk størrelse, det bidrar ettertrykkelig positivt på menneskers levevilkår og livstilfredshet.",
+    "lead2": "Du kan velge forskjellige mål på levevilkår og tilfredshet for Y-aksen, og forskjellige måter å måle frihet på i X-aksen. Trykk på avspillings\u00adknappen for å se utviklingen fra 1999 til 2024. Data: Cato/Fraser, Heritage Foundation, Verdensbanken og World Happiness Report (Gallup).",
+    "sources": "<strong>Kilder:</strong> Heritage Foundation, <em>Index of Economic Freedom</em> (1995–2026) &mdash; Verdensbanken, <em>NY.GDP.PCAP.PP.CD</em> (BNP per capita, PPP, løpende), <em>NY.GDP.PCAP.PP.KD</em> (BNP per capita, PPP, faste 2021-USD), <em>SP.DYN.LE00.IN</em> (forventet levealder), <em>SH.DYN.MORT</em> (barnedødelighet). Frihetsskår er Heritage Overall Score (0–100)."
+  },
+  "en": {
+    "title": "Freedom and Prosperity",
+    "description": "Animated visualisation of the relationship between economic freedom and prosperity across countries, 1995–2026.",
+    "heading": "Freedom and Prosperity",
+    "lead1": "The relationship between human freedom and material wellbeing in 180 countries over 25 years. This chart shows the relationship between the degree to which a state upholds individual sovereignty, and the living conditions of its citizens. Individual freedom is not merely a theoretical concept — it contributes substantially and positively to people's living conditions and life satisfaction.",
+    "lead2": "You can select different measures of living conditions and satisfaction for the Y-axis, and different ways of measuring freedom for the X-axis. Press the play button to see the development from 1999 to 2024. Data: Cato/Fraser, Heritage Foundation, World Bank and World Happiness Report (Gallup).",
+    "sources": "<strong>Sources:</strong> Heritage Foundation, <em>Index of Economic Freedom</em> (1995–2026) &mdash; World Bank, <em>NY.GDP.PCAP.PP.CD</em> (GDP per capita, PPP, current), <em>NY.GDP.PCAP.PP.KD</em> (GDP per capita, PPP, constant 2021 USD), <em>SP.DYN.LE00.IN</em> (life expectancy), <em>SH.DYN.MORT</em> (child mortality). Freedom score is Heritage Overall Score (0–100)."
+  }
+}

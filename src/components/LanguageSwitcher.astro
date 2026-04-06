@@ -1,0 +1,78 @@
+---
+// No props — reads/writes language via localStorage + html[data-i18n]
+---
+
+<div class="lang-switcher">
+  <select id="lang-select" aria-label="Velg språk / Choose language">
+    <option value="no">🇳🇴 Norsk</option>
+    <option value="en">🇬🇧 English</option>
+  </select>
+</div>
+
+<!--
+  This script is is:inline so it runs synchronously at parse time rather
+  than being deferred/bundled. It syncs the <select> value with the
+  data-lang attribute already set in <head> by the early-detection snippet,
+  and forwards any user change to both localStorage and the attribute.
+-->
+<script is:inline>
+  ;(function () {
+    var sel = document.getElementById('lang-select')
+    var lang = document.documentElement.getAttribute('data-i18n') || 'en'
+    if (sel) sel.value = lang
+    if (sel) {
+      sel.addEventListener('change', function (e) {
+        var newLang = e.target.value
+        localStorage.setItem('i18n-lang', newLang)
+        document.documentElement.setAttribute('data-i18n', newLang)
+        document.documentElement.lang = newLang === 'no' ? 'nb' : 'en'
+      })
+    }
+  })()
+</script>
+
+<!--
+  Global CSS: hide all data-lang wrappers by default, then show only the
+  ones matching the active language. `display: revert` restores the
+  element's natural (browser-default) display value so that spans inside
+  headings stay inline and block-level divs stay block.
+-->
+<style is:global>
+  /*
+   * Default: Norwegian visible, English hidden.
+   * The html[data-i18n] attribute (set by the head script) drives switching.
+   * Using a separate attribute avoids accidentally hiding html itself.
+   */
+  [data-lang='en'] {
+    display: none;
+  }
+
+  :root[data-i18n='en'] [data-lang='en'] {
+    display: revert;
+  }
+  :root[data-i18n='en'] [data-lang='no'] {
+    display: none;
+  }
+  :root[data-i18n='no'] [data-lang='no'] {
+    display: revert;
+  }
+</style>
+
+<style>
+  .lang-switcher {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1.5rem;
+  }
+
+  .lang-switcher select {
+    font-family: var(--f-body, sans-serif);
+    font-size: 0.9rem;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid var(--rule, #ccc);
+    border-radius: 4px;
+    background: transparent;
+    color: var(--ink, #111);
+    cursor: pointer;
+  }
+</style>

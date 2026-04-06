@@ -29,10 +29,18 @@
   "dependencies": {
     "@astrojs/rss": "^4.0.17",
     "@astrojs/sitemap": "^3.7.1",
-    "astro": "^6.0.8"
+    "@observablehq/plot": "^0.6.17",
+    "astro": "^6.0.8",
+    "d3": "^7.9.0",
+    "iso-3166-1": "^2.1.1",
+    "tsx": "^4.21.0",
+    "xlsx": "^0.18.5"
   },
   "prettier": {
     "semi": false,
     "singleQuote": true
+  },
+  "devDependencies": {
+    "@types/d3": "^7.4.3"
   }
 }

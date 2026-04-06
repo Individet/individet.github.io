@@ -134,7 +134,7 @@ function getSquareDetailSize(portrait?: ActorPortraitRecord) {
   return Math.min(portrait.width, portrait.height, 600)
 }
 
-export function getActorPortrait(actorSlug: string, actorName: string) {
+export function getActorPortrait(actorSlug: string, actorName: string): ActorPortrait {
   const portrait = portraitManifest.images?.[actorSlug] as
     | ActorPortraitRecord
     | undefined
