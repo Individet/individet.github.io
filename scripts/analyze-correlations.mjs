@@ -102,7 +102,7 @@ for (const xKey of X_KEYS) {
 }
 
 console.log(
-  '\n=== TREND: change in correlation over time (late - early years) ===\n',
+  '\n=== TREND: change in correlation over time (late - early years) ===\n'
 )
 console.log('X \\ Y\t' + Y_KEYS.join('\t\t'))
 for (const xKey of X_KEYS) {
@@ -140,7 +140,7 @@ for (const xKey of X_KEYS) {
 
 // Extreme countries analysis for most recent year
 console.log(
-  '\n=== TOP/BOTTOM countries in most recent year (gdp_real vs hf_score) ===\n',
+  '\n=== TOP/BOTTOM countries in most recent year (gdp_real vs hf_score) ===\n'
 )
 const lastYr = years[years.length - 1]
 const lastRows = (ts.byYear[String(lastYr)] ?? [])
@@ -151,14 +151,18 @@ lastRows
   .slice(0, 5)
   .forEach((d) =>
     console.log(
-      `  ${d.name}: hf_score=${d.hf_score}, gdp_real=${d.gdp_real?.toLocaleString()}`,
-    ),
+      `  ${d.name}: hf_score=${
+        d.hf_score
+      }, gdp_real=${d.gdp_real?.toLocaleString()}`
+    )
   )
 console.log('Bottom 5 by hf_score:')
 lastRows
   .slice(-5)
   .forEach((d) =>
     console.log(
-      `  ${d.name}: hf_score=${d.hf_score}, gdp_real=${d.gdp_real?.toLocaleString()}`,
-    ),
+      `  ${d.name}: hf_score=${
+        d.hf_score
+      }, gdp_real=${d.gdp_real?.toLocaleString()}`
+    )
   )

@@ -188,7 +188,7 @@ async function fetchWorldBankMeta(): Promise<Map<string, WbMeta>> {
       id: string
       name: string
       region: { value: string }
-    }>,
+    }>
   ]
 
   const map = new Map<string, WbMeta>()
@@ -203,7 +203,7 @@ async function fetchWorldBankMeta(): Promise<Map<string, WbMeta>> {
 async function fetchWorldBankIndicator(
   indicator: string,
   label: string,
-  round: (v: number) => number = Math.round,
+  round: (v: number) => number = Math.round
 ): Promise<Map<string, Map<number, number>>> {
   console.log(`Henter World Bank ${label} (alle år 1995–2026)...`)
   const result = new Map<string, Map<number, number>>()
@@ -227,13 +227,13 @@ async function fetchWorldBankIndicator(
         countryiso3code: string
         date: string
         value: number | null
-      }>,
+      }>
     ]
 
     totalPages = meta.pages
     if (page === 1)
       console.log(
-        `  Totalt ${meta.total} ${label}-datapunkter (${totalPages} side(r))`,
+        `  Totalt ${meta.total} ${label}-datapunkter (${totalPages} side(r))`
       )
     page++
 
@@ -302,7 +302,7 @@ function loadHeritageAllYears(scriptsDataDir: string): HeritageData | null {
     all: () => Array<{ country: string; alpha3: string }>
   }
   const nameToAlpha3 = new Map(
-    iso3166.all().map((c) => [c.country.toLowerCase(), c.alpha3]),
+    iso3166.all().map((c) => [c.country.toLowerCase(), c.alpha3])
   )
 
   const byIsoYear = new Map<string, Map<number, HeritageYearEntry>>()
@@ -340,7 +340,7 @@ function loadHeritageAllYears(scriptsDataDir: string): HeritageData | null {
 
     const parseCol = (
       parts: string[],
-      idx: number | null,
+      idx: number | null
     ): number | undefined => {
       if (idx === null) return undefined
       const v = parseFloat(parts[idx]?.trim() ?? '')
@@ -384,7 +384,7 @@ function loadHeritageAllYears(scriptsDataDir: string): HeritageData | null {
   }
 
   const validCountries = [...byIsoYear.values()].filter(
-    (m) => m.size > 0,
+    (m) => m.size > 0
   ).length
   console.log(`  → Totalt ${validCountries} land fra Heritage`)
   return { byIsoYear, isoToName }
@@ -393,7 +393,7 @@ function loadHeritageAllYears(scriptsDataDir: string): HeritageData | null {
 // ─── C. World Happiness Report ──────────────────────────────────────────────
 
 function loadWhrAllYears(
-  scriptsDataDir: string,
+  scriptsDataDir: string
 ): Map<string, Map<number, number>> {
   const files = fs
     .readdirSync(scriptsDataDir)
@@ -411,7 +411,7 @@ function loadWhrAllYears(
     all: () => Array<{ country: string; alpha3: string }>
   }
   const nameToAlpha3 = new Map(
-    iso3166.all().map((c) => [c.country.toLowerCase(), c.alpha3]),
+    iso3166.all().map((c) => [c.country.toLowerCase(), c.alpha3])
   )
 
   const result = new Map<string, Map<number, number>>()
@@ -469,7 +469,7 @@ interface HfiRecord {
 function loadHfiAllYears(): Map<string, Map<number, HfiRecord>> {
   const hfiFile = path.resolve(
     ROOT,
-    '../tankesmia/data/raw/2025-human-freedom-index.json',
+    '../tankesmia/data/raw/2025-human-freedom-index.json'
   )
   if (!fs.existsSync(hfiFile)) {
     console.warn('  ⚠ HFI JSON mangler')
@@ -531,12 +531,12 @@ async function main() {
       fetchWorldBankIndicator(
         'SP.DYN.LE00.IN',
         'forventet levealder',
-        (v) => Math.round(v * 10) / 10,
+        (v) => Math.round(v * 10) / 10
       ),
       fetchWorldBankIndicator(
         'SH.DYN.MORT',
         'barnedødelighet',
-        (v) => Math.round(v * 10) / 10,
+        (v) => Math.round(v * 10) / 10
       ),
     ])
   const heritageData = loadHeritageAllYears(scriptsDataDir)
@@ -663,7 +663,9 @@ async function main() {
   fs.writeFileSync(scatterTsFile, JSON.stringify(scatterTs))
   console.log(
     `Skrevet: ${scatterTsFile}` +
-      ` (${validYears.length} år, ~${Math.round(validYears.reduce((s, y) => s + byYear[y].length, 0) / validYears.length)} land/år gjennom.)`,
+      ` (${validYears.length} år, ~${Math.round(
+        validYears.reduce((s, y) => s + byYear[y].length, 0) / validYears.length
+      )} land/år gjennom.)`
   )
 }
 
