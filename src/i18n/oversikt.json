@@ -1,12 +1,14 @@
 {
   "page": {
     "no": {
-      "heading": "Alle sammenhenger",
+      "heading": "Frihet og velstand - et intimt forhold",
+      "lead0": "Land der folk har mest frihet – til å starte bedrifter, eie ting, si hva de mener og leve som de vil – er også landene der folk lever lengst, tjener mest og er lykkeligst. Det er ikke tilfeldig. Det er et mønster som dukker opp gang på gang, i land etter land, tiår etter tiår.",
       "lead1": "Denne siden viser de fem sterkeste frihetsprediktorene (X-akse) for hvert av fire mål på levevilkår (Y-akse) — 20 grafer totalt. Utvalget er ikke redaksjonelt, men statistisk: for hver Y-akse er det kjørt Pearson-korrelasjon mot samtlige 19 frihetsdimensjoner, og de fem med høyest |r| vises. Korrelasjonene er beregnet på alle landspar med gyldige data, slått sammen over hele perioden.",
       "lead2": "Korrelasjoner beviser ikke årsakssammenheng, men styrken og konsistensen på tvers av uavhengige datasett, metodikker og tiår er vanskelig å avfeie. Tallene er hentet fra Heritage Foundation, Cato/Fraser Human Freedom Index, Verdensbankens nasjonalregnskapsdata og World Happiness Report (Gallup)."
     },
     "en": {
-      "heading": "All Correlations",
+      "heading": "Freedom and prosperity - an intimate relationship",
+      "lead0": "Countries where people have the most freedom – to start a business, own things, say what they think, and live as they choose – are also the countries where people live longest, earn the most, and are the happiest. That is not a coincidence. It is a pattern that shows up again and again, country after country, decade after decade.",
       "lead1": "This page shows the five strongest freedom predictors (X-axis) for each of four measures of living conditions (Y-axis) — 20 charts in total. The selection is not editorial but statistical: for each Y-axis, Pearson correlation has been run against all 19 freedom dimensions, and the five with the highest |r| are shown. Correlations are calculated on all country pairs with valid data, pooled across the entire period.",
       "lead2": "Correlations do not prove causation, but the strength and consistency across independent datasets, methodologies, and decades is difficult to dismiss. The figures are drawn from Heritage Foundation, Cato/Fraser Human Freedom Index, World Bank national accounts data, and the World Happiness Report (Gallup)."
     }
@@ -85,7 +87,7 @@
           "no": {
             "title": "Næringslivsfrihet × Livstilfredshet",
             "r": "r = 0,65",
-            "desc": "Heritage-indeksens mål på næringslivsfrihet runder av topp-5 for livstilfredshet (r = 0,651). Det er en sterk sammenheng, og den understøtter ideen om at Økonomisk deltakelse — muligheten til å starte bedrift, bytte jobb, konkurrere på like vilkår — er fundamentalt for opplevd livskvalitet. Folk i land med høy næringslivsfrihet rapporterer høyere lykke selv etter å ha kontrollert for BNP. Frihet til å skape og handle er ikke bare et middel til velstand — det er i seg selv en kilde til mening og tilfredshet."
+            "desc": "Heritage-indeksens mål på næringslivsfrihet runder av topp-5 for livstilfredshet (r = 0,651). Det er en sterk sammenheng, og den understøtter ideen om at Økonomisk deltakelse — muligheten til å starte en bedrift, bytte jobb, konkurrere på like vilkår — er fundamentalt for opplevd livskvalitet. Folk i land med høy næringslivsfrihet rapporterer høyere lykke selv etter å ha kontrollert for BNP. Frihet til å skape og handle er ikke bare et middel til velstand — det er i seg selv en kilde til mening og tilfredshet."
           },
           "en": {
             "title": "Business Freedom × Life Satisfaction",
