@@ -1,0 +1,647 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import AnimertScatter from '../../components/AnimertScatter.astro'
+
+const title = 'Alle sammenhenger – frihet og levevilkår'
+const description =
+  'En systematisk gjennomgang av sammenhengen mellom ulike mål på frihet og fire mål på levevilkår: BNP per capita, levealder, barnedødelighet og livstilfredshet – 1995–2026.'
+---
+
+<Layout title={title} description={description}>
+  <div class="page-wrap">
+    <header class="page-header">
+      <h1>Alle sammenhenger</h1>
+      <p class="lead">
+        Denne siden viser de fem sterkeste frihetsprediktorene (X-akse) for
+        hvert av fire mål på levevilkår (Y-akse) — 20 grafer totalt. Utvalget er
+        ikke redaksjonelt, men statistisk: for hver Y-akse er det kjørt
+        Pearson-korrelasjon mot samtlige 19 frihetsdimensjoner, og de fem med
+        høyest |r| vises. Korrelasjonene er beregnet på alle landspar med
+        gyldige data, slått sammen over hele perioden.
+      </p>
+      <p class="lead">
+        Korrelasjoner beviser ikke årsakssammenheng, men styrken og konsistensen
+        på tvers av uavhengige datasett, metodikker og tiår er vanskelig å
+        avfeie. Tallene er hentet fra Heritage Foundation, Cato/Fraser Human
+        Freedom Index, Verdensbankens nasjonalregnskapsdata og World Happiness
+        Report (Gallup).
+      </p>
+    </header>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         TEMA 1: BNP per capita (inflasjonsjustert)
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="theme-section">
+      <h2 class="theme-heading">BNP per capita (inflasjonsjustert)</h2>
+      <p class="theme-intro">
+        Materiell velstand, målt i inflasjonsjustert BNP per innbygger
+        (Verdensbankens PPP, faste 2021-USD), er den klassiske
+        «utfallsvariabelen» når frihet diskuteres. Under ser du fem ulike
+        frihetsmål plottet mot BNP.
+      </p>
+
+      <div class="chart-block">
+        <h3>
+          Regjeringens integritet × BNP per capita &mdash; <span class="r-badge"
+            >r = 0,75</span>
+        </h3>
+        <p class="chart-desc">
+          Av alle 19 frihetsdimensjoner i dette datasettet er Heritage-indeksens
+          mål på <em>regjeringens integritet</em> — fravær av korrupsjon, transparens
+          i forvaltning og uavhengige kontrollorgan — den aller sterkeste enkeltprediktoren
+          for BNP per innbygger (r = 0,752). Det er sterkere enn Heritage-samindeksen,
+          sterkere enn rettsstatsmål og sterkere enn Fraser-indeksens économiske frihetsindeks.
+          Funnet understøtter en klar teori: korrupsjon er et skjult skattesystem
+          som omfordeler rikdom fra produktiv aktivitet til politiske eliter, og ødelegger
+          de investeringsvilkårene som driver langsiktig vekst. Land som Singapore,
+          New Zealand og Danmark kombinerer svært høy integritetsrangering med toppøkonomier;
+          bunnen av skalaen domineres av stater der byråkratisk korrupsjon er endemisk.
+        </p>
+        <AnimertScatter
+          defaultXKey="hs_gov_integrity"
+          defaultYKey="gdp_real"
+          allowAxisChange={false}
+        />
+      </div>
+
+      <div class="chart-block">
+        <h3>
+          Heritage Économisk frihet × BNP per capita &mdash; <span
+            class="r-badge">r = 0,65</span>
+        </h3>
+        <p class="chart-desc">
+          Heritage-indeksens samlede mål på économisk frihet viser en sterk og
+          statistisk sett <em>tiltagende</em> korrelasjon med BNP &mdash; fra rundt
+          0,67 i 1995 til godt over 0,73 i de seneste tilgjengelige dataårene. Det
+          er verdt å merke seg at sammenhengen altså ikke flates ut over tid, slik
+          kritikere av globaliseringens fordelingsvirkninger gjerne antyder. Tvert
+          imot ser det ut til at land som gradvis åpner og liberaliserer, henter inn
+          velstandsgapet til de allerede frie.
+        </p>
+        <AnimertScatter
+          defaultXKey="hs"
+          defaultYKey="gdp_real"
+          allowAxisChange={false}
+        />
+      </div>
+
+      <div class="chart-block">
+        <h3>
+          Eiendomsrettigheter × BNP per capita &mdash; <span class="r-badge"
+            >r = 0,69</span>
+        </h3>
+        <p class="chart-desc">
+          Heritage-indeksens mål på eiendomsrettigheter er den nest sterkeste
+          enkeltprediktoren for BNP per innbygger (r = 0,688). Trygg
+          eiendomsrett er den institusjonelle forutsetningen for all langsiktig
+          investering: uten den faller tidshorisonten for produksjon og
+          kapitalakkumulasjon dramatisk. Mønsteret er stabilt over 30 år og på
+          tvers av alle regioner — fra Øst-Asias tigerøkonomier der sterk
+          eiendomsrett var en bevisst politikk, til de nordiske landene der
+          privat eiendomsrett er kombinert med høy statlig kapasitet.
+        </p>
+        <AnimertScatter
+          defaultXKey="hs_prop_rights"
+          defaultYKey="gdp_real"
+          allowAxisChange={false}
+        />
+      </div>
+
+      <div class="chart-block">
+        <h3>
+          Rettsstaten (HFI) × BNP per capita &mdash; <span class="r-badge"
+            >r = 0,68</span>
+        </h3>
+        <p class="chart-desc">
+          Cato/Frasers HFI-indeks måler rettsstaten uavhengig av Heritage, og
+          landet på tredjeplass for BNP (r = 0,683). At to helt uavhengige
+          metodiske rammeverk fra ulike institusjoner begge peker ut
+          rettsstatlig kvalitet som en av de sterkeste prediktorene for
+          velstand, er et metodisk robust funn. Forutsigbare domstolsavgjørelser
+          og kontraktshåndhevelse er grunnlaget som gjør det mulig å planlegge
+          investeringer med lang horisont — en forutsetning for akkumulasjon av
+          realkapital.
+        </p>
+        <AnimertScatter
+          defaultXKey="pf_rol"
+          defaultYKey="gdp_real"
+          allowAxisChange={false}
+        />
+      </div>
+
+      <div class="chart-block">
+        <h3>
+          Rettsstatens effektivitet (Heritage) × BNP per capita &mdash; <span
+            class="r-badge">r = 0,64</span>
+        </h3>
+        <p class="chart-desc">
+          Det er bemerkelsesverdig at tre av de fem sterkeste prediktorene for
+          BNP per innbygger er juridisk-institusjonelle dimensjoner:
+          regjeringens integritet (#1), eiendomsrettigheter (#2) og rettsstaten
+          (#3 og #5). Heritage-indeksens separate mål på rettseffektivitet
+          runder av topp-5 med r = 0,642. Samlet tegner disse fem grafene et
+          entydig bilde: det institusjonelle rammeverket — ikke skattenivå, ikke
+          valutapolitikk — er den dypeste forklaringsvariabelen for langsiktig
+          velstand.
+        </p>
+        <AnimertScatter
+          defaultXKey="hs_judicial"
+          defaultYKey="gdp_real"
+          allowAxisChange={false}
+        />
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         TEMA 2: Forventet levealder
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="theme-section">
+      <h2 class="theme-heading">Forventet levealder</h2>
+      <p class="theme-intro">
+        Forventet levealder ved fødsel (Verdensbanken) er muligens det mest
+        direkte målet på om et samfunn faktisk fungerer for menneskene som lever
+        i det. Gjennomsnittet har steget fra 65,9 år (1995) til 73,3 år (siste
+        tilgjengelige data), men fremgangen er svært ujevnt fordelt.
+      </p>
+
+      <div class="chart-block">
+        <h3>
+          Économisk frihet (Fraser/HFI) × Levealder &mdash; <span
+            class="r-badge">r = 0,67</span>
+        </h3>
+        <p class="chart-desc">
+          Av alle 20 kombinasjoner er dette den <em
+            >sterkeste enkeltsammenhengen for levealder</em
+          >. Frasers économiske frihetsindeks er noe smalere enn
+          Heritage-indeksen og fokuserer mer på stabilt penge- og finanssystem,
+          markedsadgang og rettsstatlig grunnlag for kontrakter. Land som skårer
+          høyt her har typisk åpne helsemarkeder, stabile valutaer som gjør
+          import av legemidler forutsigbart, og juridisk beskyttede
+          investeringer i sykehusinfrastruktur.
+        </p>
+        <AnimertScatter
+          defaultXKey="ef_hfi"
+          defaultYKey="le"
+          allowAxisChange={false}
+        />
+      </div>
+
+      <div class="chart-block">
+        <h3>
+          Rettsstaten × Levealder &mdash; <span class="r-badge">r = 0,63</span>
+        </h3>
+        <p class="chart-desc">
+          Sterke rettssystemer predikerer høy levealder nesten like godt som
+          économiske frihetsindekser. Årsaksmekanismen er trolig indirekte:
+          stabile institusjoner kanaliserer kapital mer effektivt inn i helse,
+          utdanning og sanitæranlegg. Korrupte stater med svak rettsstat har
+          systematisk dårligere helseinfrastruktur &mdash; selv der
+          oljeinntektene teknisk sett burde muliggjøre mer.
+        </p>
+        <AnimertScatter
+          defaultXKey="pf_rol"
+          defaultYKey="le"
+          allowAxisChange={false}
+        />
+      </div>
+
+      <div class="chart-block">
+        <h3>
+          Heritage Économisk frihet × Levealder &mdash; <span class="r-badge"
+            >r = 0,61</span>
+        </h3>
+        <p class="chart-desc">
+          Heritage-samindeksen viser en tydelig og <em>tiltagende</em> korrelasjon
+          med levealder (trenden er +0,10 fra første til siste halvdel av perioden).
+          Det er verdt å observere i animasjonen: land i Sub-Sahara-Afrika og Sørøst-Asia
+          som har åpnet økonomierne sine siden 1995, har også opplevd den raskeste
+          levetidsøkningen globalt.
+        </p>
+        <AnimertScatter
+          defaultXKey="hs"
+          defaultYKey="le"
+          allowAxisChange={false}
+        />
+      </div>
+
+      <div class="chart-block">
+        <h3>
+          Regjeringens integritet × Levealder &mdash; <span class="r-badge"
+            >r = 0,64</span>
+        </h3>
+        <p class="chart-desc">
+          Regjeringens integritet er den nest sterkeste enkeltprediktoren for
+          levealder (r = 0,638), og igjen er det det anti-korrupsjonsmålet som
+          skiller seg ut. Mekanismen er sannsynligvis at korrupte stater
+          systematisk underinvesterer i offentlig helse, sanitæranlegg og
+          ernæringsprogrammer — ikke fordi ressursene mangler, men fordi de
+          lekker ut gjennom skjulte rentseeking-strukturer. Animasjonen viser
+          særleg tydelig fordelen i Afrika syd for Sahara, der
+          integritetsgevinster på 1990- og 2000-tallet sammenfalt med rask
+          bedring i barnedødelighet og levetid.
+        </p>
+        <AnimertScatter
+          defaultXKey="hs_gov_integrity"
+          defaultYKey="le"
+          allowAxisChange={false}
+        />
+      </div>
+
+      <div class="chart-block">
+        <h3>
+          Næringslivsfrihet × Levealder &mdash; <span class="r-badge"
+            >r = 0,61</span>
+        </h3>
+        <p class="chart-desc">
+          Heritage-indeksens mål på næringslivsfrihet — hvor enkelt det er å
+          starte, drive og avvikle bedrifter — er den fjerde sterkeste
+          prediktoren for levealder (r = 0,610). Korrelasjonen er intuitiv: et
+          fungerende næringsliv genererer skattebase og arbeidsplasser som
+          finansierer helsesystemer, og konkurranse i helsemarkedet driver frem
+          bedre tjenester. Det er verdt å merke seg at denne dimensjonen av
+          frihet er mer direkte operasjonaliserbar enn rettsstatsmål — stater
+          kan reformere selskapslovgivning raskere enn de kan bygge uavhengige
+          domstoler.
+        </p>
+        <AnimertScatter
+          defaultXKey="hs_business"
+          defaultYKey="le"
+          allowAxisChange={false}
+        />
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         TEMA 3: Barnedødelighet
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="theme-section">
+      <h2 class="theme-heading">Barnedødelighet</h2>
+      <p class="theme-intro">
+        Barnedødelighet (under 5 år per 1 000 levendefødte) er det kanskje
+        råeste målet på om et samfunns grunnleggende institusjoner leverer. Det
+        globale gjennomsnittet er halvert siden 1995, fra 62 til 25 per 1 000,
+        men spredningen mellom land er fortsatt dramatisk. Merk at en
+        <em>negativ</em> korrelasjon er positiv: høyere frihet henger sammen med lavere
+        barnedødelighet.
+      </p>
+
+      <div class="chart-block">
+        <h3>
+          Économisk frihet (Fraser/HFI) × Barnedødelighet &mdash; <span
+            class="r-badge">r = −0,59</span>
+        </h3>
+        <p class="chart-desc">
+          Frasers mål på économisk frihet har den sterkeste negative
+          korrelasjonen med barnedødelighet av alle X-målene i denne analysen.
+          Åpne markeder letter import av vaksiner og næringsmidler, stabile
+          valutaer holder importprisene forutsigbare, og velfungerende
+          kontraktsrett gjør det mulig å bygge og drive sykehus med privat
+          kapital. r = −0,59 tilsvarer at économisk frihet alene «forklarer»
+          omtrent 35 % av variansen i barnedødelighet på tvers av land.
+        </p>
+        <AnimertScatter
+          defaultXKey="ef_hfi"
+          defaultYKey="cm"
+          allowAxisChange={false}
+        />
+      </div>
+
+      <div class="chart-block">
+        <h3>
+          Rettsstaten × Barnedødelighet &mdash; <span class="r-badge"
+            >r = −0,53</span>
+        </h3>
+        <p class="chart-desc">
+          Svak rettsstat er forbundet med høy barnedødelighet. Mekanismen er
+          trolig at uten pålitelige institusjoner kan verken stater eller
+          private aktører effektivt planlegge og gjennomføre helseinvesteringer
+          med langsiktig horisont. Animasjonen viser tydelig at land i
+          Sub-Sahara som har styrket rettsstatlige institusjoner, simultant har
+          sett fallende barnedødelighetstall.
+        </p>
+        <AnimertScatter
+          defaultXKey="pf_rol"
+          defaultYKey="cm"
+          allowAxisChange={false}
+        />
+      </div>
+
+      <div class="chart-block">
+        <h3>
+          Næringslivsfrihet × Barnedødelighet &mdash; <span class="r-badge"
+            >r = −0,53</span>
+        </h3>
+        <p class="chart-desc">
+          Næringslivsfrihet er den nest sterkeste enkeltprediktoren for lav
+          barnedødelighet (r = −0,534). At en dimensjon som primært handler om
+          bedriftsetablering og regulatorisk byrde ender høyt på denne listen,
+          peker på en indirekte mekanisme: land med lavt regulatorisk press
+          tiltrekker seg utenlandske investeringer i helsesektoren, utvikler en
+          konkurranseutsatt legemiddelindustri og genererer den private
+          velstandsveksten som gjør befolkningen i stand til å etterspørre
+          helsetjenester. Animasjonen viser den kraftige forbedringen i
+          Sørøst-Asia fra 1995 til i dag i takt med liberalisering.
+        </p>
+        <AnimertScatter
+          defaultXKey="hs_business"
+          defaultYKey="cm"
+          allowAxisChange={false}
+        />
+      </div>
+
+      <div class="chart-block">
+        <h3>
+          Regjeringens integritet × Barnedødelighet &mdash; <span
+            class="r-badge">r = −0,53</span>
+        </h3>
+        <p class="chart-desc">
+          Integritetsmålet dukker opp som fjerde sterkeste prediktor også for
+          barnedødelighet (r = −0,530). Det er nå tredje gang det samme målet
+          rangerer høyt på tvers av helt ulike levevilkårsmål: BNP, levealder og
+          barnedødelighet. Diagnosen er konsistent: korrupsjon dreper barn —
+          ikke alltid direkte, men systematisk, ved å omdirigere ressurser bort
+          fra vaksinasjonsprogrammer, rent vann og mødrehelse. Hvert
+          prosentpoeng nedgang i korrupsjon sammenfaller statistisk med merkbar
+          nedgang i spedbarnsdødelighet.
+        </p>
+        <AnimertScatter
+          defaultXKey="hs_gov_integrity"
+          defaultYKey="cm"
+          allowAxisChange={false}
+        />
+      </div>
+
+      <div class="chart-block">
+        <h3>
+          Handelsfrihet × Barnedødelighet &mdash; <span class="r-badge"
+            >r = −0,52</span>
+        </h3>
+        <p class="chart-desc">
+          Handelsfrihet runder av topp-5 for barnedødelighet (r = −0,515). Det
+          er en direkte og meningsfull sammenheng: åpne handelsregimer gir
+          tilgang til livsviktige importvarer — legemidler, medisinsk utstyr,
+          berikede matvarer — til lavere priser. Land med høye toll- og
+          importbarrierer betaler en menneskelig pris som sjelden synliggjøres i
+          handelspolitiske debatter. At alle fem prediktorene for lav
+          barnedødelighet er institusjonelle og économiske fremfor
+          politisk-sivile, er et mønster som gjentar seg gjennom hele denne
+          analysen.
+        </p>
+        <AnimertScatter
+          defaultXKey="hs_trade"
+          defaultYKey="cm"
+          allowAxisChange={false}
+        />
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════════════════════
+         TEMA 4: Livstilfredshet (WHR)
+    ═══════════════════════════════════════════════════════════════════════ -->
+    <section class="theme-section">
+      <h2 class="theme-heading">Livstilfredshet</h2>
+      <p class="theme-intro">
+        World Happiness Report (Gallup) ber folk i 150+ land om å rangere livet
+        sitt på en 0–10-skala. Det er subjektivt og kulturelt betinget, men det
+        er også det nærmeste vi kommer et direkte mål på om folk opplever livet
+        som godt. Data starter i 2010; gjennomsnittet er økt fra 5,4 til 5,7 i
+        perioden.
+      </p>
+
+      <div class="chart-block">
+        <h3>
+          Regjeringens integritet × Livstilfredshet &mdash; <span
+            class="r-badge">r = 0,68</span>
+        </h3>
+        <p class="chart-desc">
+          Regjeringens integritet er den <em
+            >sterkeste enkeltprediktoren for livstilfredshet</em
+          > i hele dette datasettet (r = 0,681) — og altså det samme målet som er
+          sterkest for BNP. Folk i land med lav korrupsjon og transparent forvaltning
+          rapporterer langt høyere livstilfredshet enn de i land der slike garantier
+          mangler. Det er slående at et så «institusjonelt» mål slår mer nærliggende
+          variabler som inntekt eller sivile friheter i å predikere subjektiv lykke.
+          Forklaringen kan ligge i psykologisk trygghet: når folk stoler på at staten
+          ikke underslår eller favoriserer insiders, reduseres angst og usikkerhet
+          — noe forskning på psykologisk velvære konsekvent peker ut som avgjørende.
+        </p>
+        <AnimertScatter
+          defaultXKey="hs_gov_integrity"
+          defaultYKey="whr_happiness"
+          allowAxisChange={false}
+        />
+      </div>
+
+      <div class="chart-block">
+        <h3>
+          Économisk frihet (Fraser/HFI) × Livstilfredshet &mdash; <span
+            class="r-badge">r = 0,65</span>
+        </h3>
+        <p class="chart-desc">
+          Frasers économiske frihetsindeks viser en sterk og tiltagende
+          korrelasjon med livstilfredshet (trenden er +0,10 over perioden). Land
+          i Øst-Europa og Sørøst-Asia som har liberalisert etter 2010, har hatt
+          en simultant sterk økning i rapportert livstilfredshet. Korrelasjonen
+          er robust og endres ikke vesentlig om man kontrollerer for regioner.
+        </p>
+        <AnimertScatter
+          defaultXKey="ef_hfi"
+          defaultYKey="whr_happiness"
+          allowAxisChange={false}
+        />
+      </div>
+
+      <div class="chart-block">
+        <h3>
+          Rettsstaten (HFI) × Livstilfredshet &mdash; <span class="r-badge"
+            >r = 0,68</span>
+        </h3>
+        <p class="chart-desc">
+          HFIs rettsstatsmål er den nest sterkeste enkeltprediktoren for
+          livstilfredshet (r = 0,676), marginalt bak regjeringens integritet.
+          Det er det samme rettsstatsmålet som scoret tredjeplass for BNP — men
+          for livstilfredshet er det enda sterkere relativt. Psykologisk
+          trygghet er sannsynligvis mekanismen: i land der lover er forutsigbare
+          og like for alle, reduseres den diffuse angsten som oppstår når
+          «systemet» oppleves som vilkårlig. Rettsstatens effekt på lykke er
+          direkte, ikke bare indirekte via inntekt.
+        </p>
+        <AnimertScatter
+          defaultXKey="pf_rol"
+          defaultYKey="whr_happiness"
+          allowAxisChange={false}
+        />
+      </div>
+
+      <div class="chart-block">
+        <h3>
+          Eiendomsrettigheter × Livstilfredshet &mdash; <span class="r-badge"
+            >r = 0,67</span>
+        </h3>
+        <p class="chart-desc">
+          Eiendomsrettigheter er den tredje sterkeste prediktoren for
+          livstilfredshet (r = 0,668). Det finnes en dyp forbindelse mellom
+          trygg eiendomsrett og subjektiv lykke som går utover ren materiell
+          velstand: folk som vet at hjemmet, bedriften og sparingene er juridisk
+          beskyttet, rapporterer konsekvent høyere livskvalitet. Eiendomsrett er
+          ikke bare en économisk institusjon — det er en eksistensiell trygghet.
+          Animasjonen viser svært tydelig at de skandinaviske landene og New
+          Zealand, som kombinerer sterk eiendomsrett med sosial tillit, topper
+          lykkerangeringene.
+        </p>
+        <AnimertScatter
+          defaultXKey="hs_prop_rights"
+          defaultYKey="whr_happiness"
+          allowAxisChange={false}
+        />
+      </div>
+
+      <div class="chart-block">
+        <h3>
+          Næringslivsfrihet × Livstilfredshet &mdash; <span class="r-badge"
+            >r = 0,65</span>
+        </h3>
+        <p class="chart-desc">
+          Heritage-indeksens mål på næringslivsfrihet runder av topp-5 for
+          livstilfredshet (r = 0,651). Det er en sterk sammenheng, og den
+          understøtter ideen om at économisk deltakelse — muligheten til å
+          starte bedrift, bytte jobb, konkurrere på like vilkår — er
+          fundamentalt for opplevd livskvalitet. Folk i land med høy
+          næringslivsfrihet rapporterer høyere lykke selv etter å ha kontrollert
+          for BNP. Frihet til å skape og handle er ikke bare et middel til
+          velstand — det er i seg selv en kilde til mening og tilfredshet.
+        </p>
+        <AnimertScatter
+          defaultXKey="hs_business"
+          defaultYKey="whr_happiness"
+          allowAxisChange={false}
+        />
+      </div>
+    </section>
+
+    <footer class="data-footer">
+      <p>
+        <strong>Metode:</strong> Pearson-korrelasjon beregnet på alle landspar med
+        gyldige data for begge variabler, slått sammen over alle tilgjengelige år.
+        Trendtall er beregnet som differanse i gjennomsnittlig r mellom første og
+        siste halvdel av tidsserien. Korrelasjoner er ikke kontrollert for BNP eller
+        region.
+      </p>
+      <p>
+        <strong>Kilder:</strong> Heritage Foundation,
+        <em>Index of Economic Freedom</em> (1995–2026) &mdash; Cato/Fraser, <em
+          >Human Freedom Index</em
+        > (1999–2024) &mdash; Verdensbanken, <em>NY.GDP.PCAP.PP.KD</em> (BNP per capita,
+        PPP, faste 2021-USD), <em>SP.DYN.LE00.IN</em> (levealder),
+        <em>SH.DYN.MORT</em> (barnedødelighet) &mdash; Gallup/<em
+          >World Happiness Report</em
+        > (2010–2026).
+      </p>
+    </footer>
+  </div>
+</Layout>
+
+<style>
+  .page-wrap {
+    max-width: var(--content-width, 1120px);
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 5rem;
+  }
+
+  .page-header {
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .page-header h1 {
+    font-family: var(--f-display);
+    font-size: clamp(1.75rem, 4vw, 2.8rem);
+    font-weight: 500;
+    margin: 0 0 0.6rem;
+    color: var(--ink);
+  }
+
+  .lead {
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    max-width: 72ch;
+    margin: 16px 0;
+    line-height: 1.7;
+  }
+
+  /* ─── Temagrupper ─────────────────────────────────────────────────────── */
+
+  .theme-section {
+    margin-bottom: 4rem;
+    border-top: 2px solid var(--ink);
+    padding-top: 2rem;
+  }
+
+  .theme-heading {
+    font-family: var(--f-display);
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    font-weight: 500;
+    margin: 0 0 0.5rem;
+    color: var(--ink);
+  }
+
+  .theme-intro {
+    font-size: 1rem;
+    color: var(--ink-soft);
+    max-width: 72ch;
+    margin: 0 0 2.5rem;
+    line-height: 1.7;
+  }
+
+  /* ─── Enkeltgraf ──────────────────────────────────────────────────────── */
+
+  .chart-block {
+    margin-bottom: 3.5rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--rule-light);
+  }
+
+  .chart-block:last-child {
+    border-bottom: none;
+  }
+
+  .chart-block h3 {
+    font-family: var(--f-display);
+    font-size: clamp(1.05rem, 2.5vw, 1.4rem);
+    font-weight: 500;
+    margin: 0 0 0.4rem;
+    color: var(--ink);
+  }
+
+  .r-badge {
+    font-family: var(--f-mono);
+    font-size: 0.85em;
+    color: var(--ink-faint);
+    font-weight: 400;
+  }
+
+  .chart-desc {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    max-width: 72ch;
+    margin: 0 0 1.25rem;
+    line-height: 1.7;
+  }
+
+  /* ─── Data-footer ─────────────────────────────────────────────────────── */
+
+  .data-footer {
+    border-top: 1px solid var(--rule-light);
+    padding-top: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .data-footer p {
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    margin: 0 0 0.5rem;
+    line-height: 1.6;
+    max-width: 80ch;
+  }
+</style>

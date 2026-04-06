@@ -3,6 +3,7 @@ import { getIsiClassFromScore } from '../lib/isi'
 
 const { data, rawScore, isiScore } = Astro.props
 const isiClass = getIsiClassFromScore(isiScore)
+const scores = data.scores as Record<string, Record<string, number>>
 
 const dimensionLabels = {
   d1: 'D1 Kroppslig autonomi og selvbestemmelse',
@@ -72,11 +73,11 @@ function formatScore(value: number) {
       </thead>
       <tbody>
         {
-          Object.entries(data.scores).map(([dimensionKey, dimensionValues]) => (
+          Object.entries(scores).map(([dimensionKey, dimensionValues]) => (
             <>
               <tr class="isi-scorecard__dimension-row">
                 <th scope="row">
-                  {dimensionLabels[dimensionKey] ?? dimensionKey}
+                  {dimensionLabels[dimensionKey as keyof typeof dimensionLabels] ?? dimensionKey}
                 </th>
                 <td class="isi-scorecard__score">
                   {formatScore(dimensionValues.total)}
@@ -87,7 +88,7 @@ function formatScore(value: number) {
                 .map(([subKey, score]) => (
                   <tr>
                     <td class="isi-scorecard__subdimension">
-                      {underdimensionLabels[subKey] ?? subKey}
+                      {underdimensionLabels[subKey as keyof typeof underdimensionLabels] ?? subKey}
                     </td>
                     <td class="isi-scorecard__score">{formatScore(score)}</td>
                   </tr>

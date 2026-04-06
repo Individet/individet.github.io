@@ -1,0 +1,91 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import AnimertScatter from '../../components/AnimertScatter.astro'
+
+const title = 'Frihet og velstand'
+const description =
+  'Animert visualisering av sammenhengen mellom økonomisk frihet og velstand på tvers av land, 1995–2026.'
+---
+
+<Layout title={title} description={description}>
+  <div class="page-wrap">
+    <header class="page-header">
+      <h1>Frihet og velstand</h1>
+      <p class="lead">
+        Forholdet mellom menneskelig frihet og materiell velstand i 180 land
+        over 25 år. Denne grafen viser forholdet mellom i hvilken grad en stat
+        ivaretar individets suverenitet, og hvor gode levevilkår borgerne i
+        landet har. Individuell frihet er ikke bare en teoretisk størrelse, det
+        bidrar ettertrykkelig positivt på menneskers levevilkår og
+        livstilfredshet.
+      </p>
+      <p class="lead">
+        Du kan velge forskjellige mål på levevilkår og tilfredshet for Y-aksen,
+        og forskjellige måter å måle frihet på i X-aksen. Trykk på
+        avspillings&shy;knappen for å se utviklingen fra 1999 til 2024. Data:
+        Cato/Fraser, Heritage Foundation, Verdensbanken og World Happiness
+        Report (Gallup).
+      </p>
+    </header>
+
+    <!-- ─── Animert scatter ─────────────────────────────────────────────────── -->
+    <AnimertScatter defaultXKey="hf_score" defaultYKey="gdp_real" />
+
+    <footer class="data-footer">
+      <p>
+        <strong>Kilder:</strong> Heritage Foundation,
+        <em>Index of Economic Freedom</em> (1995–2026) &mdash; Verdensbanken,
+        <em>NY.GDP.PCAP.PP.CD</em> (BNP per capita, PPP, løpende),
+        <em>NY.GDP.PCAP.PP.KD</em> (BNP per capita, PPP, faste 2021-USD),
+        <em>SP.DYN.LE00.IN</em> (forventet levealder),
+        <em>SH.DYN.MORT</em> (barnedødelighet). Frihetsskår er Heritage Overall Score
+        (0–100).
+      </p>
+    </footer>
+  </div>
+</Layout>
+
+<style>
+  .page-wrap {
+    max-width: var(--content-width, 1120px);
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 4rem;
+  }
+
+  .page-header {
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .page-header h1 {
+    font-family: var(--f-display);
+    font-size: clamp(1.75rem, 4vw, 2.8rem);
+    font-weight: 500;
+    margin: 0 0 0.6rem;
+    color: var(--ink);
+  }
+
+  .lead {
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+    max-width: 68ch;
+    margin: 16px 0;
+    line-height: 1.7;
+  }
+
+  /* ─── Data-footer ────────────────────────────────────────────────────────── */
+
+  .data-footer {
+    border-top: 1px solid var(--rule-light);
+    padding-top: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .data-footer p {
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    margin: 0;
+    line-height: 1.6;
+  }
+</style>
