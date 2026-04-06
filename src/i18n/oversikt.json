@@ -41,7 +41,7 @@
           "xKey": "ef_hfi",
           "yKey": "whr_happiness",
           "no": {
-            "title": "Économisk frihet (Fraser/HFI) × Livstilfredshet",
+            "title": "Økonomisk frihet (Fraser/HFI) × Livstilfredshet",
             "r": "r = 0,65",
             "desc": "Frasers økonomiske frihetsindeks viser en sterk og tiltagende korrelasjon med livstilfredshet (trenden er +0,10 over perioden). Land i Øst-Europa og Sørøst-Asia som har liberalisert etter 2010, har hatt en simultant sterk økning i rapportert livstilfredshet. Korrelasjonen er robust og endres ikke vesentlig om man kontrollerer for regioner."
           },
@@ -71,7 +71,7 @@
           "no": {
             "title": "Eiendomsrettigheter × Livstilfredshet",
             "r": "r = 0,67",
-            "desc": "Eiendomsrettigheter er den tredje sterkeste prediktoren for livstilfredshet (r = 0,668). Det finnes en dyp forbindelse mellom trygg eiendomsrett og subjektiv lykke som går utover ren materiell velstand: folk som vet at hjemmet, bedriften og sparingene er juridisk beskyttet, rapporterer konsekvent høyere livskvalitet. Eiendomsrett er ikke bare en économisk institusjon — det er en eksistensiell trygghet. Animasjonen viser svært tydelig at de skandinaviske landene og New Zealand, som kombinerer sterk eiendomsrett med sosial tillit, topper lykkerangeringene."
+            "desc": "Eiendomsrettigheter er den tredje sterkeste prediktoren for livstilfredshet (r = 0,668). Det finnes en dyp forbindelse mellom trygg eiendomsrett og subjektiv lykke som går utover ren materiell velstand: folk som vet at hjemmet, bedriften og sparingene er juridisk beskyttet, rapporterer konsekvent høyere livskvalitet. Eiendomsrett er ikke bare en Økonomisk institusjon — det er en eksistensiell trygghet. Animasjonen viser svært tydelig at de skandinaviske landene og New Zealand, som kombinerer sterk eiendomsrett med sosial tillit, topper lykkerangeringene."
           },
           "en": {
             "title": "Property Rights × Life Satisfaction",
@@ -85,7 +85,7 @@
           "no": {
             "title": "Næringslivsfrihet × Livstilfredshet",
             "r": "r = 0,65",
-            "desc": "Heritage-indeksens mål på næringslivsfrihet runder av topp-5 for livstilfredshet (r = 0,651). Det er en sterk sammenheng, og den understøtter ideen om at économisk deltakelse — muligheten til å starte bedrift, bytte jobb, konkurrere på like vilkår — er fundamentalt for opplevd livskvalitet. Folk i land med høy næringslivsfrihet rapporterer høyere lykke selv etter å ha kontrollert for BNP. Frihet til å skape og handle er ikke bare et middel til velstand — det er i seg selv en kilde til mening og tilfredshet."
+            "desc": "Heritage-indeksens mål på næringslivsfrihet runder av topp-5 for livstilfredshet (r = 0,651). Det er en sterk sammenheng, og den understøtter ideen om at Økonomisk deltakelse — muligheten til å starte bedrift, bytte jobb, konkurrere på like vilkår — er fundamentalt for opplevd livskvalitet. Folk i land med høy næringslivsfrihet rapporterer høyere lykke selv etter å ha kontrollert for BNP. Frihet til å skape og handle er ikke bare et middel til velstand — det er i seg selv en kilde til mening og tilfredshet."
           },
           "en": {
             "title": "Business Freedom × Life Satisfaction",
@@ -124,9 +124,9 @@
           "xKey": "hs",
           "yKey": "gdp_real",
           "no": {
-            "title": "Heritage économisk frihet × BNP per capita",
+            "title": "Heritage Økonomisk frihet × BNP per capita",
             "r": "r = 0,65",
-            "desc": "Heritage-indeksens samlede mål på économisk frihet viser en sterk og statistisk sett <em>tiltagende</em> korrelasjon med BNP &mdash; fra rundt 0,67 i 1995 til godt over 0,73 i de seneste tilgjengelige dataårene. Det er verdt å merke seg at sammenhengen altså ikke flates ut over tid, slik kritikere av globaliseringens fordelingsvirkninger gjerne antyder. Tvert imot ser det ut til at land som gradvis åpner og liberaliserer, henter inn velstandsgapet til de allerede frie."
+            "desc": "Heritage-indeksens samlede mål på Økonomisk frihet viser en sterk og statistisk sett <em>tiltagende</em> korrelasjon med BNP &mdash; fra rundt 0,67 i 1995 til godt over 0,73 i de seneste tilgjengelige dataårene. Det er verdt å merke seg at sammenhengen altså ikke flates ut over tid, slik kritikere av globaliseringens fordelingsvirkninger gjerne antyder. Tvert imot ser det ut til at land som gradvis åpner og liberaliserer, henter inn velstandsgapet til de allerede frie."
           },
           "en": {
             "title": "Heritage Economic Freedom × GDP per Capita",
@@ -193,7 +193,7 @@
           "xKey": "ef_hfi",
           "yKey": "le",
           "no": {
-            "title": "Économisk frihet (Fraser/HFI) × Levealder",
+            "title": "Økonomisk frihet (Fraser/HFI) × Levealder",
             "r": "r = 0,67",
             "desc": "Av alle 20 kombinasjoner er dette den <em>sterkeste enkeltsammenhengen for levealder</em>. Frasers økonomiske frihetsindeks er noe smalere enn Heritage-indeksen og fokuserer mer på stabilt penge- og finanssystem, markedsadgang og rettsstatlig grunnlag for kontrakter. Land som skårer høyt her har typisk åpne helsemarkeder, stabile valutaer som gjør import av legemidler forutsigbart, og juridisk beskyttede investeringer i sykehusinfrastruktur."
           },
@@ -221,7 +221,7 @@
           "xKey": "hs",
           "yKey": "le",
           "no": {
-            "title": "Heritage économisk frihet × Levealder",
+            "title": "Heritage Økonomisk frihet × Levealder",
             "r": "r = 0,61",
             "desc": "Heritage-samindeksen viser en tydelig og <em>tiltagende</em> korrelasjon med levealder (trenden er +0,10 fra første til siste halvdel av perioden). Det er verdt å observere i animasjonen: land i Sub-Sahara-Afrika og Sørøst-Asia som har åpnet økonomierne sine siden 1995, har også opplevd den raskeste levetidsøkningen globalt."
           },
@@ -276,9 +276,9 @@
           "xKey": "ef_hfi",
           "yKey": "cm",
           "no": {
-            "title": "Économisk frihet (Fraser/HFI) × Barnedødelighet",
+            "title": "Økonomisk frihet (Fraser/HFI) × Barnedødelighet",
             "r": "r = −0,59",
-            "desc": "Frasers mål på économisk frihet har den sterkeste negative korrelasjonen med barnedødelighet av alle X-målene i denne analysen. Åpne markeder letter import av vaksiner og næringsmidler, stabile valutaer holder importprisene forutsigbare, og velfungerende kontraktsrett gjør det mulig å bygge og drive sykehus med privat kapital. r = −0,59 tilsvarer at économisk frihet alene «forklarer» omtrent 35 % av variansen i barnedødelighet på tvers av land."
+            "desc": "Frasers mål på Økonomisk frihet har den sterkeste negative korrelasjonen med barnedødelighet av alle X-målene i denne analysen. Åpne markeder letter import av vaksiner og næringsmidler, stabile valutaer holder importprisene forutsigbare, og velfungerende kontraktsrett gjør det mulig å bygge og drive sykehus med privat kapital. r = −0,59 tilsvarer at Økonomisk frihet alene «forklarer» omtrent 35 % av variansen i barnedødelighet på tvers av land."
           },
           "en": {
             "title": "Economic Freedom (Fraser/HFI) × Child Mortality",
