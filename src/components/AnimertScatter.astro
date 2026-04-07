@@ -597,8 +597,12 @@ const X_LABEL_MAP: Record<string, string> = {
       ),
     ].sort()
 
-    const W = Math.max(container.clientWidth || 720, 520)
-    const H = 460
+    const W = container.clientWidth || 520
+    const isSmall = W < 480
+    const isLandscape = window.innerWidth > window.innerHeight && window.innerHeight < 600
+    const H = isLandscape
+      ? Math.min(460, Math.max(window.innerHeight * 0.6, 200))
+      : 460
     const margin = { top: 16, right: 16, bottom: 56, left: 82 }
     const iW = W - margin.left - margin.right
     const iH = H - margin.top - margin.bottom
@@ -606,6 +610,8 @@ const X_LABEL_MAP: Record<string, string> = {
     const xScale = d3.scaleLinear(X_CONFIGS[xKey].domain, [0, iW])
     const xcfg = X_CONFIGS[xKey]
     const cfg = Y_CONFIGS[yKey]
+    const yTickCount = isSmall ? Math.max(Math.ceil(cfg.ticks / 2), 3) : cfg.ticks
+    const axisFontSize = isSmall ? '14px' : '11px'
     const yScale =
       cfg.scaleType === 'log'
         ? d3
@@ -670,14 +676,14 @@ const X_LABEL_MAP: Record<string, string> = {
     g.append('g')
       .attr('class', 'x-axis')
       .attr('transform', `translate(0,${iH})`)
-      .call(d3.axisBottom(xScale).ticks(10))
+      .call(d3.axisBottom(xScale).ticks(isSmall ? 5 : 10))
       .call((g) => g.select('.domain').attr('stroke', 'var(--rule)'))
       .call((g) =>
         g
           .selectAll('text')
           .attr('fill', 'var(--ink-faint)')
           .attr('font-family', 'var(--f-body)')
-          .attr('font-size', '11px'),
+          .attr('font-size', axisFontSize),
       )
       .call((g) => g.selectAll('.tick line').attr('stroke', 'var(--rule)'))
 
@@ -687,7 +693,7 @@ const X_LABEL_MAP: Record<string, string> = {
         d3
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           .axisLeft(yScale as any)
-          .ticks(cfg.ticks)
+          .ticks(yTickCount)
           .tickFormat((d: { valueOf(): number }) => cfg.tickFormat(d)),
       )
       .call((g) => g.select('.domain').attr('stroke', 'var(--rule)'))
@@ -696,7 +702,7 @@ const X_LABEL_MAP: Record<string, string> = {
           .selectAll('text')
           .attr('fill', 'var(--ink-faint)')
           .attr('font-family', 'var(--f-mono)')
-          .attr('font-size', '11px'),
+          .attr('font-size', axisFontSize),
       )
       .call((g) => g.selectAll('.tick line').attr('stroke', 'var(--rule)'))
 
@@ -1055,6 +1061,18 @@ const X_LABEL_MAP: Record<string, string> = {
         })
       })
 
+      let resizeTimer: ReturnType<typeof setTimeout>
+      const ro = new ResizeObserver(() => {
+        clearTimeout(resizeTimer)
+        resizeTimer = setTimeout(() => {
+          const currentYear = parseInt(slider.value, 10)
+          playbackCtrl.pause()
+          buildScatterWithKey(currentYKey, currentXKey)
+          playbackCtrl.seekTo(currentYear)
+        }, 150)
+      })
+      ro.observe(section)
+
       const xSelect = section.querySelector<HTMLSelectElement>('.x-select')
       if (xSelect) {
         xSelect.addEventListener('change', () => {
@@ -1253,7 +1271,7 @@ const X_LABEL_MAP: Record<string, string> = {
   }
 
   .chart-container {
-    min-width: 520px;
+    min-width: 0;
   }
 
   @media (max-width: 640px) {
@@ -1264,6 +1282,11 @@ const X_LABEL_MAP: Record<string, string> = {
     .year-slider {
       width: 100%;
       max-width: 100%;
+    }
+
+    .chart-scroll {
+      margin-left: -1.25rem;
+      margin-right: -1.25rem;
     }
   }
 </style>
