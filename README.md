@@ -2,7 +2,7 @@
 
 Hjemmesiden til **Tankesmia Individet** – publisert på [www.individet.no](https://www.individet.no).
 
-Siden er bygget med [Astro](https://astro.build) og genererer statiske sider fra Markdown-innhold. Den viktigste innholdstypen er ISI-analyser (Individets Stemme-Indeks), som scorer offentlige personer og institusjoner på seks dimensjoner knyttet til individets frihet.
+Siden er bygget med [Astro](https://astro.build) og genererer statiske sider fra Markdown-innhold. Den viktigste innholdstypen er ISI-analyser (Individets Suverenitetsindeks), som rangerer offentlige personer og institusjoner på seks dimensjoner knyttet til individets suverenitet (selveierskap).
 
 ## Sammenheng med `tankesmia`
 
