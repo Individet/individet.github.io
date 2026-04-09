@@ -106,7 +106,7 @@ I Lanes versjon av verdenshistorien, er korsfarerne uvitende og primitive barbar
 
 ## De hedenske gudene
 
-Gjennom hele boken refererer Lane til de gamle, hedenske (før-kristelige) guder og myter, av den Gamle Verden. Bildet hun portretterer av Europa, er nettopp et kontinent som fremdeles er styrt av gammel overtro. Kanskje i ny drakt, men fremdeles en gammel overlevning. Troen på at vi trenger en Autoritet til å passe på oss, og bestemme over oss, refererer hun til jevnt og trutt. Du finner selvfølgelig denne igjen hos Diktatoren, om det er i Lenin, Stalin eller Hitler. Europa har hatt denne mytiske eneherren gjennom monarkiet i århundrer. Men, hun avskriver også demokratiet som en tilsvarende fantasisk autoritet.
+Gjennom hele boken refererer Lane til de gamle, hedenske (før-kristelige) guder og myter, av den Gamle Verden. Bildet hun portretterer av Europa, er nettopp et kontinent som fremdeles er styrt av gammel overtro. Kanskje i ny drakt, men fremdeles en gammel overlevning. Troen på at vi trenger en Autoritet til å passe på oss, og bestemme over oss, refererer hun til jevnt og trutt. Du finner selvfølgelig denne igjen hos Diktatoren, om det er i Lenin, Stalin eller Hitler. Europa har hatt denne mytiske eneherren gjennom monarkiet i århundrer. Men, hun avskriver også demokratiet som en tilsvarende fantastisk autoritet.
 
 “Demos, The People, was a fantasy imagined by the ancient Greeks, in their search for The Authority that (they imagined) controlled men.”
 
