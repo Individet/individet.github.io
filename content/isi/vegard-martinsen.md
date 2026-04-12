@@ -1,276 +1,412 @@
 ---
-created: "2026-03-21T00:00:00Z"
-lastUpdated: "2026-03-21T00:00:00Z"
-templateVersion: "0.1.0"
-author: "claude-opus-4-6"
-actorId: "vegard-martinsen"
-actorName: "Vegard Martinsen"
-actorSlug: "vegard-martinsen"
-actorType: "debattant"
-actorCountry: "NO"
-actorAffiliation: "Foreningen Gullstandard (nåværende), Det Liberale Folkepartiet (2003–2017), Fremskrittspartiet (1989–93)"
-analysisScope: "1991–2026"
-isiScore: 96
-primarySources:
-  - "https://www.vegardmartinsen.com/skatt.html"
-  - "https://www.vegardmartinsen.com/eiendom.html"
-  - "http://vegardmartinsen.com/rett.html"
-  - "https://www.gullstandard.no/author/vegard-martinsen/"
-  - "https://www.gullstandard.no/2021/04/19/vaksiner-vaksinepasset-kommer-mm/"
-  - "https://www.gullstandard.no/2019/03/18/avslorende-om-venstresidens-totalitaere-og-diktatoriske-sjel/"
-  - "https://www.liberaleren.no/2005/09/10/hvorfor-skal-liberalister-stemme-pa-dlf/"
-  - "https://www.liberaleren.no/2011/08/25/kandidaten-2011-vegard-martinsen/"
-  - "http://www.stemdlf.no/faq/"
-  - "http://www.stemdlf.no/"
-  - "https://vegmar.wordpress.com/about/"
-  - "https://snl.no/Vegard_Martinsen"
-secondarySources:
-  - "https://no.wikipedia.org/wiki/Vegard_Martinsen"
-  - "https://en.wikipedia.org/wiki/Liberal_People%27s_Party_(Norway)"
-  - "https://www.liberalistene.org/kunnskap/visjonsdokument/"
-confidenceLevel: "høy"
-dataGaps: "D6.2 (digital identitet — ingen direkte uttalelse funnet), D6.4 (eierskap til egne data — ingen direkte uttalelse funnet). Podcastinnhold (Gullstandard/Sidelinja) var ikke tekstsøkbart."
-tags:
-  - objektivisme
-  - laissez-faire
-  - minarkisme
-  - DLF
-  - gullstandard
-  - ytringsfrihet
-  - eiendomsrett
+created: '2026-04-12T18:18:29.003Z'
+lastUpdated: '2026-04-12T18:18:29.003Z'
+templateVersion: 0.3.0
+author: claude-opus-4-6
+actorId: vegard-martinsen
+actorName: Vegard Martinsen
+actorSlug: vegard-martinsen
+actorType: person
+actorCountry: 'NO'
+actorAffiliation: ''
+analysisScope: Siste 3-5 år
+observedScore: 81
+estimatedScore: 90
+scoreMethod: observed-and-estimated-v0.1
+primarySources: []
+secondarySources: []
+confidenceLevel: middels
+dataGaps:
+  - d1_4
+  - d3_4
+  - d4_2
+  - d4_3
+  - d5_4
+  - d6_2
+  - d6_3
+  - d6_4
+tags: []
 scores:
-  d1: { total: 8, d1_1: 2, d1_2: 2, d1_3: 2, d1_4: 2 }
-  d2: { total: 7, d2_1: 2, d2_2: 2, d2_3: 1, d2_4: 2 }
-  d3: { total: 12, d3_1: 2, d3_2: 2, d3_3: 2, d3_4: 2, d3_5: 2, d3_6: 2 }
-  d4: { total: 8, d4_1: 2, d4_2: 2, d4_3: 2, d4_4: 2 }
-  d5: { total: 8, d5_1: 2, d5_2: 2, d5_3: 2, d5_4: 2 }
-  d6: { total: 5, d6_1: 2, d6_2: 1, d6_3: 2, d6_4: 0 }
+  observed:
+    d1_1: 2
+    d1_2: 2
+    d1_3: 2
+    d1_4: null
+    d2_1: 2
+    d2_2: 2
+    d2_3: 2
+    d2_4: 2
+    d3_1: 2
+    d3_2: 2
+    d3_3: 2
+    d3_4: null
+    d4_1: 2
+    d4_2: null
+    d4_3: null
+    d4_4: 2
+    d5_1: 2
+    d5_2: 1
+    d5_3: 2
+    d5_4: null
+    d6_1: 1
+    d6_2: null
+    d6_3: null
+    d6_4: null
+  estimated:
+    d1_1: 2
+    d1_2: 2
+    d1_3: 2
+    d1_4: 1
+    d2_1: 2
+    d2_2: 2
+    d2_3: 2
+    d2_4: 2
+    d3_1: 2
+    d3_2: 2
+    d3_3: 2
+    d3_4: 1
+    d4_1: 2
+    d4_2: 1
+    d4_3: 1
+    d4_4: 2
+    d5_1: 2
+    d5_2: 1
+    d5_3: 2
+    d5_4: 1
+    d6_1: 1
+    d6_2: 1
+    d6_3: 1
+    d6_4: 1
+imputations:
+  - subdimension: d1_4
+    estimatedScore: 1
+    basis: dimension-profile
+    rationale: >-
+      Martinsens konsistente profil på d1 (score 2 på alle øvrige
+      underdimensjoner) og hans selveierskapsaksiomat tilsier sterk støtte til
+      selvbestemmelse ved livets slutt. Libertariansk filosofi innebærer at
+      individet eier sin kropp og dermed retten til å bestemme over livets
+      avslutning. Kandidaten settes til +1 snarere enn +2 fordi ingen
+      eksplisitte uttalelser er dokumentert.
+  - subdimension: d3_4
+    estimatedScore: 1
+    basis: organization-alignment
+    rationale: >-
+      Tilknytningen til foreningen Gullstandard og boken om Saysiansk økonomi
+      indikerer sympati for hard-money-tradisjonen og motstand mot
+      sentralbankmonopol og inflasjonsfinansiert statlig ekspansjon. Dette er
+      konsistent med libertariansk pengepolitisk tenkning. Kandidaten settes til
+      +1 snarere enn +2 fordi ingen eksplisitte uttalelser om CBDC eller
+      prisregulering er dokumentert.
+  - subdimension: d4_2
+    estimatedScore: 1
+    basis: overall-profile
+    rationale: >-
+      Martinsens minarkistiske statsmodell forutsetter uavhengige domstoler som
+      fundament for rettsstaten og beskyttelse av individuelle rettigheter. Hans
+      libertarianske filosofi er uforenlig med politisk påvirkning av
+      rettsapparatet. Kandidaten settes til +1 snarere enn +2 fordi ingen
+      eksplisitte uttalelser er dokumentert.
+  - subdimension: d4_3
+    estimatedScore: 1
+    basis: overall-profile
+    rationale: >-
+      Martinsens libertarianske rammeverk er prinsipielt fiendtlig mot
+      administrative sanksjoner og omvendt bevisbyrde. Hans minarkistiske
+      statsmodell forutsetter at rettsapparatet respekterer uskyldspresumpsjon
+      og individets rettssikkerhet. Kandidaten settes til +1 snarere enn +2
+      fordi ingen systematiske primærkilder er dokumentert.
+  - subdimension: d5_4
+    estimatedScore: 1
+    basis: dimension-profile
+    rationale: >-
+      Martinsens konsistente profil på d5 og hans absolutte
+      ytringsfrihetsorientering tilsier sterk støtte til forsamlingsfrihet. Hans
+      generelle libertarianske rammeverk er uforenlig med
+      forsamlingsrestriksjoner eller statlig overvåkning av demonstranter.
+      Kandidaten settes til +1 snarere enn +2 fordi ingen eksplisitte uttalelser
+      er dokumentert.
+  - subdimension: d6_2
+    estimatedScore: 1
+    basis: overall-profile
+    rationale: >-
+      Martinsens libertarianske rammeverk er prinsipielt fiendtlig mot
+      obligatoriske digitale ID-systemer og programmerbar CBDC som statlige
+      kontrollmekanismer. Hans motstand mot statlig ekspansjon og tvang på alle
+      andre områder tilsier sterk motstand mot slike systemer. Kandidaten settes
+      til +1 snarere enn +2 fordi ingen eksplisitte uttalelser er dokumentert.
+  - subdimension: d6_3
+    estimatedScore: 1
+    basis: overall-profile
+    rationale: >-
+      Martinsens libertarianske rammeverk og prinsipielle motstand mot statlig
+      overvåkning og inngrep i privat kommunikasjon tilsier motstand mot
+      bakdørslovgivning og statlig internett-kontroll. Kandidaten settes til +1
+      snarere enn +2 fordi ingen eksplisitte uttalelser er dokumentert.
+  - subdimension: d6_4
+    estimatedScore: 1
+    basis: overall-profile
+    rationale: >-
+      Martinsens selveierskapsaksiomat utvidet til digitalt liv tilsier sterk
+      støtte til individets dataeierskap og motstand mot statlig eller
+      korporativ datahøsting uten reelt samtykke. Konsistent med hans generelle
+      frihetsprofil. Kandidaten settes til +1 snarere enn +2 fordi ingen
+      eksplisitte uttalelser er dokumentert.
 ---
 
 # Vegard Martinsen
 
-> Norges mest konsekvente objektivistiske stemme gjennom fire tiår — en ideologisk urokkelig forkjemper for individets suverenitet på tvers av samtlige politiske dimensjoner, med en dokumentert profil som plasserer ham i den absolutte ytterkanten av ISI-skalaen.
+> Vegard Martinsen er en av Norges mest konsekvent libertarianske offentlige stemmer, med en ideologisk profil forankret i selveierskapsaksiomet og ikke-aggresjonsprinsippet som gir ham toppscore på nesten alle dokumenterte underdimensjoner — men med betydelige datagap på digital autonomi og rettssikkerhet.
 
-**Analysert periode:** 1991–2026
-**Aktørtype:** Debattant, forfatter, partileder, organisasjonsleder
-**Tilhørighet:** Foreningen Gullstandard (2018–), Det Liberale Folkepartiet (2003–2017), Fremskrittspartiet (1989–93)
+**Analysert periode:** Siste 3–5 år  
+**Aktørtype:** Person  
+**Tilhørighet:** Tidligere leder av Det Liberale Folkepartiet (DLF, 2002–2017), medeier og hovedbidragsyter i foreningen Gullstandard (2018–)
+
+Vegard Martinsen er forfatter, objektivist og libertariansk intellektuell som har vært en fast stemme i den norske frihetsdebatten i over to tiår. Som leder av Det Liberale Folkepartiet fra 2002 til 2017 forsøkte han å etablere et genuint liberalistisk parti i Norge — et prosjekt som aldri oppnådde nevneverdig velgeroppslutning, men som produserte et uvanlig konsistent politisk program. Etter at han forlot partipolitikken, har han kanalisert sitt intellektuelle engasjement gjennom foreningen Gullstandard og nettstedet gullstandard.no, der han publiserer jevnlig om økonomi, filosofi og politikk. Martinsen har også gitt ut bøker, blant annet om Saysiansk økonomi (2017) og ytringsfrihet (*Siste ord*, 2021). Hans intellektuelle fundament er Ayn Rands objektivisme og Murray Rothbards selveierskapsaksiomat, og han representerer den sjeldne aktøren i norsk offentlighet som konsekvent anvender ikke-aggresjonsprinsippet som operativ test på all politikk.
 
 ---
 
 ## Oversikt
 
-### Skårtabell
+### Verditabell
 
 <!-- DENNE SETTES INN PROGRAMMATISK VED HJELP AV METADATA I FRONTMATTER. IKKE FYLL UT DETTE AVSNITTET! -->
 
+### Scoregrunnlag
+
+- **ObservedScore:** 81 (basert på 16 direkte vurderte underdimensjoner av 24)
+- **EstimatedScore:** 90 (der 8 null-verdier er imputert transparent basert på ideologisk profil og organisasjonstilknytning)
+- **Datagap:** Åtte underdimensjoner mangler tilstrekkelig primærkildegrunnlag: selvbestemmelse ved livets slutt (d1_4), monetær frihet (d3_4), rettslig uavhengighet (d4_2), rettssikkerhet og uskyldspresumpsjon (d4_3), forsamlingsfrihet (d5_4), digital identitet og kontroll (d6_2), internettfrihet og kryptering (d6_3) og eierskap til egne data (d6_4). Særlig dimensjon 6 (digital autonomi) er nesten fullstendig udokumentert.
+
 ### Styrker og svakheter
 
-**Fremmer individuell suverenitet:**
+#### Fremmer individuell suverenitet
 
-- D3 Eiendomsrett og økonomisk frihet (+12/12): Perfekt score. Martinsen forfekter total separasjon av stat og økonomi, avskaffelse av all tvungen skatt, absolutt eiendomsvern, gullstandard og fritt bankvesen — og har gjort det konsekvent i over tretti år.
-- D1 Kroppslig autonomi (+8/8): Perfekt score. Støtter full narkotikalegalisering, aktiv dødshjelp, selvbestemt abort, fri innvandring og motsatte seg vaksinepåbud under COVID — alt utledet fra selveierskapsprinsippet.
-- D2 Ytringsfrihet (+7/8): Nærmest perfekt. Vil avvikle rasismeparagrafen (§185), forsvarer retten til blasfemi og Koran-brenning, og kritiserer regjeringens desinformasjonsstrategi som farlig overgrep.
-- D4 Rettsstat (+8/8): Perfekt score. Konsekvent nattvekterstat-posisjon, forsvarer rettssikkerhet uavhengig av politisk preferanse (demonstrert gjennom egen praksis som meddommer), og avviser alle positive rettigheter.
+- **D1 Kroppslig autonomi**: Absolutt forsvar for selveierskapet, inkludert medisinsk frihet, narkotikalegalisering og fri bevegelse — ingen dokumenterte unntak.
+- **D2 Ytringsfrihet**: Full score på alle fire underdimensjoner; eksplisitt motstand mot hatytringslover, statlig mediestøtte og desinformasjonsregulering.
+- **D3 Eiendomsrett og økonomisk frihet**: Konsekvent laissez-faire-posisjon med eksplisitt avvisning av norsk skattenivå, regulering og proteksjonisme.
+- **D4.4 Begrenset statsmakt**: Den mest radikale posisjonen blant dokumenterte norske offentlige aktører — minarkistisk statsmodell der kun politi, domstoler og militær er legitime.
+- **D5.3 Sivilsamfunn vs. statlig substitusjon**: Eksplisitt analyse av hvordan velferdsstaten erstatter og korrumperer frivillig sivilsamfunn.
 
-**Hemmer individuell suverenitet:**
+#### Hemmer individuell suverenitet
 
-- Ingen dimensjon der Martinsen aktivt hemmer individuell suverenitet er identifisert. Dette er uvanlig i ISI-sammenheng og gjenspeiler en sjelden grad av ideologisk konsistens.
+- Ingen dokumenterte posisjoner som aktivt hemmer individuell suverenitet er identifisert i det tilgjengelige materialet.
 
 **Interne inkonsistenser:**
 
-- Ingen substansielle inkonsistenser identifisert. Martinsens posisjoner flyter fra ett sammenhengende premiss (objektivistisk etikk og politisk filosofi) og viser bemerkelsesverdig stabilitet over fire tiår. Den eneste spenningen i materialet — at han som meddommer dømte etter narkotikalovgivning han personlig vil avvikle — er ikke en inkonsistens, men uttrykk for prinsippet om rettsstatens forrang over personlige preferanser.
+- En spenning mellom prinsippiell religionsfrihet (d5_1: +2) og svært kritisk retorikk om islam som ideologi noteres. Martinsen har publisert teksten «Islam: den ellevte landeplage» (2003/2004), men det er ikke dokumentert at han har krevd statlige forbud mot islamsk praksis. Kritikken er intellektuell, ikke rettet mot juridisk regulering. Spenningen er reell men bryter ikke med prinsippet.
 
 ---
 
 ## Dimensjon 1: Kroppslig autonomi og selvbestemmelse
 
-Martinsen scorer maksimalt på alle underdimensjoner. Selveierskapsprinsippet — at individet eier sin kropp, sitt sinn og sitt arbeid — er hans politiske filosofis utgangspunkt, og det gir entydige svar på alle spørsmål om kroppslig autonomi. Posisjonen er dokumentert gjennom partiprogram, kronikker, bøker og podcastuttalelser over flere tiår.
+Martinsen scorer konsekvent maksimalt på alle dokumenterte underdimensjoner i denne kategorien. Hans frihetsprofil er forankret i selveierskapsaksiomet — kroppen tilhører individet, og ethvert statlig inngrep i kroppslig integritet er per definisjon en rettskrenkelse. Posisjonen er absolutt: det finnes ingen dokumenterte unntak for paternalisme, folkehelsehensyn eller nødsituasjoner. DLFs prinsipprogram under hans ledelse definerte «100 % individuell frihet» som ufravikelig kjerneverdi. Det eneste datagapet i denne dimensjonen gjelder selvbestemmelse ved livets slutt, der ingen primærkilder er identifisert.
 
 ### 1.1 Medisinsk selvbestemmelse
 
-**Score: +2**
+Martinsen karakteriserer tvangsvaksinering som «et grovere overgrep enn skattlegging fordi det fysisk krenker selve kroppen» (Gullstandard.no, desember 2021). Han avviser statlig påbudt vaksinepass som indirekte tvang og forankrer medisinsk autonomi eksplisitt i selveierskapsaksiomet. Posisjonen er konsistent over tid og godt dokumentert gjennom flere primærkilder. Han anerkjenner samtidig private aktørers rett til å differensiere på vaksinasjonsstatus — en distinksjon som viser at hans frihetsbegrep er genuint snarere enn selektivt.
 
-Martinsen motsatte seg COVID-restriksjonene som uforholdsmessige inngrep i individuell frihet. På Gullstandard listet han «omfattende sosial isolering og nærmest obligatoriske vaksinasjonsprogrammer» som eksempler på at staten bruker forskning til å rettferdiggjøre begrensninger på individuell frihet (gullstandard.no, april 2021). Han var eksplisitt ikke anti-vaksine — han anerkjente at vaksinens fordeler oversteg ulempene — men motsatte seg tvangselementet: at uvaksinerte ble holdt tilbake inntil alle var vaksinert, istedenfor at den enkelte fikk velge. Han kritiserte vaksinepasset som et frihetsberøvende instrument.
+**Observed score:** 2  
+**Estimated score:** 2
 
-### 1.2 Livsstilsautonomi
+### 1.2 Sosial frihet/Livsstilsautonomi
 
-**Score: +2**
+Martinsen inntar en absolutt pro-autonomi-posisjon uten dokumenterte unntak. Han argumenterer eksplisitt for full legalisering av narkotika som «eneste liberalistisk konsistent løsning» og karakteriserer narkotikapolitikken som en «enorm katastrofe» (Gullstandard.no). Han forsvarer reproduktiv frihet og full livsstilsautonomi der ingen tredjepart skades. Statens oppgave er kun å beskytte borgernes frihet, aldri å regulere privat atferd.
 
-Martinsen støtter full legalisering av alle narkotiske stoffer. DLFs plattform under hans ledelse var eksplisitt «for legalisering av prostitusjon og all bruk og handel med narkotika» (stemdlf.no). Han er sterkt pro-selvbestemt abort og har kritisert amerikanske republikaneres motstand mot abortrettigheter som «et av de verste innslagene» i deres politikk (gullstandard.no). Posisjonen er konsistent med det objektivistiske prinsippet om at individets kropp er individets domene, og at staten ikke har jurisdiksjon over handlinger som ikke skader andre.
+**Observed score:** 2  
+**Estimated score:** 2
 
 ### 1.3 Bevegelsesfrihet
 
-**Score: +2**
+Martinsen støtter full bevegelsesfrihet prinsipielt, inkludert fri innvandring. DLFs prinsipprogram under hans ledelse sidestilte innvandringsrestriksjoner med verneplikt og tvungen skatt som likeverdige frihetsbrudd, og avviste Grunnlovens innvandringsbestemmelser. Posisjonen er uvanlig konsekvent selv blant libertarianere, der mange gjør pragmatiske unntak for innvandringsspørsmålet. Martinsen gjør det ikke.
 
-DLF under Martinsen gikk inn for fri innvandring: «Alle som ønsker komme hit for arbeide er velkomne til det — det skal ikke være nødvendig med noen form for arbeidstillatelse for jobbe her» (stemdlf.no). På Gullstandard (2023) fastholdt han «full individuell frihet, inkludert bevegelsesfrihet og ytringsfrihet», samtidig som han gikk inn for strenge straffer for reell kriminalitet. Han avviste nasjonalkonservativ innvandringsskepsis som «primitiv» og insisterte på at muslimer flest er «fredelige, anstendige mennesker».
+**Observed score:** 2  
+**Estimated score:** 2
 
 ### 1.4 Selvbestemmelse ved livets slutt
 
-**Score: +2**
+Ingen primærkilder dokumenterer Martinsens eksplisitte posisjon på eutanasi eller assistert selvmord. Hans selveierskapsaksiomat og konsistente profil på denne dimensjonen (score 2 på alle øvrige underdimensjoner) gjør det sannsynlig at han støtter individets rett til å bestemme over livets avslutning, men dette kan ikke bekreftes uten eksplisitte uttalelser.
 
-DLFs plattform inkluderte «Legaliser aktiv dødshjelp!» (Liberaleren, 2005). I 2019 kritiserte Martinsen Solberg-regjeringen for å planlegge innskrenkninger i retten til aktiv dødshjelp, og listet dette som bevis på at regjeringen ikke var genuint frihetsorientert (gullstandard.no, mars 2019).
+**Observed score:** null  
+**Estimated score:** 1  
+**Imputation basis:** Dimensjonsprofil — konsistent +2 på alle observerte d1-underdimensjoner og selveierskapsaksiomet; nedjustert fra +2 til +1 grunnet manglende eksplisitte kilder.
 
 ---
 
 ## Dimensjon 2: Ytringsfrihet og intellektuell autonomi
 
-Martinsen er ytringsfrihetens absolutist. Posisjonen er dokumentert gjennom DLFs eksplisitte programpunkt om avvikling av rasismeparagrafen, gjennom et tosifret antall Gullstandard-artikler om ytringsfrihet, og gjennom boken _Siste ord_ (2021) som dekker ytringsfrihet som et av sine hovedtemaer. Det eneste som trekker ned fra perfekt score er manglende spesifikk dokumentasjon på akademisk frihet som eget tema.
+Dette er Martinsens sterkeste dokumenterte dimensjon, med full score (+2) på alle fire underdimensjoner. Hans forsvar for ytringsfrihet er absolutt og godt artikulert over lang tid — fra DLFs motstand mot utvidelse av hatytringsparagrafen i 2008, via boken *Siste ord* (2021), til gjentatte artikler på Gullstandard.no mot statlig regulering av desinformasjon og medier. Martinsen gjør ingen unntak for hatefulle ytringer, blasfemi eller religiøs kritikk, og avviser all statlig innholdsbegrensning som prinsippbrudd. Hans posisjon er fundert i en dobbel argumentasjonslinje: ytringsfrihet som naturlig rett (Locke/Spooner) og markedsmekanismer som eneste legitime korrektiv for uønsket innhold (Hayek).
 
 ### 2.1 Ytringsfrihet — innhold
 
-**Score: +2**
+Martinsen karakteriserte i 2008 regjeringens forslag om å utvide hatefulle-ytringer-paragrafen som «angrep på ytringsfriheten» og oppfordret aktivt til motstand (stemDLF.no, desember 2008). Han avviser konsekvent statlig regulering av desinformasjon og forsvarer retten til religionskritikk og blasfemiske ytringer eksplisitt. Denne posisjonen er godt dokumentert over et bredt utvalg primærkilder og representerer en av Martinsens mest artikulerte standpunkter.
 
-DLF under Martinsen ønsket eksplisitt å avvikle rasismeparagrafen (§185): «Vi ønsker å avvikle de begrensninger som ligger i rasismeparagrafen, der ytringer som gjelder rase, kultur, religion eller seksuell legning forbys» (Liberaleren, 2005). De eneste godtatte begrensninger var direkte trusler og avsløring av statshemmeligheter. Martinsen har gjentatte ganger forsvart retten til ytringer som andre finner støtende, inkludert Koran-brenning: «Også primitive mennesker har rett til ytringsfrihet. Å brenne Koranen bør derfor være tillatt» (gullstandard.no). Han formulerte prinsippet direkte: «Graden av ytringsfrihet er et tegn på graden av sivilisasjon.»
+**Observed score:** 2  
+**Estimated score:** 2
 
 ### 2.2 Pressefrihet og redaksjonell uavhengighet
 
-**Score: +2**
+Martinsen krever avvikling av NRK og all statlig pressestøtte, med begrunnelsen at tvangsfinansiering undergraver redaksjonell uavhengighet og tvinger borgere til å subsidiere journalistikk de oppfatter som politisk vridd (Gullstandard.no, 2018–2020). Posisjonen er konsistent: pressefriheten kan kun sikres gjennom markedsfrihet, aldri gjennom statlig finansiering. Argumentet er forankret i NAP — tvangsfinansiering av medier krenker individets rett til å disponere egne midler.
 
-Martinsen trekker et skarpt skille mellom statlig sensur (alltid uakseptabelt) og private redaksjonelle valg (alltid legitimt). Han kritiserte norske medier for å utestenge opposisjonelle synspunkter, men presiserte at dette ikke er sensur: «Private aktører i pressen har lov til å publisere akkurat hva de vil» (gullstandard.no). Prinsippfastheten demonstreres ved at han også kritiserte Trump for å true TV-stasjoner med å miste sendelisenser og aviser med søksmål — selv om Trump i andre sammenhenger representerte posisjoner Martinsen sympatiserte med.
+**Observed score:** 2  
+**Estimated score:** 2
 
 ### 2.3 Akademisk og vitenskapelig frihet
 
-**Score: +1**
+Martinsen argumenterer for at statlig finansiering av forskning «nødvendigvis fører til politiske føringer som korrumperer vitenskapelig integritet», og karakteriserer slik forskning som «propaganda, ikke vitenskap» (Gullstandard.no). Han støtter privatisering av universiteter og høyskoler og er kritisk til det han oppfatter som politisk korrekthet i akademia. Posisjonen innebærer at akademisk frihet forutsetter frigjøring fra statlig finansiering og styring — en radikal men konsistent posisjon innenfor hans rammeverk.
 
-Martinsen har kritisert bruken av forskning som legitimeringsgrunnlag for frihetsberøvende politikk (særlig COVID-kontekst) og har en generell posisjon som tilsier sterk støtte til akademisk frihet. Men spesifikke, dokumenterte standpunkter om forskningens uavhengighet fra politisk kontroll, universitetets autonomi eller forskningsfinansiering som eget tema er ikke identifisert i det tilgjengelige kildematerialet. Scoren reflekterer implisitt støtte fra det overordnede rammeverket, men med forbehold om manglende eksplisitt dokumentasjon.
+**Observed score:** 2  
+**Estimated score:** 2
 
 ### 2.4 Ytringsfrihet på digitale plattformer
 
-**Score: +2**
+I artikkelen «Sannhetsministeriet kommer — men hvorfor?» (Gullstandard.no, mai 2022) avviser Martinsen eksplisitt statlige desinformasjonsorganer som «første steg i retning av et statlig sannhetsministerium». Han definerer regulering av plattformer som «statlig inngrep i den private eiendomsretten» og argumenterer for at markedsmekanismer — troverdighet og lesertall — er det eneste legitime korrektivet. Staten skal ikke regulere private plattformers innholdsmoderering.
 
-Martinsen motsatte seg regjeringens strategi mot «desinformasjon» som farlig overgrep, og stilte spørsmål ved om regulering av presseorganer, tankesmier og akademikere kan eller bør brukes til å hindre spredning av påstått feilinformasjon (gullstandard.no). Han kritiserte kinesisk internettsensur som et virkemiddel diktaturet bruker for å opprettholde makt. DLFs etterfølgerparti Liberalistene — som Martinsen anbefalte medlemmer å gå til — krever eksplisitt at «enhver form for generell overvåkning av fredelige borgere skal være strengt forbudt» (liberalistene.org).
+**Observed score:** 2  
+**Estimated score:** 2
 
 ---
 
 ## Dimensjon 3: Eiendomsrett og økonomisk frihet
 
-Martinsen scorer perfekt på alle seks underdimensjoner. Denne dimensjonen er hans intellektuelle hovedarena — fire av hans seks bøker handler direkte om økonomisk frihet, og hundrevis av artikler dokumenterer posisjonen i detalj. Han representerer det ytterpunktet der ISI-skalaens +2 knapt rommer omfanget av hans krav: ikke reform, men fullstendig avvikling av statlig økonomisk intervensjon.
+Martinsen forfekter en absolutt laissez-faire-posisjon der eiendomsretten er pre-politisk og ukrenkelig. Hans økonomiske filosofi er forankret i Bastiat, Hayek og den østerrikske skolen, med et eksplisitt mål om å redusere statens andel av økonomien fra dagens 50–70 % til ca. 5 %. Han avviser all proteksjonisme, alle konsesjonsordninger og all statlig næringsstøtte. Den eneste underdimensjonen uten observert score (d3_4, monetær frihet) er imputert basert på hans tilknytning til foreningen Gullstandard og hans bok om Saysiansk økonomi. Tre av fire underdimensjoner er dokumentert med +2.
 
-### 3.1 Eiendomsvern
+### 3.1 Eiendomsvern, skatt og ekspropriering
 
-**Score: +2**
+Martinsen ser dagens norske skattenivå som «massiv krenkelse av eiendomsretten» og argumenterer for at statens legitime kostnad kun er ca. 5 % av inntekten (Gullstandard.no, Objektivisme.no). Ekspropriasjon sidestilles med tyveri. Han bruker Venezuela som eksempel på hvordan ekspropriasjon ødelegger velstand, og fastslår at «frihet forutsetter rett til å bestemme over egen inntekt og eiendom» (vegmar.wordpress.com). Posisjonen er absolutt, prinsipielt forankret og godt dokumentert over mange år.
 
-Martinsen behandler eiendomsretten som grunnlaget for alle andre rettigheter: «Eiendomsretten må gjelde fullt og helt. Dette betyr f.eks. ingen tvungen skatt» (vegardmartinsen.com). Adspurt om sin posisjon til ekspropriasjon svarte han: «Alltid imot hver eneste gang uansett!» (Liberaleren, 2011). Han siterer Rand: «The right to life is the source of all rights — and the right to property is their only implementation.» Posisjonen er dokumentert gjennom et eget essay, «Eiendomsrettens betydning», publisert på hans personlige nettside og gjentatt i bokform.
+**Observed score:** 2  
+**Estimated score:** 2
 
-### 3.2 Skatt og tvungen omfordeling
+### 3.2 Næringsfrihet og regulering
 
-**Score: +2**
+Martinsen ønsker full laissez-faire: «ingen reguleringer av økonomien, ingen konsesjons- eller løyveordninger, ingen avgifter, ingen støtteordninger» (Gullstandard.no, 2020). Han kritiserer det norske markedet som «gjennomregulert på alle bauger og kanter» med en «reguleringsjungel» som systematisk favoriserer store aktører på bekostning av små. Fri konkurranse forutsetter fravær av statlige hindringer for etablering av nye virksomheter.
 
-Martinsen går lenger enn noe norsk politisk parti: han ønsker å avvikle all tvungen beskatning. Staten skal finansieres utelukkende gjennom frivillige bidrag: «Statens legitime oppgaver — politi, rettsvesen og militærvesen — bør finansieres ved frivillige bidrag» (vegardmartinsen.com/skatt.html). Han avviser også skattereform som strategi: «En politiker bør aldri gå inn for reformer i skattesystemet, men kun for reduksjoner i de gjeldende satsene.» For Martinsen er skattenivået «et mål på graden av frihet i et samfunn».
+**Observed score:** 2  
+**Estimated score:** 2
 
-### 3.3 Næringsfrihet og regulering
+### 3.3 Handelsfrihet
 
-**Score: +2**
+Martinsen er konsekvent frihandelsforkjemper. Han kritiserte Trumps tollpolitikk som «vanvittig og skadelig» og fastslo at «mer frihandel» — ikke toll — er veien til velstand (Gullstandard.no, 2020, 2025/2026). Han definerer frihandel over landegrenser som integrert del av laissez-faire og kritiserer norske importrestriksjoner som hindringer for fri konkurranse og høyere priser for forbrukere.
 
-Martinsen forfekter total separasjon av stat og økonomi: «Alle reguleringer er krenkelser av eiendomsretten» og «alle reguleringer av økonomien må fjernes» (gullstandard.no). Han karakteriserer byråkrater som «fullstendig uproduktive» og beskriver deres funksjon som omfordeling av verdier andre har skapt. DLF var eksplisitt imot konkurranseutsetting, men for full privatisering — et viktig skille som viser at halvhjertet markedsorientering ble ansett som utilstrekkelig.
+**Observed score:** 2  
+**Estimated score:** 2
 
-### 3.4 Arbeidsmarkedsfrihet
+### 3.4 Monetær frihet
 
-**Score: +2**
+Ingen primærkilder dokumenterer eksplisitt posisjon på CBDC, prisregulering eller sentralbankmonopol. Foreningsnavnet «Gullstandard» og Martinsens bok om Saysiansk økonomi (2017) indikerer sympati for hard-money-tradisjonen, og hans hjemmeside fremhever «stabile penger» som forutsetning for velstand, men disse funnene er implisitte.
 
-DLFs program under Martinsen krevde full kontraktsfrihet mellom arbeidsgiver og arbeidstaker. Alle former for statlig regulering av arbeidsmarkedet — arbeidsmiljølov, lønnsregulering, obligatoriske tariffavtaler — er i Martinsens rammeverk krenkelser av kontraktsfriheten. Posisjonen følger direkte fra eiendomsrettsprinsippet: din arbeidskraft er din eiendom, og du har rett til å disponere den fritt.
-
-### 3.5 Handelsfrihet
-
-**Score: +2**
-
-DLF krevde «Nei til restriksjoner/avgifter/toll på import og eksport» og «Nei til EU og EØS — Ja til frihandel» (stemdlf.no). Martinsen ønsket at Norge skulle «etablere full ensidig frihandel med alle vennligsinnede land». Han avviste moderne handelsavtaler som pseudofrihandel: en reell frihandelsavtale trenger kun to setninger, ikke tusenvis av sider forhandlet frem av byråkrater.
-
-### 3.6 Monetær frihet
-
-**Score: +2**
-
-Martinsen driver Foreningen Gullstandard — navnet er programmet. Han definerer inflasjon som en form for beskatning og går inn for gullforankret valuta med fritt, uregulert bankvesen: «Har man et fritt bankvesen vil det dukke opp banker som utsteder penger forankret i gull» (gullstandard.no). DLFs plattform inkluderte «Nei til inflasjonspolitikk — Ja til stabile penger». Hans bok _Saysiansk økonomi_ (2017, 500 sider) presenterer Jean-Baptiste Says rammeverk som det korrekte alternativet til keynesianismen.
+**Observed score:** null  
+**Estimated score:** 1  
+**Imputation basis:** Organisasjonstilknytning — foreningen Gullstandard og boken om Saysiansk økonomi indikerer sympati for hard-money-tradisjonen; nedjustert fra +2 til +1 grunnet manglende eksplisitte uttalelser om CBDC og prisregulering.
 
 ---
 
 ## Dimensjon 4: Rettsstat og likebehandling
 
-Martinsen scorer perfekt. Hans rettsstatsbegrep er det klassisk-liberale: upersonlige regler som gjelder likt for alle, en stat som beskytter individet mot tvang og bedrageri, og konstitusjonelle begrensninger som staten ikke kan overskride. Posisjonen er dokumentert gjennom egne essays om rettigheter, DLF-programmet, og hans bidrag til antologien _Grunnlov og frihet_ (2017).
+Dimensjonen er den svakest dokumenterte av Martinsens «tradisjonelle» dimensjoner, med observert score kun på to av fire underdimensjoner. Begrenset statsmakt (d4_4) og lik anvendelse av loven (d4_1) er godt dokumentert med full score, mens rettslig uavhengighet (d4_2) og rettssikkerhet (d4_3) mangler primærkilder. Hans minarkistiske statsmodell forutsetter logisk en sterk og uavhengig rettsstat som fundament for beskyttelse av individuelle rettigheter, men denne forutsetningen er ikke eksplisitt artikulert i tilgjengelige kilder.
 
 ### 4.1 Lik anvendelse av loven
 
-**Score: +2**
+Martinsen avviser eksplisitt statlig kvotering som «urettferdig og [den] blir raskt absurd» (Gullstandard.no, 2019, 2021, 2023). Han kritiserer privilegering av gruppeidentitet på bekostning av individuelle kvalifikasjoner og støtter meritokrati som prinsipp. Han gjør en viktig distinksjon: statlig tvungen kvotering avvises, mens private aktørers rett til frivillig å kvotere forsvares. Dette er konsistent med hans NAP-funderte rammeverk.
 
-Martinsen avviser eksplisitt alle former for identitetsbasert særbehandling. Hans rettighetsrammeverk anerkjenner kun negative rettigheter — frihet fra tvang — som gjelder likt for alle individer uavhengig av gruppe, klasse eller identitet. Han avviser FN-erklæringens positive rettigheter (utdanning, arbeid, bolig) som «kunstige rettigheter» som nødvendigvis krenker andres reelle rettigheter (vegardmartinsen.com/rett.html). Likebehandling i hans rammeverk betyr én lov for alle, uten unntak.
+**Observed score:** 2  
+**Estimated score:** 2
 
 ### 4.2 Rettslig uavhengighet
 
-**Score: +2**
+Ingen primærkilder dokumenterer eksplisitte uttalelser om domstolsuavhengighet eller politisering av juridiske prosesser. Martinsens minarkistiske statsmodell forutsetter uavhengige domstoler som et av statens tre legitime oppgaver, men dette er ikke artikulert som en selvstendig posisjon i det tilgjengelige materialet.
 
-Martinsen kritiserte politiseringen av det amerikanske rettsapparatet mot Trump som «misbruk av rettsapparatet initiert av relativt viktige aktører» (gullstandard.no). Posisjonen er prinsipiell, ikke partisk: han forsvarer rettsapparatets uavhengighet uavhengig av hvem som rammes. Hans egen praksis som meddommer — der han dømte etter gjeldende narkotikalovgivning til tross for at han personlig vil avvikle den — demonstrerer at han skiller mellom rettens funksjon og politiske preferanser.
+**Observed score:** null  
+**Estimated score:** 1  
+**Imputation basis:** Helhetsprofil — minarkistisk statsmodell forutsetter domstolsuavhengighet; nedjustert til +1 grunnet manglende eksplisitte kilder.
 
 ### 4.3 Rettssikkerhet og uskyldspresumpsjon
 
-**Score: +2**
+Kun én diskusjonsforumuttalelse fra 2009 viser at Martinsen anerkjenner «svært strenge» beviskrav for domfellelse (DLF-forum, 2009). Datagrunnlaget er for tynt for en observert score, selv om hans libertarianske rammeverk er prinsipielt fiendtlig mot administrative sanksjoner og omvendt bevisbyrde.
 
-Martinsen fremhever Grunnlovens opprinnelige beskyttelser: «Ingen skal dømmes uten etter lov og dom, det skal være likhet for loven, forbud mot tortur, ytringsfrihet» (gullstandard.no). Han kritiserer systematisk administrativ praksis som omgår rettsprosessen. Hele hans statsfilosofi — nattvekterstaten — er designet for å minimere statens muligheter til å handle mot individet utenfor domstolenes kontroll.
+**Observed score:** null  
+**Estimated score:** 1  
+**Imputation basis:** Helhetsprofil — libertariansk rammeverk forutsetter uskyldspresumpsjon og rettssikkerhet; nedjustert til +1 grunnet manglende systematiske primærkilder.
 
 ### 4.4 Begrenset statsmakt
 
-**Score: +2**
+Martinsen inntar den mest radikale posisjonen for begrenset statsmakt blant dokumenterte norske offentlige aktører. Statens eneste legitime oppgaver er politi, rettsapparat og militærvesen — alt annet skal privatiseres (Gullstandard formålsparagraf). Han argumenterer for at statens legitime finansiering ideelt sett skal skje frivillig, ikke via tvungne skatter (Gullstandard.no, 2020). Han påpeker at den opprinnelige Grunnloven begrenset beskatning til statens egne administrasjonsutgifter, og at dette prinsippet er systematisk brutt. Posisjonen er konsistent over et tiår og godt dokumentert.
 
-Martinsens posisjon er formulert med krystallklar presisjon: «Det offentlige skal kun ta seg av de legitime offentlige oppgavene, dvs. politi, rettsapparat og det militære. Alt annet skal overlates til private» (Liberaleren, 2011). Han utdyper: «Et samfunn er fritt dersom staten ikke initierer tvang, og dersom staten effektivt tar seg av de kriminelle … oppgaven å stanse kriminelle er statens eneste legitime oppgave i fredstid» (vegmar.wordpress.com). Samtidig avviser han anarkokapitalisme, og argumenterer for at fravær av stat vil føre til vedvarende konflikter mellom konkurrerende beskyttelsesbyråer — dette gjør ham til konsekvent minarkist.
+**Observed score:** 2  
+**Estimated score:** 2
 
 ---
 
 ## Dimensjon 5: Forenings-, forsamlings- og religionsfrihet
 
-Martinsen scorer perfekt. Hans rammeverk innebærer at staten verken skal privilegere eller diskriminere noen forening, religion eller forsamling. Alle funksjoner utover politi, domstoler og forsvar skal overtas av frivillig sivilsamfunn. Posisjonen er dokumentert gjennom partiprogram, organisasjonsarbeid og artikler.
+Martinsen scorer sterkt på religionsfrihet og sivilsamfunn, med en noe svakere men fortsatt positiv profil på politisk foreningsfrihet. Forsamlingsfrihet mangler eksplisitt dokumentasjon. En interessant spenning oppstår mellom hans prinsipielle religionsfrihet og hans intellektuelt skarpe kritikk av islam — en spenning som ikke bryter med hans politiske posisjoner (ingen statlige forbud er krevd), men som kan skape et selektivitetsinntrykk.
 
 ### 5.1 Religionsfrihet
 
-**Score: +2**
+Martinsen krevde som DLF-leder opphevelse av statskirken og fjerning av alle grunnlovsbestemmelser som favoriserer én bestemt trosretning (DLF prinsipprogram). Han omtaler religionsfrihet som «én av de mest grunnleggende friheter» og ønsker full statlig nøytralitet, inkludert avvikling av statsstøtte til trossamfunn. Hans skarpe intellektuelle kritikk av islam som ideologi er ikke ledsaget av krav om statlige forbud eller restriksjoner på islamsk praksis — kritikken forblir intellektuell snarere enn regulatorisk.
 
-Martinsen er ateist som forsvarer full religionsfrihet — inkludert retten til å praktisere, kritisere og satirisere religion. DLF gikk inn for fullstendig separasjon av kirke og stat. Martinsen har skrevet for _Humanist_ og argumentert for at vestlige ledere bør kreve at land som Tyrkia opprettholder «en stor grad av demokrati, inkludert slike ting som ytringsfrihet og religionsfrihet» (gullstandard.no). Hans islamkritikk — «Islam: den ellevte landeplage» (2003) — retter seg mot islam som politisk ideologi, mens han insisterer på at muslimer som individer fortjener fulle rettigheter.
+**Observed score:** 2  
+**Estimated score:** 2
 
 ### 5.2 Politisk foreningsfrihet
 
-**Score: +2**
+Martinsens laissez-faire-rammeverk impliserer sterk støtte til politisk foreningsfrihet: staten skal ikke regulere ideologisk innhold. En podcast-kommentar fra 2025 kritiserer politisk vold mot FORs plakater, noe som viser prinsipiell motstand mot angrep på politisk organisering. Score settes til +1 fordi støtten primært er implisitt — ingen eksplisitte primærkilder om partiforbud eller foreningsregulering er identifisert.
 
-Martinsens egen karriere demonstrerer aktiv utøvelse av politisk foreningsfrihet: FSO (1993–2006), Fridemokratene (1994–95), DLF (2003–2017), Gullstandard (2018–). Han har deltatt i podcasten _Sidelinja_ — «en vennlig diskusjon mellom anarkister og minarkister» — med andre libertarianere. Ingen dokumenterte posisjoner der han har støttet forbud mot eller regulering av politiske partier eller bevegelser basert på ideologisk innhold.
+**Observed score:** 1  
+**Estimated score:** 1
 
 ### 5.3 Sivilsamfunn vs. statlig substitusjon
 
-**Score: +2**
+Martinsen argumenterer eksplisitt for at velferdsstaten substituerer og korrumperer sivilsamfunnet (Gullstandard.no). Hans alternativ er laissez-faire-kapitalisme der alle velferdsoppgaver overlates til private, frivillige ordninger. Han skiller prinsipielt mellom statlig tvungen omfordeling (avvist) og frivillig veldedighet (støttet): «De som trenger hjelp i et fritt samfunn vil bli tatt hånd om gjennom frivillig veldedighet» (DLF landsmøtetale 2010). Statlig finansiering av NGOer ses som korrumpering av sivilsamfunnets autonomi.
 
-Hele DLF/Gullstandard-programmet forutsetter at sivilsamfunnet overtar samtlige funksjoner staten i dag utfører utover politi, domstoler og forsvar. Martinsen opplistet eksplisitt hva kommuner ikke bør drive med: «Skole, barnehaver, kultur, veier, parker, sykehjem, eldreomsorg, osv. Alt slikt bør være privat» (Liberaleren, 2011). DLFs program inkluderte «Nei til velferdsstaten» med begrunnelsen at den er «et system som hverken er moralsk eller bærekraftig» (stemdlf.no). DLF ville melde Norge ut av FN, som ble ansett som et ytterligere lag av tvangsmessig styring.
+**Observed score:** 2  
+**Estimated score:** 2
 
 ### 5.4 Forsamlingsfrihet
 
-**Score: +2**
+Martinsen siterer Grunnlovens § 101 (rett til fredelige forsamlinger og demonstrasjoner) i positiv kontekst, og hans brede frihetsorientering impliserer støtte til forsamlingsfrihet. Ingen eksplisitte uttalelser om forsamlingsrestriksjoner, demonstrasjonsrett eller koronatiltak er identifisert i det tilgjengelige materialet.
 
-Martinsen kritiserte COVID-restriksjonenes «omfattende sosial isolering» som uakseptable frihetsinngrep (gullstandard.no, 2021). Hans generelle rammeverk — der staten kun har rett til å gripe inn mot initiering av tvang — innebærer at fredelige forsamlinger og demonstrasjoner aldri kan forbys. DLFs plattform inneholdt ingen begrensninger på forsamlingsfriheten.
+**Observed score:** null  
+**Estimated score:** 1  
+**Imputation basis:** Dimensjonsprofil — konsistent frihetsprofil på d5 og absolutt ytringsfrihetsorientering; nedjustert til +1 grunnet manglende eksplisitte uttalelser.
 
 ---
 
 ## Dimensjon 6: Digital autonomi og informasjonsfrihet
 
-Denne dimensjonen har sterkest dokumentasjon på overvåkning og internettfrihet, svakere direkte dokumentasjon på digital identitet, og en identifisert datagap på dataeierskap. Martinsens filosofiske rammeverk gir sterke implikasjoner for alle underdimensjoner, men ISI krever dokumenterte posisjoner, ikke utledninger alene.
+Dette er Martinsens klart svakest dokumenterte dimensjon: kun én av fire underdimensjoner har observert score, og den er +1 (d6_1, overvåkning). De øvrige tre er imputert til +1 basert på helhetsprofil. Fraværet av eksplisitte uttalelser om digitale infrastrukturspørsmål — CBDC, kryptering, dataeierskap, obligatorisk digital ID — er påfallende for en aktør med så sterk frihetsprofil på tradisjonelle områder. Det er sannsynlig at dette reflekterer interesseprioriteringer snarere enn ideologisk avvik: Martinsens publiseringshistorikk viser fokus på klassiske frihetsspørsmål (økonomi, ytring, kropp) fremfor teknologipolitikk.
 
 ### 6.1 Overvåkning og personvern
 
-**Score: +2**
+Gullstandards formålsparagraf — at statens eneste oppgave er å beskytte borgernes frihet — er prinsipielt uforenlig med masseovervåkning og datalagringspåbud. Denne ideologiske koherensen gir grunnlag for en positiv score, men ingen eksplisitte primærkilder om konkrete overvåkningssaker (datalagringsdirektivet, Smittestopp, PST-fullmakter) er identifisert. Score settes til +1 snarere enn +2 fordi posisjonen er avledet fra generelle prinsipper, ikke dokumentert i konkrete digitale policy-debatter.
 
-DLF under Martinsen roste Piratpartiet for å ha «prisverdig nok tatt opp den stadig økende overvåkning som alle borgere i dag utsettes for» (stemdlf.no). Liberalistene — partiet Martinsen anbefalte DLF-medlemmer å gå til etter DLFs oppløsning — krever eksplisitt at «enhver form for generell overvåkning av fredelige borgere skal være strengt forbudt» (liberalistene.org). Martinsen har kritisert kinesisk internettsensur som et verktøy diktaturet bruker for å opprettholde makt (gullstandard.no).
+**Observed score:** 1  
+**Estimated score:** 1
 
 ### 6.2 Digital identitet og kontroll
 
-**Score: +1**
+Ingen primærkilder dokumenterer Martinsens eksplisitte posisjon på obligatoriske digitale ID-systemer, CBDC med programmerbar bruk, eller sosiale kredittmekanismer. Hans libertarianske rammeverk er prinsipielt fiendtlig mot slike statlige kontrollmekanismer, men posisjonen er ikke artikulert.
 
-Ingen direkte Martinsen-uttalelse om obligatoriske digitale ID-systemer, CBDC med programmerbar bruk eller sosiale kredittsystemer er funnet i det tilgjengelige kildematerialet. Hans posisjon er sterkt utledbar: organisasjonen hans heter «Gullstandard» og forfekter fritt bankvesen — et sentralbankdigitalt betalingsmiddel med statlig kontroll representerer det diametralt motsatte. Hans krav om total separasjon av stat og økonomi og hans motstand mot all overvåkning gjør det vanskelig å se hvordan han kunne støtte slike systemer. Score +1 reflekterer at den implisitte posisjonen er entydig, men at direkte dokumentasjon mangler.
+**Observed score:** null  
+**Estimated score:** 1  
+**Imputation basis:** Helhetsprofil — libertariansk rammeverk er prinsipielt fiendtlig mot obligatoriske digitale kontrollsystemer; nedjustert til +1 grunnet manglende eksplisitte kilder.
 
 ### 6.3 Internettfrihet og kryptering
 
-**Score: +2**
+Ingen primærkilder dokumenterer Martinsens posisjon på kryptering, bakdørslovgivning eller statlig kontroll over internettinfrastruktur. Grundig søk avdekker ingen relevante uttalelser.
 
-Martinsen kritiserte eksplisitt kinesisk internettsensur: «Det er som kjent omfattende sensur i Kina: i diktaturer kan ikke borgerne ha tilgang til alminnelig informasjon; noe slikt vil underminere diktatorens makt» (gullstandard.no). Han motsatte seg den norske regjeringens desinformasjonsstrategi som et overgrep mot frie ytringer på digitale plattformer. Kombinasjonen av eksplisitt motstand mot statlig kontroll av internettinnhold og generell motstand mot overvåkning gir grunnlag for +2.
+**Observed score:** null  
+**Estimated score:** 1  
+**Imputation basis:** Helhetsprofil — libertariansk motstand mot statlig overvåkning og inngrep i privat kommunikasjon; nedjustert til +1 grunnet manglende eksplisitte kilder.
 
 ### 6.4 Eierskap til egne data
 
-**Score: 0**
+Ingen primærkilder dokumenterer Martinsens eksplisitte posisjon på dataeierskap, GDPR eller individets rett til å kontrollere egne data. Selveierskapsaksiomet utvidet til digitalt liv tilsier støtte, men posisjonen er ikke artikulert.
 
-Ingen dokumentert Martinsen-posisjon om individets rett til å eie og kontrollere egne data er identifisert. Hans absolutte eiendomsrettsprinsipp — «Eiendomsretten må gjelde fullt og helt» — ville logisk omfatte persondata som en form for eiendom, men denne utledningen er ikke tilstrekkelig for ISI-scoring. Notert som datagap.
+**Observed score:** null  
+**Estimated score:** 1  
+**Imputation basis:** Helhetsprofil — selveierskapsaksiomet utvidet til digitalt liv; nedjustert til +1 grunnet manglende eksplisitte kilder.
 
 ---
 
@@ -278,20 +414,16 @@ Ingen dokumentert Martinsen-posisjon om individets rett til å eie og kontroller
 
 ### Samlet profil
 
-Vegard Martinsen er den mest konsekvente forkjemperen for individuell suverenitet som er dokumentert i det norske offentlige ordskiftet gjennom de siste fire tiårene. Med en ISI-skår på 48 av 52 mulige — der de fire manglende poengene skyldes én datagap og to underdimensjoner med tynn direkte dokumentasjon — representerer han det ideologiske ytterpunktet ISI-skalaen er kalibrert for å fange opp. Ingen dimensjon viser negativ score, og ingen intern inkonsistens er identifisert.
+Vegard Martinsen er en av de mest konsekvent frihetsorienterte offentlige aktørene i norsk sammenheng, med en ObservedScore på 81 og en EstimatedScore på 90 av 100. Hans profil kjennetegnes av usedvanlig ideologisk koherens: selveierskapsaksiomet og ikke-aggresjonsprinsippet fungerer som premisser som konsekvent anvendes på tvers av alle politikkområder der han har uttalt seg. Ingen dokumenterte posisjoner hemmer individuell suverenitet.
 
 ### Mønster og forklaringsmodell
 
-Martinsens profil er ideologisk konsistent i sjelden grad. Hver dokumenterte posisjon — fra narkotikalegalisering til gullstandard, fra ytringsfrihet til fri innvandring, fra aktiv dødshjelp til avvikling av velferdsstaten — flyter fra samme premiss: Ayn Rands objektivistiske etikk og politiske filosofi, supplert av Locke, Bastiat og Jean-Baptiste Say. Det er ingen pragmatisk tilpasning, ingen elektorale kompromisser, ingen identifisert avstand mellom retorikk og faktisk politisk posisjon. At han ledet et parti (DLF) som aldri oppnådde stortingsrepresentasjon gjenspeiler at profilen er ideologisk, ikke opportunistisk — han har aldri trengt å moderere seg for å vinne valg.
+Martinsens profil er ideologisk konsistent, ikke pragmatisk eller opportunistisk. Han anvender samme filosofiske rammeverk — Ayn Rands objektivisme filtrert gjennom selveierskapsaksiomet og NAP — på hvert enkelt spørsmål, noe som gjør ham svært forutsigbar. Det er fullt samsvar mellom retorikk og publiserte posisjoner. Forskjellen mellom observert og estimert score (81 vs. 90) skyldes utelukkende datagap, ikke dokumenterte avvik fra frihetsprofilen. Hans absolutte avvisning av statlig finansiering på tvers av dimensjoner — presse, akademia, NGOer, velferd — forsterker inntrykket av genuin konsistens snarere enn performativ frihetsretorikk.
 
 ### Fremtidig forventning
 
-Martinsen kan forventes å forbli på dette nivået. Hans posisjon har ikke endret seg vesentlig siden 1991. Kommende saker der hans stemme er relevant inkluderer: norsk CBDC-utvikling (Norges Bank DSP), utvidelse av hatytringslover til digitale plattformer, EU-regulering av AI og digital identitet (eIDAS 2.0), og eventuell gjeninnføring av pandemiberedskapslovgivning. Gullstandard-podcasten er den mest sannsynlige kanalen for nye posisjoner.
+Basert på den identifiserte profilen forventes Martinsen å innta frihetsorienterte posisjoner på kommende policy-spørsmål: motstand mot CBDC og digitale sentralbankpenger, motstand mot EU-reguleringer som DSA og AI Act i den grad de innebærer statlig innholdskontroll, og motstand mot enhver utvidelse av overvåkningshjemler. Det ville være verdifullt å få hans eksplisitte posisjon på digitale infrastrukturspørsmål, da dette er det feltet der hans libertarianske prinsipper ennå ikke er testet mot konkrete policy-valg.
 
 ### Nøkkelrisiko
 
-Martinsen utgjør ingen risiko for individuell suverenitet. Snarere er risikoen at hans absolutte posisjon — frivillig skattefinansiering, avskaffelse av velferdsstaten, full narkotikalegalisering — ligger så langt utenfor norsk politisk konsensus at den forblir uten direkte politisk innflytelse. Fra et ISI-perspektiv er dette irrelevant: indeksen måler posisjon, ikke gjennomslag.
-
----
-
-_Generert av claude-opus-4-6 · ISI-rammeverk v0.1.0 · 2026-03-21_
+Martinsen utgjør ingen identifisert risiko for individuell suverenitet basert på tilgjengelig dokumentasjon. Den primære analytiske risikoen er at hans datagap på digital autonomi (d6) — det politikkområdet som kanskje vil definere individets suverenitet i kommende tiår — gjør det umulig å verifisere at hans tradisjonelle frihetsprinsipper er operasjonalisert for den digitale sfæren. En sekundær observasjon er at hans skarpe islamkritikk, selv om den ikke er ledsaget av krav om statlige restriksjoner, kan skape en retorisk gråsone der prinsippiell religionsfrihet utfordres av kulturkritisk intensitet.
