@@ -108,6 +108,7 @@ const articles = defineCollection({
         })
       )
       .optional(),
+    isiSlugs: z.array(z.string()).optional(),
   }),
 })
 

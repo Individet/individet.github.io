@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content'
+import IsiReportCard from '../../components/IsiReportCard.astro'
 import { type ArticleImages, formatArticleDate } from '../../lib/articles'
 import Layout from '../../layouts/Layout.astro'
 
@@ -21,9 +22,17 @@ const { Content } = await render(entry)
 const isHuman = entry.data.human === true
 const author = entry.data.author
 const sources = entry.data.sources ?? []
+const isiSlugs = entry.data.isiSlugs ?? []
 
 const images =
   allImageFiles[`/src/assets/articles/${entry.data.slug}.json`] ?? null
+
+const linkedIsiReports =
+  isiSlugs.length > 0
+    ? (await getCollection('isi')).filter((r) =>
+        isiSlugs.includes(r.id.replace(/\.md$/, '')),
+      )
+    : []
 ---
 
 <Layout
@@ -85,6 +94,19 @@ const images =
     <section class="surface prose article-detail__body">
       <Content />
     </section>
+
+    {
+      linkedIsiReports.length > 0 && (
+        <section class="article-detail__isi" aria-label="ISI-analyser">
+          <span class="eyebrow">ISI-analyser</span>
+          <div class="article-detail__isi-grid">
+            {linkedIsiReports.map((report) => (
+              <IsiReportCard report={report} />
+            ))}
+          </div>
+        </section>
+      )
+    }
 
     {
       sources.length > 0 && (
@@ -177,5 +199,16 @@ const images =
   .article-detail__sources {
     display: grid;
     gap: 1rem;
+  }
+
+  .article-detail__isi {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .article-detail__isi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+    gap: 1.2rem;
   }
 </style>
