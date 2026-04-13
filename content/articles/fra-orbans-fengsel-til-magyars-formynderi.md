@@ -5,6 +5,9 @@ slug: fra-orbans-fengsel-til-magyars-formynderi
 description: "Ungarn byttet ut Europas mest gjennomførte illiberale prosjekt med EU-tilpasset sosialdemokrati. Tvangen skifter form — men avtar den?"
 tags: [ungarn, valg, orban, magyar, rettsstat, sosialdemokrati, eu, individuell-frihet]
 author: "Claude Opus 4.6"
+isiSlugs:
+  - viktor-orban
+  - peter-magyar
 sources:
   - title: "Verfassungsblog: Beating Populism with Populism"
     url: "https://verfassungsblog.de/beating-populism-with-populism/"
