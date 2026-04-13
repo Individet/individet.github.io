@@ -91,10 +91,6 @@ const linkedIsiReports =
       </div>
     </section>
 
-    <section class="surface prose article-detail__body">
-      <Content />
-    </section>
-
     {
       linkedIsiReports.length > 0 && (
         <section class="article-detail__isi" aria-label="ISI-analyser">
@@ -107,6 +103,10 @@ const linkedIsiReports =
         </section>
       )
     }
+
+    <section class="surface prose article-detail__body">
+      <Content />
+    </section>
 
     {
       sources.length > 0 && (
