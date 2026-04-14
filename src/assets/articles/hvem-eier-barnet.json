@@ -1,0 +1,18 @@
+{
+  "hero": {
+    "id": "hero",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/d/d1/JohnLocke.png",
+    "license": "Public Domain",
+    "attribution": "Godfrey Kneller, Public Domain, via Wikimedia Commons",
+    "alt": "Portrett av John Locke, malt av Godfrey Kneller i 1697"
+  },
+  "inline": [
+    {
+      "id": "bilde-1",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/d/d8/Sir_Thomas_Lawrence_%281769-1830%29_-_Charles_William%2C_Baron_von_Humboldt_%281767-1835%29_-_RCIN_404936_-_Royal_Collection.jpg",
+      "license": "Public Domain",
+      "attribution": "Johann Joseph Schmeller, Public Domain, via Wikimedia Commons",
+      "alt": "Tegning av Wilhelm von Humboldt ved Goethe Nationalmuseum"
+    }
+  ]
+}
