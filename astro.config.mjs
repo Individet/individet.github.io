@@ -40,6 +40,44 @@ function walkMdast(node, parent, idx, inlineMap) {
   }
 }
 
+function applyHvemEierBarnetTextFixes(text) {
+  return text
+    .replaceAll(
+      'Foreldrenes makt er derfor en plikt til å oppdra barnet til selvstendighet',
+      'Foreldrenes makt er derfor en forpliktelse til å oppdra barnet til selvstendighet'
+    )
+    .replaceAll('de plikter å gjøre det tilgjengelig', 'de forplikter seg til å gjøre det tilgjengelig')
+    .replaceAll('påtar seg positive plikter — omsorg, fostring, og oppdragelse til myndig selvstendighet.', 'forplikter seg til å gi omsorg, fostring og oppdragelse til myndig selvstendighet.')
+    .replaceAll(
+      'Det er en plikt som springer direkte fra menneskets natur',
+      'Det er en forpliktelse som springer direkte fra menneskets natur'
+    )
+    .replaceAll('Plikten er reell.', 'Forpliktelsen er reell.')
+    .replaceAll(
+      'Hvis foreldre har plikt til å oppdra barnet til selvstendighet',
+      'Hvis foreldre har en forpliktelse til å oppdra barnet til selvstendighet'
+    )
+    .replaceAll('positive plikter', 'positive forpliktelser')
+    .replaceAll(
+      'Foreldre har reelle, håndhevbare plikter overfor sine barn',
+      'Foreldre har reelle, håndhevbare forpliktelser overfor sine barn'
+    )
+    .replaceAll('De plikter å oppdra barnet', 'De forplikter seg til å oppdra barnet')
+    .replaceAll('sinnets komprakikoser', 'sinnets comprachicos')
+    .replaceAll('Victor Hugos komprakikoser', 'Victor Hugos comprachicos')
+}
+
+function walkMdastText(node) {
+  if (node.type === 'text') {
+    node.value = applyHvemEierBarnetTextFixes(node.value)
+  }
+  if (Array.isArray(node.children)) {
+    for (const child of node.children) {
+      walkMdastText(child)
+    }
+  }
+}
+
 /** @returns {import('unified').Plugin} */
 function remarkArticleImages() {
   return function (tree, file) {
@@ -64,6 +102,10 @@ function remarkArticleImages() {
 
     const inlineMap = new Map((images.inline ?? []).map((img) => [img.id, img]))
     walkMdast(tree, null, null, inlineMap)
+
+    if (slug === 'hvem-eier-barnet') {
+      walkMdastText(tree)
+    }
   }
 }
 
