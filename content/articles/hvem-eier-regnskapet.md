@@ -20,8 +20,9 @@ sources:
     url: "https://www.oecd.org/content/dam/oecd/en/publications/reports/2025/04/taxing-wages-2025-country-notes_16d47563/norway_5d4a7955/eb496647-en.pdf"
 ---
 
-
 NRK har regnet ut hva du koster. Eller mer presist: hva staten bruker på deg fra fødsel til grav. Tallet er på godt over tretti millioner kroner, og det blir lagt fram med en slags rolig tilfredshet, som et livsregnskap hvor debet og kredit balanserer fordi oljefondet fyller mellomrommene. «I Norge er det ikke din bekymring, men staten sin,» skriver de. Og for å vise hvor heldig du er som slipper bekymringen, har de funnet tre priser fra utlandet — tre små skrekkeksempler på hva livet koster der staten ikke tar regningen. En ambulansetur i Australia: 7 400 kroner. Et år i barnehage i USA: 129 000 kroner. En bachelorgrad i England: 370 000 kroner. Tre konkrete tall. Tre bevis på at velferdsstaten er et godt kjøp.
+
+![Portrett av Frédéric Bastiat (1801–1850), den franske økonomen og forfatteren av «Det man ser, og det man ikke ser»](hero)
 
 Problemet er at alle tre tallene er selektive på måter som endrer hva de faktisk viser. Og at spørsmålet de skal besvare — hvor mye ville livet kostet deg uten staten — er ikke det samme som spørsmålet de egentlig stiller, som er hvor mye livet ditt koster i et system designet av andre, for andre, med deg som regnskapspost.
 
