@@ -1,0 +1,10 @@
+{
+  "hero": {
+    "id": "hero",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Smartphone_user_in_city.jpg/1200px-Smartphone_user_in_city.jpg",
+    "license": "CC BY-SA 4.0",
+    "attribution": "Foto: Wikimedia Commons",
+    "alt": "Person som ser på en smarttelefon utendørs"
+  },
+  "inline": []
+}
