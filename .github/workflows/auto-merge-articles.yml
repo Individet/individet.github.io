@@ -22,14 +22,16 @@ jobs:
             const { data: prs } = await github.rest.pulls.list({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              state: 'open',
-              labels: 'auto-merge'
+              state: 'open'
             });
 
             const now = new Date();
             const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
 
             for (const pr of prs) {
+              const hasLabel = pr.labels.some(l => l.name === 'auto-merge');
+              if (!hasLabel) continue;
+
               const age = now - new Date(pr.created_at);
               if (age >= SEVEN_DAYS_MS) {
                 console.log(`Merger PR #${pr.number}: ${pr.title}`);
