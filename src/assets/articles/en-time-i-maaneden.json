@@ -1,0 +1,18 @@
+{
+  "hero": {
+    "id": "hero",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/9/9b/2007-09-02_Roms%C3%A5s.jpg",
+    "license": "CC BY-SA 3.0",
+    "attribution": "Chell Hill, via Wikimedia Commons",
+    "alt": "Romsås drabantby fotografert fra avstand i 2007 — boligblokkene gruppert omkring tun mellom skogen og Groruddalen"
+  },
+  "inline": [
+    {
+      "id": "bilde-1",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Bastiat.jpg",
+      "license": "Public Domain",
+      "attribution": "Émile Desmaisons / Auguste-Hilaire Léveillé (1848), via Wikimedia Commons",
+      "alt": "Litografi av den franske økonomen Frédéric Bastiat fra 1848"
+    }
+  ]
+}
