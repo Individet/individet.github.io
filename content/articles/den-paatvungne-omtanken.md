@@ -3,7 +3,7 @@ title: "Den påtvungne omtanken"
 undertittel: "Tilsynet for universell utforming kan ilegge influensere dagmulkter for utekstede videoer. Loven kan tvinge fram teksten, ikke hjertelaget bak den."
 sjanger: reportasje
 publisert: 2026-05-15
-slug: den-paatvungle-omtanken
+slug: den-paatvungne-omtanken
 ingress: >
   Tilsynsdirektøren har talt: influensere som ikke tekster videoene sine kan
   få dagmulkt. Hjemmelen finnes. Praksisen er foreløpig sjelden. Men selve
