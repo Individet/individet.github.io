@@ -94,7 +94,7 @@ Frédéric Bastiat advarte i *Loven* om at staten ville bli det store fiksjonsap
 
 Todd Zywicki, som har studert Leonis arv, konkluderer: «Leonis spådommer om arten av et lovgivnings-sentrert rettssystem er ikke bare mer relevante enn noen gang, men nylige tendenser mot ekstrem og vilkårlig lovgivning ved utøvende dekreter er konsistent med trendene og intellektuelle prinsippene som Leoni identifiserte for over 50 år siden.»[^l11]
 
-I Norge vedtar Stortinget flere hundre lover og forskrifter hvert år. Regelverket vokser. Kompleksiteten stiger. Individets mulighet til å overskue — langt mindre forme — de reglene som styrer dets eget liv, krymper tilsvarende. Hver ny forskrift er en ny overføring av makt fra den enkelte til systemet.
+I Norge vedtar Stortinget flere hundre lover og forskrifter hvert år. Regelverket vokser. Kompleksiteten stiger. Individets mulighet til å overskue — langt mindre forme — de reglene som styrer dets eget liv, krymper tilsvarende. Hver nye [forskrift](https://snl.no/forskrift) er en ny overføring av makt fra den enkelte til systemet.
 
 Leoni ville gjenkjent mønsteret. Han ville spurt det spørsmålet han stilte i 1961 — om individuell frihet i det hele tatt er forenlig med et system sentrert rundt lovgivning. «Vi må erkjenne,» skriver Zywicki, «at dette har blitt et enda mer relevant og presserende spørsmål i dag enn det var for 50 år siden.»[^l12]
 
