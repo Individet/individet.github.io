@@ -32,7 +32,7 @@ Men det var Leoni som gikk lengst. Der Hayek og Friedman primært tok for seg ø
 
 # Lovgivning som planøkonomi
 
-Kjernen i Leonis argument er deceptivt enkel — og dyptgripende.
+Kjernen i Leonis argument er villedende enkel — og dyptgripende.
 
 Ludwig von Mises hadde vist at sentralplanlegging av økonomien ikke fungerer fordi planleggerne mangler den informasjonen som bare kan oppstå gjennom markedspriser. Leoni tok denne innsikten og anvendte den på lovens domene. Han argumenterte for at Mises' konklusjoner om økonomisk planlegging «kan betraktes kun som et spesialtilfelle av en mer generell realisering av at ingen lovgiver ville være i stand til å etablere, ved seg selv, uten noe kontinuerlig samarbeid fra alle mennesker som er berørt, reglene som styrer den faktiske atferden til alle i de endeløse relasjonene som hver har med alle andre.»[^ia6]
 
