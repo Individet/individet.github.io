@@ -9,6 +9,7 @@ jobs:
   auto-merge:
     runs-on: ubuntu-latest
     permissions:
+      actions: write
       pull-requests: write
       contents: write
     steps:
@@ -27,6 +28,7 @@ jobs:
 
             const now = new Date();
             const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
+            let mergedAny = false;
 
             for (const pr of prs) {
               const hasLabel = pr.labels.some(l => l.name === 'auto-merge');
@@ -42,8 +44,19 @@ jobs:
                   merge_method: 'squash',
                   commit_title: `artikkel: ${pr.title}`
                 });
+                mergedAny = true;
               } else {
                 const daysLeft = Math.ceil((SEVEN_DAYS_MS - age) / (24 * 60 * 60 * 1000));
                 console.log(`PR #${pr.number} har ${daysLeft} dager igjen`);
               }
+            }
+
+            if (mergedAny) {
+              console.log('Starter deploy-workflow manuelt etter auto-merge');
+              await github.rest.actions.createWorkflowDispatch({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                workflow_id: 'deploy.yml',
+                ref: 'main'
+              });
             }
