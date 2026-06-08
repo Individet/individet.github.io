@@ -1,0 +1,32 @@
+{
+  "hero": {
+    "id": "hero",
+    "url": "https://individet.no/logo.svg",
+    "license": "Public Domain",
+    "attribution": "Wikimedia Commons",
+    "alt": "Sophie Scholl og Det hvite rose - når individet sier nei"
+  },
+  "inline": [
+    {
+      "id": "sophie-scholl-white-rose-1",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/c/cd/M%C3%BCnster%2C_Platz_der_Wei%C3%9Fen_Rose%2C_B%C3%BCste_der_Geschwister_Scholl_--_2023_--_6509.jpg",
+      "license": "CC BY-SA 4.0",
+      "attribution": "Dietmar Rabich, via Wikimedia Commons",
+      "alt": "Bust of the siblings Hans and Sophie Scholl (ca. 1955/56, initiator Walter Rest) at the assembly hall at the Platz der Weißen Rose in Münster, North Rhine-Westphalia, Germany"
+    },
+    {
+      "id": "sophie-scholl-white-rose-2",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/9/93/Grab_Sophie_und_Hans_Scholl_Christoph_Probst-1.jpg",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Rufus46, via Wikimedia Commons",
+      "alt": "Graves of Hans Scholl, Sophie Scholl and Christoph Probst (Weiße Rose) in the Munich cemetery Friedhof am Perlacher Forst"
+    },
+    {
+      "id": "sophie-scholl-white-rose-3",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/6/62/1940_Letter_from_Sophie_Scholl_to_a_Friend_-_White_Rose_Memorial_Room_-_Interior_of_Main_Building_of_Ludwig-Maximilians-Universitat_-_Munich_-_Germany.jpg",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Adam Jones, Ph.D., via Wikimedia Commons",
+      "alt": "1940 Letter from Sophie Scholl to a Friend - White Rose Memorial Room - Interior of Main Building of Ludwig-Maximilians-Universitat - Munich - Germany"
+    }
+  ]
+}
