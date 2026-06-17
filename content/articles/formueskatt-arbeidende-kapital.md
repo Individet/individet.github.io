@@ -24,7 +24,7 @@ Så kommer skatteregningen. Staten har lest den samme verdsettelsen, og krever s
 
 ![Oslo Børs-bygningen, symbol for norsk kapitalmarked](hero)
 
-Dette er ikke et tenkt scenario. Det er den daglige virkeligheten for en hel klasse av mennesker som norsk skattedebatt later som om ikke finnes.
+Dette er ikke oppdiktet. Det er den daglige virkeligheten for en hel gruppe mennesker som norsk skattedebatt later som om ikke finnes.
 
 ## Protesten som avslørte mer enn den mente
 
@@ -32,11 +32,11 @@ Denne uken trakk analytiker Astrid Hauge Rambøl fra Manifest Analyse seg fra Je
 
 I sin avskjed kom Hauge Rambøl med en påstand som fortjener nærmere ettersyn. En superrik elite hadde, sa hun, brukt enorme summer på å etablere et bilde av at formuesskatten tar knekken på næringslivet, «selv om forskning viser det motsatte».
 
-Setningen er bygget for å avslutte en samtale, ikke for å åpne den. Og den flytter striden over på et spor der den ikke hører hjemme. For selv om hun hadde rett i at skatten ikke skader økonomien målbart, ville det ikke avgjøre saken. Et overgrep blir ikke rettferdig av å være lønnsomt. Men la oss først ta henne på hennes eget premiss, for det holder ikke engang der.
+Setningen er bygget for å avslutte en samtale, ikke for å åpne den. Og den fører debatten på avveie. For selv om hun hadde rett i at skatten ikke skader økonomien målbart, ville det ikke avgjøre saken. Et overgrep blir ikke rettferdig av å være lønnsomt. Men la oss først ta henne på hennes eget premiss, for empirien svikter henne selv der.
 
 ## Det forskningen ikke teller
 
-Argumentet som brukes for å forsvare formuesskatten, hviler på tall som disse: Ni av ti nordmenn betaler den ikke. Av de raskt voksende selskapene som regnes som gaseller, betalte bare fire av ti formuesskatt i 2015, og av dem igjen betalte ni av ti under 25 000 kroner. Tallene er korrekte. De er også et eksempel på en av statistikkens eldste villfarelser: å telle bare dem som fortsatt står i rommet.
+Argumentet som brukes for å forsvare formuesskatten, hviler på tall som disse: Ni av ti nordmenn betaler den ikke. Av de raskt voksende selskapene som regnes som gaseller, betalte bare fire av ti formuesskatt i 2015, og av dem igjen betalte ni av ti under 25 000 kroner. Tallene er korrekte. De er også et eksempel på en av statistikkens eldste villfarelser: å telle bare dem som ennå er igjen.
 
 For hva ser ikke disse tallene? De ser ikke gründeren som flyttet til Sverige før selskapet ble verdt noe, og som derfor aldri dukket opp i en norsk skattestatistikk. De ser ikke eieren som ble vannet ut til han mistet kontrollen. De ser ikke selskapet som ble solgt til en utenlandsk oppkjøper som kunne by høyere fordi han slapp den norske skatten. Hver av disse menneskene har «løst» sitt formuesskatteproblem på en måte som gjør dem usynlige i nettopp de tallene som senere brukes for å bevise at problemet ikke finnes.
 
@@ -48,7 +48,7 @@ Det avgjørende skillet går ikke mellom rik og fattig. Det går mellom penger e
 
 En lønnsmottaker beskattes av det han faktisk har tjent og fått utbetalt. En gründer med arbeidende kapital beskattes av en forventning, av hva et selskap kanskje blir verdt en gang i fremtiden. Statens egen utredning, NOU 2018: 5, sier det rett ut: formuesskatten kan påløpe selv om eieren mangler likvide midler til å betale den, og kan tvinge ham til å realisere formue han ellers ikke ville solgt. Verdier som var bundet opp i å bygge noe, må rives løs for å betale skatt på at de finnes.
 
-Forskere ved Norges Handelshøyskole har vist hvordan dette slår ut over tid. Formuesskatten senker de forventede kontantstrømmene for en norsk eier og hever avkastningskravet hans. Følgen er at det samme selskapet er mindre verdt for en nordmann enn for en utlending som slipper skatten. Når en gründer presses til å selge for å betale, er det utenlandsk kapital som kan by høyest. Norsk eierskap forvitrer, ikke fordi norske ideer er dårligere, men fordi norsk lov gjør det dyrere for nordmenn å eie dem. En fersk gjennomgang fra samme miljø peker på det de kortsiktige tallene aldri fanger: lavere risikovilje, et svakere oppstartsmiljø og en gradvis utflytting av eierskap som først viser seg over tiår.
+Forskere ved Norges Handelshøyskole har vist hvilket utslag dette gir. Formuesskatten senker de forventede kontantstrømmene for en norsk eier og hever avkastningskravet hans. Følgen er at det samme selskapet er mindre verdt for en nordmann enn for en utlending som slipper skatten. Når en gründer presses til å selge for å betale, er det utenlandsk kapital som kan by høyest. Norsk eierskap forvitrer, ikke fordi norske ideer er dårligere, men fordi norsk lov gjør det dyrere for nordmenn å eie dem. En fersk gjennomgang fra samme miljø peker på det de kortsiktige tallene aldri fanger: lavere risikovilje, et svakere oppstartsmiljø og en gradvis utflytting av eierskap som først viser seg gjennom tiår.
 
 Selv arbeidstakersiden innrømmer halvparten av problemet uten å se det. Når LO forklarer at de rikes formuer ikke ligger i madrassen, men står i aksjer, og at det å selge aksjer er en naturlig del av et eierliv, beskriver de nettopp mekanismen. Spørsmålet de aldri stiller, er under hvilke vilkår salget skjer. Selger eieren fordi han ønsker det, eller fordi staten krever det? Det første er en handel. Det andre er en hånd som lukker seg om noe en annen har skapt.
 
