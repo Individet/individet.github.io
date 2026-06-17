@@ -18,15 +18,15 @@ sources:
     url: "https://www.regjeringen.no/no/dokumenter/nou-2018-5/id2590735/"
 ---
 
-En gründer våkner en morgen og oppdager at han er blitt millionær. En investor har skutt inn penger i selskapet han har brukt fem år på å bygge, og verdsettelsen er nå svimlende. På papiret eier han en formue. På bankkontoen har han nok til husleien.
+En gründer oppdager en morgen at han på papiret er millionær. En investor har skutt inn penger i selskapet han har brukt fem år på å bygge, og verdsettelsen er svimlende. Men selskapet går med underskudd, og investoravtalen forbyr ham å selge en eneste aksje. På bankkontoen har han nok til husleien.
 
-Så kommer skatteregningen. Staten har lest den samme verdsettelsen, og krever sin årlige andel av en rikdom som ikke finnes i kontanter, men i forventning. Gründeren kan ikke selge aksjer for å betale, for investoravtalen forbyr ham nettopp det. Han kan ikke ta utbytte, for selskapet går med underskudd. Han står igjen med tre utveier: ta opp lån med pant i huset, la seg vanne ut av nye investorer, eller pakke kofferten og forlate landet.
+Så kommer skatteregningen. Staten har lest den samme verdsettelsen, og krever sin årlige andel av en rikdom som ikke finnes i kontanter, men i forventning. Gründeren står igjen med tre utveier: ta opp lån med pant i huset, la seg vanne ut av nye investorer, eller pakke kofferten og forlate landet.
 
 ![Oslo Børs-bygningen, symbol for norsk kapitalmarked](hero)
 
 Dette er ikke oppdiktet. Det er den daglige virkeligheten for en hel gruppe mennesker som norsk skattedebatt later som om ikke finnes.
 
-## Protesten som avslørte mer enn den mente
+## Protesten som avslørte premissene
 
 Denne uken trakk analytiker Astrid Hauge Rambøl fra Manifest Analyse seg fra Jens Stoltenbergs skattekommisjon, dagen før det siste planlagte møtet. Begrunnelsen var at kommisjonen lå an til å foreslå store lettelser til de rikeste. Det som var oppe til diskusjon, var en formuesskatt med satser mellom 0,25 og 0,75 prosent og fjerning av dagens verdsettelsesrabatter, et grep som avhengig av bunnfradrag kunne gi mellom seks og tjueto milliarder kroner i lettelser.
 
