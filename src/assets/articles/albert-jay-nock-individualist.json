@@ -1,0 +1,18 @@
+{
+  "hero": {
+    "id": "hero",
+    "url": "https://individet.no/logo.svg",
+    "license": "Public Domain",
+    "attribution": "Wikimedia Commons",
+    "alt": "Albert Jay Nock: Amerikaneren som forkastet staten"
+  },
+  "inline": [
+    {
+      "id": "albert-jay-nock-individualist-1",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/4/45/Anatomy_of_the_State.pdf",
+      "license": "CC BY 3.0",
+      "attribution": "\nMurray Newton Rothbard, via Wikimedia Commons",
+      "alt": "Anatomy of the State"
+    }
+  ]
+}
