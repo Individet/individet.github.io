@@ -1,0 +1,32 @@
+{
+  "hero": {
+    "id": "hero",
+    "url": "https://individet.no/logo.svg",
+    "license": "Public Domain",
+    "attribution": "Wikimedia Commons",
+    "alt": "Galileo Galilei: Vitenskapens frihet mot dogmatisk makt"
+  },
+  "inline": [
+    {
+      "id": "galileo-inquisition-1",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/8/88/Milton_visiting_Galileo_when_a_prisoner_of_the_Inquisition._Wellcome_M0006601.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 4.0",
+      "attribution": "Milton visiting Galileo when a prisoner of the Inquisition. Wellcome M0006601.jpg, via Wikimedia Commons",
+      "alt": "Milton visiting Galileo when a prisoner of the Inquisition. Oil painting by Solomon Alexander Hart, 1847.\n\nIconographic Collections\nKeywords: Galileo Galilei; John Milton; Solomon Alexander Hart"
+    },
+    {
+      "id": "galileo-inquisition-2",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/4/46/Milton_visiting_Galileo_when_a_prisoner_of_the_Inquisition._Wellcome_L0025611.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY 4.0",
+      "attribution": "Milton visiting Galileo when a prisoner of the Inquisition. Wellcome L0025611.jpg, via Wikimedia Commons",
+      "alt": "Milton visiting Galileo when a prisoner of the Inquisition. Oil painting by Solomon Alexander Hart, 1847.\n\nIconographic Collections\nKeywords: John Milton; Galileo Galilei; Solomon Alexander Hart"
+    },
+    {
+      "id": "galileo-inquisition-3",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/b/be/The_Sentence_of_the_Inquisition_on_Galileo_-_read_by_Availle_for_LibriVox%27s_Short_Nonfiction_Collection_Vol._014_%282009%29.ogg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "Public Domain",
+      "attribution": "Cardinals of the Inquisition (author), Availle (narrator), via Wikimedia Commons",
+      "alt": "From LibriVox's Short Nonfiction Collection Vol. 014, narrated by Availle and published in 2009. A recording of \"The Sentence of the Inquisition on Galileo\", pg. 59, by Cardinals of the Inquisition, 2"
+    }
+  ]
+}
