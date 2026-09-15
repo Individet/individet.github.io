@@ -1,0 +1,18 @@
+{
+  "hero": {
+    "id": "hero",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Repair_Cafe_by_Ilvy_Njiokiktjien.jpg",
+    "license": "CC BY-SA 3.0",
+    "attribution": "Ilvy Njiokiktjien, via Wikimedia Commons",
+    "alt": "Frivillige og besøkende bøyd over et demontert apparat på Repair Café i Amsterdam-Oost"
+  },
+  "inline": [
+    {
+      "id": "bilde-1",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Teardown_Fairphone_2.jpg",
+      "license": "CC BY-SA 3.0",
+      "attribution": "iFixit, via Wikimedia Commons",
+      "alt": "En Fairphone 2 tatt fra hverandre i separate moduler lagt utover et bord"
+    }
+  ]
+}
