@@ -1,0 +1,32 @@
+{
+  "hero": {
+    "id": "hero",
+    "url": "https://individet.no/logo.svg",
+    "license": "Public Domain",
+    "attribution": "Wikimedia Commons",
+    "alt": "Václav Havel: Dissidentens mot mot den kommunistiske staten"
+  },
+  "inline": [
+    {
+      "id": "vaclav-havel-dissidents-1",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/1/11/V%C3%A1clav_Havel_cut_out.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Ondřej Sláma, via Wikimedia Commons",
+      "alt": "Václav Havel during his speech at the Freedom and its adversaries conference held in Prague on 14 November 2009."
+    },
+    {
+      "id": "vaclav-havel-dissidents-2",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/c/ca/V%C3%A1clav_Havel-Szil%C3%A1gyi.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Lenke Szilágyi, via Wikimedia Commons",
+      "alt": "Václav Havel cseh író, politikus."
+    },
+    {
+      "id": "vaclav-havel-dissidents-3",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/f/fd/V%C3%A1clav_Havel_2014_V%C3%A1clavsk%C3%A9_n%C3%A1m%C4%9Bst%C3%AD.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+      "license": "CC BY-SA 4.0",
+      "attribution": "David Sedlecký, via Wikimedia Commons",
+      "alt": "Picture of President Václav Havel with words \"Havel forever\" located on National Museum building at Wenceslas Square in Prague"
+    }
+  ]
+}
