@@ -1,0 +1,18 @@
+{
+  "hero": {
+    "id": "hero",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Ayn_Rand_%281943_Talbot_portrait%29.jpg",
+    "license": "Public Domain",
+    "attribution": "Talbot / Bobbs-Merrill Company, Public Domain, via Wikimedia Commons",
+    "alt": "Svart-hvitt portrett av Ayn Rand fra 1943, brukt på baksiden av førsteutgaven av The Fountainhead"
+  },
+  "inline": [
+    {
+      "id": "bilde-1",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/7/72/Murray_Rothbard.jpg",
+      "license": "CC BY-SA 3.0",
+      "attribution": "Ludwig von Mises Institute, via Wikimedia Commons",
+      "alt": "Portrettfotografi av en ung Murray Rothbard"
+    }
+  ]
+}
